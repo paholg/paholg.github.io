@@ -44,7 +44,7 @@
     <div class="container">
       <div class="row-fluid">
         <div class="col-xs-12 col-sm-3">
-          {% include sidebar.md %}
+          {% include sidebar.md | markdownify %}
         </div>
         <div class="col-xs-12 col-sm-9 col-lg-8">
           <h1>{{ page.title }}</h1>
