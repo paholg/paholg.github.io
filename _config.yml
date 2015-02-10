@@ -1,25 +1,28 @@
-title: Paho Lurie-Gregg
+# Dependencies
+markdown:         redcarpet
+highlighter:      pygments
 
-email: paho@paholg.com
+# Permalinks
+permalink:        pretty
+relative_permalinks: true
 
-description: >
-  Description goes here! (Relevent to google search results)
+# Setup
+title:            Paho Lurie-Gregg
+description:      "Description goes here! (Relevent to google search results)"
+url:              http://paholg.com
+baseurl:          /
 
-baseurl: ""
+author:
+  name:           "Paho Lurie-Gregg"
+  url:            https://paho-url.url
+  email:          paho@paholg.com
 
-url: "https://paholg.github.io"
+paginate:         5
 
-# twitter_username: paholg
-
-github_username:  paholg
+github:
+  repo:           "https://github.com/paholg/"
 
 collections:
   projects:
     output: true
     permalink: /:path/
-
-# Build settings
-# markdown: kramdown
-markdown: redcarpet
-highlighter: pygments
-

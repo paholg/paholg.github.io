@@ -1,16 +1,32 @@
-<h3>
-  Projects
-  <ul>
-    {% for project in site.projects %}
-    <li>
-      <a href="{{ project.url }}">{{ project.title }}</a>
-    </li>
-    {% endfor %}
-  </ul>
-  Links
-  <ul>
-    <li>
-      <a href="https://github.com/paholg">Github</a>
-    </li>
-  </ul>
-</h3>
+<div class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      <h3>
+        <a href="{{ site.baseurl }}">
+          {{ site.title }}
+        </a>
+      </h3>
+    </div>
+    <nav class="sidebar-nav">
+      Posts
+      {% for page in site.posts limit:3 %}
+      <a class="sidebar-nav-item" href="{{ page.url }}"> {{ page.title }} </a>
+      <span class="sidebar-date">{{ page.date | date_to_string }}</span>
+      {% endfor %}
+      <a class="sidebar-nav-item" href="/archive"> Archive </a>
+    </nav>
+
+    <nav class="sidebar-nav">
+      Projects
+      {% for page in site.projects %}
+      <a class="sidebar-nav-item" href="{{ page.url }}"> {{ page.title }} </a>
+      {% endfor %}
+    </nav>
+
+    <nav class="sidebar-nav">
+      Links
+      <a class="sidebar-nav-item" href="{{ site.github.repo }}">GitHub</a>
+    </nav>
+
+  </div>
+</div>
