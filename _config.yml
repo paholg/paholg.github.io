@@ -15,7 +15,6 @@ baseurl:          /
 
 author:
   name:           "Paho Lurie-Gregg"
-  url:            https://paho-url.url
   email:          paho@paholg.com
 
 paginate:         5
@@ -24,6 +23,18 @@ github:
   repo:           "https://github.com/paholg/"
 
 collections:
-  projects:
+  dimensioned:
     output: true
-    permalink: /:path/
+    title: Dimensioned
+    url: /dimensioned
+    links:
+      Documentation: /doc/dimensioned
+      Source: "https://github.com/paholg/dimensioned"
+      Crates.io: "https://crates.io/crates/dimensioned"
+
+  # recipes:
+  #   output: true
+  #   title: Recipes
+  #   url: /recipes
+  #   links:
+  #     Source: "https://github.com/paholg/recipes"

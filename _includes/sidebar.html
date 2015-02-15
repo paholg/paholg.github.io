@@ -20,8 +20,8 @@
 
     <nav class="sidebar-nav">
       Projects
-      {% for page in site.projects limit:5 %}
-      <a class="sidebar-nav-item" href="{{ page.url }}"> {{ page.title }} </a>
+      {% for collection in site.collections %}
+      <a class="sidebar-nav-item" href="{{ collection[1].url }}"> {{ collection[1].title }} </a>
       {% endfor %}
     </nav>
 
