@@ -7,8 +7,9 @@ permalink:        pretty
 relative_permalinks: true
 
 # Setup
-title:            Paho Lurie-Gregg
-description:      "Description goes here! (Relevent to google search results)"
+title:            paho_blog
+
+description:      "A blog about some projects I've been working on."
 url:              http://paholg.com
 baseurl:          /
 
