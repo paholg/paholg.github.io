@@ -7,6 +7,7 @@
         </a>
       </h3>
     </div>
+
     <nav class="sidebar-nav">
       Posts
       {% for page in site.posts limit:5 %}
@@ -19,7 +20,9 @@
 
     <nav class="sidebar-nav">
       Projects
-      <a class="sidebar-nav-item" href="http://dimensioned.paholg.com"> Dimensioned </a>
+      {% for page in site.projects limit:5 %}
+      <a class="sidebar-nav-item" href="{{ page.url }}"> {{ page.title }} </a>
+      {% endfor %}
     </nav>
 
     <nav class="sidebar-nav">
@@ -30,7 +33,6 @@
     <nav class="sidebar-nav">
       <a class="sidebar-nav-item" href="/about"> About </a>
     </nav>
-
 
   </div>
 </div>
