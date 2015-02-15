@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Succ` struct in crate `dimensioned`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Succ">
+
+    <title>dimensioned::peano::Succ - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <section class="sidebar">
+        
+        <p class='location'><a href='../index.html'>dimensioned</a>::<wbr><a href='index.html'>peano</a></p><div class='block struct'><h2>Structs</h2><a class='struct ' href='struct.Pred.html' title=''>Pred</a><a class='struct current' href='struct.Succ.html' title=''>Succ</a><a class='struct ' href='struct.Zero.html' title=''>Zero</a></div><div class='block trait'><h2>Traits</h2><a class='trait ' href='trait.AddPeano.html' title=''>AddPeano</a><a class='trait ' href='trait.DivPeano.html' title='Note that, while we define division, we are operating in a ring, so an error will be thrown unless the numerator is divisible by the denominator'>DivPeano</a><a class='trait ' href='trait.KeepPeano.html' title=''>KeepPeano</a><a class='trait ' href='trait.MulPeano.html' title=''>MulPeano</a><a class='trait ' href='trait.Negate.html' title=''>Negate</a><a class='trait ' href='trait.NonNeg.html' title=''>NonNeg</a><a class='trait ' href='trait.NonPos.html' title=''>NonPos</a><a class='trait ' href='trait.NonZero.html' title=''>NonZero</a><a class='trait ' href='trait.Peano.html' title=''>Peano</a><a class='trait ' href='trait.SubPeano.html' title=''>SubPeano</a><a class='trait ' href='trait.ToInt.html' title='Converts a type to the integer it represents'>ToInt</a></div>
+    </section>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>dimensioned</a>::<wbr><a href='index.html'>peano</a>::<wbr><a class='struct' href=''>Succ</a><wbr></span><span class='out-of-band'><span id='render-detail'>
+            <a id="collapse-all" href="#">[-]
+            </a>&nbsp;<a id="expand-all" href="#">[+]</a>
+        </span><a id='src-10' href='../../src/dimensioned/peano.rs.html#2'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Succ&lt;N: <a class='trait' href='../../dimensioned/peano/trait.NonNeg.html' title='dimensioned::peano::NonNeg'>NonNeg</a>&gt;;</pre><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;N: <a class='trait' href='../../dimensioned/peano/trait.NonNeg.html' title='dimensioned::peano::NonNeg'>NonNeg</a>&gt; <a class='trait' href='../../dimensioned/peano/trait.Peano.html' title='dimensioned::peano::Peano'>Peano</a> for <a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>&lt;N&gt;</code></h3><div class='impl-items'></div><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;N: <a class='trait' href='../../dimensioned/peano/trait.NonNeg.html' title='dimensioned::peano::NonNeg'>NonNeg</a>&gt; <a class='trait' href='../../dimensioned/peano/trait.NonNeg.html' title='dimensioned::peano::NonNeg'>NonNeg</a> for <a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>&lt;N&gt;</code></h3><div class='impl-items'></div><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;N: <a class='trait' href='../../dimensioned/peano/trait.NonNeg.html' title='dimensioned::peano::NonNeg'>NonNeg</a>&gt; <a class='trait' href='../../dimensioned/peano/trait.NonZero.html' title='dimensioned::peano::NonZero'>NonZero</a> for <a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>&lt;N&gt;</code></h3><div class='impl-items'></div><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;LHS: <a class='trait' href='../../dimensioned/peano/trait.NonNeg.html' title='dimensioned::peano::NonNeg'>NonNeg</a> + <a class='trait' href='../../dimensioned/peano/trait.AddPeano.html' title='dimensioned::peano::AddPeano'>AddPeano</a>&lt;<a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>&lt;RHS&gt;&gt;, RHS: <a class='trait' href='../../dimensioned/peano/trait.NonNeg.html' title='dimensioned::peano::NonNeg'>NonNeg</a>&gt; <a class='trait' href='../../dimensioned/peano/trait.AddPeano.html' title='dimensioned::peano::AddPeano'>AddPeano</a>&lt;<a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>&lt;RHS&gt;&gt; for <a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>&lt;LHS&gt;</code></h3><div class='docblock'><p>Adding positive numbers (e.g. 1 + 2)</p>
+</div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><a class='stability Unmarked' title='No stability level'></a><code>type Output = <a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>&lt;&lt;LHS as <a class='trait' href='../../dimensioned/peano/trait.AddPeano.html' title='dimensioned::peano::AddPeano'>AddPeano</a>&lt;<a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>&lt;RHS&gt;&gt;&gt;::Output&gt;</code></h4>
+</div><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;LHS: <a class='trait' href='../../dimensioned/peano/trait.NonNeg.html' title='dimensioned::peano::NonNeg'>NonNeg</a>&gt; <a class='trait' href='../../dimensioned/peano/trait.AddPeano.html' title='dimensioned::peano::AddPeano'>AddPeano</a>&lt;<a class='struct' href='../../dimensioned/peano/struct.Zero.html' title='dimensioned::peano::Zero'>Zero</a>&gt; for <a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>&lt;LHS&gt;</code></h3><div class='docblock'><p>Adding zero to positive numbers (e.g. 3 + 0)</p>
+</div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><a class='stability Unmarked' title='No stability level'></a><code>type Output = <a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>&lt;LHS&gt;</code></h4>
+</div><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;LHS: <a class='trait' href='../../dimensioned/peano/trait.NonNeg.html' title='dimensioned::peano::NonNeg'>NonNeg</a> + <a class='trait' href='../../dimensioned/peano/trait.AddPeano.html' title='dimensioned::peano::AddPeano'>AddPeano</a>&lt;RHS&gt;, RHS: <a class='trait' href='../../dimensioned/peano/trait.NonPos.html' title='dimensioned::peano::NonPos'>NonPos</a>&gt; <a class='trait' href='../../dimensioned/peano/trait.AddPeano.html' title='dimensioned::peano::AddPeano'>AddPeano</a>&lt;<a class='struct' href='../../dimensioned/peano/struct.Pred.html' title='dimensioned::peano::Pred'>Pred</a>&lt;RHS&gt;&gt; for <a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>&lt;LHS&gt;</code></h3><div class='docblock'><p>Adding negative numbers to positive numbers (e.g. 2 + -3)</p>
+</div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><a class='stability Unmarked' title='No stability level'></a><code>type Output = &lt;LHS as <a class='trait' href='../../dimensioned/peano/trait.AddPeano.html' title='dimensioned::peano::AddPeano'>AddPeano</a>&lt;RHS&gt;&gt;::Output</code></h4>
+</div><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;N: <a class='trait' href='../../dimensioned/peano/trait.NonNeg.html' title='dimensioned::peano::NonNeg'>NonNeg</a> + <a class='trait' href='../../dimensioned/peano/trait.Negate.html' title='dimensioned::peano::Negate'>Negate</a>&gt; <a class='trait' href='../../dimensioned/peano/trait.Negate.html' title='dimensioned::peano::Negate'>Negate</a> for <a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>&lt;N&gt;</code></h3><div class='impl-items'><h4 id='assoc_type.Output' class='type'><a class='stability Unmarked' title='No stability level'></a><code>type Output = <a class='struct' href='../../dimensioned/peano/struct.Pred.html' title='dimensioned::peano::Pred'>Pred</a>&lt;&lt;N as <a class='trait' href='../../dimensioned/peano/trait.Negate.html' title='dimensioned::peano::Negate'>Negate</a>&gt;::Output&gt;</code></h4>
+</div><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;LHS: <a class='trait' href='../../dimensioned/peano/trait.NonNeg.html' title='dimensioned::peano::NonNeg'>NonNeg</a> + <a class='trait' href='../../dimensioned/peano/trait.SubPeano.html' title='dimensioned::peano::SubPeano'>SubPeano</a>&lt;RHS&gt;, RHS&gt; <a class='trait' href='../../dimensioned/peano/trait.SubPeano.html' title='dimensioned::peano::SubPeano'>SubPeano</a>&lt;<a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>&lt;RHS&gt;&gt; for <a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>&lt;LHS&gt;</code></h3><div class='docblock'><p>Subtracting positive numbers from positive numbers (e.g. 3 - 4)</p>
+</div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><a class='stability Unmarked' title='No stability level'></a><code>type Output = &lt;LHS as <a class='trait' href='../../dimensioned/peano/trait.SubPeano.html' title='dimensioned::peano::SubPeano'>SubPeano</a>&lt;RHS&gt;&gt;::Output</code></h4>
+</div><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;LHS: <a class='trait' href='../../dimensioned/peano/trait.NonNeg.html' title='dimensioned::peano::NonNeg'>NonNeg</a>&gt; <a class='trait' href='../../dimensioned/peano/trait.SubPeano.html' title='dimensioned::peano::SubPeano'>SubPeano</a>&lt;<a class='struct' href='../../dimensioned/peano/struct.Zero.html' title='dimensioned::peano::Zero'>Zero</a>&gt; for <a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>&lt;LHS&gt;</code></h3><div class='docblock'><p>Subtracting zero from positive numbers (e.g. 3 - 0)</p>
+</div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><a class='stability Unmarked' title='No stability level'></a><code>type Output = <a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>&lt;LHS&gt;</code></h4>
+</div><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;LHS: <a class='trait' href='../../dimensioned/peano/trait.NonNeg.html' title='dimensioned::peano::NonNeg'>NonNeg</a> + <a class='trait' href='../../dimensioned/peano/trait.SubPeano.html' title='dimensioned::peano::SubPeano'>SubPeano</a>&lt;RHS&gt;, RHS: <a class='trait' href='../../dimensioned/peano/trait.NonPos.html' title='dimensioned::peano::NonPos'>NonPos</a>&gt; <a class='trait' href='../../dimensioned/peano/trait.SubPeano.html' title='dimensioned::peano::SubPeano'>SubPeano</a>&lt;<a class='struct' href='../../dimensioned/peano/struct.Pred.html' title='dimensioned::peano::Pred'>Pred</a>&lt;RHS&gt;&gt; for <a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>&lt;LHS&gt;</code></h3><div class='docblock'><p>Subtracting negative numbers from positive numbers (e.g. 3 - -4)</p>
+</div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><a class='stability Unmarked' title='No stability level'></a><code>type Output = <a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>&lt;<a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>&lt;&lt;LHS as <a class='trait' href='../../dimensioned/peano/trait.SubPeano.html' title='dimensioned::peano::SubPeano'>SubPeano</a>&lt;RHS&gt;&gt;::Output&gt;&gt;</code></h4>
+</div><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;LHS, RHS&gt; <a class='trait' href='../../dimensioned/peano/trait.MulPeano.html' title='dimensioned::peano::MulPeano'>MulPeano</a>&lt;RHS&gt; for <a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>&lt;LHS&gt; <span class='where'>where LHS: <a class='trait' href='../../dimensioned/peano/trait.NonNeg.html' title='dimensioned::peano::NonNeg'>NonNeg</a> + <a class='trait' href='../../dimensioned/peano/trait.MulPeano.html' title='dimensioned::peano::MulPeano'>MulPeano</a>&lt;RHS&gt;, RHS: <a class='trait' href='../../dimensioned/peano/trait.AddPeano.html' title='dimensioned::peano::AddPeano'>AddPeano</a>&lt;&lt;LHS as <a class='trait' href='../../dimensioned/peano/trait.MulPeano.html' title='dimensioned::peano::MulPeano'>MulPeano</a>&lt;RHS&gt;&gt;::Output&gt;</span></code></h3><div class='docblock'><p>Multiplying a positive integer by an arbitrary integer (e.g. 2 * N)</p>
+</div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><a class='stability Unmarked' title='No stability level'></a><code>type Output = &lt;RHS as <a class='trait' href='../../dimensioned/peano/trait.AddPeano.html' title='dimensioned::peano::AddPeano'>AddPeano</a>&lt;&lt;LHS as <a class='trait' href='../../dimensioned/peano/trait.MulPeano.html' title='dimensioned::peano::MulPeano'>MulPeano</a>&lt;RHS&gt;&gt;::Output&gt;&gt;::Output</code></h4>
+</div><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;LHS, RHS&gt; <a class='trait' href='../../dimensioned/peano/trait.DivPeano.html' title='dimensioned::peano::DivPeano'>DivPeano</a>&lt;RHS&gt; for <a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>&lt;LHS&gt; <span class='where'>where LHS: <a class='trait' href='../../dimensioned/peano/trait.NonNeg.html' title='dimensioned::peano::NonNeg'>NonNeg</a>, <a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>&lt;LHS&gt;: DivPeanoPriv&lt;RHS&gt;</span></code></h3><div class='impl-items'><h4 id='assoc_type.Output' class='type'><a class='stability Unmarked' title='No stability level'></a><code>type Output = &lt;<a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>&lt;LHS&gt; as DivPeanoPriv&lt;RHS&gt;&gt;::Output</code></h4>
+</div><h3 class='impl'><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;N: <a class='trait' href='../../dimensioned/peano/trait.NonNeg.html' title='dimensioned::peano::NonNeg'>NonNeg</a> + <a class='trait' href='../../dimensioned/peano/trait.ToInt.html' title='dimensioned::peano::ToInt'>ToInt</a>&gt; <a class='trait' href='../../dimensioned/peano/trait.ToInt.html' title='dimensioned::peano::ToInt'>ToInt</a> for <a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>&lt;N&gt;</code></h3><div class='impl-items'><h4 id='method.to_int' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#method.to_int' class='fnname'>to_int</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a></code></h4>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <div id="help" class="hidden">
+        <div class="shortcuts">
+            <h1>Keyboard shortcuts</h1>
+            <dl>
+                <dt>?</dt>
+                <dd>Show this help dialog</dd>
+                <dt>S</dt>
+                <dd>Focus the search field</dd>
+                <dt>&larrb;</dt>
+                <dd>Move up in search results</dd>
+                <dt>&rarrb;</dt>
+                <dd>Move down in search results</dd>
+                <dt>&#9166;</dt>
+                <dd>Go to active search result</dd>
+            </dl>
+        </div>
+        <div class="infos">
+            <h1>Search tricks</h1>
+            <p>
+                Prefix searches with a type followed by a colon (e.g.
+                <code>fn:</code>) to restrict the search to a given type.
+            </p>
+            <p>
+                Accepted types are: <code>fn</code>, <code>mod</code>,
+                <code>struct</code>, <code>enum</code>,
+                <code>trait</code>, <code>typedef</code> (or
+                <code>tdef</code>).
+            </p>
+        </div>
+    </div>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "dimensioned";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script async src="../../search-index.js"></script>
+</body>
+</html>
