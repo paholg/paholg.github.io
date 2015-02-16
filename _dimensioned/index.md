@@ -4,7 +4,7 @@ layout: project
 project: dimensioned
 ---
 
-Compile-time type checking for arbitrary unit systems.
+Dimensioned is a Rust library fo compile-time type checking for arbitrary unit systems.
 
 
 This library currently comes with just SI units, but you can easily make your own by

@@ -61,10 +61,10 @@ a {
     text-decoration: none;
 }
 
-/* `:focus` is linked to `:hover` for basic accessibility */
 a:hover,
 a:focus {
-    text-decoration: underline;
+    background-color: #ccc;
+    color: #121218;
 }
 
 /* Headings */
@@ -114,8 +114,6 @@ pre {
     line-height: 1.4;
     white-space: pre;
     white-space: pre-wrap;
-    word-break: break-all;
-    word-wrap: break-word;
 }
 pre code {
     padding: 0;
@@ -237,10 +235,10 @@ tbody tr:nth-child(odd) th {
     display: block;
     line-height: 1.75;
 }
-a.sidebar-nav-item:hover,
-a.sidebar-nav-item:focus {
-    text-decoration: underline;
-}
+/* a.sidebar-nav-item:hover, */
+/* a.sidebar-nav-item:focus { */
+/*     text-decoration: underline; */
+/* } */
 
 /* Container */
 .content {
@@ -265,11 +263,11 @@ a.sidebar-nav-item:focus {
         bottom: 0;
         text-align: right;
 
-        width: 14rem;
+        width: 12rem;
         padding: 0rem 0rem;
     }
     .content {
-        margin-left: 14rem;
+        margin-left: 12rem;
     }
 }
 @media (min-width: 82rem) {
@@ -278,7 +276,7 @@ a.sidebar-nav-item:focus {
         margin-right: auto;
     }
     .sidebar {
-        width: calc(50% - 25rem);
+        left: calc(50% - 37rem);
     }
 }
 
@@ -290,44 +288,44 @@ a.sidebar-nav-item:focus {
  */
 
 .pagination {
-  overflow: hidden; /* clearfix */
-  margin-left: -1rem;
-  margin-right: -1rem;
-  color: #ccc;
-  text-align: center;
+    overflow: hidden; /* clearfix */
+    margin-left: -1rem;
+    margin-right: -1rem;
+    color: #ccc;
+    text-align: center;
 }
 
 /* Pagination items can be `span`s or `a`s */
 .pagination-item {
-  display: block;
-  padding: 1rem;
-  border: 1px solid #eee;
+    display: block;
+    padding: 1rem;
+    border: 1px solid #eee;
 }
 .pagination-item:first-child {
-  margin-bottom: -1px;
+    margin-bottom: -1px;
 }
 
 /* Only provide a hover state for linked pagination items */
 a.pagination-item:hover {
-  background-color: #f5f5f5;
+    background-color: #f5f5f5;
 }
 
 @media (min-width: 30em) {
-  .pagination {
-    margin: 3rem 0;
-  }
-  .pagination-item {
-    float: left;
-    width: 50%;
-  }
-  .pagination-item:first-child {
-    margin-bottom: 0;
-    border-top-left-radius:    4px;
-    border-bottom-left-radius: 4px;
-  }
-  .pagination-item:last-child {
-    margin-left: -1px;
-    border-top-right-radius:    4px;
-    border-bottom-right-radius: 4px;
-  }
+    .pagination {
+        margin: 3rem 0;
+    }
+    .pagination-item {
+        float: left;
+        width: 50%;
+    }
+    .pagination-item:first-child {
+        margin-bottom: 0;
+        border-top-left-radius:    4px;
+        border-bottom-left-radius: 4px;
+    }
+    .pagination-item:last-child {
+        margin-left: -1px;
+        border-top-right-radius:    4px;
+        border-bottom-right-radius: 4px;
+    }
 }
