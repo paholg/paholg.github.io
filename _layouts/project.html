@@ -8,10 +8,21 @@
     {% include sidebar-project.html %}
 
     <div class="content container">
+      {% if page.title == "Home" %}
+        {% for collection in site.collections %}
+          {% if page.collection == collection[0] %}
+            <h1 class="page-title">{{ collection[1].title }}</h1>
+          {% endif %}
+        {% endfor %}
+      {% else %}
       <h1 class="page-title">{{ page.title }}</h1>
+      {% endif %}
       {{ content }}
     </div>
 
   </body>
+
+  {% include foot.html %}
+
 </html>
 

@@ -10,11 +10,12 @@
 
     <nav class="sidebar-nav">
       Posts
-      {% for page in site.posts limit:5 %}
-      <a class="sidebar-nav-item" href="{{ page.url }}"> {{ page.title }} </a>
-      <span class="sidebar-date">{{ page.date | date_to_string }}</span>
+      {% for post in site.posts limit:5 %}
+
+      <a class="sidebar-nav-item" href="{{ post.url }}"> {{ post.title }}</a>
+      <span class="sidebar-date">{{ post.date | date_to_string }}</span>
       {% endfor %}
-      <a class="sidebar-nav-item" href="/archive"> Archive </a>
+      <a class="sidebar-nav-item" href="/archive/"> Archive </a>
       <a class="sidebar-nav-item" href="/feed.xml"> RSS/Atom Feed </a>
     </nav>
 
