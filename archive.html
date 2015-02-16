@@ -1,9 +1,9 @@
 ---
-title: Post Archive
+title: Archive
 layout: page
 ---
 
 {% for page in site.posts %}
-<a class="sidebar-nav-item" href="{{ page.url }}"> {{ page.title }} </a>
-<span class="sidebar-date">{{ page.date | date_to_string }}</span>
+<a class="sidebar-nav-item" href="{{ page.url }}"> {{ page.title }}
+<span class="sidebar-date">{{ page.date | date_to_string }}</span> </a>
 {% endfor %}
