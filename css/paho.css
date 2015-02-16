@@ -24,6 +24,9 @@ a {
 .sidebar {
     color: #288;
 }
+.sidebar hr {
+    border: 1px solid #288;
+}
 .sidebar a {
     color: #ddc;
 }
@@ -259,6 +262,12 @@ tbody tr:nth-child(odd) th {
     margin-right: auto;
 }
 
+/* Horizontal line */
+hr {
+    width: 5em;
+    height: 1px;
+    margin-left: 0;
+}
 
 /* Resizing */
 @media (min-width: 50em) {
@@ -273,16 +282,20 @@ tbody tr:nth-child(odd) th {
         padding: 0rem 0rem;
     }
     .content {
-        margin-left: 12rem;
+        margin-left: 13rem;
+    }
+    hr {
+        margin-right: 0;
+        margin-left: auto;
     }
 }
-@media (min-width: 82rem) {
+@media (min-width: 83rem) {
     .content {
         margin-left: auto;
         margin-right: auto;
     }
     .sidebar {
-        left: calc(50% - 37rem);
+        left: calc(50% - 38rem);
     }
 }
 
@@ -340,6 +353,6 @@ a.pagination-item {
         margin-left: 50%;
         margin-left: -1px;
         border-bottom-left-radius: 0;
-        border-top-right-radius:    4px;
+        border-top-right-radius: 4px;
     }
 }
