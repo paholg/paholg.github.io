@@ -37,9 +37,6 @@ a {
 .sidebar a {
     color: #ddc;
 }
-.sidebar {
-    background-color: rgba(18, 18, 24, .6);
-}
 .sidebar-nav-item.active {
     color: #121218;
     background-color: #ccc;
@@ -86,37 +83,9 @@ a:hover,
 a:focus {
     background-color: #ccc;
     color: #121218;
+    border-radius: 3px;
 }
 
-/* Corners */
-.upper_left {
-    width: 50%;
-    height: 50%;
-    position: fixed;
-    top: 0;
-    left: 0;
-}
-.upper_right {
-    width: 50%;
-    height: 50%;
-    position: fixed;
-    top: 0;
-    left: 50%;
-}
-.lower_left {
-    width: 50%;
-    height: 50%;
-    position: fixed;
-    top: 50%;
-    left: 0;
-}
-.lower_right {
-    width: 50%;
-    height: 50%;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-}
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
     margin-top: 0rem;
@@ -263,19 +232,46 @@ tbody tr:nth-child(odd) th {
 }
 
 /* Sidebar */
+.sidebar-button {
+    position: fixed;
+    height: 3rem;
+    width: 6rem;
+    z-index: 100;
+    right: 0;
+    left: auto;
+
+    border-bottom-left-radius: 1rem;
+    border: 0;
+    outline: 0;
+    background-color: #288;
+}
+.sidebar-button:hover {
+    background-color: #166;
+    border: 0;
+    outline: 0;
+}
+.sidebar-button:active {
+    background-color: #044;
+    border: 0;
+    outline: 0;
+}
+
 .sidebar {
     min-height: 100vh;
-    position: relative;
-    text-align: left;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: auto;
+
+    text-align: right;
 
     width: 13em;
 
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-
     margin-bottom: 0;
+
+    background-color: rgba(18, 18, 24, .9);
+    display: none;
 }
 /* About section */
 .sidebar-about h1 {
@@ -290,52 +286,55 @@ tbody tr:nth-child(odd) th {
     display: block;
     line-height: 1.75;
 }
-/* a.sidebar-nav-item:hover, */
-/* a.sidebar-nav-item:focus { */
-/*     text-decoration: underline; */
-/* } */
 
 /* Container */
+.container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+}
+
+/* Content */
 .content {
     max-width: 50rem;
     min-height: 100vh;
 
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-
-    margin-top: 0;
-    margin-left: auto;
-    margin-right: auto;
+    padding-top: 3rem;
+    /* margin-top: 0; */
+    /* margin-left: auto; */
+    /* margin-right: auto; */
 }
 
 /* Horizontal line */
 hr {
     width: 5em;
     height: 1px;
-    margin-left: 0;
+    margin-right: 0;
+    margin-left: auto;
 }
 
 /* Resizing */
 @media (min-width: 50em) {
     .sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
         text-align: right;
+        right: auto;
+        left: 0;
 
-        width: 13rem;
+        display: block;
+
+        background-color: rgba(18, 18, 24, .7);
+    }
+    .container {
+        padding-top: 1rem;
     }
     .content {
         top: 0;
         margin-left: 13rem;
         padding-top: 2rem;
     }
-    hr {
-        margin-right: 0;
-        margin-left: auto;
+    .sidebar-button {
+        display: none;
     }
 }
 
