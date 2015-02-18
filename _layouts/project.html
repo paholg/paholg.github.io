@@ -1,9 +1,15 @@
+{% for collection in site.collections %}
+{% if page.collection == collection[0] %}
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 
+  <link rel="shortcut icon" href="/imgs/favicon.png" /
+>
   {% include head.html %}
 
-  <body>
+
+  <body background="{{ collection[1].background }}">
 
     {% include sidebar-project.html %}
 
@@ -26,3 +32,5 @@
 
 </html>
 
+{% endif %}
+{% endfor %}

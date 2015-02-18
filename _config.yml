@@ -27,6 +27,7 @@ collections:
     output: true
     title: Dimensioned
     url: /dimensioned
+    background: "/imgs/bg-dimensioned.jpg"
     links:
       Documentation: /doc/dimensioned
       Source: "https://github.com/paholg/dimensioned"

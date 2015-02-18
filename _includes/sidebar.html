@@ -9,21 +9,23 @@
       </h3>
     </nav>
 
+    <hr/>
+
     <nav class="sidebar-nav">
-      Posts
+      <!-- Posts -->
       {% for post in site.posts limit:5 %}
 
       <a class="sidebar-nav-item" href="{{ post.url }}"> {{ post.title }}
       <span class="sidebar-date">{{ post.date | date: "%-d %B %Y" }}</span></a>
       {% endfor %}
       <a class="sidebar-nav-item" href="/archive/"> Archive </a>
-      <a class="sidebar-nav-item" href="/feed.xml"> RSS/Atom Feed </a>
     </nav>
 
     <nav class="sidebar-nav">
       Projects
       {% for collection in site.collections %}
-      <a class="sidebar-nav-item" href="{{ collection[1].url }}"> {{ collection[1].title }} </a>
+      <a class="sidebar-nav-item" href="{{ collection[1].url }}">
+        {{ collection[1].title }} </a>
       {% endfor %}
     </nav>
 
@@ -31,9 +33,11 @@
       Links
       <a class="sidebar-nav-item" href="{{ site.github.repo }}">GitHub</a>
     </nav>
+
     <hr/>
 
     <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/feed.xml"> RSS/Atom Feed </a>
       <a class="sidebar-nav-item" href="/about"> About </a>
     </nav>
 

@@ -6,11 +6,12 @@ project: dimensioned
 
 Dimensioned is a Rust library for compile-time type checking for arbitrary unit systems.
 
+It is still a work in progress, so expect breaking changes if you would like to use it.
 
 This library currently comes with just SI units, but you can easily make your own by
-editing or importing `unitsmaker.py`. It has no tutorial yet, but it should be easy enough
-to emulate (just look at `main()`). Note: it does save a file to your computer and does
-zero sanity checking, so run it at your own risk.
+editing or importing `unitsmaker.py`. It has no tutorial yet, but it should be easy
+enough to emulate (just look at `main()`). Note: it does save a file to your computer
+and does zero sanity checking, so run it at your own risk.
 
 To build,
 
@@ -28,7 +29,8 @@ fn main() {
     let xhat: Dim<Unitless, Vector2d> = Dim(Vector2d{x: 1.0, y: 0.0});
     let yhat: Dim<Unitless, Vector2d> = Dim(Vector2d{x: 0.0, y: 1.0});
 
-    let start = -xhat*m*13.0 + yhat*m*33.0;
+
+let start = -xhat*m*13.0 + yhat*m*33.0;
     let end = xhat*m*26.0 - yhat*m*19.0;
 
     let displace = end - start;
@@ -75,4 +77,3 @@ Run the example with
 ```
 cargo run --example vec
 ```
-

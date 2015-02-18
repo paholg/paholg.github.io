@@ -4,7 +4,14 @@
 /* Colors */
 body {
     color: #ccc;
-    background-color: #121218;
+    background-color: #000;
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.content {
+    background-color: rgba(18, 18, 24, 1);
 }
 .page-title,
 .post-title,
@@ -16,10 +23,10 @@ code {
     color: #93a1a1;
 }
 pre {
-    background-color: #000;
+    /* background-color: #000; */
 }
 a {
-    color: #6dd;
+    color: #288;
 }
 .sidebar {
     color: #288;
@@ -29,6 +36,9 @@ a {
 }
 .sidebar a {
     color: #ddc;
+}
+.sidebar {
+    background-color: rgba(18, 18, 24, .6);
 }
 .sidebar-nav-item.active {
     color: #121218;
@@ -60,11 +70,13 @@ html, body {
     font-size: 1.05em;
     line-height: 1.5;
 }
-/* html { */
-/* } */
+html {
+    height: 100%;
+}
 body {
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
+    min-height: 100%;
 }
 a {
     text-decoration: none;
@@ -76,8 +88,38 @@ a:focus {
     color: #121218;
 }
 
+/* Corners */
+.upper_left {
+    width: 50%;
+    height: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.upper_right {
+    width: 50%;
+    height: 50%;
+    position: fixed;
+    top: 0;
+    left: 50%;
+}
+.lower_left {
+    width: 50%;
+    height: 50%;
+    position: fixed;
+    top: 50%;
+    left: 0;
+}
+.lower_right {
+    width: 50%;
+    height: 50%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
+    margin-top: 0rem;
     margin-bottom: .5rem;
     font-weight: bold;
     line-height: 1.25;
@@ -222,14 +264,18 @@ tbody tr:nth-child(odd) th {
 
 /* Sidebar */
 .sidebar {
+    min-height: 100vh;
     position: relative;
-    top: -1.5rem;
     text-align: left;
+
+    width: 13em;
 
     padding-left: 1rem;
     padding-right: 1rem;
     padding-top: 1rem;
-    padding-bottom: 0rem;
+    padding-bottom: 1rem;
+
+    margin-bottom: 0;
 }
 /* About section */
 .sidebar-about h1 {
@@ -252,12 +298,14 @@ tbody tr:nth-child(odd) th {
 /* Container */
 .content {
     max-width: 50rem;
+    min-height: 100vh;
 
     padding-left: 1rem;
     padding-right: 1rem;
-    padding-top: 0rem;
-    padding-bottom: 0rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 
+    margin-top: 0;
     margin-left: auto;
     margin-right: auto;
 }
@@ -278,34 +326,31 @@ hr {
         bottom: 0;
         text-align: right;
 
-        width: 12rem;
-        padding: 0rem 0rem;
+        width: 13rem;
     }
     .content {
+        top: 0;
         margin-left: 13rem;
+        padding-top: 2rem;
     }
     hr {
         margin-right: 0;
         margin-left: auto;
     }
 }
-@media (min-width: 83rem) {
+
+/* center both */
+@media (min-width: 63rem) {
     .content {
-        margin-left: auto;
+        margin-left: calc(50% - 18.5rem);
         margin-right: auto;
     }
     .sidebar {
-        left: calc(50% - 38rem);
+        left: calc(50% - 31.5rem);
     }
 }
 
-/*
- * Pagination
- *
- * Super lightweight (HTML-wise) blog pagination. `span`s are provide for when
- * there are no more previous or next posts to show.
- */
-
+/* Pagination */
 .pagination {
     overflow: hidden; /* clearfix */
     margin-left: -1rem;
@@ -313,8 +358,6 @@ hr {
     text-align: center;
     margin: 3rem 0;
 }
-
-/* Pagination items can be `span`s or `a`s */
 .pagination-item {
     display: block;
     padding: 1rem;
