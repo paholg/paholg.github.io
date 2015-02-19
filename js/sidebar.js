@@ -29,19 +29,19 @@ $(document).ready(function() {
     // fimxe: in "mobile" view, if you toggle sidebar and then enlarge window, sidebar
     // doesn't come back
     $('button').click(function() {
-        $('.sidebar').toggle()
+        // $('.sidebar').toggle()
 
         // this doesn't change anything:
 
-        // if ($('.sidebar').css('display') == 'none') {
-        //     $('.sidebar').css({
-        //         'display': 'block'
-        //     });
-        // } else {
-        //     $('.sidebar').css({
-        //         'display': 'none'
-        //     });
-        // }
+        if ($('.sidebar').css('display') == 'none') {
+            $('.sidebar').css({
+                'display': 'block'
+            });
+        } else {
+            $('.sidebar').css({
+                'display': 'none'
+            });
+        }
     });
 
 });

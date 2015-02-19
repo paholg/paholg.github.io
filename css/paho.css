@@ -231,29 +231,71 @@ tbody tr:nth-child(odd) th {
     font-size: 70%;
 }
 
+/* Menu button */
+.menu-button {
+    height: 3.5em;
+    width: 3.5em;
+    z-index: 100;
+    border: 0em solid #000;
+    outline: 0;
+
+    padding-left: .5em;
+    padding-right: .5em;
+
+    border-bottom-left-radius: .25em;
+    border-bottom-right-radius: .25em;
+    border-top-left-radius: .25em;
+    border-top-right-radius: .25em;
+}
+.menu-top {
+    display: block;
+    height: .5em;
+    background-color: #000;
+
+    margin-bottom: .25em;
+
+    border-bottom-left-radius: 0em;
+    border-bottom-right-radius: 0em;
+    border-top-left-radius: .25em;
+    border-top-right-radius: .25em;
+}
+.menu-middle {
+    display: block;
+    height: .5em;
+    background-color: #000;
+
+    margin-bottom: .25em;
+
+    border-bottom-left-radius: 0em;
+    border-bottom-right-radius: 0em;
+    border-top-left-radius: 0em;
+    border-top-right-radius: 0em;
+}
+.menu-bottom {
+    display: block;
+    height: .5em;
+    background-color: #000;
+
+    border-bottom-left-radius: .25em;
+    border-bottom-right-radius: .25em;
+    border-top-left-radius: 0em;
+    border-top-right-radius: 0em;
+}
+.menu-button:hover {
+    background-color: #166;
+}
+.menu-button:active {
+    background-color: #044;
+}
+
 /* Sidebar */
 .sidebar-button {
     position: fixed;
-    height: 3rem;
-    width: 6rem;
-    z-index: 100;
-    right: 0;
+    right: .5em;
+    top: .5em;
     left: auto;
 
-    border-bottom-left-radius: 1rem;
-    border: 0;
-    outline: 0;
     background-color: #288;
-}
-.sidebar-button:hover {
-    background-color: #166;
-    border: 0;
-    outline: 0;
-}
-.sidebar-button:active {
-    background-color: #044;
-    border: 0;
-    outline: 0;
 }
 
 .sidebar {
@@ -291,7 +333,7 @@ tbody tr:nth-child(odd) th {
 .container {
     padding-left: 1rem;
     padding-right: 1rem;
-    padding-top: 2rem;
+    padding-top: 3rem;
     padding-bottom: 1rem;
 }
 
@@ -300,7 +342,7 @@ tbody tr:nth-child(odd) th {
     max-width: 50rem;
     min-height: 100vh;
 
-    padding-top: 3rem;
+    /* padding-top: 3rem; */
     /* margin-top: 0; */
     /* margin-left: auto; */
     /* margin-right: auto; */
@@ -322,6 +364,7 @@ hr {
         left: 0;
 
         display: block;
+        visibility: visible;
 
         background-color: rgba(18, 18, 24, .7);
     }
