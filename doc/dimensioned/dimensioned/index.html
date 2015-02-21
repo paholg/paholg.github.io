@@ -42,9 +42,8 @@
 
     <section id='main' class="content mod">
 <h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>dimensioned</a>::<wbr><a class='mod' href=''>dimensioned</a><wbr></span><span class='out-of-band'><span id='render-detail'>
-            <a id="collapse-all" href="#">[-]
-            </a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-982' href='../../src/dimensioned/dimensioned.rs.html#1-318'>[src]</a></span></h1>
+            <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
+        </span><a id='src-1014' href='../../src/dimensioned/dimensioned.rs.html#1-324'>[src]</a></span></h1>
 <h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
 <table><tr><td><code>pub use <a class='mod' href='../../dimensioned/peano/index.html' title='dimensioned::peano'>peano</a>::*;</code></td></tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
@@ -52,6 +51,17 @@
                         <td><a class='stability Unmarked' title='No stability level'></a><a class='struct' href='struct.Dim.html'
                                title='dimensioned::dimensioned::Dim'>Dim</a></td>
                         <td class='docblock short'></td>
+                    </tr>
+                
+                    <tr>
+                        <td><a class='stability Stable' title='Stable'></a><a class='struct' href='struct.PhantomData.html'
+                               title='dimensioned::dimensioned::PhantomData'>PhantomData</a></td>
+                        <td class='docblock short'><p><code>PhantomData</code> is a way to tell the compiler about fake fields.
+Phantom data is required whenever type parameters are not used.
+The idea is that if the compiler encounters a <code>PhantomData&lt;T&gt;</code>
+instance, it will behave <em>as if</em> an instance of the type <code>T</code> were
+present for the purpose of various automatic analyses.</p>
+</td>
                     </tr>
                 </table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
 <table>

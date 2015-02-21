@@ -414,42 +414,55 @@
 <span id="372">372</span>
 <span id="373">373</span>
 <span id="374">374</span>
+<span id="375">375</span>
+<span id="376">376</span>
+<span id="377">377</span>
+<span id="378">378</span>
+<span id="379">379</span>
+<span id="380">380</span>
 </pre><pre class='rust '>
+<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>peano</span>::<span class='op'>*</span>;
+<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>marker</span>::<span class='ident'>PhantomData</span>;
+
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>marker</span>::{<span class='ident'>PhantomFn</span>, <span class='ident'>MarkerTrait</span>};
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>ops</span>::<span class='op'>*</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>num</span>::{<span class='ident'>ToPrimitive</span>, <span class='ident'>NumCast</span>, <span class='ident'>Float</span>};
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>cmp</span>::<span class='op'>*</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fmt</span>;
 
-<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>peano</span>::<span class='op'>*</span>;
-
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Dimension</span> {}
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Dimension</span>: <span class='ident'>MarkerTrait</span> {}
 
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Dimensionless</span>: <span class='ident'>Dimension</span> {}
 
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>AddDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> {
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>AddDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>PhantomFn</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>SubDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> {
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>SubDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>PhantomFn</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>MulDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> {
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>MulDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>PhantomFn</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>DivDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> {
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>DivDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>PhantomFn</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>KeepDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> {
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>KeepDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>PhantomFn</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>DimToString</span>: <span class='ident'>Dimension</span> {
     <span class='kw'>fn</span> <span class='ident'>to_string</span>() <span class='op'>-&gt;</span> <span class='ident'>String</span>;
 }
 
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Scalar</span> {}
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Scalar</span>: <span class='ident'>MarkerTrait</span> {}
 <span class='kw'>impl</span> <span class='ident'>Scalar</span> <span class='kw'>for</span> <span class='ident'>f64</span> {}
 <span class='kw'>impl</span> <span class='ident'>Scalar</span> <span class='kw'>for</span> <span class='ident'>f32</span> {}
 
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>: <span class='ident'>Dimension</span>, <span class='ident'>V</span><span class='op'>&gt;</span>(<span class='kw'>pub</span> <span class='ident'>V</span>);
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>: <span class='ident'>Dimension</span>, <span class='ident'>V</span><span class='op'>&gt;</span>(<span class='kw'>pub</span> <span class='ident'>V</span>, <span class='kw'>pub</span> <span class='ident'>PhantomData</span><span class='op'>&lt;</span><span class='ident'>D</span><span class='op'>&gt;</span>);
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>: <span class='ident'>Dimension</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>v</span>: <span class='ident'>V</span>) <span class='op'>-&gt;</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> {
+        <span class='ident'>Dim</span>(<span class='ident'>v</span>, <span class='ident'>PhantomData</span>)
+    }
+}
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>: <span class='ident'>Dimension</span>, <span class='ident'>V</span>: <span class='ident'>Copy</span><span class='op'>&gt;</span> <span class='ident'>Copy</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> {}
 
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Wrap</span><span class='op'>&lt;</span><span class='ident'>B</span><span class='op'>&gt;</span> {
@@ -459,9 +472,8 @@
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>A</span>, <span class='ident'>B</span><span class='op'>&gt;</span> <span class='ident'>Wrap</span><span class='op'>&lt;</span><span class='ident'>B</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>A</span><span class='op'>&gt;</span>
     <span class='kw'>where</span> <span class='ident'>D</span>: <span class='ident'>Dimension</span> {
         <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>B</span><span class='op'>&gt;</span>;
-        <span class='kw'>fn</span> <span class='ident'>wrap</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>b</span>: <span class='ident'>B</span>) <span class='op'>-&gt;</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>B</span><span class='op'>&gt;</span> { <span class='ident'>Dim</span>(<span class='ident'>b</span>) }
+        <span class='kw'>fn</span> <span class='ident'>wrap</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>b</span>: <span class='ident'>B</span>) <span class='op'>-&gt;</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>B</span><span class='op'>&gt;</span> { <span class='ident'>Dim</span>(<span class='ident'>b</span>, <span class='ident'>PhantomData</span>) }
 }
-
 
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Sqrt</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span>;
@@ -471,7 +483,7 @@
     <span class='kw'>where</span> <span class='ident'>D</span>:  <span class='ident'>DivDim</span><span class='op'>&lt;</span><span class='ident'>Two</span><span class='op'>&gt;</span>, <span class='ident'>V</span>: <span class='ident'>Float</span>, <span class='op'>&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>DivDim</span><span class='op'>&lt;</span><span class='ident'>Two</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Dimension</span> {
         <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>DivDim</span><span class='op'>&lt;</span><span class='ident'>Two</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='ident'>V</span><span class='op'>&gt;</span>;
 
-        <span class='kw'>fn</span> <span class='ident'>sqrt</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='op'>&lt;</span><span class='kw'>Self</span> <span class='kw'>as</span> <span class='ident'>Sqrt</span><span class='op'>&gt;</span>::<span class='ident'>Output</span> { <span class='ident'>Dim</span>( (<span class='self'>self</span>.<span class='number'>0</span>).<span class='ident'>sqrt</span>()) }
+        <span class='kw'>fn</span> <span class='ident'>sqrt</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='op'>&lt;</span><span class='kw'>Self</span> <span class='kw'>as</span> <span class='ident'>Sqrt</span><span class='op'>&gt;</span>::<span class='ident'>Output</span> { <span class='ident'>Dim</span>( (<span class='self'>self</span>.<span class='number'>0</span>).<span class='ident'>sqrt</span>(), <span class='ident'>PhantomData</span>) }
 }
 
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Sqr</span> {
@@ -482,7 +494,7 @@
     <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>MulDim</span><span class='op'>&lt;</span><span class='ident'>Two</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='op'>&lt;</span><span class='ident'>V</span> <span class='kw'>as</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>V</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>;
 
     <span class='kw'>fn</span> <span class='ident'>sqr</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='op'>&lt;</span><span class='kw'>Self</span> <span class='kw'>as</span> <span class='ident'>Sqr</span><span class='op'>&gt;</span>::<span class='ident'>Output</span> {
-        <span class='ident'>Dim</span>( (<span class='self'>self</span>.<span class='number'>0</span>)<span class='op'>*</span>(<span class='self'>self</span>.<span class='number'>0</span>) )
+        <span class='ident'>Dim</span>( (<span class='self'>self</span>.<span class='number'>0</span>)<span class='op'>*</span>(<span class='self'>self</span>.<span class='number'>0</span>), <span class='ident'>PhantomData</span> )
     }
 }
 
@@ -532,7 +544,7 @@
 <span class='comment'>//------------------------------------------------------------------------------</span>
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='ident'>Clone</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>D</span>: <span class='ident'>Dimension</span>, <span class='ident'>V</span>: <span class='ident'>Clone</span> {
     <span class='kw'>fn</span> <span class='ident'>clone</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
-        <span class='ident'>Dim</span>((<span class='self'>self</span>.<span class='number'>0</span>).<span class='ident'>clone</span>())
+        <span class='ident'>Dim</span>((<span class='self'>self</span>.<span class='number'>0</span>).<span class='ident'>clone</span>(), <span class='ident'>PhantomData</span>)
     }
     <span class='kw'>fn</span> <span class='ident'>clone_from</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>source</span>: <span class='kw-2'>&amp;</span><span class='kw'>Self</span>) {
         (<span class='self'>self</span>.<span class='number'>0</span>).<span class='ident'>clone_from</span>(<span class='kw-2'>&amp;</span><span class='ident'>source</span>.<span class='number'>0</span>);
@@ -557,7 +569,7 @@
         <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>Dl</span> <span class='kw'>as</span> <span class='ident'>AddDim</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='op'>&lt;</span><span class='ident'>Vl</span> <span class='kw'>as</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>;
 
         <span class='kw'>fn</span> <span class='ident'>mul</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>Dr</span>, <span class='ident'>Vr</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>Dl</span> <span class='kw'>as</span> <span class='ident'>AddDim</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='op'>&lt;</span><span class='ident'>Vl</span> <span class='kw'>as</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span> {
-            <span class='ident'>Dim</span>(<span class='self'>self</span>.<span class='number'>0</span> <span class='op'>*</span> <span class='ident'>rhs</span>.<span class='number'>0</span>)
+            <span class='ident'>Dim</span>(<span class='self'>self</span>.<span class='number'>0</span> <span class='op'>*</span> <span class='ident'>rhs</span>.<span class='number'>0</span>, <span class='ident'>PhantomData</span>)
         }
 }
 
@@ -566,7 +578,7 @@
     <span class='kw'>where</span> <span class='ident'>D</span>: <span class='ident'>Dimension</span>, <span class='ident'>V</span>: <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>, <span class='ident'>RHS</span>: <span class='ident'>Scalar</span> {
         <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='op'>&lt;</span><span class='ident'>V</span> <span class='kw'>as</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>;
         <span class='kw'>fn</span> <span class='ident'>mul</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>RHS</span>) <span class='op'>-&gt;</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='op'>&lt;</span><span class='ident'>V</span> <span class='kw'>as</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span> {
-            <span class='ident'>Dim</span>(<span class='self'>self</span>.<span class='number'>0</span> <span class='op'>*</span> <span class='ident'>rhs</span>)
+            <span class='ident'>Dim</span>(<span class='self'>self</span>.<span class='number'>0</span> <span class='op'>*</span> <span class='ident'>rhs</span>, <span class='ident'>PhantomData</span>)
         }
     }
 
@@ -585,7 +597,7 @@
     <span class='kw'>where</span> <span class='ident'>Dl</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>SubDim</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;</span>, <span class='ident'>Dr</span>: <span class='ident'>Dimension</span>, <span class='ident'>Vl</span>: <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;</span>, <span class='op'>&lt;</span><span class='ident'>Dl</span> <span class='kw'>as</span> <span class='ident'>SubDim</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Dimension</span> {
         <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>Dl</span> <span class='kw'>as</span> <span class='ident'>SubDim</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='op'>&lt;</span><span class='ident'>Vl</span> <span class='kw'>as</span> <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>;
         <span class='kw'>fn</span> <span class='ident'>div</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>Dr</span>, <span class='ident'>Vr</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>Dl</span> <span class='kw'>as</span> <span class='ident'>SubDim</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='op'>&lt;</span><span class='ident'>Vl</span> <span class='kw'>as</span> <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span> {
-            <span class='ident'>Dim</span>(<span class='self'>self</span>.<span class='number'>0</span> <span class='op'>/</span> <span class='ident'>rhs</span>.<span class='number'>0</span>)
+            <span class='ident'>Dim</span>(<span class='self'>self</span>.<span class='number'>0</span> <span class='op'>/</span> <span class='ident'>rhs</span>.<span class='number'>0</span>, <span class='ident'>PhantomData</span>)
         }
     }
 
@@ -594,7 +606,7 @@
     <span class='kw'>where</span> <span class='ident'>D</span>: <span class='ident'>Dimension</span>, <span class='ident'>V</span>: <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>, <span class='ident'>RHS</span>: <span class='ident'>Scalar</span> {
         <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='op'>&lt;</span><span class='ident'>V</span> <span class='kw'>as</span> <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>;
         <span class='kw'>fn</span> <span class='ident'>div</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>RHS</span>) <span class='op'>-&gt;</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='op'>&lt;</span><span class='ident'>V</span> <span class='kw'>as</span> <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span> {
-            <span class='ident'>Dim</span>(<span class='self'>self</span>.<span class='number'>0</span> <span class='op'>/</span> <span class='ident'>rhs</span>)
+            <span class='ident'>Dim</span>(<span class='self'>self</span>.<span class='number'>0</span> <span class='op'>/</span> <span class='ident'>rhs</span>, <span class='ident'>PhantomData</span>)
         }
     }
 
@@ -611,7 +623,7 @@
             <span class='kw'>where</span> <span class='ident'>D</span>: <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op</span><span class='op'>&lt;</span><span class='ident'>D</span><span class='op'>&gt;</span>, <span class='ident'>V</span>: <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Trait</span>, <span class='op'>&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op</span><span class='op'>&lt;</span><span class='ident'>D</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Dimension</span> {
                 <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op</span><span class='op'>&lt;</span><span class='ident'>D</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='op'>&lt;</span><span class='ident'>V</span> <span class='kw'>as</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Trait</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>;
                 $(<span class='kw'>fn</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op</span><span class='op'>&lt;</span><span class='ident'>D</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='op'>&lt;</span><span class='ident'>V</span> <span class='kw'>as</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Trait</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span> {
-                    <span class='ident'>Dim</span>( (<span class='self'>self</span>.<span class='number'>0</span>).<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>() )
+                    <span class='ident'>Dim</span>( (<span class='self'>self</span>.<span class='number'>0</span>).<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>(), <span class='ident'>PhantomData</span> )
                 })<span class='op'>*</span>
             }
         )
@@ -628,7 +640,7 @@
             <span class='kw'>where</span> <span class='ident'>Dl</span>: <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;</span>, <span class='ident'>Dr</span>: <span class='ident'>Dimension</span>, <span class='ident'>Vl</span>: <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Trait</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;</span>, <span class='op'>&lt;</span><span class='ident'>Dl</span> <span class='kw'>as</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Dimension</span> {
                 <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>Dl</span> <span class='kw'>as</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='op'>&lt;</span><span class='ident'>Vl</span> <span class='kw'>as</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Trait</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>;
                 $(<span class='kw'>fn</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>Dr</span>, <span class='ident'>Vr</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>Dl</span> <span class='kw'>as</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='op'>&lt;</span><span class='ident'>Vl</span> <span class='kw'>as</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Trait</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span> {
-                    <span class='ident'>Dim</span>( (<span class='self'>self</span>.<span class='number'>0</span>).<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>(<span class='ident'>rhs</span>.<span class='number'>0</span>) )
+                    <span class='ident'>Dim</span>( (<span class='self'>self</span>.<span class='number'>0</span>).<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>(<span class='ident'>rhs</span>.<span class='number'>0</span>), <span class='ident'>PhantomData</span> )
                 })<span class='op'>*</span>
             }
         )
@@ -720,7 +732,7 @@
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='ident'>NumCast</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>D</span>: <span class='ident'>Dimensionless</span>, <span class='ident'>V</span>: <span class='ident'>NumCast</span> {
     <span class='kw'>fn</span> <span class='ident'>from</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span>(<span class='ident'>n</span>: <span class='ident'>N</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='kw'>Self</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>N</span>: <span class='ident'>ToPrimitive</span> {
         <span class='kw'>match</span> <span class='ident'>NumCast</span>::<span class='ident'>from</span>(<span class='ident'>n</span>) {
-            <span class='prelude-val'>Some</span>(<span class='ident'>v</span>) <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>Dim</span>(<span class='ident'>v</span>)),
+            <span class='prelude-val'>Some</span>(<span class='ident'>v</span>) <span class='op'>=&gt;</span> <span class='prelude-val'>Some</span>(<span class='ident'>Dim</span>(<span class='ident'>v</span>, <span class='ident'>PhantomData</span>)),
             <span class='prelude-val'>None</span> <span class='op'>=&gt;</span> <span class='prelude-val'>None</span>
         }
     }
@@ -730,7 +742,7 @@
 <span class='comment'>// Float</span>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>dim_unary_float</span> {
     (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>returns</span>:<span class='ident'>ty</span>) <span class='op'>=&gt;</span> (
-        <span class='kw'>fn</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>returns</span> { <span class='ident'>Dim</span>( (<span class='self'>self</span>.<span class='number'>0</span>).<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>()) }
+        <span class='kw'>fn</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>returns</span> { <span class='ident'>Dim</span>( (<span class='self'>self</span>.<span class='number'>0</span>).<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>(), <span class='ident'>PhantomData</span>) }
         )
 }
 
