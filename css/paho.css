@@ -254,8 +254,8 @@ tbody tr:nth-child(odd) th {
 
     margin-bottom: .25em;
 
-    border-bottom-left-radius: 0em;
-    border-bottom-right-radius: 0em;
+    border-bottom-left-radius: .25em;
+    border-bottom-right-radius: .25em;
     border-top-left-radius: .25em;
     border-top-right-radius: .25em;
 }
@@ -266,10 +266,10 @@ tbody tr:nth-child(odd) th {
 
     margin-bottom: .25em;
 
-    border-bottom-left-radius: 0em;
-    border-bottom-right-radius: 0em;
-    border-top-left-radius: 0em;
-    border-top-right-radius: 0em;
+    border-bottom-left-radius: .25em;
+    border-bottom-right-radius: .25em;
+    border-top-left-radius: .25em;
+    border-top-right-radius: .25em;
 }
 .menu-bottom {
     display: block;
@@ -278,8 +278,8 @@ tbody tr:nth-child(odd) th {
 
     border-bottom-left-radius: .25em;
     border-bottom-right-radius: .25em;
-    border-top-left-radius: 0em;
-    border-top-right-radius: 0em;
+    border-top-left-radius: .25em;
+    border-top-right-radius: .25em;
 }
 .menu-button:hover {
     background-color: #166;
@@ -357,14 +357,13 @@ hr {
 }
 
 /* Resizing */
-@media (min-width: 50em) {
+@media (min-width: 45em) {
     .sidebar {
         text-align: right;
         right: auto;
         left: 0;
 
-        display: block;
-        visibility: visible;
+        display: block !important;
 
         background-color: rgba(18, 18, 24, .7);
     }

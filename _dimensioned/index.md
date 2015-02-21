@@ -8,6 +8,8 @@ Dimensioned is a Rust library for compile-time type checking for arbitrary unit 
 
 It is still a work in progress, so expect breaking changes if you would like to use it.
 
+This website is also still a work in progress and is very much incomplete.
+
 This library currently comes with just SI units, but you can easily make your own by
 editing or importing `unitsmaker.py`. It has no tutorial yet, but it should be easy
 enough to emulate (just look at `main()`). Note: it does save a file to your computer
@@ -26,8 +28,8 @@ Here is an example of its use:
 
 ```rust
 fn main() {
-    let xhat: Dim<Unitless, Vector2d> = Dim(Vector2d{x: 1.0, y: 0.0});
-    let yhat: Dim<Unitless, Vector2d> = Dim(Vector2d{x: 0.0, y: 1.0});
+    let xhat: Dim<Unitless, Vector2d> = Dim::new(Vector2d{x: 1.0, y: 0.0});
+    let yhat: Dim<Unitless, Vector2d> = Dim::new(Vector2d{x: 0.0, y: 1.0});
 
 
 let start = -xhat*m*13.0 + yhat*m*33.0;
