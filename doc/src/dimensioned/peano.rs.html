@@ -259,10 +259,22 @@
 <span id="217">217</span>
 <span id="218">218</span>
 <span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
+<span id="225">225</span>
 </pre><pre class='rust '>
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>marker</span>::{<span class='ident'>PhantomData</span>, <span class='ident'>PhantomFn</span>, <span class='ident'>MarkerTrait</span>};
+
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Zero</span>;
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>N</span>: <span class='ident'>NonNeg</span><span class='op'>&gt;</span>;
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>N</span>: <span class='ident'>NonPos</span><span class='op'>&gt;</span>;
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>N</span>: <span class='ident'>NonNeg</span><span class='op'>&gt;</span> {
+    <span class='ident'>_marker</span>: <span class='ident'>PhantomData</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span>
+}
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>N</span>: <span class='ident'>NonPos</span><span class='op'>&gt;</span> {
+    <span class='ident'>_marker</span>: <span class='ident'>PhantomData</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span>
+}
 
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>One</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Zero</span><span class='op'>&gt;</span>;
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Two</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>One</span><span class='op'>&gt;</span>;
@@ -286,7 +298,7 @@
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>NegNine</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>NegEight</span><span class='op'>&gt;</span>;
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>NegTen</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>NegNine</span><span class='op'>&gt;</span>;
 
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Peano</span> {}
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Peano</span>: <span class='ident'>MarkerTrait</span> {}
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>NonZero</span>: <span class='ident'>Peano</span> {}
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>NonNeg</span>: <span class='ident'>Peano</span> {}
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>NonPos</span>: <span class='ident'>Peano</span> {}
@@ -305,7 +317,7 @@
 
 <span class='kw'>impl</span> <span class='ident'>Copy</span> <span class='kw'>for</span> <span class='ident'>Zero</span> {}
 
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>AddPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Peano</span> {
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>AddPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Peano</span> <span class='op'>+</span> <span class='ident'>PhantomFn</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
 
@@ -340,7 +352,7 @@
     <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>LHS</span> <span class='kw'>as</span> <span class='ident'>AddPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
 }
 
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Negate</span> {
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Negate</span>: <span class='ident'>MarkerTrait</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
 <span class='kw'>impl</span> <span class='ident'>Negate</span> <span class='kw'>for</span> <span class='ident'>Zero</span> {
@@ -355,7 +367,7 @@
 
 
 
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>SubPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Peano</span> {
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>SubPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Peano</span> <span class='op'>+</span> <span class='ident'>PhantomFn</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
 
@@ -392,7 +404,7 @@
 
 
 
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>MulPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Peano</span> {
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>MulPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Peano</span> <span class='op'>+</span> <span class='ident'>PhantomFn</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>{
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
 
@@ -416,7 +428,7 @@
 
 <span class='doccomment'>/// Note that, while we define division, we are operating in a ring, so an error</span>
 <span class='doccomment'>/// will be thrown unless the numerator is divisible by the denominator</span>
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>DivPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Peano</span> {
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>DivPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Peano</span> <span class='op'>+</span> <span class='ident'>PhantomFn</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> <span class='ident'>DivPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Zero</span>
@@ -435,7 +447,7 @@
 <span class='comment'>// DivPeanoPriv only supports positive numerators. That way, it will terminate with an</span>
 <span class='comment'>// error if you ever try to divide non-divisible things. We can divide things like -4 /</span>
 <span class='comment'>// 2 by first negating both numerator and denominator, which is what DivPeano does.</span>
-<span class='kw'>trait</span> <span class='ident'>DivPeanoPriv</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Peano</span> {
+<span class='kw'>trait</span> <span class='ident'>DivPeanoPriv</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Peano</span> <span class='op'>+</span> <span class='ident'>PhantomFn</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>RHS</span>: <span class='ident'>NonZero</span><span class='op'>&gt;</span> <span class='ident'>DivPeanoPriv</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Zero</span> {
@@ -457,7 +469,7 @@
 
 
 
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>KeepPeano</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span>: <span class='ident'>Peano</span> {
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>KeepPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Peano</span> <span class='op'>+</span> <span class='ident'>PhantomFn</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
 <span class='doccomment'>/// Output = N iff both operands are type N</span>
