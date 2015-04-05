@@ -420,40 +420,44 @@
 <span id="378">378</span>
 <span id="379">379</span>
 <span id="380">380</span>
+<span id="381">381</span>
+<span id="382">382</span>
 </pre><pre class='rust '>
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>peano</span>::<span class='op'>*</span>;
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>marker</span>::<span class='ident'>PhantomData</span>;
 
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>marker</span>::{<span class='ident'>PhantomFn</span>, <span class='ident'>MarkerTrait</span>};
+<span class='comment'>// use std::marker::{PhantomFn, MarkerTrait};</span>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>ops</span>::<span class='op'>*</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>num</span>::{<span class='ident'>ToPrimitive</span>, <span class='ident'>NumCast</span>, <span class='ident'>Float</span>};
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>num</span>::{<span class='ident'>ToPrimitive</span>, <span class='ident'>NumCast</span>};
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>cmp</span>::<span class='op'>*</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fmt</span>;
 
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Dimension</span>: <span class='ident'>MarkerTrait</span> {}
+<span class='kw'>use</span> <span class='ident'>num</span>::<span class='ident'>Float</span>;
+
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Dimension</span> {}
 
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Dimensionless</span>: <span class='ident'>Dimension</span> {}
 
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>AddDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>PhantomFn</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> {
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>AddDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>SubDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>PhantomFn</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> {
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>SubDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>MulDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>PhantomFn</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> {
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>MulDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>DivDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>PhantomFn</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> {
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>DivDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>KeepDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>PhantomFn</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> {
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>KeepDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>DimToString</span>: <span class='ident'>Dimension</span> {
     <span class='kw'>fn</span> <span class='ident'>to_string</span>() <span class='op'>-&gt;</span> <span class='ident'>String</span>;
 }
 
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Scalar</span>: <span class='ident'>MarkerTrait</span> {}
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Scalar</span> {}
 <span class='kw'>impl</span> <span class='ident'>Scalar</span> <span class='kw'>for</span> <span class='ident'>f64</span> {}
 <span class='kw'>impl</span> <span class='ident'>Scalar</span> <span class='kw'>for</span> <span class='ident'>f32</span> {}
 
@@ -715,11 +719,11 @@
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='ident'>ToPrimitive</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>D</span>: <span class='ident'>Dimensionless</span>, <span class='ident'>V</span>: <span class='ident'>ToPrimitive</span> {
     <span class='macro'>dim_cast_fun</span><span class='macro'>!</span>(<span class='ident'>to_i64</span>, <span class='ident'>i64</span>);
     <span class='macro'>dim_cast_fun</span><span class='macro'>!</span>(<span class='ident'>to_u64</span>, <span class='ident'>u64</span>);
-    <span class='macro'>dim_cast_fun</span><span class='macro'>!</span>(<span class='ident'>to_int</span>, <span class='ident'>isize</span>);
+    <span class='macro'>dim_cast_fun</span><span class='macro'>!</span>(<span class='ident'>to_isize</span>, <span class='ident'>isize</span>);
     <span class='macro'>dim_cast_fun</span><span class='macro'>!</span>(<span class='ident'>to_i8</span>, <span class='ident'>i8</span>);
     <span class='macro'>dim_cast_fun</span><span class='macro'>!</span>(<span class='ident'>to_i16</span>, <span class='ident'>i16</span>);
     <span class='macro'>dim_cast_fun</span><span class='macro'>!</span>(<span class='ident'>to_i32</span>, <span class='ident'>i32</span>);
-    <span class='macro'>dim_cast_fun</span><span class='macro'>!</span>(<span class='ident'>to_uint</span>, <span class='ident'>usize</span>);
+    <span class='macro'>dim_cast_fun</span><span class='macro'>!</span>(<span class='ident'>to_usize</span>, <span class='ident'>usize</span>);
     <span class='macro'>dim_cast_fun</span><span class='macro'>!</span>(<span class='ident'>to_u8</span>, <span class='ident'>u8</span>);
     <span class='macro'>dim_cast_fun</span><span class='macro'>!</span>(<span class='ident'>to_u16</span>, <span class='ident'>u16</span>);
     <span class='macro'>dim_cast_fun</span><span class='macro'>!</span>(<span class='ident'>to_u32</span>, <span class='ident'>u32</span>);

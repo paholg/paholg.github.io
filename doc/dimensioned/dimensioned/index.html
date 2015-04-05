@@ -26,7 +26,7 @@
 
     <section class="sidebar">
         
-        <p class='location'><a href='../index.html'>dimensioned</a></p><div class='block mod'><h2>Modules</h2><a class='mod current' href='../dimensioned/index.html' title=''>dimensioned</a><a class='mod ' href='../peano/index.html' title=''>peano</a><a class='mod ' href='../si/index.html' title=''>si</a><a class='mod ' href='../u/index.html' title=''>u</a></div><div class='block macro'><h2>Macros</h2><a class='macro ' href='../macro.dim_binary!.html' title=''>dim_binary!</a><a class='macro ' href='../macro.dim_unary!.html' title=''>dim_unary!</a></div>
+        <p class='location'><a href='../index.html'>dimensioned</a></p><script>window.sidebarCurrent = {name: 'dimensioned', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
     </section>
 
     <nav class="sub">
@@ -43,7 +43,7 @@
     <section id='main' class="content mod">
 <h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>dimensioned</a>::<wbr><a class='mod' href=''>dimensioned</a><wbr></span><span class='out-of-band'><span id='render-detail'>
             <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-1014' href='../../src/dimensioned/dimensioned.rs.html#1-324'>[src]</a></span></h1>
+        </span><a id='src-688' href='../../src/dimensioned/dimensioned.rs.html#1-326'>[src]</a></span></h1>
 <h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
 <table><tr><td><code>pub use <a class='mod' href='../../dimensioned/peano/index.html' title='dimensioned::peano'>peano</a>::*;</code></td></tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
@@ -56,11 +56,9 @@
                     <tr>
                         <td><a class='stability Stable' title='Stable'></a><a class='struct' href='struct.PhantomData.html'
                                title='dimensioned::dimensioned::PhantomData'>PhantomData</a></td>
-                        <td class='docblock short'><p><code>PhantomData</code> is a way to tell the compiler about fake fields.
-Phantom data is required whenever type parameters are not used.
-The idea is that if the compiler encounters a <code>PhantomData&lt;T&gt;</code>
-instance, it will behave <em>as if</em> an instance of the type <code>T</code> were
-present for the purpose of various automatic analyses.</p>
+                        <td class='docblock short'><p><code>PhantomData&lt;T&gt;</code> allows you to describe that a type acts as if it stores a value of type <code>T</code>,
+even though it does not. This allows you to inform the compiler about certain safety properties
+of your code.</p>
 </td>
                     </tr>
                 </table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
@@ -136,7 +134,8 @@ present for the purpose of various automatic analyses.</p>
                                title='dimensioned::dimensioned::Wrap'>Wrap</a></td>
                         <td class='docblock short'></td>
                     </tr>
-                </table></section>
+                </table><h2 id='impls' class='section-header'><a href="#impls">Implementations</a></h2>
+<table></table></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
