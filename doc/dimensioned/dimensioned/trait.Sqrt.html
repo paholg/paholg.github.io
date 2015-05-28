@@ -43,21 +43,21 @@
     <section id='main' class="content trait">
 <h1 class='fqn'><span class='in-band'>Trait <a href='../index.html'>dimensioned</a>::<wbr><a href='index.html'>dimensioned</a>::<wbr><a class='trait' href=''>Sqrt</a><wbr></span><span class='out-of-band'><span id='render-detail'>
             <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-834' href='../../src/dimensioned/dimensioned.rs.html#57-60'>[src]</a></span></h1>
+        </span><a id='src-834' href='../../src/dimensioned/dimensioned.rs.html#56-59'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait Sqrt {
     type Output;
 
-    fn <a href='#tymethod.sqrt' class='fnname'>sqrt</a>(self) -&gt; &lt;Self as Sqrt&gt;::Output;
+    fn <a href='#tymethod.sqrt' class='fnname'>sqrt</a>(self) -&gt; Self::Output;
 }</pre>
             <h2 id='associated-types'>Associated Types</h2>
             <div class='methods'>
         <h3 id='associatedtype.Output' class='method'><a class='stability Unmarked' title='No stability level'></a><code>type Output</code></h3></div>
             <h2 id='required-methods'>Required Methods</h2>
             <div class='methods'>
-        <h3 id='tymethod.sqrt' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#tymethod.sqrt' class='fnname'>sqrt</a>(self) -&gt; &lt;Self as Sqrt&gt;::Output</code></h3></div>
+        <h3 id='tymethod.sqrt' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#tymethod.sqrt' class='fnname'>sqrt</a>(self) -&gt; Self::Output</code></h3></div>
         <h2 id='implementors'>Implementors</h2>
         <ul class='item-list' id='implementors-list'>
-    <li><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;D, V&gt; <a class='trait' href='../../dimensioned/dimensioned/trait.Sqrt.html' title='dimensioned::dimensioned::Sqrt'>Sqrt</a> for <a class='struct' href='../../dimensioned/dimensioned/struct.Dim.html' title='dimensioned::dimensioned::Dim'>Dim</a>&lt;D, V&gt; <span class='where'>where D: <a class='trait' href='../../dimensioned/dimensioned/trait.DivDim.html' title='dimensioned::dimensioned::DivDim'>DivDim</a>&lt;<a class='type' href='../../dimensioned/peano/type.Two.html' title='dimensioned::peano::Two'>Two</a>&gt;, V: <a class='trait' href='../../num/traits/trait.Float.html' title='num::traits::Float'>Float</a>, &lt;D as DivDim&lt;<a class='type' href='../../dimensioned/peano/type.Two.html' title='dimensioned::peano::Two'>Two</a>&gt;&gt;::Output: <a class='trait' href='../../dimensioned/dimensioned/trait.Dimension.html' title='dimensioned::dimensioned::Dimension'>Dimension</a></span></code></li>
+    <li><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;D, V&gt; <a class='trait' href='../../dimensioned/dimensioned/trait.Sqrt.html' title='dimensioned::dimensioned::Sqrt'>Sqrt</a> for <a class='struct' href='../../dimensioned/dimensioned/struct.Dim.html' title='dimensioned::dimensioned::Dim'>Dim</a>&lt;D, V&gt; <span class='where'>where D: <a class='trait' href='../../dimensioned/dimensioned/trait.DivDim.html' title='dimensioned::dimensioned::DivDim'>DivDim</a>&lt;<a class='type' href='../../dimensioned/peano/type.Two.html' title='dimensioned::peano::Two'>Two</a>&gt;, V: <a class='trait' href='../../num/traits/trait.Float.html' title='num::traits::Float'>Float</a>, D::Output: <a class='trait' href='../../dimensioned/dimensioned/trait.Dimension.html' title='dimensioned::dimensioned::Dimension'>Dimension</a></span></code></li>
 </ul><script type="text/javascript" async
                               src="../../implementors/dimensioned/dimensioned/trait.Sqrt.js">
                       </script></section>
