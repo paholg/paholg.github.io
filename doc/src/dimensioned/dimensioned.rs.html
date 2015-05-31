@@ -421,16 +421,26 @@
 <span id="379">379</span>
 <span id="380">380</span>
 <span id="381">381</span>
+<span id="382">382</span>
+<span id="383">383</span>
+<span id="384">384</span>
+<span id="385">385</span>
+<span id="386">386</span>
+<span id="387">387</span>
+<span id="388">388</span>
+<span id="389">389</span>
+<span id="390">390</span>
+<span id="391">391</span>
+<span id="392">392</span>
+<span id="393">393</span>
 </pre><pre class='rust '>
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>peano</span>::<span class='op'>*</span>;
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>marker</span>::<span class='ident'>PhantomData</span>;
 
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>ops</span>::<span class='op'>*</span>;
-<span class='kw'>use</span> <span class='ident'>num</span>::<span class='ident'>traits</span>::{<span class='ident'>ToPrimitive</span>, <span class='ident'>NumCast</span>};
+<span class='kw'>use</span> <span class='ident'>num</span>::<span class='ident'>traits</span>::{<span class='ident'>ToPrimitive</span>, <span class='ident'>NumCast</span>, <span class='ident'>Float</span>};
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>cmp</span>::<span class='op'>*</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fmt</span>;
-
-<span class='kw'>use</span> <span class='ident'>num</span>::<span class='ident'>Float</span>;
 
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Dimension</span> {}
 
@@ -741,12 +751,21 @@
 }
 
 <span class='comment'>//------------------------------------------------------------------------------</span>
+<span class='comment'>// Num</span>
+<span class='comment'>// impl&lt;D, V&gt; Num for Dim&lt;D, V&gt;</span>
+<span class='comment'>//     where D: Dimensionless + KeepDim&lt;D&gt;, V: Float, &lt;D as KeepDim&lt;D&gt;&gt;::Output: Dimensionless {</span>
+<span class='comment'>//         type FromStrRadixErr = Dim&lt;D, &lt;V as Num&gt;::FromStrRadixErr&gt;;</span>
+<span class='comment'>//         fn from_str_radix(str: &amp;str, radix: u32) -&gt; Result&lt;Self, Self::FromStrRadixErr&gt; {</span>
+<span class='comment'>//             Dim( &lt;V as Num&gt;::from_str_radix(str, radix));</span>
+<span class='comment'>//         }</span>
+<span class='comment'>//     }</span>
+<span class='comment'>//------------------------------------------------------------------------------</span>
 <span class='comment'>// Float</span>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>dim_unary_float</span> {
-    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>returns</span>:<span class='ident'>ty</span>) <span class='op'>=&gt;</span> (
-        <span class='kw'>fn</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>returns</span> { <span class='ident'>Dim</span>( (<span class='self'>self</span>.<span class='number'>0</span>).<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>(), <span class='ident'>PhantomData</span>) }
-        )
-}
+<span class='comment'>// macro_rules! dim_unary_float {</span>
+<span class='comment'>//     ($fun:ident, $returns:ty) =&gt; (</span>
+<span class='comment'>//         fn $fun(self) -&gt; $returns { Dim( (self.0).$fun(), PhantomData) }</span>
+<span class='comment'>//         )</span>
+<span class='comment'>// }</span>
 
 <span class='comment'>// impl&lt;D, V&gt; Float for Dim&lt;D, V&gt;</span>
 <span class='comment'>//     where D: Dimensionless + KeepDim&lt;D&gt;, V: Float, &lt;D as KeepDim&lt;D&gt;&gt;::Output: Dimensionless {</span>
@@ -754,18 +773,15 @@
 <span class='comment'>//         dim_unary_float!(nan, Self);</span>
 <span class='comment'>//         dim_unary_float!(infinity, Self);</span>
 <span class='comment'>//         dim_unary_float!(neg_infinity, Self);</span>
-<span class='comment'>//         dim_unary_float!(zero, Self);</span>
 <span class='comment'>//         dim_unary_float!(neg_zero, Self);</span>
-<span class='comment'>//         dim_unary_float!(one, Self);</span>
-<span class='comment'>//         dim_unary_float!(epsilon, Self);</span>
 <span class='comment'>//         dim_unary_float!(min_value, Self);</span>
+<span class='comment'>//         //dim_unary_float!(min_positive_value, Self);</span>
 <span class='comment'>//         dim_unary_float!(max_value, Self);</span>
 <span class='comment'>//         dim_unary_float!(is_nan, bool);</span>
 <span class='comment'>//         dim_unary_float!(is_infinite, bool);</span>
 <span class='comment'>//         dim_unary_float!(is_finite, bool);</span>
 <span class='comment'>//         dim_unary_float!(is_normal, bool);</span>
 <span class='comment'>//         // dim_unary_float!(classify, FpCategory);</span>
-<span class='comment'>//         dim_unary_float!(integer_decode, (u64, i16, i8));</span>
 <span class='comment'>//         dim_unary_float!(floor, Self);</span>
 <span class='comment'>//         dim_unary_float!(ceil, Self);</span>
 <span class='comment'>//         dim_unary_float!(round, Self);</span>
@@ -773,26 +789,32 @@
 <span class='comment'>//         dim_unary_float!(fract, Self);</span>
 <span class='comment'>//         dim_unary_float!(abs, Self);</span>
 <span class='comment'>//         dim_unary_float!(signum, Self);</span>
-<span class='comment'>//         dim_unary_float!(is_positive, bool);</span>
-<span class='comment'>//         dim_unary_float!(is_negative, bool);</span>
+<span class='comment'>//         dim_unary_float!(is_sign_positive, bool);</span>
+<span class='comment'>//         dim_unary_float!(is_sign_negative, bool);</span>
+<span class='comment'>//         // dim_unary_float!(mul_add, bool); BINARY</span>
+
 <span class='comment'>//         dim_unary_float!(recip, Self);</span>
+<span class='comment'>//         // powi</span>
+<span class='comment'>//         // powf</span>
 <span class='comment'>//         dim_unary_float!(sqrt, Self);</span>
-<span class='comment'>//         dim_unary_float!(rsqrt, Self);</span>
 <span class='comment'>//         dim_unary_float!(exp, Self);</span>
 <span class='comment'>//         dim_unary_float!(exp2, Self);</span>
 <span class='comment'>//         dim_unary_float!(ln, Self);</span>
 <span class='comment'>//         dim_unary_float!(log, Self);</span>
 <span class='comment'>//         dim_unary_float!(log2, Self);</span>
 <span class='comment'>//         dim_unary_float!(log10, Self);</span>
-<span class='comment'>//         dim_unary_float!(to_degrees, Self);</span>
-<span class='comment'>//         dim_unary_float!(to_radians, Self);</span>
+<span class='comment'>//         dim_unary_float!(max, Self);</span>
+<span class='comment'>//         dim_unary_float!(min, Self);</span>
+<span class='comment'>//         // abs_sub</span>
 <span class='comment'>//         dim_unary_float!(cbrt, Self);</span>
+<span class='comment'>//         dim_unary_float!(hypot, Self);</span>
 <span class='comment'>//         dim_unary_float!(sin, Self);</span>
 <span class='comment'>//         dim_unary_float!(cos, Self);</span>
 <span class='comment'>//         dim_unary_float!(tan, Self);</span>
 <span class='comment'>//         dim_unary_float!(asin, Self);</span>
 <span class='comment'>//         dim_unary_float!(acos, Self);</span>
 <span class='comment'>//         dim_unary_float!(atan, Self);</span>
+<span class='comment'>//         dim_unary_float!(atan2, Self);</span>
 <span class='comment'>//         dim_unary_float!(sin_cos, (Self, Self));</span>
 <span class='comment'>//         dim_unary_float!(exp_m1, Self);</span>
 <span class='comment'>//         dim_unary_float!(ln_1p, Self);</span>
@@ -802,6 +824,8 @@
 <span class='comment'>//         dim_unary_float!(asinh, Self);</span>
 <span class='comment'>//         dim_unary_float!(acosh, Self);</span>
 <span class='comment'>//         dim_unary_float!(atanh, Self);</span>
+<span class='comment'>//         dim_unary_float!(integer_decode, (u64, i16, i8));</span>
+
 <span class='comment'>//     }</span>
 </pre>
 </section>
