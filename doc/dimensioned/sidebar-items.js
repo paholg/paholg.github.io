@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["cgs",""],["dimensioned",""],["peano",""],["si",""]],"macro":[["__make_types!",""],["dim_binary!",""],["dim_unary!",""],["make_units!",""]]});
+initSidebarItems({"macro":[["__make_types!",""],["dim_binary!",""],["dim_unary!",""],["make_units!",""]],"mod":[["cgs",""],["dimensioned",""],["peano",""],["si",""]]});
