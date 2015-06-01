@@ -103,8 +103,8 @@
     $(<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>non_upper_case_globals</span>)]</span> <span class='kw'>pub</span> <span class='kw'>const</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>constant</span>: <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Type</span>, <span class='ident'>f64</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>Dim</span>(<span class='number'>1.0</span>, <span class='ident'>PhantomData</span>);)<span class='op'>*</span>
 
         <span class='comment'>// $(</span>
-        <span class='comment'>//   _make_derived_type!($Derived, $e);</span>
-        <span class='comment'>//   // pub const $derived_constant = Dim&lt;$Derived, f64&gt; = Dim(1.0, PhantomData);</span>
+        <span class='comment'>//   __make_derived_type!($Derived, $e);</span>
+        <span class='comment'>//   pub const $derived_constant: Dim&lt;$Derived, f64&gt; = Dim(1.0, PhantomData);</span>
         <span class='comment'>//   )*</span>
         );
 }

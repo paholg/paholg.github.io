@@ -174,6 +174,9 @@
 <span id="132">132</span>
 <span id="133">133</span>
 <span id="134">134</span>
+<span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
 </pre><pre class='rust '>
 
 <span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
@@ -235,8 +238,8 @@
     $(<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>non_upper_case_globals</span>)]</span> <span class='kw'>pub</span> <span class='kw'>const</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>constant</span>: <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Type</span>, <span class='ident'>f64</span><span class='op'>&gt;</span> <span class='op'>=</span> <span class='ident'>Dim</span>(<span class='number'>1.0</span>, <span class='ident'>PhantomData</span>);)<span class='op'>*</span>
 
         <span class='comment'>// $(</span>
-        <span class='comment'>//   _make_derived_type!($Derived, $e);</span>
-        <span class='comment'>//   // pub const $derived_constant = Dim&lt;$Derived, f64&gt; = Dim(1.0, PhantomData);</span>
+        <span class='comment'>//   __make_derived_type!($Derived, $e);</span>
+        <span class='comment'>//   pub const $derived_constant: Dim&lt;$Derived, f64&gt; = Dim(1.0, PhantomData);</span>
         <span class='comment'>//   )*</span>
         );
 }
@@ -299,14 +302,17 @@
 <span class='comment'>// }</span>
 
 
-
+<span class='comment'>// #[macro_export]</span>
 <span class='comment'>// macro_rules! __make_derived_type {</span>
-<span class='comment'>//     ($D: ident, $e: expr) =&gt; ();</span>
+<span class='comment'>//     ($D: ident, $e: expr) =&gt; (</span>
+<span class='comment'>//         pub type $D = __convert_expression!($e);</span>
+<span class='comment'>//         );</span>
 <span class='comment'>// }</span>
 
+<span class='comment'>// #[macro_export]</span>
 <span class='comment'>// macro_rules! __convert_expression {</span>
-<span class='comment'>//     ($a: ident * $b: expr) =&gt; ($a as AddDim&lt;__convert_expression!{$b}&gt;&gt;::Output);</span>
-<span class='comment'>//     ($a: ident / $b: expr) =&gt; ($a as SubDim&lt;__convert_expression!{$b}&gt;&gt;::Output);</span>
+<span class='comment'>//     ($a: ident * $b: expr) =&gt; ($a as AddDim&lt;__convert_expression!($b)&gt;&gt;::Output);</span>
+<span class='comment'>//     ($a: ident / $b: expr) =&gt; ($a as SubDim&lt;__convert_expression!($b)&gt;&gt;::Output);</span>
 <span class='comment'>//     ($a: ident) =&gt; ($a);</span>
 <span class='comment'>// }</span>
 </pre>
