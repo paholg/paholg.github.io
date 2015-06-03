@@ -1,1 +1,1 @@
-initSidebarItems({"constant":[["ampere",""],["candela",""],["kelvin",""],["kilogram",""],["meter",""],["mole",""],["one",""],["second",""]],"type":[["Ampere",""],["Candela",""],["Kelvin",""],["Kilogram",""],["Meter",""],["Mole",""],["Second",""],["Unitless",""]],"struct":[["SI",""]]});
+initSidebarItems({"struct":[["SI",""]],"type":[["Ampere",""],["Candela",""],["Kelvin",""],["Kilogram",""],["Meter",""],["Mole",""],["Second",""],["Unitless",""]],"constant":[["ampere",""],["candela",""],["kelvin",""],["kilogram",""],["meter",""],["mole",""],["one",""],["second",""]]});
