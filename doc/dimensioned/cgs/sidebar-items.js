@@ -1,1 +1,1 @@
-initSidebarItems({"constant":[["centimeter",""],["gram",""],["one",""],["second",""]],"type":[["Centimeter",""],["Gram",""],["Second",""],["Unitless",""]],"struct":[["CGS",""]]});
+initSidebarItems({"constant":[["centimeter",""],["gram",""],["one",""],["second",""]],"struct":[["CGS",""]],"type":[["Centimeter",""],["Gram",""],["Second",""],["Unitless",""]]});

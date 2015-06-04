@@ -41,15 +41,18 @@
     </nav>
 
     <section id='main' class="content macro">
-<h1 class='fqn'><span class='in-band'><a href='index.html'>dimensioned</a>::<wbr><a class='macro' href=''>dim_lhs_mult!</a><wbr></span><span class='out-of-band'><span id='render-detail'>
-            <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-5519' href='../src/dimensioned/dimensioned.rs.html#157-167'>[src]</a></span></h1>
+<h1 class='fqn'><span class='in-band'><a href='index.html'>dimensioned</a>::<wbr><a class='macro' href=''>dim_lhs_mult!</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-5540' class='srclink' href='../src/dimensioned/dimensioned.rs.html#167-178' title='goto source code'>[src]</a></span></h1>
 <pre class='rust macro'>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>dim_lhs_mult</span> {
     (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span>: <span class='ident'>ty</span>) <span class='op'>=&gt;</span> (
         <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span><span class='op'>&gt;</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span>
             <span class='kw'>where</span> <span class='ident'>D</span>: <span class='ident'>Dimension</span> {
                 <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='op'>&lt;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span> <span class='kw'>as</span> <span class='ident'>Mul</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>;
+                <span class='attribute'>#[<span class='ident'>inline</span>]</span>
                 <span class='kw'>fn</span> <span class='ident'>mul</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> {
                     <span class='ident'>Dim</span>( <span class='self'>self</span> <span class='op'>*</span> <span class='ident'>rhs</span>.<span class='number'>0</span>, <span class='ident'>PhantomData</span> )
                 }
@@ -90,6 +93,10 @@
                 <code>struct</code>, <code>enum</code>,
                 <code>trait</code>, <code>typedef</code> (or
                 <code>tdef</code>).
+            </p>
+            <p>
+                Search functions by type signature (e.g.
+                <code>vec -> usize</code>)
             </p>
         </div>
     </div>

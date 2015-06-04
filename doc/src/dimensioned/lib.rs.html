@@ -73,7 +73,10 @@
 <span id="31">31</span>
 <span id="32">32</span>
 <span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
 </pre><pre class='rust '>
+<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>optin_builtin_traits</span>)]</span>
 <span class='comment'>// #![feature(plugin_registrar, rustc_private)]</span>
 <span class='comment'>// extern crate syntax;</span>
 <span class='comment'>// extern crate rustc;</span>
@@ -102,9 +105,10 @@
 
 <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>peano</span>;
 <span class='attribute'>#[<span class='ident'>macro_use</span>]</span>
-<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>dimensioned</span>;
+<span class='kw'>mod</span> <span class='ident'>dimensioned</span>;
 <span class='attribute'>#[<span class='ident'>macro_use</span>]</span>
-<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>make_units</span>;
+<span class='kw'>mod</span> <span class='ident'>make_units</span>;
+
 <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>si</span>;
 <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>cgs</span>;
 </pre>
@@ -140,6 +144,10 @@
                 <code>struct</code>, <code>enum</code>,
                 <code>trait</code>, <code>typedef</code> (or
                 <code>tdef</code>).
+            </p>
+            <p>
+                Search functions by type signature (e.g.
+                <code>vec -> usize</code>)
             </p>
         </div>
     </div>
