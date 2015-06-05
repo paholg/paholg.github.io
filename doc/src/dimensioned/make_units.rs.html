@@ -182,6 +182,7 @@
 <span id="140">140</span>
 <span id="141">141</span>
 <span id="142">142</span>
+<span id="143">143</span>
 </pre><pre class='rust '>
 
 <span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
@@ -225,6 +226,7 @@
     <span class='kw'>impl</span><span class='op'>&lt;</span>$(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Type</span>),<span class='op'>*</span><span class='op'>&gt;</span> <span class='ident'>DimToString</span> <span class='kw'>for</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>System</span><span class='op'>&lt;</span>$(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Type</span>),<span class='op'>*</span><span class='op'>&gt;</span>
         <span class='kw'>where</span> $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Type</span>: <span class='ident'>ToInt</span>),<span class='op'>*</span> {
             <span class='kw'>fn</span> <span class='ident'>to_string</span>() <span class='op'>-&gt;</span> <span class='ident'>String</span> {
+                <span class='comment'>// fimxe: make this betterer</span>
                 <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>_string</span> <span class='op'>=</span> <span class='ident'>String</span>::<span class='ident'>new</span>();
                 $(
                     <span class='kw'>let</span> <span class='ident'>temp</span> <span class='op'>=</span> <span class='kw'>match</span> <span class='op'>&lt;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Type</span> <span class='kw'>as</span> <span class='ident'>ToInt</span><span class='op'>&gt;</span>::<span class='ident'>to_int</span>() {
@@ -234,7 +236,7 @@
                     };
                     <span class='ident'>_string</span> <span class='op'>=</span> <span class='macro'>format</span><span class='macro'>!</span>(<span class='string'>&quot;{}{}{}&quot;</span>, <span class='ident'>_string</span>, <span class='ident'>temp</span>.<span class='number'>0</span>, <span class='ident'>temp</span>.<span class='number'>1</span>);
                 )<span class='op'>*</span>
-                <span class='ident'>_string</span>.<span class='ident'>pop</span>();
+                <span class='ident'>_string</span>.<span class='ident'>pop</span>(); <span class='comment'>// get rid of the last &#39;*&#39;</span>
                 <span class='ident'>_string</span>
             }
         }
@@ -257,7 +259,7 @@
 <span class='comment'>// fixme: This is a bunch of malarky. Can&#39;t cycle the direction I want, so we reverse</span>
 <span class='comment'>// $Typse to compensate. The &quot;correct&quot; way is commented below, but won&#39;t work until RFC:</span>
 <span class='comment'>// https://github.com/rust-lang/rust/issues/24827 is fixed</span>
-<span class='comment'>//#[doc_hidden] fixme: uncomment when more mature</span>
+<span class='attribute'>#[<span class='ident'>doc_hidden</span>]</span>
 <span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>__make_types</span> {
     <span class='comment'>// this first arm filters out the end Types into Zeros with Num, so we go from say</span>
