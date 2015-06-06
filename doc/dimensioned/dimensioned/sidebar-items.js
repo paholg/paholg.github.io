@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Dim",""]],"trait":[["DimToString",""],["Dimension",""],["Dimensionless",""],["DivDim",""],["KeepDim",""],["MulDim",""],["NegDim",""],["NotDim",""],["PowerDim",""],["RootDim",""],["Sqr",""],["Sqrt",""],["Wrap",""]]});
+initSidebarItems({"struct":[["Dim",""]],"trait":[["DimToString",""],["Dimension",""],["Dimensionless",""],["DivDim",""],["InvertDim",""],["KeepDim",""],["MulDim",""],["NotDim",""],["PowerDim",""],["RootDim",""],["Sqr",""],["Sqrt",""],["Wrap",""]]});

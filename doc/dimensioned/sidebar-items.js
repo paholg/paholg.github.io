@@ -1,1 +1,1 @@
-initSidebarItems({"macro":[["__make_types!",""],["dim_binary!",""],["dim_lhs_div!","Scalar division (with scalar on LHS)!"],["dim_lhs_mult!","Scalar multiplication (with scalar on LHS)!"],["dim_unary!",""],["make_units!",""],["make_units_adv!",""]],"mod":[["cgs",""],["dimensioned",""],["peano",""],["si",""]]});
+initSidebarItems({"macro":[["__make_types!",""],["dim_impl_binary!",""],["dim_impl_unary!",""],["make_units!",""],["make_units_adv!",""]],"mod":[["cgs",""],["dimensioned",""],["peano",""],["si",""]]});
