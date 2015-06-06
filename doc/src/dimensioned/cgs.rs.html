@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="API documentation for the Rust `second` constant in crate `dimensioned`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang, second">
+    <meta name="description" content="Source to the Rust file `src/cgs.rs`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang">
 
-    <title>dimensioned::si::second - Rust</title>
+    <title>cgs.rs.html -- source</title>
 
     <link rel="stylesheet" type="text/css" href="../../main.css">
 
@@ -26,7 +26,7 @@
 
     <section class="sidebar">
         
-        <p class='location'><a href='../index.html'>dimensioned</a>::<wbr><a href='index.html'>si</a></p><script>window.sidebarCurrent = {name: 'second', ty: 'constant', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        
     </section>
 
     <nav class="sub">
@@ -40,11 +40,29 @@
         </form>
     </nav>
 
-    <section id='main' class="content constant">
-<h1 class='fqn'><span class='in-band'><a href='../index.html'>dimensioned</a>::<wbr><a href='index.html'>si</a>::<wbr><a class='constant' href=''>second</a><wbr></span><span class='out-of-band'><span id='render-detail'>
-            <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-3213' href='../../src/dimensioned/si.rs.html#99'>[src]</a></span></h1>
-<pre class='rust const'>pub const second: <a class='struct' href='../../dimensioned/dimensioned/struct.Dim.html' title='dimensioned::dimensioned::Dim'>Dim</a>&lt;<a class='type' href='../../dimensioned/si/type.Second.html' title='dimensioned::si::Second'>Second</a>, <a href='http://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a>&gt;<code> = </code><code>Dim(1.0, PhantomData)</code></pre></section>
+    <section id='main' class="content source"><pre class="line-numbers"><span id="1"> 1</span>
+<span id="2"> 2</span>
+<span id="3"> 3</span>
+<span id="4"> 4</span>
+<span id="5"> 5</span>
+<span id="6"> 6</span>
+<span id="7"> 7</span>
+<span id="8"> 8</span>
+<span id="9"> 9</span>
+<span id="10">10</span>
+</pre><pre class='rust '>
+<span class='macro'>make_units_adv</span><span class='macro'>!</span> {
+    <span class='ident'>CGS</span>, <span class='ident'>Unitless</span>, <span class='ident'>one</span>, <span class='ident'>f64</span>;
+    <span class='ident'>base</span> {
+        <span class='ident'>Two</span>, <span class='ident'>Centimeter</span>, <span class='ident'>centimeter</span>, <span class='ident'>cm</span>;
+        <span class='ident'>Two</span>, <span class='ident'>Gram</span>, <span class='ident'>gram</span>, <span class='ident'>g</span>;
+        <span class='ident'>One</span>, <span class='ident'>Second</span>, <span class='ident'>second</span>, <span class='ident'>s</span>;
+    }
+    <span class='ident'>derived</span> {
+    }
+}
+</pre>
+</section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
@@ -76,6 +94,10 @@
                 <code>struct</code>, <code>enum</code>,
                 <code>trait</code>, <code>typedef</code> (or
                 <code>tdef</code>).
+            </p>
+            <p>
+                Search functions by type signature (e.g.
+                <code>vec -> usize</code>)
             </p>
         </div>
     </div>

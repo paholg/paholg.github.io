@@ -41,23 +41,24 @@
     </nav>
 
     <section id='main' class="content trait">
-<h1 class='fqn'><span class='in-band'>Trait <a href='../index.html'>dimensioned</a>::<wbr><a href='index.html'>dimensioned</a>::<wbr><a class='trait' href=''>Sqrt</a><wbr></span><span class='out-of-band'><span id='render-detail'>
-            <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-834' href='../../src/dimensioned/dimensioned.rs.html#56-59'>[src]</a></span></h1>
+<h1 class='fqn'><span class='in-band'>Trait <a href='../index.html'>dimensioned</a>::<wbr><a href='index.html'>dimensioned</a>::<wbr><a class='trait' href=''>Sqrt</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-1554' class='srclink' href='../../src/dimensioned/dimensioned.rs.html#60-63' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait Sqrt {
     type Output;
-
     fn <a href='#tymethod.sqrt' class='fnname'>sqrt</a>(self) -&gt; Self::Output;
 }</pre>
             <h2 id='associated-types'>Associated Types</h2>
             <div class='methods'>
-        <h3 id='associatedtype.Output' class='method'><a class='stability Unmarked' title='No stability level'></a><code>type Output</code></h3></div>
+        <h3 id='associatedtype.Output' class='method stab '><code>type Output</code></h3></div>
             <h2 id='required-methods'>Required Methods</h2>
             <div class='methods'>
-        <h3 id='tymethod.sqrt' class='method'><a class='stability Unmarked' title='No stability level'></a><code>fn <a href='#tymethod.sqrt' class='fnname'>sqrt</a>(self) -&gt; Self::Output</code></h3></div>
+        <h3 id='tymethod.sqrt' class='method stab '><code>fn <a href='#tymethod.sqrt' class='fnname'>sqrt</a>(self) -&gt; Self::Output</code></h3></div>
         <h2 id='implementors'>Implementors</h2>
         <ul class='item-list' id='implementors-list'>
-    <li><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;D, V&gt; <a class='trait' href='../../dimensioned/dimensioned/trait.Sqrt.html' title='dimensioned::dimensioned::Sqrt'>Sqrt</a> for <a class='struct' href='../../dimensioned/dimensioned/struct.Dim.html' title='dimensioned::dimensioned::Dim'>Dim</a>&lt;D, V&gt; <span class='where'>where D: <a class='trait' href='../../dimensioned/dimensioned/trait.DivDim.html' title='dimensioned::dimensioned::DivDim'>DivDim</a>&lt;<a class='type' href='../../dimensioned/peano/type.Two.html' title='dimensioned::peano::Two'>Two</a>&gt;, V: <a class='trait' href='../../num/traits/trait.Float.html' title='num::traits::Float'>Float</a>, D::Output: <a class='trait' href='../../dimensioned/dimensioned/trait.Dimension.html' title='dimensioned::dimensioned::Dimension'>Dimension</a></span></code></li>
+    <li><code>impl&lt;D, V&gt; <a class='trait' href='../../dimensioned/dimensioned/trait.Sqrt.html' title='dimensioned::dimensioned::Sqrt'>Sqrt</a> for <a class='struct' href='../../dimensioned/dimensioned/struct.Dim.html' title='dimensioned::dimensioned::Dim'>Dim</a>&lt;D, V&gt; <span class='where'>where D: <a class='trait' href='../../dimensioned/dimensioned/trait.RootDim.html' title='dimensioned::dimensioned::RootDim'>RootDim</a>&lt;<a class='type' href='../../dimensioned/peano/type.Two.html' title='dimensioned::peano::Two'>Two</a>&gt;, V: <a class='trait' href='../../num/traits/trait.Float.html' title='num::traits::Float'>Float</a>, D::Output: <a class='trait' href='../../dimensioned/dimensioned/trait.Dimension.html' title='dimensioned::dimensioned::Dimension'>Dimension</a></span></code></li>
 </ul><script type="text/javascript" async
                               src="../../implementors/dimensioned/dimensioned/trait.Sqrt.js">
                       </script></section>
@@ -92,6 +93,10 @@
                 <code>struct</code>, <code>enum</code>,
                 <code>trait</code>, <code>typedef</code> (or
                 <code>tdef</code>).
+            </p>
+            <p>
+                Search functions by type signature (e.g.
+                <code>vec -> usize</code>)
             </p>
         </div>
     </div>
