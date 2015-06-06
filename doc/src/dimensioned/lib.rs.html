@@ -55,51 +55,11 @@
 <span id="13">13</span>
 <span id="14">14</span>
 <span id="15">15</span>
-<span id="16">16</span>
-<span id="17">17</span>
-<span id="18">18</span>
-<span id="19">19</span>
-<span id="20">20</span>
-<span id="21">21</span>
-<span id="22">22</span>
-<span id="23">23</span>
-<span id="24">24</span>
-<span id="25">25</span>
-<span id="26">26</span>
-<span id="27">27</span>
-<span id="28">28</span>
-<span id="29">29</span>
-<span id="30">30</span>
-<span id="31">31</span>
-<span id="32">32</span>
-<span id="33">33</span>
-<span id="34">34</span>
-<span id="35">35</span>
 </pre><pre class='rust '>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>optin_builtin_traits</span>)]</span>
-<span class='comment'>// #![feature(plugin_registrar, rustc_private)]</span>
-<span class='comment'>// extern crate syntax;</span>
-<span class='comment'>// extern crate rustc;</span>
+
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>num</span>;
 
-<span class='comment'>// use rustc::plugin::Registry;</span>
-
-<span class='comment'>// use syntax::ptr::P;</span>
-<span class='comment'>// use syntax::ast::{Item, MetaItem};</span>
-<span class='comment'>// use syntax::ext::base::ExtCtxt;</span>
-<span class='comment'>// use syntax::codemap::Span;</span>
-<span class='comment'>// use syntax::ext::base::SyntaxExtension::Modifier;</span>
-<span class='comment'>// use syntax::parse::token::intern;</span>
-
-<span class='comment'>// #[plugin_registrar]</span>
-<span class='comment'>// pub fn registrar(reg: &amp;mut Registry) {</span>
-<span class='comment'>//     reg.register_syntax_extension(intern(&quot;extension&quot;), Modifier(Box::new(expand)));</span>
-<span class='comment'>// }</span>
-
-<span class='comment'>// fn expand(_: &amp;mut ExtCtxt, _: Span, _: &amp;MetaItem, item: P&lt;Item&gt;) -&gt; P&lt;Item&gt; {</span>
-<span class='comment'>//     println!(&quot;Hello World!&quot;);</span>
-<span class='comment'>//     return item;</span>
-<span class='comment'>// }</span>
 
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>dimensioned</span>::<span class='op'>*</span>;
 
