@@ -2,6 +2,8 @@
 title: Home
 layout: project
 project: dimensioned
+date: 2015-2-21
+version: 0.1.9
 ---
 
 Dimensioned is a Rust library for compile-time type checking for arbitrary unit systems.
