@@ -2,11 +2,14 @@
 title: Create a unit system
 layout: project
 project: dimensioned
-date: 2015-6-6
+nav: [[Basic macro, basic], [Advanced macro, advanced]]
+date: 2015-6-8
 version: 0.2.2
 ---
 
-In addition to supplying multiple unit systems for your use, `dimensioned` provides a
+### <a name = "basic"></a>Basic macro
+
+In addition to supplying multiple unit systems for your use, dimensioned provides a
 convenient macro for creating your own. Let us look at a brief
 [example](https://github.com/paholg/dimensioned/blob/master/examples/fruit.rs):
 
@@ -40,20 +43,20 @@ Fruit, Unitless, one;
 ```
 
 names the unit system `Fruit` and creates the type `Unitless` representing a dimensioned
-type with no dimensions, and the corresponding constant `one`, which looks like this:
+type with no dimensions, and the corresponding constant `one`, defined as
 
 ```rust
 pub const one: Dim<Unitless, f64> = Dim::new(1.0);
 ```
 
-The, the `base` block is used to define the base units of the system. The line
+Then, the `base` block is used to define the base units of the system. The line
 
 ```rust
 Apple, apple, a;
 ```
 
 defines the type `Apple`, the corresponding constant `apple` (which also has a value of
-`1.0f64`), and will use the token "a" for printing things of `Apple` type. The type
+`1.0`), and will use the token "a" for printing things of `Apple` type. The type
 signature of `apple` is
 
 ```rust
@@ -74,7 +77,15 @@ While you should never need to use this signature directly, it will crop up in e
 messages, so it's good to be aware of it.
 
 The derived block is currently a placeholder, but will used for naming types and
-creating constants for derived units.
+creating constants for derived units. Here is an example of the intended syntax for when it's implemented,
+
+```rust
+newton: Newton = Kilogram * Meter / Second / Second;
+```
+
+which creates the constant `newton` and type `Newton`.
+
+### <a name = "advanced"></a>Advanced macro
 
 
 If you want a bit more flexibility when creating a unit system, there is a second macro

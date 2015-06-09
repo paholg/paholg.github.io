@@ -328,6 +328,12 @@ tbody tr:nth-child(odd) th {
     display: block;
     line-height: 1.75;
 }
+.sidebar-nav-sub-item {
+    display: block;
+    line-height: 1.3;
+    font-size: 70%;
+    padding-right: 1rem;
+}
 
 /* Container */
 .container {

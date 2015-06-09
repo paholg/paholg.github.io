@@ -2,7 +2,8 @@
 title: Work with other types
 layout: project
 project: dimensioned
-date: 2015-6-7
+nav: [[Example A, ExampleA], [Example B, ExampleB], [Example C, ExampleC]]
+date: 2015-6-8
 version: 0.2.2
 ---
 
@@ -15,7 +16,7 @@ All three examples do the same thing; use a 3-vector to do some basic physical
 computations.
 
 
-### Example 1 - Working with a type that expects primitives
+### <a name="ExampleA"></a> Example A - Working with a type that expects primitives
 
 
 If you'd rather look at code than read all this, you can.
@@ -179,8 +180,8 @@ full gamut of vector operations. You can see a demonstration of that
 [here](https://github.com/paholg/dimensioned/blob/master/examples/vector_a.rs).
 
 
-### Example 2 - Working with a generic type
+### <a name="ExampleB"></a>Example B - Working with a generic type
 
 
-### Example 3 - Creating a type to use with dimensioned
+### <a name="ExampleC"></a>Example C - Creating a type to use with dimensioned
 

@@ -17,6 +17,11 @@
       {% for pg in collection[1].docs %}
       {% unless pg.title == "Home" %}
       <a class="sidebar-nav-item" href="{{ pg.url }}"> {{ pg.title }} </a>
+      {% if page == pg %}
+      {% for item in pg.nav %}
+      <a class="sidebar-nav-sub-item" href="#{{ item[1] }}"> {{ item[0] }}&nbsp;&nbsp;•</a>
+      {% endfor %}
+      {% endif %}
       {% endunless %}
       {% endfor %}
     </nav>
