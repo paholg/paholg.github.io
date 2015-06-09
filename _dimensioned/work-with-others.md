@@ -21,8 +21,9 @@ computations.
 
 If you'd rather look at code than read all this, you can.
 
-* [The vector library](https://github.com/paholg/dimensioned/blob/master/examples/vector3/src/vector3a.rs)
-* [The example](https://github.com/paholg/dimensioned/blob/master/examples/vector_a.rs)
+* [Example A](https://github.com/paholg/dimensioned/blob/master/examples/vector3a.rs)
+* [Example B](https://github.com/paholg/dimensioned/blob/master/examples/vector3b.rs)
+* [Example C](https://github.com/paholg/dimensioned/blob/master/examples/vector3c.rs)
 
 First, we define a basic `Vector3` that only uses `f64`. It is defined as
 follows:
@@ -63,8 +64,8 @@ impl Vector3 {
 ```
 
 In addition, the operators for addition, subtraction, and scalar multiplication and
-division are defined. You can view the full implementation
-[here](https://github.com/paholg/dimensioned/blob/master/examples/vector3/src/vector3a.rs).
+division are defined. You can view the full implementation as well as a full example
+[here](https://github.com/paholg/dimensioned/blob/master/examples/vector3a.rs).
 
 
 Now, let us use it with dimensioned. First, let's import the constants that we care
@@ -176,9 +177,7 @@ dim_impl_binary!(Cross, cross, MulDim, Vector3 => Vector3);
 Note that this macro expects the argument to be of the same type as the caller. If we
 need more flexibility, then we can manually do what these macros do without too much
 difficulty. For this example, at least, nothing else is necessary, and we can run the
-full gamut of vector operations. You can see a demonstration of that
-[here](https://github.com/paholg/dimensioned/blob/master/examples/vector_a.rs).
-
+full gamut of vector operations.
 
 ### <a name="ExampleB"></a>Example B - Working with a generic type
 

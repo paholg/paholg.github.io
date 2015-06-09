@@ -13,5 +13,5 @@ Dimensioned is a Rust library for compile-time type checking for arbitrary unit
 systems. It is on [crates.io](https://crates.io/crates/dimensioned) and can be imported
 with Cargo.
 
-The page [Work with other types](with-others.html) illustrates its use; a more general
+The page [Work with other types](work-with-others.html) illustrates its use; a more general
 example will be added here later.
