@@ -55,7 +55,6 @@
 <span id="13">13</span>
 <span id="14">14</span>
 <span id="15">15</span>
-<span id="16">16</span>
 </pre><pre class='rust '>
 <span class='macro'>make_units</span><span class='macro'>!</span> {
     <span class='ident'>SI</span>, <span class='ident'>Unitless</span>, <span class='ident'>one</span>;
@@ -69,8 +68,7 @@
         <span class='ident'>Mole</span>, <span class='ident'>mole</span>, <span class='ident'>mol</span>;
     }
     <span class='ident'>derived</span> {
-        <span class='comment'>// does nothing</span>
-        <span class='ident'>newton</span>: <span class='ident'>Newton</span> <span class='op'>=</span> <span class='ident'>kg</span><span class='op'>*</span><span class='ident'>m</span><span class='op'>/</span><span class='ident'>s</span><span class='op'>/</span><span class='ident'>s</span>;
+        <span class='ident'>newton</span>: <span class='ident'>Newton</span> <span class='op'>=</span> <span class='ident'>Kilogram</span> <span class='op'>*</span> <span class='ident'>Meter</span> <span class='op'>/</span> (<span class='ident'>Second</span> <span class='op'>*</span> <span class='ident'>Second</span>);
     }
 }
 </pre>
