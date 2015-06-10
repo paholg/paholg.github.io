@@ -13,6 +13,11 @@
 
     <hr/>
 
+    {% if collection[1].crates %}
+    <a class="sidebar-nav-item" href= "{{ collection[1].crates.url }}">&nbsp;<img class="sidebar-nav-img" src="{{ collection[1].crates.img }}" align="right" alt="crates.io"></a>
+    <hr/>
+    {% endif %}
+
     <nav class="sidebar-nav">
       {% for pg in collection[1].docs %}
       {% unless pg.title == "Home" %}
@@ -28,10 +33,12 @@
 
 
     <nav class="sidebar-nav">
-      Links
+      Links<br>
+
       {% for link in collection[1].links %}
       <a class="sidebar-nav-item" href="{{ link[1] }}"> {{ link[0] }} </a>
       {% endfor %}
+
 
       <hr/>
 

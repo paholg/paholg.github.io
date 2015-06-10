@@ -326,7 +326,12 @@ tbody tr:nth-child(odd) th {
 }
 .sidebar-nav-item {
     display: block;
-    line-height: 1.75;
+    line-height: 1.75rem;
+    clear: both;
+}
+.sidebar-nav-img {
+    vertical-align:bottom;
+    padding-top:.25rem;
 }
 .sidebar-nav-sub-item {
     display: block;
@@ -360,6 +365,7 @@ hr {
     height: 1px;
     margin-right: 0;
     margin-left: auto;
+    clear: both;
 }
 
 /* Resizing */

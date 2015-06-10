@@ -31,7 +31,9 @@ collections:
     links:
       Documentation: /doc/dimensioned
       Source: "https://github.com/paholg/dimensioned"
-      Crates.io: "https://crates.io/crates/dimensioned"
+    crates:
+      img: https://img.shields.io/crates/v/dimensioned.svg
+      url: https://crates.io/crates/dimensioned
 
   # recipes:
   #   output: true

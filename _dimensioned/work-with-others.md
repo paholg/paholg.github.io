@@ -3,8 +3,8 @@ title: Work with other types
 layout: project
 project: dimensioned
 nav: [[Example A, ExampleA], [Example B, ExampleB], [Example C, ExampleC]]
-date: 2015-6-8
-version: 0.2.2
+date: 2015-6-9
+version: 0.2.3
 ---
 
 One goal of dimensioned is to be usable anywhere one might wish as effortlessly as

@@ -2,9 +2,10 @@
 title: Home
 layout: project
 project: dimensioned
-date: 2015-6-8
-version: 0.2.2
+date: 2015-6-9
+version: 0.2.3
 ---
+
 
 Note: This library is still unstable and undergoing breaking changes. It should mostly stabilize soon, but will likely depend on unstable Rust features for some time.
 
