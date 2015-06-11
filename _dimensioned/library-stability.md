@@ -3,8 +3,8 @@ title: Library stability
 layout: project
 project: dimensioned
 nav: [[Planned features, planned], [Rust unstable, rustunstable]]
-date: 2015-6-8
-version: 0.2.2
+date: 2015-6-11
+version: 0.2.4
 ---
 
 There are two sides to this; dimensioned is still undergoing breaking changes and it
@@ -53,6 +53,11 @@ don't yet exist.
 - [Procedural macros](https://doc.rust-lang.org/book/compiler-plugins.html): While
   declaring derived units is not implemented yet, I am fairly sure that it will require
   procedural macros.
+
+- Zero and One traits: The unstable traits `std::num::Zero` and `std::num::One` are
+  implemented for `Dim`. The traits in `num::traits` depend on `Add`/`Mul` being
+  implemented in type-preserving ways, so these new ones are much more compatible with
+  dimensioned.
 
 - Other: Anything else that is added to Rust that will aid in generic programming, such
   as type specialization, will likely be incorporated into dimensioned.

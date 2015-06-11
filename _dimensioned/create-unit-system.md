@@ -3,8 +3,8 @@ title: Create a unit system
 layout: project
 project: dimensioned
 nav: [[Basic macro, basic], [Advanced macro, advanced]]
-date: 2015-6-8
-version: 0.2.2
+date: 2015-6-10
+version: 0.2.4
 ---
 
 ### <a name = "basic"></a>Basic macro
@@ -94,7 +94,7 @@ with a few more options. Here is its use in defining the
 
 ```rust
 make_units_adv! {
-    CGS, Unitless, one, f64;
+    CGS, Unitless, one, f64, 1.0;
     base {
         Two, Centimeter, centimeter, cm;
         Two, Gram, gram, g;
@@ -105,10 +105,9 @@ make_units_adv! {
 }
 ```
 
-The first line is as before, but with an extra item; the type that you wish to use for
-your defined constants. Right now it is mostly a placeholder (only `f32` and `f64` will
-work), but once associated constants arrive, it will be able to be anything that
-implements `std::num::One`.
+The first line is as before, but with two extra item; the type that you wish to use for
+your defined constants and the value to initialize them to. Once associated constants
+arrive, you will no longer specify the value. Instead, `std::num::One` will be used.
 
 The lines defining base units also have an extra item, in front. It corresponds to the
 highest root that you wish to allow for your units. In almost all cases, it will be

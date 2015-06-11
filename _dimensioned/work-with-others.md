@@ -3,8 +3,8 @@ title: Work with other types
 layout: project
 project: dimensioned
 nav: [[Example A, ExampleA], [Example B, ExampleB], [Example C, ExampleC]]
-date: 2015-6-9
-version: 0.2.3
+date: 2015-6-10
+version: 0.2.4
 ---
 
 One goal of dimensioned is to be usable anywhere one might wish as effortlessly as
@@ -116,17 +116,17 @@ work. Assuming we have similarly defined `yhat`, we can do all of
 ```
 
 and more. The only difficulty now is calling member functions of `Vector3`. We have a
-few options. One way is to use the `wrap()` member of `Dim`:
+few options. One way is to use `map`:
 
 ```rust
 let a = 3.0*m*xhat + 4.0*m*yhat;
-let b = x.wrap((x.0).norm()); // type Dim<Meter, f64> with value 5.0
+let b = x.map(Vector3::norm); // type Dim<Meter, f64> with value 5.0
 ```
 
-The expression `a.wrap(b)` gives `b` the dimensions of `a`. But, this is cumbersome and
-messy.
+We may end up calling `norm()` a bunch, and it would be nice to do so with
+`x.norm()`.
 
-There's a better way. There are a couple helper macros that can make
+There are a couple helper macros that can make
 member functions of type `T` usable by `Dim<D, T>`. For norm, we could add this line:
 
 ```rust
@@ -174,9 +174,9 @@ dim_impl_binary!(Dot, dot, MulDim, Vector3 => f64);
 dim_impl_binary!(Cross, cross, MulDim, Vector3 => Vector3);
 ```
 
-Note that this macro expects the argument to be of the same type as the caller. If we
-need more flexibility, then we can manually do what these macros do without too much
-difficulty. For this example, at least, nothing else is necessary, and we can run the
+Note that this macro expects the argument to have the same value type as the caller. If
+we need more flexibility, then we can manually do what these macros do without too much
+difficulty. For [this example](https://github.com/paholg/dimensioned/blob/master/examples/vector3a.rs), at least, nothing else is necessary, and we can run the
 full gamut of vector operations.
 
 ### <a name="ExampleB"></a>Example B - Working with a generic type
