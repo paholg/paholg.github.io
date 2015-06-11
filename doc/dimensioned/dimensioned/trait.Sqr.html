@@ -45,17 +45,20 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-1577' class='srclink' href='../../src/dimensioned/dimensioned.rs.html#63-66' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1577' class='srclink' href='../../src/dimensioned/dimensioned.rs.html#104-109' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait Sqr {
     type Output;
     fn <a href='#tymethod.sqr' class='fnname'>sqr</a>(self) -&gt; Self::<a class='trait' href='../../dimensioned/dimensioned/trait.Sqr.html' title='dimensioned::dimensioned::Sqr'>Output</a>;
-}</pre>
+}</pre><div class='docblock'><p>As powers change type signature for dimensioned objects, this traits offers a simple
+method for squaring. It may be replaced by something more general in future.</p>
+</div>
             <h2 id='associated-types'>Associated Types</h2>
             <div class='methods'>
         <h3 id='associatedtype.Output' class='method stab '><code>type Output</code></h3></div>
             <h2 id='required-methods'>Required Methods</h2>
             <div class='methods'>
-        <h3 id='tymethod.sqr' class='method stab '><code>fn <a href='#tymethod.sqr' class='fnname'>sqr</a>(self) -&gt; Self::<a class='trait' href='../../dimensioned/dimensioned/trait.Sqr.html' title='dimensioned::dimensioned::Sqr'>Output</a></code></h3></div>
+        <h3 id='tymethod.sqr' class='method stab '><code>fn <a href='#tymethod.sqr' class='fnname'>sqr</a>(self) -&gt; Self::<a class='trait' href='../../dimensioned/dimensioned/trait.Sqr.html' title='dimensioned::dimensioned::Sqr'>Output</a></code></h3><div class='docblock'><p>Square a dimensioned object</p>
+</div></div>
         <h2 id='implementors'>Implementors</h2>
         <ul class='item-list' id='implementors-list'>
     <li><code>impl&lt;D, V&gt; <a class='trait' href='../../dimensioned/dimensioned/trait.Sqr.html' title='dimensioned::dimensioned::Sqr'>Sqr</a> for <a class='struct' href='../../dimensioned/dimensioned/struct.Dim.html' title='dimensioned::dimensioned::Dim'>Dim</a>&lt;D, V&gt; <span class='where'>where D: <a class='trait' href='../../dimensioned/dimensioned/trait.PowerDim.html' title='dimensioned::dimensioned::PowerDim'>PowerDim</a>&lt;<a class='type' href='../../dimensioned/peano/type.Two.html' title='dimensioned::peano::Two'>Two</a>&gt;, V: <a class='trait' href='http://doc.rust-lang.org/nightly/core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> + <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Mul.html' title='core::ops::Mul'>Mul</a>, D::Output: <a class='trait' href='../../dimensioned/dimensioned/trait.Dimension.html' title='dimensioned::dimensioned::Dimension'>Dimension</a></span></code></li>

@@ -446,60 +446,166 @@
 <span id="404">404</span>
 <span id="405">405</span>
 <span id="406">406</span>
+<span id="407">407</span>
+<span id="408">408</span>
+<span id="409">409</span>
+<span id="410">410</span>
+<span id="411">411</span>
+<span id="412">412</span>
+<span id="413">413</span>
+<span id="414">414</span>
+<span id="415">415</span>
+<span id="416">416</span>
+<span id="417">417</span>
+<span id="418">418</span>
+<span id="419">419</span>
+<span id="420">420</span>
+<span id="421">421</span>
+<span id="422">422</span>
+<span id="423">423</span>
+<span id="424">424</span>
+<span id="425">425</span>
+<span id="426">426</span>
+<span id="427">427</span>
+<span id="428">428</span>
+<span id="429">429</span>
+<span id="430">430</span>
+<span id="431">431</span>
+<span id="432">432</span>
+<span id="433">433</span>
+<span id="434">434</span>
+<span id="435">435</span>
+<span id="436">436</span>
+<span id="437">437</span>
+<span id="438">438</span>
+<span id="439">439</span>
+<span id="440">440</span>
+<span id="441">441</span>
+<span id="442">442</span>
+<span id="443">443</span>
+<span id="444">444</span>
+<span id="445">445</span>
+<span id="446">446</span>
+<span id="447">447</span>
+<span id="448">448</span>
+<span id="449">449</span>
+<span id="450">450</span>
+<span id="451">451</span>
+<span id="452">452</span>
+<span id="453">453</span>
+<span id="454">454</span>
+<span id="455">455</span>
+<span id="456">456</span>
+<span id="457">457</span>
+<span id="458">458</span>
+<span id="459">459</span>
+<span id="460">460</span>
+<span id="461">461</span>
+<span id="462">462</span>
+<span id="463">463</span>
+<span id="464">464</span>
+<span id="465">465</span>
+<span id="466">466</span>
+<span id="467">467</span>
+<span id="468">468</span>
+<span id="469">469</span>
+<span id="470">470</span>
+<span id="471">471</span>
+<span id="472">472</span>
+<span id="473">473</span>
 </pre><pre class='rust '>
-<span class='kw'>use</span> <span class='ident'>peano</span>::<span class='op'>*</span>;
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>marker</span>::<span class='ident'>PhantomData</span>;
+<span class='doccomment'>/*!
+This module allows dimensioned to be very flexible. It creates the `Dim&lt;D, V&gt;` type,
+which is the type that will be used with all dimensionful objects. It then implements as
+many traits from `std` as generically as possible.
+
+**dimensioned** creates many traits, the majority of which are used for type level
+**arithmetic and should not be implemented for any objects outside this library.
+*/</span>
+
+<span class='kw'>use</span> <span class='ident'>peano</span>::<span class='op'>*</span>; <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>marker</span>::<span class='ident'>PhantomData</span>;
 
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>ops</span>::<span class='op'>*</span>;
 <span class='kw'>use</span> <span class='ident'>num</span>::<span class='ident'>traits</span>::{<span class='ident'>Float</span>, <span class='ident'>FromPrimitive</span>, <span class='ident'>ToPrimitive</span>, <span class='ident'>NumCast</span>};
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>cmp</span>::<span class='op'>*</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fmt</span>;
 
+<span class='doccomment'>/// All types created for a unit system will implement this trait.</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// No other types should implement it.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Dimension</span> {}
 
+<span class='doccomment'>/// The only types that implement this trait are the `Unitless` types that exist in each</span>
+<span class='doccomment'>/// unit system. It allows more flexibility when handling specifically objects without</span>
+<span class='doccomment'>/// dimension.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Dimensionless</span>: <span class='ident'>Dimension</span> {}
 
+<span class='doccomment'>/// This trait allows us to multiply two dimensioned objects</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>MulDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span> <span class='op'>=</span> <span class='kw'>Self</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> {
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
+<span class='doccomment'>/// This trait allows us to divide two dimensioned objects</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>DivDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span> <span class='op'>=</span> <span class='kw'>Self</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> {
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
+<span class='doccomment'>/// This trait allows us to take a dimensioned object to a power given by a peano number</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>PowerDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> {
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
+<span class='doccomment'>/// This trait allows us to take a root, given by a peano number, of a dimensioned object</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>RootDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> {
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
+<span class='doccomment'>/// This trait enforces that `Self` and `RHS` have the same dimensions. It is useful</span>
+<span class='doccomment'>/// mostly for macros.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>KeepDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span> <span class='op'>=</span> <span class='kw'>Self</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> {
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
+<span class='doccomment'>/// This trait inverts the dimensions of an object. For example, it takes seconds to hertz.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>InvertDim</span>: <span class='ident'>Dimension</span> {
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
-
+<span class='doccomment'>/// This trait gives a human-friendly representation of a dimensioned object. It is</span>
+<span class='doccomment'>/// useful for printing and debugging.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>DimToString</span>: <span class='ident'>Dimension</span> {
+    <span class='doccomment'>/// Gives a human friendly `String` representation of a `Dimension` type.</span>
     <span class='kw'>fn</span> <span class='ident'>to_string</span>() <span class='op'>-&gt;</span> <span class='ident'>String</span>;
 }
 
+<span class='doccomment'>/// This is the primary struct that users of this library will interact with.</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Copy</span>, <span class='ident'>Clone</span>, <span class='ident'>PartialEq</span>, <span class='ident'>Eq</span>, <span class='ident'>PartialOrd</span>, <span class='ident'>Ord</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>: <span class='ident'>Dimension</span>, <span class='ident'>V</span><span class='op'>&gt;</span>(<span class='kw'>pub</span> <span class='ident'>V</span>, <span class='kw'>pub</span> <span class='ident'>PhantomData</span><span class='op'>&lt;</span><span class='ident'>D</span><span class='op'>&gt;</span>);
 
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>: <span class='ident'>Dimension</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> {
+    <span class='doccomment'>/// Construct a new dimensioned object</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>v</span>: <span class='ident'>V</span>) <span class='op'>-&gt;</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> {
         <span class='ident'>Dim</span>(<span class='ident'>v</span>, <span class='ident'>PhantomData</span>)
     }
+    <span class='doccomment'>/// Maps a Dim&lt;D, V&gt; to Dim&lt;D, O&gt; by applying a function to the contained value</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>map</span><span class='op'>&lt;</span><span class='ident'>O</span>, <span class='ident'>F</span>: <span class='ident'>FnOnce</span>(<span class='ident'>V</span>) <span class='op'>-&gt;</span> <span class='ident'>O</span><span class='op'>&gt;</span>(<span class='self'>self</span>, <span class='ident'>f</span>: <span class='ident'>F</span>) <span class='op'>-&gt;</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>O</span><span class='op'>&gt;</span> {
         <span class='ident'>Dim</span>(<span class='ident'>f</span>(<span class='self'>self</span>.<span class='number'>0</span>), <span class='ident'>PhantomData</span>)
     }
 }
 
+<span class='doccomment'>/// This traits is implemented by default for everything that is not Dim&lt;D, V&gt;. It</span>
+<span class='doccomment'>/// allows a greater level of generic operator overloading than would be possible</span>
+<span class='doccomment'>/// otherwise.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>NotDim</span> {}
 <span class='kw'>impl</span> <span class='ident'>NotDim</span> <span class='kw'>for</span> .. {}
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>: <span class='ident'>Dimension</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='op'>!</span><span class='ident'>NotDim</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> {}
 
+<span class='doccomment'>/// Because it would not make sense to implement `Float` for `Dim&lt;D, V&gt;`, we create a</span>
+<span class='doccomment'>/// special `Sqrt` trait. We then implement it for `Dim&lt;D, V&gt;` where `V: Float`</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Sqrt</span> {
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
     <span class='kw'>type</span> <span class='ident'>Output</span>;
+    <span class='doccomment'>/// Take the square root of a dimensioned object</span>
     <span class='kw'>fn</span> <span class='ident'>sqrt</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span>;
 }
 
@@ -509,8 +615,12 @@
     <span class='kw'>fn</span> <span class='ident'>sqrt</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='ident'>Dim</span>( (<span class='self'>self</span>.<span class='number'>0</span>).<span class='ident'>sqrt</span>(), <span class='ident'>PhantomData</span>) }
 }
 
+<span class='doccomment'>/// As powers change type signature for dimensioned objects, this traits offers a simple</span>
+<span class='doccomment'>/// method for squaring. It may be replaced by something more general in future.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Sqr</span> {
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
     <span class='kw'>type</span> <span class='ident'>Output</span>;
+    <span class='doccomment'>/// Square a dimensioned object</span>
     <span class='kw'>fn</span> <span class='ident'>sqr</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span>;
 }
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='ident'>Sqr</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>D</span>: <span class='ident'>PowerDim</span><span class='op'>&lt;</span><span class='ident'>Two</span><span class='op'>&gt;</span>, <span class='ident'>V</span>: <span class='ident'>Copy</span> <span class='op'>+</span> <span class='ident'>Mul</span>, <span class='op'>&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>PowerDim</span><span class='op'>&lt;</span><span class='ident'>Two</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Dimension</span> {
@@ -522,8 +632,12 @@
     }
 }
 
+<span class='doccomment'>/// As powers change type signature for dimensioned objects, this traits offers a simple</span>
+<span class='doccomment'>/// method for cubing. It may be replaced by something more general in future.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Cube</span> {
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
     <span class='kw'>type</span> <span class='ident'>Output</span>;
+    <span class='doccomment'>/// Cube a dimensioned object</span>
     <span class='kw'>fn</span> <span class='ident'>cube</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span>;
 }
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='ident'>Cube</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>D</span>: <span class='ident'>PowerDim</span><span class='op'>&lt;</span><span class='ident'>Three</span><span class='op'>&gt;</span>, <span class='ident'>V</span>: <span class='ident'>Copy</span> <span class='op'>+</span> <span class='ident'>Mul</span>, <span class='op'>&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>PowerDim</span><span class='op'>&lt;</span><span class='ident'>Three</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Dimension</span>, <span class='op'>&lt;</span><span class='ident'>V</span> <span class='kw'>as</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>V</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>V</span><span class='op'>&gt;</span> {
@@ -611,8 +725,18 @@
             }
         );
 }
-<span class='macro'>dim_lhs_mult</span><span class='macro'>!</span>(<span class='ident'>f64</span>);
 <span class='macro'>dim_lhs_mult</span><span class='macro'>!</span>(<span class='ident'>f32</span>);
+<span class='macro'>dim_lhs_mult</span><span class='macro'>!</span>(<span class='ident'>f64</span>);
+<span class='macro'>dim_lhs_mult</span><span class='macro'>!</span>(<span class='ident'>i8</span>);
+<span class='macro'>dim_lhs_mult</span><span class='macro'>!</span>(<span class='ident'>i16</span>);
+<span class='macro'>dim_lhs_mult</span><span class='macro'>!</span>(<span class='ident'>i32</span>);
+<span class='macro'>dim_lhs_mult</span><span class='macro'>!</span>(<span class='ident'>i64</span>);
+<span class='macro'>dim_lhs_mult</span><span class='macro'>!</span>(<span class='ident'>isize</span>);
+<span class='macro'>dim_lhs_mult</span><span class='macro'>!</span>(<span class='ident'>u8</span>);
+<span class='macro'>dim_lhs_mult</span><span class='macro'>!</span>(<span class='ident'>u16</span>);
+<span class='macro'>dim_lhs_mult</span><span class='macro'>!</span>(<span class='ident'>u32</span>);
+<span class='macro'>dim_lhs_mult</span><span class='macro'>!</span>(<span class='ident'>u64</span>);
+<span class='macro'>dim_lhs_mult</span><span class='macro'>!</span>(<span class='ident'>usize</span>);
 
 
 <span class='doccomment'>/// Dividing! Dimensions must be able to subtract.</span>
@@ -648,8 +772,18 @@
             }
         );
 }
-<span class='macro'>dim_lhs_div</span><span class='macro'>!</span>(<span class='ident'>f64</span>);
 <span class='macro'>dim_lhs_div</span><span class='macro'>!</span>(<span class='ident'>f32</span>);
+<span class='macro'>dim_lhs_div</span><span class='macro'>!</span>(<span class='ident'>f64</span>);
+<span class='macro'>dim_lhs_div</span><span class='macro'>!</span>(<span class='ident'>i8</span>);
+<span class='macro'>dim_lhs_div</span><span class='macro'>!</span>(<span class='ident'>i16</span>);
+<span class='macro'>dim_lhs_div</span><span class='macro'>!</span>(<span class='ident'>i32</span>);
+<span class='macro'>dim_lhs_div</span><span class='macro'>!</span>(<span class='ident'>i64</span>);
+<span class='macro'>dim_lhs_div</span><span class='macro'>!</span>(<span class='ident'>isize</span>);
+<span class='macro'>dim_lhs_div</span><span class='macro'>!</span>(<span class='ident'>u8</span>);
+<span class='macro'>dim_lhs_div</span><span class='macro'>!</span>(<span class='ident'>u16</span>);
+<span class='macro'>dim_lhs_div</span><span class='macro'>!</span>(<span class='ident'>u32</span>);
+<span class='macro'>dim_lhs_div</span><span class='macro'>!</span>(<span class='ident'>u64</span>);
+<span class='macro'>dim_lhs_div</span><span class='macro'>!</span>(<span class='ident'>usize</span>);
 
 
 <span class='comment'>// Unary operators:</span>

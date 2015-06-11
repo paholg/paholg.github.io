@@ -266,45 +266,138 @@
 <span id="224">224</span>
 <span id="225">225</span>
 <span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
+<span id="229">229</span>
+<span id="230">230</span>
+<span id="231">231</span>
+<span id="232">232</span>
+<span id="233">233</span>
+<span id="234">234</span>
+<span id="235">235</span>
+<span id="236">236</span>
+<span id="237">237</span>
+<span id="238">238</span>
+<span id="239">239</span>
+<span id="240">240</span>
+<span id="241">241</span>
+<span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
+<span id="245">245</span>
+<span id="246">246</span>
+<span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
+<span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
+<span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
+<span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
 </pre><pre class='rust '>
+<span class='doccomment'>/*!
+Peano numbers allow us to do arithmetic at compile time using Rust&#39;s type system.
+
+This module creates many traits. They are all used for arithmetic between Peano numbers
+and it is not recommended that you implement them for anything else.
+*/</span>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>marker</span>::<span class='ident'>PhantomData</span>;
 
+<span class='doccomment'>/// The type-level number 0</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Copy</span>, <span class='ident'>Clone</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Zero</span>;
+
+<span class='doccomment'>/// For any number N, we define its successor. In mathematics, this and Zero are enough</span>
+<span class='doccomment'>/// to get all the natural numbers; in Rust, it only gets us up to 63 as that is the</span>
+<span class='doccomment'>/// most levels of embedded structs we can have.</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// We further specify that N must not be negative. This way we never have a situation</span>
+<span class='doccomment'>/// like `Succ&lt;Pred&lt;Zero&gt;&gt;` and all numbers are uniquely defined.</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Copy</span>, <span class='ident'>Clone</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>N</span>: <span class='ident'>NonNeg</span><span class='op'>&gt;</span> {
     <span class='ident'>_marker</span>: <span class='ident'>PhantomData</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span>
 }
+<span class='doccomment'>/// For any number N that isn&#39;t a positive number, we define its</span>
+<span class='doccomment'>/// predecessor. Mathematically, we have now defined all of the integers. We have</span>
+<span class='doccomment'>/// actually defined -63 to 63.</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Copy</span>, <span class='ident'>Clone</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>N</span>: <span class='ident'>NonPos</span><span class='op'>&gt;</span> {
     <span class='ident'>_marker</span>: <span class='ident'>PhantomData</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span>
 }
 
+<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>One</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Zero</span><span class='op'>&gt;</span>;
+<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Two</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>One</span><span class='op'>&gt;</span>;
+<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Three</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Two</span><span class='op'>&gt;</span>;
+<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Four</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Three</span><span class='op'>&gt;</span>;
+<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Five</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Four</span><span class='op'>&gt;</span>;
+<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Six</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Five</span><span class='op'>&gt;</span>;
+<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Seven</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Six</span><span class='op'>&gt;</span>;
+<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Eight</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Seven</span><span class='op'>&gt;</span>;
+<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Nine</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Eight</span><span class='op'>&gt;</span>;
+<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Ten</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Nine</span><span class='op'>&gt;</span>;
 
+<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>NegOne</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Zero</span><span class='op'>&gt;</span>;
+<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>NegTwo</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>NegOne</span><span class='op'>&gt;</span>;
+<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>NegThree</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>NegTwo</span><span class='op'>&gt;</span>;
+<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>NegFour</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>NegThree</span><span class='op'>&gt;</span>;
+<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>NegFive</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>NegFour</span><span class='op'>&gt;</span>;
+<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>NegSix</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>NegFive</span><span class='op'>&gt;</span>;
+<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>NegSeven</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>NegSix</span><span class='op'>&gt;</span>;
+<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>NegEight</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>NegSeven</span><span class='op'>&gt;</span>;
+<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>NegNine</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>NegEight</span><span class='op'>&gt;</span>;
+<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>NegTen</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>NegNine</span><span class='op'>&gt;</span>;
 
+<span class='doccomment'>/// All numbers defined in this module will belong to the **Peano** trait.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Peano</span> {}
+<span class='doccomment'>/// All numbers of the form `Succ&lt;M&gt;` or `Pred&lt;N&gt;` will belong to the trait **NonZero**.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>NonZero</span>: <span class='ident'>Peano</span> {}
+<span class='doccomment'>/// All numbers of the form `Succ&lt;N&gt;` and `Zero` will belong to the trait **NonNeg**.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>NonNeg</span>: <span class='ident'>Peano</span> {}
+<span class='doccomment'>/// All numbers of the form `Pred&lt;N&gt;` and `Zero` will belong to the trait **NonNeg**.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>NonPos</span>: <span class='ident'>Peano</span> {}
 
 <span class='kw'>impl</span> <span class='ident'>Peano</span> <span class='kw'>for</span> <span class='ident'>Zero</span> {}
@@ -319,11 +412,13 @@
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>N</span>: <span class='ident'>NonPos</span><span class='op'>&gt;</span> <span class='ident'>NonPos</span> <span class='kw'>for</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span> {}
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>N</span>: <span class='ident'>NonPos</span><span class='op'>&gt;</span> <span class='ident'>NonZero</span> <span class='kw'>for</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span> {}
 
+<span class='doccomment'>/// This trait allows us to add any two Peano numbers.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>AddPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Peano</span> {
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
 
-<span class='doccomment'>/// Adding things to zero (e.g. 0 + 3)</span>
+<span class='doccomment'>/// Adding any number to zero (e.g. 0 + 3)</span>
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>RHS</span>: <span class='ident'>Peano</span><span class='op'>&gt;</span> <span class='ident'>AddPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Zero</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>RHS</span>;
 }
@@ -354,7 +449,9 @@
     <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>LHS</span> <span class='kw'>as</span> <span class='ident'>AddPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
 }
 
+<span class='doccomment'>/// This trait provides the negation of a number (e.g. -5 to 5)</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Negate</span> {
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
 <span class='kw'>impl</span> <span class='ident'>Negate</span> <span class='kw'>for</span> <span class='ident'>Zero</span> {
@@ -368,8 +465,9 @@
 }
 
 
-
+<span class='doccomment'>/// This trait allows us to subtract any two Peano numbers.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>SubPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Peano</span> {
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
 
@@ -405,8 +503,9 @@
 }
 
 
-
+<span class='doccomment'>/// This trait allows us to multiply any two Peano numbers.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>MulPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Peano</span> {
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
 
@@ -428,9 +527,12 @@
 }
 
 
-<span class='doccomment'>/// Note that, while we define division, we are operating in a ring, so an error</span>
-<span class='doccomment'>/// will be thrown unless the numerator is divisible by the denominator</span>
+<span class='doccomment'>/// This trait allows us to divide two Peano numbers so long as the numerator is divisible by the denominator.</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// We are operating in a ring, so an error will be if the numerator is not divisible by</span>
+<span class='doccomment'>/// the denominator</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>DivPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Peano</span> {
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> <span class='ident'>DivPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Zero</span>
@@ -470,8 +572,9 @@
 }
 
 
-
+<span class='doccomment'>/// This trait does nothing, but it forces `Self` and `RHS` to be the same peano number.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>KeepPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Peano</span> {
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
 <span class='doccomment'>/// Output = N iff both operands are type N</span>
@@ -482,6 +585,7 @@
 
 <span class='doccomment'>/// Converts a type to the integer it represents</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>ToInt</span>: <span class='ident'>Peano</span> {
+    <span class='doccomment'>/// This function is called with, for example, `Two::to_int();`</span>
     <span class='kw'>fn</span> <span class='ident'>to_int</span>() <span class='op'>-&gt;</span> <span class='ident'>i32</span>;
 }
 <span class='kw'>impl</span> <span class='ident'>ToInt</span> <span class='kw'>for</span> <span class='ident'>Zero</span> {

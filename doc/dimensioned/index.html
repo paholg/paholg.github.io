@@ -45,15 +45,22 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-0' class='srclink' href='../src/dimensioned/lib.rs.html#1-15' title='goto source code'>[src]</a></span></h1>
-<h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
+        </span><a id='src-0' class='srclink' href='../src/dimensioned/lib.rs.html#1-24' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'>
+<h1 id="dimensioned" class='section-header'><a
+                           href="#dimensioned">dimensioned</a></h1>
+<p><strong>dimensioned</strong> is a library for compile time type checking for arbitrary unit systems.</p>
+
+<p>The best place to read about it is <a href="http://paholg.com/dimensioned">here</a></p>
+</div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
 <table><tr><td><code>pub use <a class='mod' href='../dimensioned/dimensioned/index.html' title='dimensioned::dimensioned'>dimensioned</a>::*;</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
 <table>
                     <tr class=' module-item'>
                         <td><a class='mod' href='cgs/index.html'
                                title='dimensioned::cgs'>cgs</a></td>
                         <td class='docblock short'>
-                             
+                             <p>The <strong>cgs</strong> module provides a unit system for use with Gaussian CGS units.</p>
+
                         </td>
                     </tr>
                 
@@ -61,7 +68,10 @@
                         <td><a class='mod' href='dimensioned/index.html'
                                title='dimensioned::dimensioned'>dimensioned</a></td>
                         <td class='docblock short'>
-                             
+                             <p>This module allows dimensioned to be very flexible. It creates the <code>Dim&lt;D, V&gt;</code> type,
+which is the type that will be used with all dimensionful objects. It then implements as
+many traits from <code>std</code> as generically as possible.</p>
+
                         </td>
                     </tr>
                 
@@ -69,7 +79,8 @@
                         <td><a class='mod' href='peano/index.html'
                                title='dimensioned::peano'>peano</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Peano numbers allow us to do arithmetic at compile time using Rust&#39;s type system.</p>
+
                         </td>
                     </tr>
                 
@@ -77,7 +88,8 @@
                         <td><a class='mod' href='si/index.html'
                                title='dimensioned::si'>si</a></td>
                         <td class='docblock short'>
-                             
+                             <p>The <strong>si</strong> module provides a unit system for use with SI units.</p>
+
                         </td>
                     </tr>
                 </table><h2 id='macros' class='section-header'><a href="#macros">Macros</a></h2>

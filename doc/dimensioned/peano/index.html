@@ -45,14 +45,21 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-6' class='srclink' href='../../src/dimensioned/peano.rs.html#1-226' title='goto source code'>[src]</a></span></h1>
-<h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+        </span><a id='src-6' class='srclink' href='../../src/dimensioned/peano.rs.html#1-278' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>Peano numbers allow us to do arithmetic at compile time using Rust&#39;s type system.</p>
+
+<p>This module creates many traits. They are all used for arithmetic between Peano numbers
+and it is not recommended that you implement them for anything else.</p>
+</div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
                     <tr class=' module-item'>
                         <td><a class='struct' href='struct.Pred.html'
                                title='dimensioned::peano::Pred'>Pred</a></td>
                         <td class='docblock short'>
-                             
+                             <p>For any number N that isn&#39;t a positive number, we define its
+predecessor. Mathematically, we have now defined all of the integers. We have
+actually defined -63 to 63.</p>
+
                         </td>
                     </tr>
                 
@@ -60,7 +67,10 @@
                         <td><a class='struct' href='struct.Succ.html'
                                title='dimensioned::peano::Succ'>Succ</a></td>
                         <td class='docblock short'>
-                             
+                             <p>For any number N, we define its successor. In mathematics, this and Zero are enough
+to get all the natural numbers; in Rust, it only gets us up to 63 as that is the
+most levels of embedded structs we can have.</p>
+
                         </td>
                     </tr>
                 
@@ -68,7 +78,8 @@
                         <td><a class='struct' href='struct.Zero.html'
                                title='dimensioned::peano::Zero'>Zero</a></td>
                         <td class='docblock short'>
-                             
+                             <p>The type-level number 0</p>
+
                         </td>
                     </tr>
                 </table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
@@ -77,7 +88,8 @@
                         <td><a class='trait' href='trait.AddPeano.html'
                                title='dimensioned::peano::AddPeano'>AddPeano</a></td>
                         <td class='docblock short'>
-                             
+                             <p>This trait allows us to add any two Peano numbers.</p>
+
                         </td>
                     </tr>
                 
@@ -85,8 +97,7 @@
                         <td><a class='trait' href='trait.DivPeano.html'
                                title='dimensioned::peano::DivPeano'>DivPeano</a></td>
                         <td class='docblock short'>
-                             <p>Note that, while we define division, we are operating in a ring, so an error
-will be thrown unless the numerator is divisible by the denominator</p>
+                             <p>This trait allows us to divide two Peano numbers so long as the numerator is divisible by the denominator.</p>
 
                         </td>
                     </tr>
@@ -95,7 +106,8 @@ will be thrown unless the numerator is divisible by the denominator</p>
                         <td><a class='trait' href='trait.KeepPeano.html'
                                title='dimensioned::peano::KeepPeano'>KeepPeano</a></td>
                         <td class='docblock short'>
-                             
+                             <p>This trait does nothing, but it forces <code>Self</code> and <code>RHS</code> to be the same peano number.</p>
+
                         </td>
                     </tr>
                 
@@ -103,7 +115,8 @@ will be thrown unless the numerator is divisible by the denominator</p>
                         <td><a class='trait' href='trait.MulPeano.html'
                                title='dimensioned::peano::MulPeano'>MulPeano</a></td>
                         <td class='docblock short'>
-                             
+                             <p>This trait allows us to multiply any two Peano numbers.</p>
+
                         </td>
                     </tr>
                 
@@ -111,7 +124,8 @@ will be thrown unless the numerator is divisible by the denominator</p>
                         <td><a class='trait' href='trait.Negate.html'
                                title='dimensioned::peano::Negate'>Negate</a></td>
                         <td class='docblock short'>
-                             
+                             <p>This trait provides the negation of a number (e.g. -5 to 5)</p>
+
                         </td>
                     </tr>
                 
@@ -119,7 +133,8 @@ will be thrown unless the numerator is divisible by the denominator</p>
                         <td><a class='trait' href='trait.NonNeg.html'
                                title='dimensioned::peano::NonNeg'>NonNeg</a></td>
                         <td class='docblock short'>
-                             
+                             <p>All numbers of the form <code>Succ&lt;N&gt;</code> and <code>Zero</code> will belong to the trait <strong>NonNeg</strong>.</p>
+
                         </td>
                     </tr>
                 
@@ -127,7 +142,8 @@ will be thrown unless the numerator is divisible by the denominator</p>
                         <td><a class='trait' href='trait.NonPos.html'
                                title='dimensioned::peano::NonPos'>NonPos</a></td>
                         <td class='docblock short'>
-                             
+                             <p>All numbers of the form <code>Pred&lt;N&gt;</code> and <code>Zero</code> will belong to the trait <strong>NonNeg</strong>.</p>
+
                         </td>
                     </tr>
                 
@@ -135,7 +151,8 @@ will be thrown unless the numerator is divisible by the denominator</p>
                         <td><a class='trait' href='trait.NonZero.html'
                                title='dimensioned::peano::NonZero'>NonZero</a></td>
                         <td class='docblock short'>
-                             
+                             <p>All numbers of the form <code>Succ&lt;M&gt;</code> or <code>Pred&lt;N&gt;</code> will belong to the trait <strong>NonZero</strong>.</p>
+
                         </td>
                     </tr>
                 
@@ -143,7 +160,8 @@ will be thrown unless the numerator is divisible by the denominator</p>
                         <td><a class='trait' href='trait.Peano.html'
                                title='dimensioned::peano::Peano'>Peano</a></td>
                         <td class='docblock short'>
-                             
+                             <p>All numbers defined in this module will belong to the <strong>Peano</strong> trait.</p>
+
                         </td>
                     </tr>
                 
@@ -151,7 +169,8 @@ will be thrown unless the numerator is divisible by the denominator</p>
                         <td><a class='trait' href='trait.SubPeano.html'
                                title='dimensioned::peano::SubPeano'>SubPeano</a></td>
                         <td class='docblock short'>
-                             
+                             <p>This trait allows us to subtract any two Peano numbers.</p>
+
                         </td>
                     </tr>
                 

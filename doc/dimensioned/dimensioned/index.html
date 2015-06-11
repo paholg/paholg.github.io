@@ -45,14 +45,21 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-788' class='srclink' href='../../src/dimensioned/dimensioned.rs.html#1-313' title='goto source code'>[src]</a></span></h1>
-<h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+        </span><a id='src-788' class='srclink' href='../../src/dimensioned/dimensioned.rs.html#1-380' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>This module allows dimensioned to be very flexible. It creates the <code>Dim&lt;D, V&gt;</code> type,
+which is the type that will be used with all dimensionful objects. It then implements as
+many traits from <code>std</code> as generically as possible.</p>
+
+<p><strong>dimensioned</strong> creates many traits, the majority of which are used for type level
+**arithmetic and should not be implemented for any objects outside this library.</p>
+</div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
                     <tr class=' module-item'>
                         <td><a class='struct' href='struct.Dim.html'
                                title='dimensioned::dimensioned::Dim'>Dim</a></td>
                         <td class='docblock short'>
-                             
+                             <p>This is the primary struct that users of this library will interact with.</p>
+
                         </td>
                     </tr>
                 </table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
@@ -61,7 +68,9 @@
                         <td><a class='trait' href='trait.Cube.html'
                                title='dimensioned::dimensioned::Cube'>Cube</a></td>
                         <td class='docblock short'>
-                             
+                             <p>As powers change type signature for dimensioned objects, this traits offers a simple
+method for cubing. It may be replaced by something more general in future.</p>
+
                         </td>
                     </tr>
                 
@@ -69,7 +78,9 @@
                         <td><a class='trait' href='trait.DimToString.html'
                                title='dimensioned::dimensioned::DimToString'>DimToString</a></td>
                         <td class='docblock short'>
-                             
+                             <p>This trait gives a human-friendly representation of a dimensioned object. It is
+useful for printing and debugging.</p>
+
                         </td>
                     </tr>
                 
@@ -77,7 +88,8 @@
                         <td><a class='trait' href='trait.Dimension.html'
                                title='dimensioned::dimensioned::Dimension'>Dimension</a></td>
                         <td class='docblock short'>
-                             
+                             <p>All types created for a unit system will implement this trait.</p>
+
                         </td>
                     </tr>
                 
@@ -85,7 +97,10 @@
                         <td><a class='trait' href='trait.Dimensionless.html'
                                title='dimensioned::dimensioned::Dimensionless'>Dimensionless</a></td>
                         <td class='docblock short'>
-                             
+                             <p>The only types that implement this trait are the <code>Unitless</code> types that exist in each
+unit system. It allows more flexibility when handling specifically objects without
+dimension.</p>
+
                         </td>
                     </tr>
                 
@@ -93,7 +108,8 @@
                         <td><a class='trait' href='trait.DivDim.html'
                                title='dimensioned::dimensioned::DivDim'>DivDim</a></td>
                         <td class='docblock short'>
-                             
+                             <p>This trait allows us to divide two dimensioned objects</p>
+
                         </td>
                     </tr>
                 
@@ -101,7 +117,8 @@
                         <td><a class='trait' href='trait.InvertDim.html'
                                title='dimensioned::dimensioned::InvertDim'>InvertDim</a></td>
                         <td class='docblock short'>
-                             
+                             <p>This trait inverts the dimensions of an object. For example, it takes seconds to hertz.</p>
+
                         </td>
                     </tr>
                 
@@ -109,7 +126,9 @@
                         <td><a class='trait' href='trait.KeepDim.html'
                                title='dimensioned::dimensioned::KeepDim'>KeepDim</a></td>
                         <td class='docblock short'>
-                             
+                             <p>This trait enforces that <code>Self</code> and <code>RHS</code> have the same dimensions. It is useful
+mostly for macros.</p>
+
                         </td>
                     </tr>
                 
@@ -117,7 +136,8 @@
                         <td><a class='trait' href='trait.MulDim.html'
                                title='dimensioned::dimensioned::MulDim'>MulDim</a></td>
                         <td class='docblock short'>
-                             
+                             <p>This trait allows us to multiply two dimensioned objects</p>
+
                         </td>
                     </tr>
                 
@@ -125,7 +145,10 @@
                         <td><a class='trait' href='trait.NotDim.html'
                                title='dimensioned::dimensioned::NotDim'>NotDim</a></td>
                         <td class='docblock short'>
-                             
+                             <p>This traits is implemented by default for everything that is not Dim<D, V>. It
+allows a greater level of generic operator overloading than would be possible
+otherwise.</p>
+
                         </td>
                     </tr>
                 
@@ -133,7 +156,8 @@
                         <td><a class='trait' href='trait.PowerDim.html'
                                title='dimensioned::dimensioned::PowerDim'>PowerDim</a></td>
                         <td class='docblock short'>
-                             
+                             <p>This trait allows us to take a dimensioned object to a power given by a peano number</p>
+
                         </td>
                     </tr>
                 
@@ -141,7 +165,8 @@
                         <td><a class='trait' href='trait.RootDim.html'
                                title='dimensioned::dimensioned::RootDim'>RootDim</a></td>
                         <td class='docblock short'>
-                             
+                             <p>This trait allows us to take a root, given by a peano number, of a dimensioned object</p>
+
                         </td>
                     </tr>
                 
@@ -149,7 +174,9 @@
                         <td><a class='trait' href='trait.Sqr.html'
                                title='dimensioned::dimensioned::Sqr'>Sqr</a></td>
                         <td class='docblock short'>
-                             
+                             <p>As powers change type signature for dimensioned objects, this traits offers a simple
+method for squaring. It may be replaced by something more general in future.</p>
+
                         </td>
                     </tr>
                 
@@ -157,7 +184,9 @@
                         <td><a class='trait' href='trait.Sqrt.html'
                                title='dimensioned::dimensioned::Sqrt'>Sqrt</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Because it would not make sense to implement <code>Float</code> for <code>Dim&lt;D, V&gt;</code>, we create a
+special <code>Sqrt</code> trait. We then implement it for <code>Dim&lt;D, V&gt;</code> where <code>V: Float</code></p>
+
                         </td>
                     </tr>
                 </table><h2 id='impls' class='section-header'><a href="#impls">Implementations</a></h2>

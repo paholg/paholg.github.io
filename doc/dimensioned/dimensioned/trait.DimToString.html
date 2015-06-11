@@ -45,13 +45,16 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-837' class='srclink' href='../../src/dimensioned/dimensioned.rs.html#32-34' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-837' class='srclink' href='../../src/dimensioned/dimensioned.rs.html#60-63' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait DimToString: <a class='trait' href='../../dimensioned/dimensioned/trait.Dimension.html' title='dimensioned::dimensioned::Dimension'>Dimension</a> {
     fn <a href='#tymethod.to_string' class='fnname'>to_string</a>() -&gt; <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>;
-}</pre>
+}</pre><div class='docblock'><p>This trait gives a human-friendly representation of a dimensioned object. It is
+useful for printing and debugging.</p>
+</div>
             <h2 id='required-methods'>Required Methods</h2>
             <div class='methods'>
-        <h3 id='tymethod.to_string' class='method stab '><code>fn <a href='#tymethod.to_string' class='fnname'>to_string</a>() -&gt; <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a></code></h3></div>
+        <h3 id='tymethod.to_string' class='method stab '><code>fn <a href='#tymethod.to_string' class='fnname'>to_string</a>() -&gt; <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a></code></h3><div class='docblock'><p>Gives a human friendly <code>String</code> representation of a <code>Dimension</code> type.</p>
+</div></div>
         <h2 id='implementors'>Implementors</h2>
         <ul class='item-list' id='implementors-list'>
     <li><code>impl&lt;Meter, Kilogram, Second, Ampere, Kelvin, Candela, Mole&gt; <a class='trait' href='../../dimensioned/dimensioned/trait.DimToString.html' title='dimensioned::dimensioned::DimToString'>DimToString</a> for <a class='struct' href='../../dimensioned/si/struct.SI.html' title='dimensioned::si::SI'>SI</a>&lt;Meter, Kilogram, Second, Ampere, Kelvin, Candela, Mole&gt; <span class='where'>where Meter: <a class='trait' href='../../dimensioned/peano/trait.ToInt.html' title='dimensioned::peano::ToInt'>ToInt</a>, Kilogram: <a class='trait' href='../../dimensioned/peano/trait.ToInt.html' title='dimensioned::peano::ToInt'>ToInt</a>, Second: <a class='trait' href='../../dimensioned/peano/trait.ToInt.html' title='dimensioned::peano::ToInt'>ToInt</a>, Ampere: <a class='trait' href='../../dimensioned/peano/trait.ToInt.html' title='dimensioned::peano::ToInt'>ToInt</a>, Kelvin: <a class='trait' href='../../dimensioned/peano/trait.ToInt.html' title='dimensioned::peano::ToInt'>ToInt</a>, Candela: <a class='trait' href='../../dimensioned/peano/trait.ToInt.html' title='dimensioned::peano::ToInt'>ToInt</a>, Mole: <a class='trait' href='../../dimensioned/peano/trait.ToInt.html' title='dimensioned::peano::ToInt'>ToInt</a></span></code></li>

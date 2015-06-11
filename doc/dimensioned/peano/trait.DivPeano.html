@@ -45,11 +45,13 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-585' class='srclink' href='../../src/dimensioned/peano.rs.html#164-166' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-585' class='srclink' href='../../src/dimensioned/peano.rs.html#213-216' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait DivPeano&lt;RHS&gt;: <a class='trait' href='../../dimensioned/peano/trait.Peano.html' title='dimensioned::peano::Peano'>Peano</a> {
     type Output;
-}</pre><div class='docblock'><p>Note that, while we define division, we are operating in a ring, so an error
-will be thrown unless the numerator is divisible by the denominator</p>
+}</pre><div class='docblock'><p>This trait allows us to divide two Peano numbers so long as the numerator is divisible by the denominator.</p>
+
+<p>We are operating in a ring, so an error will be if the numerator is not divisible by
+the denominator</p>
 </div>
             <h2 id='associated-types'>Associated Types</h2>
             <div class='methods'>
