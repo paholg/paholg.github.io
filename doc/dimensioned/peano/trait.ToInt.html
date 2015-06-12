@@ -45,15 +45,23 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-738' class='srclink' href='../../src/dimensioned/peano.rs.html#266-269' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1413' class='srclink' href='../../src/dimensioned/peano.rs.html#289-291' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait ToInt: <a class='trait' href='../../dimensioned/peano/trait.Peano.html' title='dimensioned::peano::Peano'>Peano</a> {
     fn <a href='#tymethod.to_int' class='fnname'>to_int</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>;
-}</pre><div class='docblock'><p>Converts a type to the integer it represents</p>
+}</pre><div class='docblock'><p>Convert a Peano number to the integer it represents.</p>
+
+<p>Once Rust implements associated constants, an associated constant will replace the function <code>to_int()</code>.</p>
+
+<h1 id="example:" class='section-header'><a
+                           href="#example:">Example:</a></h1><pre class='rust rust-example-rendered'>
+<span class='kw'>use</span> <span class='ident'>dimensioned</span>::<span class='ident'>peano</span>::{<span class='ident'>Two</span>, <span class='ident'>ToInt</span>};
+
+<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>2</span>, <span class='op'>&lt;</span><span class='ident'>Two</span> <span class='kw'>as</span> <span class='ident'>ToInt</span><span class='op'>&gt;</span>::<span class='ident'>to_int</span>());
+</pre>
 </div>
             <h2 id='required-methods'>Required Methods</h2>
             <div class='methods'>
-        <h3 id='tymethod.to_int' class='method stab '><code>fn <a href='#tymethod.to_int' class='fnname'>to_int</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a></code></h3><div class='docblock'><p>This function is called with, for example, <code>Two::to_int();</code></p>
-</div></div>
+        <h3 id='tymethod.to_int' class='method stab '><code>fn <a href='#tymethod.to_int' class='fnname'>to_int</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a></code></h3></div>
         <h2 id='implementors'>Implementors</h2>
         <ul class='item-list' id='implementors-list'>
     <li><code>impl <a class='trait' href='../../dimensioned/peano/trait.ToInt.html' title='dimensioned::peano::ToInt'>ToInt</a> for <a class='struct' href='../../dimensioned/peano/struct.Zero.html' title='dimensioned::peano::Zero'>Zero</a></code></li>

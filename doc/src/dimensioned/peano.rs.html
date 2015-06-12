@@ -318,32 +318,51 @@
 <span id="276">276</span>
 <span id="277">277</span>
 <span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
 </pre><pre class='rust '>
 <span class='doccomment'>/*!
 Peano numbers allow us to do arithmetic at compile time using Rust&#39;s type system.
 
-This module creates many traits. They are all used for arithmetic between Peano numbers
-and it is not recommended that you implement them for anything else.
+This module should not require much (if any) direct interaction from users of **dimensioned**.
 */</span>
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>marker</span>::<span class='ident'>PhantomData</span>;
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>ops</span>::{<span class='ident'>Add</span>, <span class='ident'>Sub</span>, <span class='ident'>Mul</span>, <span class='ident'>Div</span>, <span class='ident'>Neg</span>};
 
-<span class='doccomment'>/// The type-level number 0</span>
+<span class='doccomment'>/// The type corresponding to the Peano number 0.</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Copy</span>, <span class='ident'>Clone</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Zero</span>;
 
-<span class='doccomment'>/// For any number N, we define its successor. In mathematics, this and Zero are enough</span>
-<span class='doccomment'>/// to get all the natural numbers; in Rust, it only gets us up to 63 as that is the</span>
-<span class='doccomment'>/// most levels of embedded structs we can have.</span>
+<span class='doccomment'>/// For any non-negative Peano number `N`, we define its successor, `Succ&lt;N&gt;`.</span>
 <span class='doccomment'>///</span>
-<span class='doccomment'>/// We further specify that N must not be negative. This way we never have a situation</span>
-<span class='doccomment'>/// like `Succ&lt;Pred&lt;Zero&gt;&gt;` and all numbers are uniquely defined.</span>
+<span class='doccomment'>/// This gives us Peano numbers up to 63, as Rust only supports 64 levels of embedded structs.</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Copy</span>, <span class='ident'>Clone</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>N</span>: <span class='ident'>NonNeg</span><span class='op'>&gt;</span> {
     <span class='ident'>_marker</span>: <span class='ident'>PhantomData</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span>
 }
-<span class='doccomment'>/// For any number N that isn&#39;t a positive number, we define its</span>
-<span class='doccomment'>/// predecessor. Mathematically, we have now defined all of the integers. We have</span>
-<span class='doccomment'>/// actually defined -63 to 63.</span>
+<span class='doccomment'>/// For any non-positive Peano number `N`, we define its predecessor, `Pred&lt;N&gt;`.</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// This gives us Peano numbers down to -63, as Rust only supports 64 levels of embedded structs.</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Copy</span>, <span class='ident'>Clone</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>N</span>: <span class='ident'>NonPos</span><span class='op'>&gt;</span> {
     <span class='ident'>_marker</span>: <span class='ident'>PhantomData</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span>
@@ -397,205 +416,230 @@ and it is not recommended that you implement them for anything else.
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>NonZero</span>: <span class='ident'>Peano</span> {}
 <span class='doccomment'>/// All numbers of the form `Succ&lt;N&gt;` and `Zero` will belong to the trait **NonNeg**.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>NonNeg</span>: <span class='ident'>Peano</span> {}
-<span class='doccomment'>/// All numbers of the form `Pred&lt;N&gt;` and `Zero` will belong to the trait **NonNeg**.</span>
+<span class='doccomment'>/// All numbers of the form `Pred&lt;N&gt;` and `Zero` will belong to the trait **NonPos**.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>NonPos</span>: <span class='ident'>Peano</span> {}
 
+<span class='kw'>impl</span> <span class='ident'>NonZero</span> <span class='kw'>for</span> .. {}
+<span class='kw'>impl</span> <span class='ident'>NonNeg</span> <span class='kw'>for</span> .. {}
+<span class='kw'>impl</span> <span class='ident'>NonPos</span> <span class='kw'>for</span> .. {}
+
 <span class='kw'>impl</span> <span class='ident'>Peano</span> <span class='kw'>for</span> <span class='ident'>Zero</span> {}
+<span class='kw'>impl</span> <span class='op'>!</span><span class='ident'>NonZero</span> <span class='kw'>for</span> <span class='ident'>Zero</span> {}
 <span class='kw'>impl</span> <span class='ident'>NonNeg</span> <span class='kw'>for</span> <span class='ident'>Zero</span> {}
 <span class='kw'>impl</span> <span class='ident'>NonPos</span> <span class='kw'>for</span> <span class='ident'>Zero</span> {}
 
+
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>N</span>: <span class='ident'>NonNeg</span><span class='op'>&gt;</span> <span class='ident'>Peano</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span> {}
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>N</span>: <span class='ident'>NonNeg</span><span class='op'>&gt;</span> <span class='ident'>NonNeg</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span> {}
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>N</span>: <span class='ident'>NonNeg</span><span class='op'>&gt;</span> <span class='op'>!</span><span class='ident'>NonPos</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span> {}
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>N</span>: <span class='ident'>NonNeg</span><span class='op'>&gt;</span> <span class='ident'>NonZero</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span> {}
 
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>N</span>: <span class='ident'>NonPos</span><span class='op'>&gt;</span> <span class='ident'>Peano</span> <span class='kw'>for</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span> {}
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>N</span>: <span class='ident'>NonPos</span><span class='op'>&gt;</span> <span class='op'>!</span><span class='ident'>NonNeg</span> <span class='kw'>for</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span> {}
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>N</span>: <span class='ident'>NonPos</span><span class='op'>&gt;</span> <span class='ident'>NonPos</span> <span class='kw'>for</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span> {}
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>N</span>: <span class='ident'>NonPos</span><span class='op'>&gt;</span> <span class='ident'>NonZero</span> <span class='kw'>for</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span> {}
 
-<span class='doccomment'>/// This trait allows us to add any two Peano numbers.</span>
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>AddPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Peano</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
+<span class='comment'>// Add</span>
+<span class='comment'>// -------------------------------------------------------------------------------------</span>
+<span class='doccomment'>/// Add to Zero (e.g. 0 + 3)</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Zero</span> <span class='kw'>where</span> <span class='ident'>Rhs</span>: <span class='ident'>Peano</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Rhs</span>;
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_variables</span>)]</span>
+    <span class='kw'>fn</span> <span class='ident'>add</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Rhs</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
+}
+<span class='doccomment'>/// Add non-negative numbers to positive numbers (e.g. 2 + 3, 2 + 0)</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Lhs</span>, <span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>Lhs</span>: <span class='ident'>NonNeg</span> <span class='op'>+</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span>, <span class='ident'>Rhs</span>: <span class='ident'>NonNeg</span>, <span class='op'>&lt;</span><span class='ident'>Lhs</span> <span class='kw'>as</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>NonNeg</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;&lt;</span><span class='ident'>Lhs</span> <span class='kw'>as</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>;
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_variables</span>)]</span>
+    <span class='kw'>fn</span> <span class='ident'>add</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Rhs</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
+}
+<span class='doccomment'>/// Add non-positive numbers to negative numbers (e.g. -2 + -3, -2 + 0)</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Lhs</span>, <span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>Lhs</span>: <span class='ident'>NonPos</span> <span class='op'>+</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span>, <span class='ident'>Rhs</span>: <span class='ident'>NonPos</span>, <span class='op'>&lt;</span><span class='ident'>Lhs</span> <span class='kw'>as</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>NonPos</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;&lt;</span><span class='ident'>Lhs</span> <span class='kw'>as</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>;
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_variables</span>)]</span>
+    <span class='kw'>fn</span> <span class='ident'>add</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Rhs</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
+}
+<span class='doccomment'>/// Add positive and negative numbers (e.g. -2 + 3)</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Lhs</span>, <span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>Lhs</span>: <span class='ident'>NonPos</span> <span class='op'>+</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span>, <span class='ident'>Rhs</span>: <span class='ident'>NonNeg</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>Lhs</span> <span class='kw'>as</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_variables</span>)]</span>
+    <span class='kw'>fn</span> <span class='ident'>add</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
+}
+<span class='doccomment'>/// Add negative and positive numbers (e.g. 2 + -3)</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Lhs</span>, <span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>Lhs</span>: <span class='ident'>NonNeg</span> <span class='op'>+</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span>, <span class='ident'>Rhs</span>: <span class='ident'>NonPos</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>Lhs</span> <span class='kw'>as</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_variables</span>)]</span>
+    <span class='kw'>fn</span> <span class='ident'>add</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
+}
+
+<span class='comment'>// Neg</span>
+<span class='comment'>// -------------------------------------------------------------------------------------</span>
+<span class='doccomment'>/// The negation of Zero is itself.</span>
+<span class='kw'>impl</span> <span class='ident'>Neg</span> <span class='kw'>for</span> <span class='ident'>Zero</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Zero</span>;
+    <span class='kw'>fn</span> <span class='ident'>neg</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
+}
+<span class='doccomment'>/// Negate positive numbers (e.g. 5 -&gt; -5)</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span> <span class='ident'>Neg</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>N</span>: <span class='ident'>NonNeg</span> <span class='op'>+</span> <span class='ident'>Neg</span>, <span class='op'>&lt;</span><span class='ident'>N</span> <span class='kw'>as</span> <span class='ident'>Neg</span><span class='op'>&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>NonPos</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;&lt;</span><span class='ident'>N</span> <span class='kw'>as</span> <span class='ident'>Neg</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>;
+    <span class='kw'>fn</span> <span class='ident'>neg</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
+}
+<span class='doccomment'>/// Negate negative numbers (e.g. -5 -&gt; 5)</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span> <span class='ident'>Neg</span> <span class='kw'>for</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>N</span>: <span class='ident'>NonPos</span> <span class='op'>+</span> <span class='ident'>Neg</span>, <span class='op'>&lt;</span><span class='ident'>N</span> <span class='kw'>as</span> <span class='ident'>Neg</span><span class='op'>&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>NonNeg</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;&lt;</span><span class='ident'>N</span> <span class='kw'>as</span> <span class='ident'>Neg</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>;
+    <span class='kw'>fn</span> <span class='ident'>neg</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
+}
+
+<span class='comment'>// Sub</span>
+<span class='comment'>// -------------------------------------------------------------------------------------</span>
+<span class='doccomment'>/// Subtract from Zero (e.g. 0 - 4)</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='ident'>Sub</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Zero</span> <span class='kw'>where</span> <span class='ident'>Rhs</span>: <span class='ident'>Neg</span>{
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>Rhs</span> <span class='kw'>as</span> <span class='ident'>Neg</span><span class='op'>&gt;</span>::<span class='ident'>Output</span>;
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_variables</span>)]</span>
+    <span class='kw'>fn</span> <span class='ident'>sub</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Rhs</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
+}
+<span class='doccomment'>/// Subtract Zero from positive numbers (e.g. 2 - 0)</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span> <span class='ident'>Sub</span><span class='op'>&lt;</span><span class='ident'>Zero</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>Lhs</span>: <span class='ident'>NonNeg</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span>;
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_variables</span>)]</span>
+    <span class='kw'>fn</span> <span class='ident'>sub</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Zero</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
+}
+<span class='doccomment'>/// Subtract Zero from negative numbers (e.g. -2 - 0)</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span> <span class='ident'>Sub</span><span class='op'>&lt;</span><span class='ident'>Zero</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>Lhs</span>: <span class='ident'>NonPos</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span>;
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_variables</span>)]</span>
+    <span class='kw'>fn</span> <span class='ident'>sub</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Zero</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
+}
+<span class='doccomment'>/// Subtract positive numbers from positive numbers (e.g. 3 - 4)</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Lhs</span>, <span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='ident'>Sub</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>Lhs</span>: <span class='ident'>NonNeg</span> <span class='op'>+</span> <span class='ident'>Sub</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span>, <span class='ident'>Rhs</span>: <span class='ident'>NonNeg</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>Lhs</span> <span class='kw'>as</span> <span class='ident'>Sub</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_variables</span>)]</span>
+    <span class='kw'>fn</span> <span class='ident'>sub</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
+}
+<span class='doccomment'>/// Subtract negative numbers from negative numbers (e.g. -3 - -4)</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Lhs</span>, <span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='ident'>Sub</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>Lhs</span>: <span class='ident'>NonPos</span> <span class='op'>+</span> <span class='ident'>Sub</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span>, <span class='ident'>Rhs</span>: <span class='ident'>NonPos</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>Lhs</span> <span class='kw'>as</span> <span class='ident'>Sub</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_variables</span>)]</span>
+    <span class='kw'>fn</span> <span class='ident'>sub</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
+}
+<span class='doccomment'>/// Subtract negative numbers from positive numbers (e.g. 3 - -4)</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Lhs</span>, <span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='ident'>Sub</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>Lhs</span>: <span class='ident'>NonNeg</span> <span class='op'>+</span> <span class='ident'>Sub</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span>, <span class='ident'>Rhs</span>: <span class='ident'>NonPos</span>, <span class='op'>&lt;</span><span class='ident'>Lhs</span> <span class='kw'>as</span> <span class='ident'>Sub</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>NonNeg</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;&lt;</span><span class='ident'>Lhs</span> <span class='kw'>as</span> <span class='ident'>Sub</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;&gt;</span>;
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_variables</span>)]</span>
+    <span class='kw'>fn</span> <span class='ident'>sub</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
+}
+<span class='doccomment'>/// Subtract positive numbers from negative numbers (e.g. -3 - 4)</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Lhs</span>, <span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='ident'>Sub</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>Lhs</span>: <span class='ident'>NonPos</span> <span class='op'>+</span> <span class='ident'>Sub</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span>, <span class='ident'>Rhs</span>: <span class='ident'>NonNeg</span>, <span class='op'>&lt;</span><span class='ident'>Lhs</span> <span class='kw'>as</span> <span class='ident'>Sub</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>NonPos</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;&lt;</span><span class='ident'>Lhs</span> <span class='kw'>as</span> <span class='ident'>Sub</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;&gt;</span>;
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_variables</span>)]</span>
+    <span class='kw'>fn</span> <span class='ident'>sub</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
+}
+
+<span class='comment'>// Mul</span>
+<span class='comment'>// -------------------------------------------------------------------------------------</span>
+<span class='doccomment'>/// Multiply Zero by peano numbers (e.g. 0 * 7)</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Zero</span> <span class='kw'>where</span> <span class='ident'>Rhs</span>: <span class='ident'>Peano</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Zero</span>;
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_variables</span>)]</span>
+    <span class='kw'>fn</span> <span class='ident'>mul</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Rhs</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
+}
+<span class='doccomment'>/// Multiply positive numbers by integers (e.g. 2 * N)</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Lhs</span>, <span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>Lhs</span>: <span class='ident'>NonNeg</span> <span class='op'>+</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span>, <span class='ident'>Rhs</span>: <span class='ident'>Add</span><span class='op'>&lt;&lt;</span><span class='ident'>Lhs</span> <span class='kw'>as</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>Rhs</span> <span class='kw'>as</span> <span class='ident'>Add</span><span class='op'>&lt;&lt;</span><span class='ident'>Lhs</span> <span class='kw'>as</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_variables</span>)]</span>
+    <span class='kw'>fn</span> <span class='ident'>mul</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Rhs</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
+}
+<span class='doccomment'>/// Multiply negative numbers by integers (e.g. -2 * N)</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Lhs</span>, <span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>Lhs</span>: <span class='ident'>NonPos</span> <span class='op'>+</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span>, <span class='ident'>Rhs</span>: <span class='ident'>Peano</span>, <span class='op'>&lt;</span><span class='ident'>Lhs</span> <span class='kw'>as</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Sub</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;&lt;</span><span class='ident'>Lhs</span> <span class='kw'>as</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>Sub</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_variables</span>)]</span>
+    <span class='kw'>fn</span> <span class='ident'>mul</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Rhs</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
+}
+
+<span class='comment'>// Div</span>
+<span class='comment'>// -------------------------------------------------------------------------------------</span>
+<span class='doccomment'>/// Divide Zero by a number (e.g. 0 / 5)</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Zero</span> <span class='kw'>where</span> <span class='ident'>Rhs</span>: <span class='ident'>Peano</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Zero</span>;
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_variables</span>)]</span>
+    <span class='kw'>fn</span> <span class='ident'>div</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Rhs</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
+}
+<span class='doccomment'>/// Divide a positive number by a non-zero number (e.g. 4 / 2, 4 / -2).</span>
+<span class='doccomment'>/// Only defined for numbers that are evenly divisible.</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Lhs</span>, <span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>Lhs</span>: <span class='ident'>NonNeg</span>, <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span>: <span class='ident'>DivPrivate</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span> <span class='kw'>as</span> <span class='ident'>DivPrivate</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_variables</span>)]</span>
+    <span class='kw'>fn</span> <span class='ident'>div</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Rhs</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
+}
+<span class='doccomment'>/// Divide a negative number by a non-zero number (e.g. -4 / 2, -4 / -2).</span>
+<span class='doccomment'>/// Only defined for numbers that are evenly divisible.</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Lhs</span>, <span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>Lhs</span>: <span class='ident'>NonPos</span> <span class='op'>+</span> <span class='ident'>Neg</span>, <span class='ident'>Rhs</span>: <span class='ident'>Neg</span>, <span class='ident'>Succ</span><span class='op'>&lt;&lt;</span><span class='ident'>Lhs</span> <span class='kw'>as</span> <span class='ident'>Neg</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>: <span class='ident'>DivPrivate</span><span class='op'>&lt;&lt;</span><span class='ident'>Rhs</span> <span class='kw'>as</span> <span class='ident'>Neg</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>, <span class='op'>&lt;</span><span class='ident'>Lhs</span> <span class='kw'>as</span> <span class='ident'>Neg</span><span class='op'>&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>NonNeg</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span> <span class='kw'>as</span> <span class='ident'>Neg</span><span class='op'>&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>DivPrivate</span><span class='op'>&lt;&lt;</span><span class='ident'>Rhs</span> <span class='kw'>as</span> <span class='ident'>Neg</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_variables</span>)]</span>
+    <span class='kw'>fn</span> <span class='ident'>div</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Rhs</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
+}
+
+
+<span class='comment'>// DivPrivate only supports positive numerators. As division is implemented via repeated</span>
+<span class='comment'>// subtraction, we can be sure to only support division between divisible numbers by terminating when the numerator is Zero and not allowing it to become negative. We can support negative numerators by mapping e.g. -4 / 2 -&gt; 4 / -2, which is what is done in `Div`</span>
+<span class='kw'>trait</span> <span class='ident'>DivPrivate</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span>: <span class='ident'>Peano</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
-
-<span class='doccomment'>/// Adding any number to zero (e.g. 0 + 3)</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>RHS</span>: <span class='ident'>Peano</span><span class='op'>&gt;</span> <span class='ident'>AddPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Zero</span> {
-    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>RHS</span>;
-}
-
-<span class='doccomment'>/// Adding positive numbers (e.g. 1 + 2)</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>LHS</span>: <span class='ident'>NonNeg</span> <span class='op'>+</span> <span class='ident'>AddPeano</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span>, <span class='ident'>RHS</span>: <span class='ident'>NonNeg</span><span class='op'>&gt;</span> <span class='ident'>AddPeano</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span> {
-    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;&lt;</span><span class='ident'>LHS</span> <span class='kw'>as</span> <span class='ident'>AddPeano</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>;
-}
-<span class='doccomment'>/// Adding zero to positive numbers (e.g. 3 + 0)</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>LHS</span>: <span class='ident'>NonNeg</span><span class='op'>&gt;</span> <span class='ident'>AddPeano</span><span class='op'>&lt;</span><span class='ident'>Zero</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span> {
-    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span>;
-}
-<span class='doccomment'>/// Adding negative numbers to positive numbers (e.g. 2 + -3)</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>LHS</span>: <span class='ident'>NonNeg</span> <span class='op'>+</span> <span class='ident'>AddPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>, <span class='ident'>RHS</span>: <span class='ident'>NonPos</span><span class='op'>&gt;</span> <span class='ident'>AddPeano</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span> {
-    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>LHS</span> <span class='kw'>as</span> <span class='ident'>AddPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
-}
-
-<span class='doccomment'>/// Adding negative numbers (e.g. -1 + -2)</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>LHS</span>: <span class='ident'>NonPos</span> <span class='op'>+</span> <span class='ident'>AddPeano</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span>, <span class='ident'>RHS</span>: <span class='ident'>NonPos</span><span class='op'>&gt;</span> <span class='ident'>AddPeano</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span> {
-    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;&lt;</span><span class='ident'>LHS</span> <span class='kw'>as</span> <span class='ident'>AddPeano</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>;
-}
-<span class='doccomment'>/// Adding zero to negative numbers (e.g. -3 + 0)</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>LHS</span>: <span class='ident'>NonPos</span><span class='op'>&gt;</span> <span class='ident'>AddPeano</span><span class='op'>&lt;</span><span class='ident'>Zero</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span> {
-    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span>;
-}
-<span class='doccomment'>/// Adding positive numbers to negative numbers (e.g. -2 + 3)</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>LHS</span>: <span class='ident'>NonPos</span> <span class='op'>+</span> <span class='ident'>AddPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>, <span class='ident'>RHS</span>: <span class='ident'>NonNeg</span><span class='op'>&gt;</span> <span class='ident'>AddPeano</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span> {
-    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>LHS</span> <span class='kw'>as</span> <span class='ident'>AddPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
-}
-
-<span class='doccomment'>/// This trait provides the negation of a number (e.g. -5 to 5)</span>
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Negate</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
-    <span class='kw'>type</span> <span class='ident'>Output</span>;
-}
-<span class='kw'>impl</span> <span class='ident'>Negate</span> <span class='kw'>for</span> <span class='ident'>Zero</span> {
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Rhs</span>: <span class='ident'>NonZero</span><span class='op'>&gt;</span> <span class='ident'>DivPrivate</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Zero</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Zero</span>;
 }
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>N</span>: <span class='ident'>NonNeg</span> <span class='op'>+</span> <span class='ident'>Negate</span><span class='op'>&gt;</span> <span class='ident'>Negate</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span> {
-    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;&lt;</span><span class='ident'>N</span> <span class='kw'>as</span> <span class='ident'>Negate</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>;
+<span class='comment'>// Dividing a positive integer by a positive integer (e.g. 4 / 2)</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Lhs</span>, <span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='ident'>DivPrivate</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span>
+    <span class='kw'>where</span> <span class='ident'>Lhs</span>: <span class='ident'>NonNeg</span>, <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span>: <span class='ident'>DivPrivate</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span> <span class='op'>+</span> <span class='ident'>Sub</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span>, <span class='ident'>Rhs</span>: <span class='ident'>NonNeg</span> {
+        <span class='comment'>// Lhs / Rhs = 1 + (Lhs - Rhs) / Rhs</span>
+        <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>One</span> <span class='kw'>as</span> <span class='ident'>Add</span><span class='op'>&lt;&lt;</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span> <span class='kw'>as</span> <span class='ident'>Sub</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>DivPrivate</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
 }
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>N</span>: <span class='ident'>NonPos</span> <span class='op'>+</span> <span class='ident'>Negate</span><span class='op'>&gt;</span> <span class='ident'>Negate</span> <span class='kw'>for</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span> {
-    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;&lt;</span><span class='ident'>N</span> <span class='kw'>as</span> <span class='ident'>Negate</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>;
-}
-
-
-<span class='doccomment'>/// This trait allows us to subtract any two Peano numbers.</span>
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>SubPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Peano</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
-    <span class='kw'>type</span> <span class='ident'>Output</span>;
-}
-
-<span class='doccomment'>/// Subtracting from zero (e.g. 0 - 4)</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>RHS</span>: <span class='ident'>Peano</span> <span class='op'>+</span> <span class='ident'>Negate</span><span class='op'>&gt;</span> <span class='ident'>SubPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Zero</span> {
-    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>RHS</span> <span class='kw'>as</span> <span class='ident'>Negate</span><span class='op'>&gt;</span>::<span class='ident'>Output</span>;
-}
-
-<span class='doccomment'>/// Subtracting positive numbers from positive numbers (e.g. 3 - 4)</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>LHS</span>: <span class='ident'>NonNeg</span> <span class='op'>+</span> <span class='ident'>SubPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>, <span class='ident'>RHS</span><span class='op'>&gt;</span> <span class='ident'>SubPeano</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span> {
-    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>LHS</span> <span class='kw'>as</span> <span class='ident'>SubPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
-}
-<span class='doccomment'>/// Subtracting zero from positive numbers (e.g. 3 - 0)</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>LHS</span>: <span class='ident'>NonNeg</span><span class='op'>&gt;</span> <span class='ident'>SubPeano</span><span class='op'>&lt;</span><span class='ident'>Zero</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span> {
-    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span>;
-}
-<span class='doccomment'>/// Subtracting negative numbers from positive numbers (e.g. 3 - -4)</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>LHS</span>: <span class='ident'>NonNeg</span> <span class='op'>+</span> <span class='ident'>SubPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>, <span class='ident'>RHS</span>: <span class='ident'>NonPos</span><span class='op'>&gt;</span> <span class='ident'>SubPeano</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span> {
-    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;&lt;</span><span class='ident'>LHS</span> <span class='kw'>as</span> <span class='ident'>SubPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;&gt;</span>;
-}
-
-<span class='doccomment'>/// Subtracting positive numbers from negative numbers (e.g. -3 - 4)</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>LHS</span>: <span class='ident'>NonPos</span> <span class='op'>+</span> <span class='ident'>SubPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>, <span class='ident'>RHS</span>: <span class='ident'>NonNeg</span><span class='op'>&gt;</span> <span class='ident'>SubPeano</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span> {
-    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;&lt;</span><span class='ident'>LHS</span> <span class='kw'>as</span> <span class='ident'>SubPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;&gt;</span>;
-}
-<span class='doccomment'>/// Subtracting zero from negative numbers (e.g. -3 - 0)</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>LHS</span>: <span class='ident'>NonPos</span><span class='op'>&gt;</span> <span class='ident'>SubPeano</span><span class='op'>&lt;</span><span class='ident'>Zero</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span> {
-    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span>;
-}
-<span class='doccomment'>/// Subtracting negative numbers from negative numbers (e.g. -3 - -4)</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>LHS</span>: <span class='ident'>NonPos</span> <span class='op'>+</span> <span class='ident'>SubPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>, <span class='ident'>RHS</span>: <span class='ident'>NonPos</span><span class='op'>&gt;</span> <span class='ident'>SubPeano</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span> {
-    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>LHS</span> <span class='kw'>as</span> <span class='ident'>SubPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
-}
-
-
-<span class='doccomment'>/// This trait allows us to multiply any two Peano numbers.</span>
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>MulPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Peano</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
-    <span class='kw'>type</span> <span class='ident'>Output</span>;
-}
-
-<span class='doccomment'>/// Multiplying zero by things (e.g. 0 * 7)</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>RHS</span>: <span class='ident'>Peano</span><span class='op'>&gt;</span> <span class='ident'>MulPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Zero</span> {
-    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Zero</span>;
-}
-
-<span class='doccomment'>/// Multiplying a positive integer by an arbitrary integer (e.g. 2 * N)</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>LHS</span>, <span class='ident'>RHS</span><span class='op'>&gt;</span> <span class='ident'>MulPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span>
-    <span class='kw'>where</span> <span class='ident'>LHS</span>: <span class='ident'>NonNeg</span> <span class='op'>+</span> <span class='ident'>MulPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>, <span class='ident'>RHS</span>: <span class='ident'>AddPeano</span><span class='op'>&lt;&lt;</span><span class='ident'>LHS</span> <span class='kw'>as</span> <span class='ident'>MulPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span> {
-        <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>RHS</span> <span class='kw'>as</span> <span class='ident'>AddPeano</span><span class='op'>&lt;&lt;</span><span class='ident'>LHS</span> <span class='kw'>as</span> <span class='ident'>MulPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
-}
-
-<span class='doccomment'>/// Multiplying a negative integer by an arbitrary integer (e.g. -2 * N)</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>LHS</span>, <span class='ident'>RHS</span><span class='op'>&gt;</span> <span class='ident'>MulPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span>
-    <span class='kw'>where</span> <span class='ident'>LHS</span>: <span class='ident'>NonPos</span> <span class='op'>+</span> <span class='ident'>MulPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>, <span class='ident'>RHS</span>: <span class='ident'>Peano</span>, <span class='op'>&lt;</span><span class='ident'>LHS</span> <span class='kw'>as</span> <span class='ident'>MulPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>SubPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> {
-        <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;&lt;</span><span class='ident'>LHS</span> <span class='kw'>as</span> <span class='ident'>MulPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>SubPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
-}
-
-
-<span class='doccomment'>/// This trait allows us to divide two Peano numbers so long as the numerator is divisible by the denominator.</span>
-<span class='doccomment'>///</span>
-<span class='doccomment'>/// We are operating in a ring, so an error will be if the numerator is not divisible by</span>
-<span class='doccomment'>/// the denominator</span>
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>DivPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Peano</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
-    <span class='kw'>type</span> <span class='ident'>Output</span>;
-}
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> <span class='ident'>DivPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Zero</span>
-    <span class='kw'>where</span> <span class='ident'>RHS</span>: <span class='ident'>NonZero</span> {
-        <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Zero</span>;
-}
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>LHS</span>, <span class='ident'>RHS</span><span class='op'>&gt;</span> <span class='ident'>DivPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span>
-    <span class='kw'>where</span> <span class='ident'>LHS</span>: <span class='ident'>NonNeg</span>, <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span>: <span class='ident'>DivPeanoPriv</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> {
-        <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span> <span class='kw'>as</span> <span class='ident'>DivPeanoPriv</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
-}
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>LHS</span>, <span class='ident'>RHS</span><span class='op'>&gt;</span> <span class='ident'>DivPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span>
-    <span class='kw'>where</span> <span class='ident'>LHS</span>: <span class='ident'>NonPos</span> <span class='op'>+</span> <span class='ident'>Negate</span>, <span class='ident'>RHS</span>: <span class='ident'>Negate</span>, <span class='ident'>Succ</span><span class='op'>&lt;&lt;</span><span class='ident'>LHS</span> <span class='kw'>as</span> <span class='ident'>Negate</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>: <span class='ident'>DivPeanoPriv</span><span class='op'>&lt;&lt;</span><span class='ident'>RHS</span> <span class='kw'>as</span> <span class='ident'>Negate</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>    {
-        <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span> <span class='kw'>as</span> <span class='ident'>Negate</span><span class='op'>&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>DivPeanoPriv</span><span class='op'>&lt;&lt;</span><span class='ident'>RHS</span> <span class='kw'>as</span> <span class='ident'>Negate</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
-}
-
-<span class='comment'>// DivPeanoPriv only supports positive numerators. That way, it will terminate with an</span>
-<span class='comment'>// error if you ever try to divide non-divisible things. We can divide things like -4 /</span>
-<span class='comment'>// 2 by first negating both numerator and denominator, which is what DivPeano does.</span>
-<span class='kw'>trait</span> <span class='ident'>DivPeanoPriv</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Peano</span> {
-    <span class='kw'>type</span> <span class='ident'>Output</span>;
-}
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>RHS</span>: <span class='ident'>NonZero</span><span class='op'>&gt;</span> <span class='ident'>DivPeanoPriv</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>Zero</span> {
-    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Zero</span>;
-}
-<span class='comment'>//Dividing a positive integer by a positive integer (e.g. 4 / 2)</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>LHS</span>, <span class='ident'>RHS</span><span class='op'>&gt;</span> <span class='ident'>DivPeanoPriv</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span>
-    <span class='kw'>where</span> <span class='ident'>LHS</span>: <span class='ident'>NonNeg</span>, <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span>: <span class='ident'>DivPeanoPriv</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span> <span class='op'>+</span> <span class='ident'>SubPeano</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span>, <span class='ident'>RHS</span>: <span class='ident'>NonNeg</span> {
-        <span class='comment'>// LHS / RHS = 1 + (LHS - RHS) / RHS</span>
-        <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>One</span> <span class='kw'>as</span> <span class='ident'>AddPeano</span><span class='op'>&lt;&lt;</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span> <span class='kw'>as</span> <span class='ident'>SubPeano</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>DivPeanoPriv</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
-}
-
 <span class='comment'>// Dividing a positive integer by a negative integer (e.g. 4 / -2)</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>LHS</span>, <span class='ident'>RHS</span><span class='op'>&gt;</span> <span class='ident'>DivPeanoPriv</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span>
-    <span class='kw'>where</span> <span class='ident'>LHS</span>: <span class='ident'>NonNeg</span>, <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span>: <span class='ident'>DivPeanoPriv</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span> <span class='op'>+</span> <span class='ident'>AddPeano</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span>, <span class='ident'>RHS</span>: <span class='ident'>NonPos</span> {
-        <span class='comment'>// LHS / RHS = -1 + (LHS + RHS) / RHS</span>
-        <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>NegOne</span> <span class='kw'>as</span> <span class='ident'>AddPeano</span><span class='op'>&lt;&lt;</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>LHS</span><span class='op'>&gt;</span> <span class='kw'>as</span> <span class='ident'>AddPeano</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>DivPeanoPriv</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
-}
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Lhs</span>, <span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='ident'>DivPrivate</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span>
+    <span class='kw'>where</span> <span class='ident'>Lhs</span>: <span class='ident'>NonNeg</span>, <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span>: <span class='ident'>DivPrivate</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span> <span class='op'>+</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span>, <span class='ident'>Rhs</span>: <span class='ident'>NonPos</span> {
+        <span class='comment'>// Lhs / Rhs = -1 + (Lhs + Rhs) / Rhs</span>
+        <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>NegOne</span> <span class='kw'>as</span> <span class='ident'>Add</span><span class='op'>&lt;&lt;</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span> <span class='kw'>as</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>DivPrivate</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
+    }
 
-
-<span class='doccomment'>/// This trait does nothing, but it forces `Self` and `RHS` to be the same peano number.</span>
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>KeepPeano</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Peano</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
+<span class='doccomment'>/// `Same` is used to ensure that two types are the same. Its `Output` should be that type.</span>
+<span class='doccomment'>/// # Example:</span>
+<span class='doccomment'>/// ```</span>
+<span class='doccomment'>/// use dimensioned::peano::{Succ, One, Two, Same, ToInt};</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// assert_eq!(2, &lt;&lt;Succ&lt;One&gt; as Same&lt;Two&gt;&gt;::Output as ToInt&gt;::to_int());</span>
+<span class='doccomment'>/// ```</span>
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Same</span><span class='op'>&lt;</span><span class='ident'>Rhs</span> <span class='op'>=</span> <span class='kw'>Self</span><span class='op'>&gt;</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
-<span class='doccomment'>/// Output = N iff both operands are type N</span>
-<span class='doccomment'>/// Useful for making macros to implement functions</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span> <span class='ident'>KeepPeano</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>N</span> <span class='kw'>where</span> <span class='ident'>N</span>: <span class='ident'>Peano</span> {
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span> <span class='ident'>Same</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>N</span> <span class='kw'>where</span> <span class='ident'>N</span>: <span class='ident'>Peano</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>N</span>;
 }
 
-<span class='doccomment'>/// Converts a type to the integer it represents</span>
+
+
+<span class='comment'>// ToInt</span>
+<span class='comment'>// -------------------------------------------------------------------------------------</span>
+
+<span class='doccomment'>/// Convert a Peano number to the integer it represents.</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// Once Rust implements associated constants, an associated constant will replace the function `to_int()`.</span>
+<span class='doccomment'>/// # Example:</span>
+<span class='doccomment'>/// ```</span>
+<span class='doccomment'>/// use dimensioned::peano::{Two, ToInt};</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// assert_eq!(2, &lt;Two as ToInt&gt;::to_int());</span>
+<span class='doccomment'>/// ```</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>ToInt</span>: <span class='ident'>Peano</span> {
-    <span class='doccomment'>/// This function is called with, for example, `Two::to_int();`</span>
     <span class='kw'>fn</span> <span class='ident'>to_int</span>() <span class='op'>-&gt;</span> <span class='ident'>i32</span>;
 }
 <span class='kw'>impl</span> <span class='ident'>ToInt</span> <span class='kw'>for</span> <span class='ident'>Zero</span> {
     <span class='kw'>fn</span> <span class='ident'>to_int</span>() <span class='op'>-&gt;</span> <span class='ident'>i32</span> { <span class='number'>0</span> }
 }
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>N</span>: <span class='ident'>NonNeg</span> <span class='op'>+</span> <span class='ident'>ToInt</span><span class='op'>&gt;</span> <span class='ident'>ToInt</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span> {
-    <span class='kw'>fn</span> <span class='ident'>to_int</span>() <span class='op'>-&gt;</span> <span class='ident'>i32</span> { <span class='number'>1</span> <span class='op'>+</span> <span class='op'>&lt;</span><span class='ident'>N</span> <span class='kw'>as</span> <span class='ident'>ToInt</span><span class='op'>&gt;</span>::<span class='ident'>to_int</span>() }
+    <span class='kw'>fn</span> <span class='ident'>to_int</span>() <span class='op'>-&gt;</span> <span class='ident'>i32</span> { <span class='number'>1</span> <span class='op'>+</span> <span class='ident'>N</span>::<span class='ident'>to_int</span>() }
 }
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>N</span>: <span class='ident'>NonPos</span> <span class='op'>+</span> <span class='ident'>ToInt</span><span class='op'>&gt;</span> <span class='ident'>ToInt</span> <span class='kw'>for</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>N</span><span class='op'>&gt;</span> {
-    <span class='kw'>fn</span> <span class='ident'>to_int</span>() <span class='op'>-&gt;</span> <span class='ident'>i32</span> { <span class='op'>-</span><span class='number'>1</span> <span class='op'>+</span> <span class='op'>&lt;</span><span class='ident'>N</span> <span class='kw'>as</span> <span class='ident'>ToInt</span><span class='op'>&gt;</span>::<span class='ident'>to_int</span>() }
+    <span class='kw'>fn</span> <span class='ident'>to_int</span>() <span class='op'>-&gt;</span> <span class='ident'>i32</span> { <span class='op'>-</span><span class='number'>1</span> <span class='op'>+</span> <span class='ident'>N</span>::<span class='ident'>to_int</span>() }
 }
 </pre>
 </section>

@@ -582,6 +582,10 @@
 <span id="540">540</span>
 <span id="541">541</span>
 <span id="542">542</span>
+<span id="543">543</span>
+<span id="544">544</span>
+<span id="545">545</span>
+<span id="546">546</span>
 </pre><pre class='rust '>
 <span class='doccomment'>/*!
 This module allows dimensioned to be very flexible. It creates the `Dim&lt;D, V&gt;` type,
@@ -700,8 +704,12 @@ many traits from `std` as generically as possible.
 
 <span class='doccomment'>/// Generic roots using peano numbers.</span>
 <span class='doccomment'>/// No other types should implement it.</span>
-<span class='doccomment'>/// Example:</span>
+<span class='doccomment'>/// # Example</span>
 <span class='doccomment'>/// ```</span>
+<span class='doccomment'>/// use dimensioned::si::m;</span>
+<span class='doccomment'>/// use dimensioned::Root;</span>
+<span class='doccomment'>/// use dimensioned::peano::Two;</span>
+<span class='doccomment'>///</span>
 <span class='doccomment'>/// let x = 2.0*m;</span>
 <span class='doccomment'>/// assert_eq!(x, Two::root(x*x));</span>
 <span class='doccomment'>/// ```</span>

@@ -45,13 +45,14 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-211' class='srclink' href='../../src/dimensioned/peano.rs.html#78' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-217' class='srclink' href='../../src/dimensioned/peano.rs.html#75' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait NonNeg: <a class='trait' href='../../dimensioned/peano/trait.Peano.html' title='dimensioned::peano::Peano'>Peano</a> { }</pre><div class='docblock'><p>All numbers of the form <code>Succ&lt;N&gt;</code> and <code>Zero</code> will belong to the trait <strong>NonNeg</strong>.</p>
 </div>
         <h2 id='implementors'>Implementors</h2>
         <ul class='item-list' id='implementors-list'>
     <li><code>impl <a class='trait' href='../../dimensioned/peano/trait.NonNeg.html' title='dimensioned::peano::NonNeg'>NonNeg</a> for <a class='struct' href='../../dimensioned/peano/struct.Zero.html' title='dimensioned::peano::Zero'>Zero</a></code></li>
 <li><code>impl&lt;N: <a class='trait' href='../../dimensioned/peano/trait.NonNeg.html' title='dimensioned::peano::NonNeg'>NonNeg</a>&gt; <a class='trait' href='../../dimensioned/peano/trait.NonNeg.html' title='dimensioned::peano::NonNeg'>NonNeg</a> for <a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>&lt;N&gt;</code></li>
+<li><code>impl&lt;N: <a class='trait' href='../../dimensioned/peano/trait.NonPos.html' title='dimensioned::peano::NonPos'>NonPos</a>&gt; <a class='trait' href='../../dimensioned/peano/trait.NonNeg.html' title='dimensioned::peano::NonNeg'>NonNeg</a> for <a class='struct' href='../../dimensioned/peano/struct.Pred.html' title='dimensioned::peano::Pred'>Pred</a>&lt;N&gt;</code></li>
 </ul><script type="text/javascript" async
                               src="../../implementors/dimensioned/peano/trait.NonNeg.js">
                       </script></section>
