@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" type="text/css" href="../../main.css">
 
-    
+    <link rel="shortcut icon" href="http://paholg.com/dimensioned/imgs/favicon.png">
     
 </head>
 <body class="rustdoc">
@@ -25,7 +25,7 @@
     
 
     <section class="sidebar">
-        
+        <a href='../../dimensioned/index.html'><img src='http://paholg.com/dimensioned/imgs/favicon.png' alt='' width='100'></a>
         <p class='location'><a href='../index.html'>dimensioned</a></p><script>window.sidebarCurrent = {name: 'peano', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
     </section>
 
@@ -45,10 +45,50 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-6' class='srclink' href='../../src/dimensioned/peano.rs.html#1-300' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-6' class='srclink' href='../../src/dimensioned/peano.rs.html#1-384' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>Peano numbers allow us to do arithmetic at compile time using Rust&#39;s type system.</p>
 
 <p>This module should not require much (if any) direct interaction from users of <strong>dimensioned</strong>.</p>
+
+<p>The basic idea of the peano numbers is that we first define the number <code>Zero</code>. Then, we
+inductively define the rest of the natural numbers. For any non-negative natural number
+<code>N</code>, define its successor, <code>Succ&lt;N&gt;</code>, a positive number. We can now count!</p>
+
+<p>Because we want all the integers and not just the natural numbers, we have to be a
+little bit careful with these definitions, which is why it is specified that <code>N</code> above
+must not be negative. Otherwise, when we define predecessors we could end up with
+<code>Pred&lt;Succ&lt;Zero&gt;&gt;</code> which should represent the number <code>Zero</code> but is a distinct type and
+would not be treated as such by the compiler.</p>
+
+<p>We can now define negative numbers: For any non-positive natural number <code>N</code>, define
+its predecessor, <code>Pred&lt;N&gt;</code>, a negative number.</p>
+
+<p>By the definitions of <code>Pred</code> and <code>Succ</code>, we disallow them to be used together.</p>
+
+<p>Conceptually, we now have access to all of the integers. In practice, we have access to
+the numbers from -63 to 63, as Rust only allows structs to be embedded 64 levels deep.</p>
+
+<p>These numbers are used to track powers of units in <strong>dimensioned</strong>.</p>
+
+<p>In addition to the traits created here, the traits <code>Add</code>, <code>Sub</code>, <code>Mul</code>, <code>Div</code>, and <code>Neg</code>
+are all implemented for Peano numbers. Note that these traits are used here very
+differently than is typical. The functions that come with them are not used at all (and
+will throw an error if you try). Instead, we are using them as operators on <em>types</em>,
+with the associated type acting as the result of the computation.</p>
+
+<h1 id="example" class='section-header'><a
+                           href="#example">Example</a></h1><pre class='rust rust-example-rendered'>
+<span class='kw'>use</span> <span class='ident'>dimensioned</span>::<span class='ident'>peano</span>::{<span class='ident'>Two</span>, <span class='ident'>Three</span>, <span class='ident'>Four</span>, <span class='ident'>ToInt</span>};
+<span class='comment'>// 2 + 3 == 5</span>
+<span class='macro'>assert_eq</span><span class='macro'>!</span>( <span class='number'>5</span>, <span class='op'>&lt;&lt;</span><span class='ident'>Two</span> <span class='kw'>as</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>Three</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>ToInt</span><span class='op'>&gt;</span>::<span class='ident'>to_int</span>() );
+
+<span class='comment'>// 4 / 2 == 2</span>
+<span class='macro'>assert_eq</span><span class='macro'>!</span>( <span class='number'>2</span>, <span class='op'>&lt;&lt;</span><span class='ident'>Four</span> <span class='kw'>as</span> <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>Two</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>ToInt</span><span class='op'>&gt;</span>::<span class='ident'>to_int</span>() );
+</pre>
+
+<p>Note that the <code>ToInt</code> trait here is only used to get an integer output; it is the only
+runtime operation defined for Peano numbers, and exists primarily for debugging
+purposes. What is important and generally used is the associated type <code>Output</code>.</p>
 </div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
                     <tr class=' module-item'>
@@ -83,7 +123,7 @@
                         <td><a class='trait' href='trait.NonNeg.html'
                                title='dimensioned::peano::NonNeg'>NonNeg</a></td>
                         <td class='docblock short'>
-                             <p>All numbers of the form <code>Succ&lt;N&gt;</code> and <code>Zero</code> will belong to the trait <strong>NonNeg</strong>.</p>
+                             <p>Implemented for <code>Zero</code> and all numbers of the form <code>Succ&lt;N: NonNeg&gt;</code>.</p>
 
                         </td>
                     </tr>
@@ -92,7 +132,7 @@
                         <td><a class='trait' href='trait.NonPos.html'
                                title='dimensioned::peano::NonPos'>NonPos</a></td>
                         <td class='docblock short'>
-                             <p>All numbers of the form <code>Pred&lt;N&gt;</code> and <code>Zero</code> will belong to the trait <strong>NonPos</strong>.</p>
+                             <p>Implemented for <code>Zero</code> and all numbers of the form <code>Pred&lt;N: NonPos&gt;</code>.</p>
 
                         </td>
                     </tr>
@@ -101,7 +141,7 @@
                         <td><a class='trait' href='trait.NonZero.html'
                                title='dimensioned::peano::NonZero'>NonZero</a></td>
                         <td class='docblock short'>
-                             <p>All numbers of the form <code>Succ&lt;M&gt;</code> or <code>Pred&lt;N&gt;</code> will belong to the trait <strong>NonZero</strong>.</p>
+                             <p>Implemented for all Peano numbers of the form <code>Succ&lt;M: NonNeg&gt;</code> or <code>Pred&lt;N: NonPos&gt;</code>.</p>
 
                         </td>
                     </tr>
@@ -110,7 +150,7 @@
                         <td><a class='trait' href='trait.Peano.html'
                                title='dimensioned::peano::Peano'>Peano</a></td>
                         <td class='docblock short'>
-                             <p>All numbers defined in this module will belong to the <strong>Peano</strong> trait.</p>
+                             <p>All numbers defined in this module belong to the <strong>Peano</strong> trait which should not be implemented for anything else.</p>
 
                         </td>
                     </tr>
@@ -143,7 +183,8 @@
                         <td><a class='type' href='type.Eight.html'
                                title='dimensioned::peano::Eight'>Eight</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Deprecated; use P8</p>
+
                         </td>
                     </tr>
                 
@@ -151,7 +192,8 @@
                         <td><a class='type' href='type.Five.html'
                                title='dimensioned::peano::Five'>Five</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Deprecated; use P5</p>
+
                         </td>
                     </tr>
                 
@@ -159,7 +201,89 @@
                         <td><a class='type' href='type.Four.html'
                                title='dimensioned::peano::Four'>Four</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Deprecated; use P4</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.N1.html'
+                               title='dimensioned::peano::N1'>N1</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number -1; <code>N1 = Pred&lt;Zero&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.N2.html'
+                               title='dimensioned::peano::N2'>N2</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number -2; <code>N2 = Pred&lt;N1&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.N3.html'
+                               title='dimensioned::peano::N3'>N3</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number -3; <code>N3 = Pred&lt;N2&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.N4.html'
+                               title='dimensioned::peano::N4'>N4</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number -4; <code>N4 = Pred&lt;N3&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.N5.html'
+                               title='dimensioned::peano::N5'>N5</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number -5; <code>N5 = Pred&lt;N4&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.N6.html'
+                               title='dimensioned::peano::N6'>N6</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number -6; <code>N6 = Pred&lt;N5&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.N7.html'
+                               title='dimensioned::peano::N7'>N7</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number -7; <code>N7 = Pred&lt;N6&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.N8.html'
+                               title='dimensioned::peano::N8'>N8</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number -8; <code>N8 = Pred&lt;N7&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.N9.html'
+                               title='dimensioned::peano::N9'>N9</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number -9; <code>N9 = Pred&lt;N8&gt;;</code></p>
+
                         </td>
                     </tr>
                 
@@ -167,7 +291,8 @@
                         <td><a class='type' href='type.NegEight.html'
                                title='dimensioned::peano::NegEight'>NegEight</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Deprecated; use N8</p>
+
                         </td>
                     </tr>
                 
@@ -175,7 +300,8 @@
                         <td><a class='type' href='type.NegFive.html'
                                title='dimensioned::peano::NegFive'>NegFive</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Deprecated; use N5</p>
+
                         </td>
                     </tr>
                 
@@ -183,7 +309,8 @@
                         <td><a class='type' href='type.NegFour.html'
                                title='dimensioned::peano::NegFour'>NegFour</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Deprecated; use N4</p>
+
                         </td>
                     </tr>
                 
@@ -191,7 +318,8 @@
                         <td><a class='type' href='type.NegNine.html'
                                title='dimensioned::peano::NegNine'>NegNine</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Deprecated; use N9</p>
+
                         </td>
                     </tr>
                 
@@ -199,7 +327,8 @@
                         <td><a class='type' href='type.NegOne.html'
                                title='dimensioned::peano::NegOne'>NegOne</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Deprecated; use N1</p>
+
                         </td>
                     </tr>
                 
@@ -207,7 +336,8 @@
                         <td><a class='type' href='type.NegSeven.html'
                                title='dimensioned::peano::NegSeven'>NegSeven</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Deprecated; use N7</p>
+
                         </td>
                     </tr>
                 
@@ -215,7 +345,8 @@
                         <td><a class='type' href='type.NegSix.html'
                                title='dimensioned::peano::NegSix'>NegSix</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Deprecated; use N6</p>
+
                         </td>
                     </tr>
                 
@@ -223,7 +354,8 @@
                         <td><a class='type' href='type.NegTen.html'
                                title='dimensioned::peano::NegTen'>NegTen</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Deprecated</p>
+
                         </td>
                     </tr>
                 
@@ -231,7 +363,8 @@
                         <td><a class='type' href='type.NegThree.html'
                                title='dimensioned::peano::NegThree'>NegThree</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Deprecated; use N3</p>
+
                         </td>
                     </tr>
                 
@@ -239,7 +372,8 @@
                         <td><a class='type' href='type.NegTwo.html'
                                title='dimensioned::peano::NegTwo'>NegTwo</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Deprecated; use N2</p>
+
                         </td>
                     </tr>
                 
@@ -247,7 +381,8 @@
                         <td><a class='type' href='type.Nine.html'
                                title='dimensioned::peano::Nine'>Nine</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Deprecated; use P9</p>
+
                         </td>
                     </tr>
                 
@@ -255,7 +390,89 @@
                         <td><a class='type' href='type.One.html'
                                title='dimensioned::peano::One'>One</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Deprecated; use P1</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.P1.html'
+                               title='dimensioned::peano::P1'>P1</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number +1; <code>P1 = Succ&lt;Zero&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.P2.html'
+                               title='dimensioned::peano::P2'>P2</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number +2; <code>P2 = Succ&lt;P1&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.P3.html'
+                               title='dimensioned::peano::P3'>P3</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number +3; <code>P3 = Succ&lt;P2&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.P4.html'
+                               title='dimensioned::peano::P4'>P4</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number +4; <code>P4 = Succ&lt;P3&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.P5.html'
+                               title='dimensioned::peano::P5'>P5</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number +5; <code>P5 = Succ&lt;P4&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.P6.html'
+                               title='dimensioned::peano::P6'>P6</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number +6; <code>P6 = Succ&lt;P5&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.P7.html'
+                               title='dimensioned::peano::P7'>P7</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number +7; <code>P7 = Succ&lt;P6&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.P8.html'
+                               title='dimensioned::peano::P8'>P8</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number +8; <code>P8 = Succ&lt;P7&gt;;</code></p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='type' href='type.P9.html'
+                               title='dimensioned::peano::P9'>P9</a></td>
+                        <td class='docblock short'>
+                             <p>The Peano number +9; <code>P9 = Succ&lt;P8&gt;;</code></p>
+
                         </td>
                     </tr>
                 
@@ -263,7 +480,8 @@
                         <td><a class='type' href='type.Seven.html'
                                title='dimensioned::peano::Seven'>Seven</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Deprecated; use P7</p>
+
                         </td>
                     </tr>
                 
@@ -271,7 +489,8 @@
                         <td><a class='type' href='type.Six.html'
                                title='dimensioned::peano::Six'>Six</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Deprecated; use P6</p>
+
                         </td>
                     </tr>
                 
@@ -279,7 +498,8 @@
                         <td><a class='type' href='type.Ten.html'
                                title='dimensioned::peano::Ten'>Ten</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Deprecated</p>
+
                         </td>
                     </tr>
                 
@@ -287,7 +507,8 @@
                         <td><a class='type' href='type.Three.html'
                                title='dimensioned::peano::Three'>Three</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Deprecated; use P3</p>
+
                         </td>
                     </tr>
                 
@@ -295,7 +516,8 @@
                         <td><a class='type' href='type.Two.html'
                                title='dimensioned::peano::Two'>Two</a></td>
                         <td class='docblock short'>
-                             
+                             <p>Deprecated; use P2</p>
+
                         </td>
                     </tr>
                 </table><h2 id='impls' class='section-header'><a href="#impls">Implementations</a></h2>
