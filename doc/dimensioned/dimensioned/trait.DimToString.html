@@ -45,11 +45,13 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-1583' class='srclink' href='../../src/dimensioned/dimensioned.rs.html#60-63' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1514' class='srclink' href='../../src/dimensioned/dimensioned.rs.html#45-48' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait DimToString: <a class='trait' href='../../dimensioned/dimensioned/trait.Dimension.html' title='dimensioned::dimensioned::Dimension'>Dimension</a> {
     fn <a href='#tymethod.to_string' class='fnname'>to_string</a>() -&gt; <a class='struct' href='http://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>;
-}</pre><div class='docblock'><p>This trait gives a human-friendly representation of a dimensioned object. It is
-useful for printing and debugging.</p>
+}</pre><div class='docblock'><p>This trait allows human-friendly printing of dimensioned objects.</p>
+
+<p>All types created for a unit system will implement this trait. No other types should
+implement it.</p>
 </div>
             <h2 id='required-methods'>Required Methods</h2>
             <div class='methods'>

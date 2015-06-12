@@ -586,66 +586,128 @@
 <span id="544">544</span>
 <span id="545">545</span>
 <span id="546">546</span>
+<span id="547">547</span>
+<span id="548">548</span>
+<span id="549">549</span>
+<span id="550">550</span>
+<span id="551">551</span>
+<span id="552">552</span>
+<span id="553">553</span>
+<span id="554">554</span>
+<span id="555">555</span>
+<span id="556">556</span>
+<span id="557">557</span>
+<span id="558">558</span>
+<span id="559">559</span>
+<span id="560">560</span>
+<span id="561">561</span>
+<span id="562">562</span>
+<span id="563">563</span>
+<span id="564">564</span>
+<span id="565">565</span>
+<span id="566">566</span>
+<span id="567">567</span>
+<span id="568">568</span>
+<span id="569">569</span>
+<span id="570">570</span>
+<span id="571">571</span>
+<span id="572">572</span>
+<span id="573">573</span>
+<span id="574">574</span>
+<span id="575">575</span>
+<span id="576">576</span>
+<span id="577">577</span>
+<span id="578">578</span>
+<span id="579">579</span>
+<span id="580">580</span>
+<span id="581">581</span>
+<span id="582">582</span>
+<span id="583">583</span>
+<span id="584">584</span>
+<span id="585">585</span>
+<span id="586">586</span>
+<span id="587">587</span>
+<span id="588">588</span>
+<span id="589">589</span>
+<span id="590">590</span>
+<span id="591">591</span>
+<span id="592">592</span>
+<span id="593">593</span>
+<span id="594">594</span>
+<span id="595">595</span>
+<span id="596">596</span>
+<span id="597">597</span>
+<span id="598">598</span>
+<span id="599">599</span>
+<span id="600">600</span>
+<span id="601">601</span>
+<span id="602">602</span>
+<span id="603">603</span>
+<span id="604">604</span>
+<span id="605">605</span>
+<span id="606">606</span>
+<span id="607">607</span>
+<span id="608">608</span>
+<span id="609">609</span>
+<span id="610">610</span>
+<span id="611">611</span>
+<span id="612">612</span>
+<span id="613">613</span>
+<span id="614">614</span>
+<span id="615">615</span>
+<span id="616">616</span>
+<span id="617">617</span>
+<span id="618">618</span>
+<span id="619">619</span>
+<span id="620">620</span>
+<span id="621">621</span>
+<span id="622">622</span>
+<span id="623">623</span>
 </pre><pre class='rust '>
 <span class='doccomment'>/*!
 This module allows dimensioned to be very flexible. It creates the `Dim&lt;D, V&gt;` type,
-which is the type that will be used with all dimensionful objects. It then implements as
+which is the type that will be used for all dimensioned objects. It then implements as
 many traits from `std` as generically as possible.
 
-**dimensioned** creates many traits, the majority of which are used for type level
-**arithmetic and should not be implemented for any objects outside this library.
+Among the included traits in **dimensioned**, there are a few that are used solely to
+aid in generic programming and should not be implemented for anything outside this
+module. They are `Dimension`, `Dimensionless`, `NotDim`, and `DimToString`.
 */</span>
 
-<span class='kw'>use</span> <span class='ident'>peano</span>::<span class='op'>*</span>; <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>marker</span>::<span class='ident'>PhantomData</span>;
+<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>peano</span>::{<span class='ident'>Same</span>, <span class='ident'>Zero</span>};
+<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>peano</span>::{<span class='ident'>P1</span>, <span class='ident'>P2</span>, <span class='ident'>P3</span>, <span class='ident'>P4</span>, <span class='ident'>P5</span>, <span class='ident'>P6</span>, <span class='ident'>P7</span>, <span class='ident'>P8</span>, <span class='ident'>P9</span>};
+<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>peano</span>::{<span class='ident'>N1</span>, <span class='ident'>N2</span>, <span class='ident'>N3</span>, <span class='ident'>N4</span>, <span class='ident'>N5</span>, <span class='ident'>N6</span>, <span class='ident'>N7</span>, <span class='ident'>N8</span>, <span class='ident'>N9</span>};
 
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>ops</span>::<span class='op'>*</span>;
+<span class='kw'>use</span> <span class='ident'>peano</span>::{<span class='ident'>Peano</span>, <span class='ident'>ToInt</span>};
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>marker</span>::<span class='ident'>PhantomData</span>;
+
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>ops</span>::{<span class='ident'>Add</span>, <span class='ident'>Sub</span>, <span class='ident'>Mul</span>, <span class='ident'>Div</span>, <span class='ident'>Neg</span>, <span class='ident'>BitAnd</span>, <span class='ident'>BitOr</span>, <span class='ident'>BitXor</span>, <span class='ident'>FnOnce</span>, <span class='ident'>Not</span>, <span class='ident'>Rem</span>, <span class='ident'>Shl</span>, <span class='ident'>Shr</span>};
 <span class='kw'>use</span> <span class='ident'>num</span>::<span class='ident'>traits</span>::{<span class='ident'>Float</span>, <span class='ident'>FromPrimitive</span>, <span class='ident'>ToPrimitive</span>, <span class='ident'>NumCast</span>};
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>cmp</span>::<span class='op'>*</span>;
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>cmp</span>::{<span class='ident'>Eq</span>, <span class='ident'>PartialEq</span>, <span class='ident'>Ord</span>, <span class='ident'>PartialOrd</span>, <span class='ident'>Ordering</span>};
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fmt</span>;
 
-<span class='doccomment'>/// All types created for a unit system will implement this trait.</span>
-<span class='doccomment'>///</span>
-<span class='doccomment'>/// No other types should implement it.</span>
+<span class='doccomment'>/**
+All types created for a unit system will implement this trait. No other types should
+implement it.
+*/</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Dimension</span> {}
 
-<span class='doccomment'>/// The only types that implement this trait are the `Unitless` types that exist in each</span>
-<span class='doccomment'>/// unit system. It allows more flexibility when handling specifically objects without</span>
-<span class='doccomment'>/// dimension.</span>
+<span class='doccomment'>/**
+The only types that implement this trait are the `Unitless` types that exist in each
+unit system. It allows more flexibility when handling specifically objects without
+dimension.
+
+All types created for a unit system will implement this trait. No other types should
+implement it.
+*/</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Dimensionless</span>: <span class='ident'>Dimension</span> {}
 
-<span class='doccomment'>/// This trait allows us to multiply two dimensioned objects</span>
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>MulDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span> <span class='op'>=</span> <span class='kw'>Self</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
-    <span class='kw'>type</span> <span class='ident'>Output</span>;
-}
-<span class='doccomment'>/// This trait allows us to divide two dimensioned objects</span>
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>DivDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span> <span class='op'>=</span> <span class='kw'>Self</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
-    <span class='kw'>type</span> <span class='ident'>Output</span>;
-}
-<span class='doccomment'>/// This trait allows us to take a dimensioned object to a power given by a peano number</span>
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>PowerDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
-    <span class='kw'>type</span> <span class='ident'>Output</span>;
-}
-<span class='doccomment'>/// This trait allows us to take a root, given by a peano number, of a dimensioned object</span>
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>RootDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
-    <span class='kw'>type</span> <span class='ident'>Output</span>;
-}
-<span class='doccomment'>/// This trait enforces that `Self` and `RHS` have the same dimensions. It is useful</span>
-<span class='doccomment'>/// mostly for macros.</span>
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>KeepDim</span><span class='op'>&lt;</span><span class='ident'>RHS</span> <span class='op'>=</span> <span class='kw'>Self</span><span class='op'>&gt;</span>: <span class='ident'>Dimension</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
-    <span class='kw'>type</span> <span class='ident'>Output</span>;
-}
-<span class='doccomment'>/// This trait inverts the dimensions of an object. For example, it takes seconds to hertz.</span>
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>InvertDim</span>: <span class='ident'>Dimension</span> {
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
-    <span class='kw'>type</span> <span class='ident'>Output</span>;
-}
-<span class='doccomment'>/// This trait gives a human-friendly representation of a dimensioned object. It is</span>
-<span class='doccomment'>/// useful for printing and debugging.</span>
+<span class='doccomment'>/**
+This trait allows human-friendly printing of dimensioned objects.
+
+All types created for a unit system will implement this trait. No other types should
+implement it.
+*/</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>DimToString</span>: <span class='ident'>Dimension</span> {
     <span class='doccomment'>/// Gives a human friendly `String` representation of a `Dimension` type.</span>
     <span class='kw'>fn</span> <span class='ident'>to_string</span>() <span class='op'>-&gt;</span> <span class='ident'>String</span>;
@@ -656,94 +718,185 @@ many traits from `std` as generically as possible.
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>: <span class='ident'>Dimension</span>, <span class='ident'>V</span><span class='op'>&gt;</span>(<span class='kw'>pub</span> <span class='ident'>V</span>, <span class='kw'>pub</span> <span class='ident'>PhantomData</span><span class='op'>&lt;</span><span class='ident'>D</span><span class='op'>&gt;</span>);
 
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>: <span class='ident'>Dimension</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> {
-    <span class='doccomment'>/// Construct a new dimensioned object</span>
+    <span class='doccomment'>/**
+    Construct a new `Dim` object.
+
+    It is recommened to use this only where necessary, and to generally use the
+    constants that ship with unit systems to create `Dim` objects.
+
+    # Example
+    ```
+    use dimensioned::Dim;
+    use dimensioned::si::{m, Meter};
+
+    let x: Dim&lt;Meter, f64&gt; = Dim::new(3.0);
+    let y = 3.0*m;
+    assert_eq!(x, y);
+    ```
+
+     */</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>v</span>: <span class='ident'>V</span>) <span class='op'>-&gt;</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> {
         <span class='ident'>Dim</span>(<span class='ident'>v</span>, <span class='ident'>PhantomData</span>)
     }
-    <span class='doccomment'>/// Maps a Dim&lt;D, V&gt; to Dim&lt;D, O&gt; by applying a function to the contained value</span>
+    <span class='doccomment'>/**
+    Map a `Dim&lt;D, V&gt;` to `Dim&lt;D, O&gt;` by applying function `f` to the contained value
+    # Example
+    ```
+    # extern crate dimensioned;
+    # extern crate num;
+
+    use num::traits::Float;
+    use dimensioned::si::m;
+
+    # fn main() {
+    let x = 3.5*m;
+    assert_eq!(3.0*m, x.map(Float::trunc) );
+    # }
+    ```
+     */</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>map</span><span class='op'>&lt;</span><span class='ident'>O</span>, <span class='ident'>F</span>: <span class='ident'>FnOnce</span>(<span class='ident'>V</span>) <span class='op'>-&gt;</span> <span class='ident'>O</span><span class='op'>&gt;</span>(<span class='self'>self</span>, <span class='ident'>f</span>: <span class='ident'>F</span>) <span class='op'>-&gt;</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>O</span><span class='op'>&gt;</span> {
         <span class='ident'>Dim</span>(<span class='ident'>f</span>(<span class='self'>self</span>.<span class='number'>0</span>), <span class='ident'>PhantomData</span>)
     }
 }
 
-<span class='doccomment'>/// This traits is implemented by default for everything that is not Dim&lt;D, V&gt;. It</span>
-<span class='doccomment'>/// allows a greater level of generic operator overloading than would be possible</span>
-<span class='doccomment'>/// otherwise.</span>
+<span class='doccomment'>/**
+This trait is implemented by default for everything that is not Dim&lt;D, V&gt;. It allows a
+ greater level of generic operator overloading than would be possible otherwise.
+*/</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>NotDim</span> {}
 <span class='kw'>impl</span> <span class='ident'>NotDim</span> <span class='kw'>for</span> .. {}
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>: <span class='ident'>Dimension</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='op'>!</span><span class='ident'>NotDim</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> {}
 
-<span class='doccomment'>/// Because it would not make sense to implement `Float` for `Dim&lt;D, V&gt;`, we create a</span>
-<span class='doccomment'>/// special `Sqrt` trait. We then implement it for `Dim&lt;D, V&gt;` where `V: Float`</span>
+<span class='doccomment'>/// Trait for implementing a sqrt() member for types that don&#39;t impl Float.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Sqrt</span> {
     <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
     <span class='kw'>type</span> <span class='ident'>Output</span>;
-    <span class='doccomment'>/// Take the square root of a dimensioned object</span>
+    <span class='doccomment'>/**
+    Take a square root.
+    # Example
+    ```
+    use dimensioned::si::m;
+    use dimensioned::Sqrt;
+
+    let x = 2.0*m;
+    let y = 4.0*m*m;
+    assert_eq!(x, y.sqrt());
+    ```
+     */</span>
     <span class='kw'>fn</span> <span class='ident'>sqrt</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span>;
 }
 
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='ident'>Sqrt</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>D</span>:  <span class='ident'>RootDim</span><span class='op'>&lt;</span><span class='ident'>Two</span><span class='op'>&gt;</span>, <span class='ident'>V</span>: <span class='ident'>Float</span>, <span class='op'>&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>RootDim</span><span class='op'>&lt;</span><span class='ident'>Two</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Dimension</span> {
-    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>RootDim</span><span class='op'>&lt;</span><span class='ident'>Two</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='ident'>V</span><span class='op'>&gt;</span>;
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='ident'>Sqrt</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>D</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>Root</span><span class='op'>&lt;</span><span class='ident'>P2</span><span class='op'>&gt;</span>, <span class='ident'>V</span>: <span class='ident'>Float</span>, <span class='op'>&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>Root</span><span class='op'>&lt;</span><span class='ident'>P2</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Dimension</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>Root</span><span class='op'>&lt;</span><span class='ident'>P2</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='ident'>V</span><span class='op'>&gt;</span>;
     <span class='attribute'>#[<span class='ident'>inline</span>]</span>
     <span class='kw'>fn</span> <span class='ident'>sqrt</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='ident'>Dim</span>( (<span class='self'>self</span>.<span class='number'>0</span>).<span class='ident'>sqrt</span>(), <span class='ident'>PhantomData</span>) }
 }
-<span class='doccomment'>/// Because it would not make sense to implement `Float` for `Dim&lt;D, V&gt;`, we create a</span>
-<span class='doccomment'>/// special `Cbrt` trait. We then implement it for `Dim&lt;D, V&gt;` where `V: Float`</span>
+<span class='doccomment'>/// Trait for implementing a cbrt() member for types that don&#39;t impl Float.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Cbrt</span> {
     <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
     <span class='kw'>type</span> <span class='ident'>Output</span>;
-    <span class='doccomment'>/// Take the square root of a dimensioned object</span>
+    <span class='doccomment'>/**
+    Take a cube root.
+    # Example
+    ```
+    use dimensioned::si::m;
+    use dimensioned::Cbrt;
+
+    let x = 2.0*m;
+    let y = 8.0*m*m*m;
+    assert_eq!(x, y.cbrt());
+    ```
+     */</span>
     <span class='kw'>fn</span> <span class='ident'>cbrt</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span>;
 }
 
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='ident'>Cbrt</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>D</span>:  <span class='ident'>RootDim</span><span class='op'>&lt;</span><span class='ident'>Three</span><span class='op'>&gt;</span>, <span class='ident'>V</span>: <span class='ident'>Float</span>, <span class='op'>&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>RootDim</span><span class='op'>&lt;</span><span class='ident'>Three</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Dimension</span> {
-    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>RootDim</span><span class='op'>&lt;</span><span class='ident'>Three</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='ident'>V</span><span class='op'>&gt;</span>;
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='ident'>Cbrt</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>D</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>Root</span><span class='op'>&lt;</span><span class='ident'>P3</span><span class='op'>&gt;</span>, <span class='ident'>V</span>: <span class='ident'>Float</span>, <span class='op'>&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>Root</span><span class='op'>&lt;</span><span class='ident'>P3</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Dimension</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>Root</span><span class='op'>&lt;</span><span class='ident'>P3</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='ident'>V</span><span class='op'>&gt;</span>;
     <span class='attribute'>#[<span class='ident'>inline</span>]</span>
     <span class='kw'>fn</span> <span class='ident'>cbrt</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='ident'>Dim</span>( (<span class='self'>self</span>.<span class='number'>0</span>).<span class='ident'>cbrt</span>(), <span class='ident'>PhantomData</span>) }
 }
 
-<span class='doccomment'>/// Generic roots using peano numbers.</span>
-<span class='doccomment'>/// No other types should implement it.</span>
-<span class='doccomment'>/// # Example</span>
-<span class='doccomment'>/// ```</span>
-<span class='doccomment'>/// use dimensioned::si::m;</span>
-<span class='doccomment'>/// use dimensioned::Root;</span>
-<span class='doccomment'>/// use dimensioned::peano::Two;</span>
-<span class='doccomment'>///</span>
-<span class='doccomment'>/// let x = 2.0*m;</span>
-<span class='doccomment'>/// assert_eq!(x, Two::root(x*x));</span>
-<span class='doccomment'>/// ```</span>
+<span class='doccomment'>/**
+Trait for implementing general integer roots for types that don&#39;t impl Float. Uses Peano
+numbers to specify the degree.
+
+The syntax is a little bit weird and may be subject to change.
+*/</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Root</span><span class='op'>&lt;</span><span class='ident'>Radicand</span><span class='op'>&gt;</span> {
     <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
     <span class='kw'>type</span> <span class='ident'>Output</span>;
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
+
+    <span class='doccomment'>/**
+    # Example
+    ```
+    use dimensioned::si::m;
+    use dimensioned::{P4, Root};
+
+    let x = 2.0*m;
+    let y = 16.0*m*m*m*m;
+    assert_eq!(x, P4::root(x*x*x*x));
+    ```
+    */</span>
     <span class='kw'>fn</span> <span class='ident'>root</span>(<span class='ident'>radicand</span>: <span class='ident'>Radicand</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span>;
 }
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span>, <span class='ident'>Degree</span><span class='op'>&gt;</span> <span class='ident'>Root</span><span class='op'>&lt;</span><span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Degree</span> <span class='kw'>where</span> <span class='ident'>D</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>RootDim</span><span class='op'>&lt;</span><span class='ident'>Degree</span><span class='op'>&gt;</span>, <span class='ident'>V</span>: <span class='ident'>Float</span>, <span class='ident'>Degree</span>: <span class='ident'>Peano</span> <span class='op'>+</span> <span class='ident'>ToInt</span>, <span class='op'>&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>RootDim</span><span class='op'>&lt;</span><span class='ident'>Degree</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Dimension</span> {
-    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>RootDim</span><span class='op'>&lt;</span><span class='ident'>Degree</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='ident'>V</span><span class='op'>&gt;</span>;
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span>, <span class='ident'>Degree</span><span class='op'>&gt;</span> <span class='ident'>Root</span><span class='op'>&lt;</span><span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Degree</span> <span class='kw'>where</span> <span class='ident'>D</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>Root</span><span class='op'>&lt;</span><span class='ident'>Degree</span><span class='op'>&gt;</span>, <span class='ident'>V</span>: <span class='ident'>Float</span>, <span class='ident'>Degree</span>: <span class='ident'>Peano</span> <span class='op'>+</span> <span class='ident'>ToInt</span>, <span class='op'>&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>Root</span><span class='op'>&lt;</span><span class='ident'>Degree</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Dimension</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>Root</span><span class='op'>&lt;</span><span class='ident'>Degree</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='ident'>V</span><span class='op'>&gt;</span>;
     <span class='kw'>fn</span> <span class='ident'>root</span>(<span class='ident'>base</span>: <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> {
-        <span class='kw'>let</span> <span class='ident'>x</span>: <span class='ident'>V</span> <span class='op'>=</span> <span class='ident'>NumCast</span>::<span class='ident'>from</span>(<span class='ident'>Degree</span>::<span class='ident'>to_int</span>()).<span class='ident'>expect</span>(<span class='string'>&quot;Attempted to take a root of a Dim&lt;D, V&gt;, but could not convert from i32 to V to be able to compute it&quot;</span>);
+        <span class='kw'>let</span> <span class='ident'>x</span>: <span class='ident'>V</span> <span class='op'>=</span> <span class='ident'>NumCast</span>::<span class='ident'>from</span>(<span class='ident'>Degree</span>::<span class='ident'>to_int</span>()).<span class='ident'>expect</span>(<span class='string'>&quot;Attempted to take nth root of a Dim&lt;D, V&gt;, but could not convert from i32 to V to compute n.&quot;</span>);
         <span class='ident'>Dim</span>::<span class='ident'>new</span>( (<span class='ident'>base</span>.<span class='number'>0</span>).<span class='ident'>powf</span>(<span class='ident'>x</span>.<span class='ident'>recip</span>()) )
     }
 }
 
-<span class='doccomment'>/// Generic integer powers using peano numbers.</span>
-<span class='doccomment'>/// No other types should implement it.</span>
-<span class='doccomment'>/// Example:</span>
-<span class='doccomment'>/// ```</span>
-<span class='doccomment'>/// let x = 2.0*m;</span>
-<span class='doccomment'>/// assert_eq!(x*x, Two::pow(x));</span>
-<span class='doccomment'>/// ```</span>
+<span class='doccomment'>/**
+Trait for implementing general integer powers for types that don&#39;t impl Float. Uses
+Peano numbers to specify the exponent.
+
+The syntax is a little bit weird and may be subject to change.
+*/</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Pow</span><span class='op'>&lt;</span><span class='ident'>Base</span><span class='op'>&gt;</span> {
     <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
     <span class='kw'>type</span> <span class='ident'>Output</span>;
-    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
+    <span class='doccomment'>/**
+    # Example
+    ```
+    use dimensioned::si::m;
+    use dimensioned::{P3, Pow};
+
+    let x = 2.0*m;
+    let y = 8.0*m*m*m;
+    assert_eq!(P3::pow(x), y);
+    ```
+    */</span>
     <span class='kw'>fn</span> <span class='ident'>pow</span>(<span class='ident'>base</span>: <span class='ident'>Base</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span>;
 }
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span>, <span class='ident'>Exp</span><span class='op'>&gt;</span> <span class='ident'>Pow</span><span class='op'>&lt;</span><span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Exp</span> <span class='kw'>where</span> <span class='ident'>D</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>PowerDim</span><span class='op'>&lt;</span><span class='ident'>Exp</span><span class='op'>&gt;</span>, <span class='ident'>V</span>: <span class='ident'>Float</span>, <span class='ident'>Exp</span>: <span class='ident'>Peano</span> <span class='op'>+</span> <span class='ident'>ToInt</span>, <span class='op'>&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>PowerDim</span><span class='op'>&lt;</span><span class='ident'>Exp</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Dimension</span> {
-    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>PowerDim</span><span class='op'>&lt;</span><span class='ident'>Exp</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='ident'>V</span><span class='op'>&gt;</span>;
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span>, <span class='ident'>Exp</span><span class='op'>&gt;</span> <span class='ident'>Pow</span><span class='op'>&lt;</span><span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Exp</span> <span class='kw'>where</span> <span class='ident'>D</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>Pow</span><span class='op'>&lt;</span><span class='ident'>Exp</span><span class='op'>&gt;</span>, <span class='ident'>V</span>: <span class='ident'>Float</span>, <span class='ident'>Exp</span>: <span class='ident'>Peano</span> <span class='op'>+</span> <span class='ident'>ToInt</span>, <span class='op'>&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>Pow</span><span class='op'>&lt;</span><span class='ident'>Exp</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Dimension</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>Pow</span><span class='op'>&lt;</span><span class='ident'>Exp</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='ident'>V</span><span class='op'>&gt;</span>;
     <span class='kw'>fn</span> <span class='ident'>pow</span>(<span class='ident'>base</span>: <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> {
         <span class='ident'>Dim</span>::<span class='ident'>new</span>( (<span class='ident'>base</span>.<span class='number'>0</span>).<span class='ident'>powi</span>(<span class='ident'>Exp</span>::<span class='ident'>to_int</span>()) )
+    }
+}
+
+<span class='doccomment'>/// Trait for implementing a recip() member for types that don&#39;t impl Float.</span>
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Recip</span> {
+    <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
+    <span class='kw'>type</span> <span class='ident'>Output</span>;
+    <span class='doccomment'>/**
+    # Example
+    ```
+    use dimensioned::si::s;
+    use dimensioned::Recip;
+
+    let x = 4.0*s;
+    let y = 0.25/s;
+    assert_eq!(x, y.recip())
+    ```
+     */</span>
+    <span class='kw'>fn</span> <span class='ident'>recip</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span>;
+}
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='ident'>Recip</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>D</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>Recip</span>, <span class='ident'>V</span>: <span class='ident'>Float</span>, <span class='op'>&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>Recip</span><span class='op'>&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Dimension</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>Recip</span><span class='op'>&gt;</span>::<span class='ident'>Output</span>, <span class='ident'>V</span><span class='op'>&gt;</span>;
+    <span class='kw'>fn</span> <span class='ident'>recip</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> {
+        <span class='ident'>Dim</span>::<span class='ident'>new</span>( (<span class='self'>self</span>.<span class='number'>0</span>).<span class='ident'>recip</span>() )
     }
 }
 
@@ -800,7 +953,7 @@ many traits from `std` as generically as possible.
 <span class='comment'>//------------------------------------------------------------------------------</span>
 <span class='comment'>// Traits from std::cmp</span>
 <span class='comment'>//------------------------------------------------------------------------------</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Dl</span>, <span class='ident'>Dr</span>, <span class='ident'>Vl</span>, <span class='ident'>Vr</span><span class='op'>&gt;</span> <span class='ident'>PartialEq</span><span class='op'>&lt;</span><span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>Dr</span>, <span class='ident'>Vr</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>Dl</span>, <span class='ident'>Vl</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>Dl</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>KeepDim</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;</span>, <span class='ident'>Dr</span>: <span class='ident'>Dimension</span>, <span class='ident'>Vl</span>: <span class='ident'>PartialEq</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;</span> {
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Dl</span>, <span class='ident'>Dr</span>, <span class='ident'>Vl</span>, <span class='ident'>Vr</span><span class='op'>&gt;</span> <span class='ident'>PartialEq</span><span class='op'>&lt;</span><span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>Dr</span>, <span class='ident'>Vr</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>Dl</span>, <span class='ident'>Vl</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>Dl</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>Same</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;</span>, <span class='ident'>Dr</span>: <span class='ident'>Dimension</span>, <span class='ident'>Vl</span>: <span class='ident'>PartialEq</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;</span> {
     <span class='kw'>fn</span> <span class='ident'>eq</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>other</span>: <span class='kw-2'>&amp;</span><span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>Dr</span>, <span class='ident'>Vr</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
         (<span class='self'>self</span>.<span class='number'>0</span>).<span class='ident'>eq</span>(<span class='kw-2'>&amp;</span>(<span class='ident'>other</span>.<span class='number'>0</span>))
     }
@@ -808,9 +961,9 @@ many traits from `std` as generically as possible.
         (<span class='self'>self</span>.<span class='number'>0</span>).<span class='ident'>ne</span>(<span class='kw-2'>&amp;</span>(<span class='ident'>other</span>.<span class='number'>0</span>))
     }
 }
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>KeepDim</span>, <span class='ident'>V</span>: <span class='ident'>Eq</span><span class='op'>&gt;</span> <span class='ident'>Eq</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> {}
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>Same</span>, <span class='ident'>V</span>: <span class='ident'>Eq</span><span class='op'>&gt;</span> <span class='ident'>Eq</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> {}
 
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Dl</span>, <span class='ident'>Dr</span>, <span class='ident'>Vl</span>, <span class='ident'>Vr</span><span class='op'>&gt;</span> <span class='ident'>PartialOrd</span><span class='op'>&lt;</span><span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>Dr</span>, <span class='ident'>Vr</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>Dl</span>, <span class='ident'>Vl</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>Dl</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>KeepDim</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;</span>, <span class='ident'>Dr</span>: <span class='ident'>Dimension</span>, <span class='ident'>Vl</span>: <span class='ident'>PartialOrd</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;</span> {
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Dl</span>, <span class='ident'>Dr</span>, <span class='ident'>Vl</span>, <span class='ident'>Vr</span><span class='op'>&gt;</span> <span class='ident'>PartialOrd</span><span class='op'>&lt;</span><span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>Dr</span>, <span class='ident'>Vr</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>Dl</span>, <span class='ident'>Vl</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>Dl</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>Same</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;</span>, <span class='ident'>Dr</span>: <span class='ident'>Dimension</span>, <span class='ident'>Vl</span>: <span class='ident'>PartialOrd</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;</span> {
     <span class='kw'>fn</span> <span class='ident'>partial_cmp</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>other</span>: <span class='kw-2'>&amp;</span><span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>Dr</span>, <span class='ident'>Vr</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>Ordering</span><span class='op'>&gt;</span> {
         (<span class='self'>self</span>.<span class='number'>0</span>).<span class='ident'>partial_cmp</span>(<span class='kw-2'>&amp;</span>(<span class='ident'>other</span>.<span class='number'>0</span>))
     }
@@ -827,7 +980,7 @@ many traits from `std` as generically as possible.
         (<span class='self'>self</span>.<span class='number'>0</span>).<span class='ident'>ge</span>(<span class='kw-2'>&amp;</span>(<span class='ident'>other</span>.<span class='number'>0</span>))
     }
 }
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>KeepDim</span>, <span class='ident'>V</span>: <span class='ident'>Ord</span><span class='op'>&gt;</span> <span class='ident'>Ord</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> {
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>Same</span>, <span class='ident'>V</span>: <span class='ident'>Ord</span><span class='op'>&gt;</span> <span class='ident'>Ord</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> {
     <span class='kw'>fn</span> <span class='ident'>cmp</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>other</span>: <span class='kw-2'>&amp;</span><span class='kw'>Self</span>) <span class='op'>-&gt;</span> <span class='ident'>Ordering</span> {
         (<span class='self'>self</span>.<span class='number'>0</span>).<span class='ident'>cmp</span>(<span class='kw-2'>&amp;</span>(<span class='ident'>other</span>.<span class='number'>0</span>))
     }
@@ -838,8 +991,8 @@ many traits from `std` as generically as possible.
 
 <span class='doccomment'>/// Multiplying!</span>
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Dl</span>, <span class='ident'>Dr</span>, <span class='ident'>Vl</span>, <span class='ident'>Vr</span><span class='op'>&gt;</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>Dr</span>, <span class='ident'>Vr</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>Dl</span>, <span class='ident'>Vl</span><span class='op'>&gt;</span>
-    <span class='kw'>where</span> <span class='ident'>Dl</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>MulDim</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;</span>, <span class='ident'>Dr</span>: <span class='ident'>Dimension</span>, <span class='ident'>Vl</span>: <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;</span>, <span class='op'>&lt;</span><span class='ident'>Dl</span> <span class='kw'>as</span> <span class='ident'>MulDim</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Dimension</span> {
-        <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>Dl</span> <span class='kw'>as</span> <span class='ident'>MulDim</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='op'>&lt;</span><span class='ident'>Vl</span> <span class='kw'>as</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>;
+    <span class='kw'>where</span> <span class='ident'>Dl</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;</span>, <span class='ident'>Dr</span>: <span class='ident'>Dimension</span>, <span class='ident'>Vl</span>: <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;</span>, <span class='op'>&lt;</span><span class='ident'>Dl</span> <span class='kw'>as</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Dimension</span> {
+        <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>Dl</span> <span class='kw'>as</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='op'>&lt;</span><span class='ident'>Vl</span> <span class='kw'>as</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>;
 
         <span class='attribute'>#[<span class='ident'>inline</span>]</span>
         <span class='kw'>fn</span> <span class='ident'>mul</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>Dr</span>, <span class='ident'>Vr</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> {
@@ -886,10 +1039,10 @@ many traits from `std` as generically as possible.
 
 <span class='doccomment'>/// Dividing!</span>
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Dl</span>, <span class='ident'>Dr</span>, <span class='ident'>Vl</span>, <span class='ident'>Vr</span><span class='op'>&gt;</span> <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>Dr</span>, <span class='ident'>Vr</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>Dl</span>, <span class='ident'>Vl</span><span class='op'>&gt;</span>
-    <span class='kw'>where</span> <span class='ident'>Dl</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>DivDim</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;</span>, <span class='ident'>Dr</span>: <span class='ident'>Dimension</span>, <span class='ident'>Vl</span>: <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;</span>, <span class='op'>&lt;</span><span class='ident'>Dl</span> <span class='kw'>as</span> <span class='ident'>DivDim</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Dimension</span> {
-        <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>Dl</span> <span class='kw'>as</span> <span class='ident'>DivDim</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='op'>&lt;</span><span class='ident'>Vl</span> <span class='kw'>as</span> <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>;
+    <span class='kw'>where</span> <span class='ident'>Dl</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;</span>, <span class='ident'>Dr</span>: <span class='ident'>Dimension</span>, <span class='ident'>Vl</span>: <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;</span>, <span class='op'>&lt;</span><span class='ident'>Dl</span> <span class='kw'>as</span> <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Dimension</span> {
+        <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>Dl</span> <span class='kw'>as</span> <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='op'>&lt;</span><span class='ident'>Vl</span> <span class='kw'>as</span> <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>;
         <span class='attribute'>#[<span class='ident'>inline</span>]</span>
-        <span class='kw'>fn</span> <span class='ident'>div</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>Dr</span>, <span class='ident'>Vr</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>Dl</span> <span class='kw'>as</span> <span class='ident'>DivDim</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='op'>&lt;</span><span class='ident'>Vl</span> <span class='kw'>as</span> <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span> {
+        <span class='kw'>fn</span> <span class='ident'>div</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>Dr</span>, <span class='ident'>Vr</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>Dl</span> <span class='kw'>as</span> <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='op'>&lt;</span><span class='ident'>Vl</span> <span class='kw'>as</span> <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span> {
             <span class='ident'>Dim</span>(<span class='self'>self</span>.<span class='number'>0</span> <span class='op'>/</span> <span class='ident'>rhs</span>.<span class='number'>0</span>, <span class='ident'>PhantomData</span>)
         }
     }
@@ -905,11 +1058,12 @@ many traits from `std` as generically as possible.
     }
 
 <span class='doccomment'>/// Scalar division (with scalar on LHS)!</span>
+<span class='comment'>// fixme: Switch to Dim&lt;D, V&gt;&#39;s impl of Recip?</span>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>dim_lhs_div</span> {
     (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span>: <span class='ident'>ty</span>) <span class='op'>=&gt;</span> (
         <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span><span class='op'>&gt;</span> <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span>
-            <span class='kw'>where</span> <span class='ident'>D</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>InvertDim</span>, <span class='op'>&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>InvertDim</span><span class='op'>&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Dimension</span> {
-                <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>InvertDim</span><span class='op'>&gt;</span>::<span class='ident'>Output</span>, <span class='op'>&lt;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span> <span class='kw'>as</span> <span class='ident'>Div</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>;
+            <span class='kw'>where</span> <span class='ident'>D</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='ident'>Recip</span>, <span class='op'>&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>Recip</span><span class='op'>&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Dimension</span> {
+                <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='ident'>Recip</span><span class='op'>&gt;</span>::<span class='ident'>Output</span>, <span class='op'>&lt;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span> <span class='kw'>as</span> <span class='ident'>Div</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>;
                 <span class='attribute'>#[<span class='ident'>inline</span>]</span>
                 <span class='kw'>fn</span> <span class='ident'>div</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>t</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> {
                     <span class='ident'>Dim</span>( <span class='self'>self</span> <span class='op'>/</span> <span class='ident'>rhs</span>.<span class='number'>0</span>, <span class='ident'>PhantomData</span> )
@@ -935,7 +1089,7 @@ many traits from `std` as generically as possible.
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>dim_unary</span> {
     (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Trait</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op</span>: <span class='ident'>ident</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>:<span class='ident'>ident</span>),<span class='op'>*</span>) <span class='op'>=&gt;</span> (
         <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Trait</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span>
-            <span class='kw'>where</span> <span class='ident'>D</span>: <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op</span><span class='op'>&lt;</span><span class='ident'>D</span><span class='op'>&gt;</span>, <span class='ident'>V</span>: <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Trait</span>, <span class='op'>&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op</span><span class='op'>&lt;</span><span class='ident'>D</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Dimension</span> {
+            <span class='kw'>where</span> <span class='ident'>D</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op</span><span class='op'>&lt;</span><span class='ident'>D</span><span class='op'>&gt;</span>, <span class='ident'>V</span>: <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Trait</span>, <span class='op'>&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op</span><span class='op'>&lt;</span><span class='ident'>D</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Dimension</span> {
                 <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op</span><span class='op'>&lt;</span><span class='ident'>D</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='op'>&lt;</span><span class='ident'>V</span> <span class='kw'>as</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Trait</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>;
                 <span class='attribute'>#[<span class='ident'>inline</span>]</span>
                 $(<span class='kw'>fn</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>D</span> <span class='kw'>as</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op</span><span class='op'>&lt;</span><span class='ident'>D</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='op'>&lt;</span><span class='ident'>V</span> <span class='kw'>as</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Trait</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span> {
@@ -944,14 +1098,14 @@ many traits from `std` as generically as possible.
             }
         )
 }
-<span class='macro'>dim_unary</span><span class='macro'>!</span>(<span class='ident'>Neg</span>, <span class='ident'>KeepDim</span>, <span class='ident'>neg</span>);
-<span class='macro'>dim_unary</span><span class='macro'>!</span>(<span class='ident'>Not</span>, <span class='ident'>KeepDim</span>, <span class='ident'>not</span>);
+<span class='macro'>dim_unary</span><span class='macro'>!</span>(<span class='ident'>Neg</span>, <span class='ident'>Same</span>, <span class='ident'>neg</span>);
+<span class='macro'>dim_unary</span><span class='macro'>!</span>(<span class='ident'>Not</span>, <span class='ident'>Same</span>, <span class='ident'>not</span>);
 
 <span class='comment'>// Binary operators:</span>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>dim_binary</span> {
     (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Trait</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op</span>: <span class='ident'>ident</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>:<span class='ident'>ident</span>),<span class='op'>*</span>) <span class='op'>=&gt;</span> (
         <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Dl</span>, <span class='ident'>Vl</span>, <span class='ident'>Dr</span>, <span class='ident'>Vr</span><span class='op'>&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Trait</span><span class='op'>&lt;</span><span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>Dr</span>, <span class='ident'>Vr</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>Dl</span>, <span class='ident'>Vl</span><span class='op'>&gt;</span>
-            <span class='kw'>where</span> <span class='ident'>Dl</span>: <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;</span>, <span class='ident'>Dr</span>: <span class='ident'>Dimension</span>, <span class='ident'>Vl</span>: <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Trait</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;</span>, <span class='op'>&lt;</span><span class='ident'>Dl</span> <span class='kw'>as</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Dimension</span> {
+            <span class='kw'>where</span> <span class='ident'>Dl</span>: <span class='ident'>Dimension</span> <span class='op'>+</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;</span>, <span class='ident'>Dr</span>: <span class='ident'>Dimension</span>, <span class='ident'>Vl</span>: <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Trait</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;</span>, <span class='op'>&lt;</span><span class='ident'>Dl</span> <span class='kw'>as</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Dimension</span> {
                 <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>Dl</span> <span class='kw'>as</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='op'>&lt;</span><span class='ident'>Vl</span> <span class='kw'>as</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Trait</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span>;
                 <span class='attribute'>#[<span class='ident'>inline</span>]</span>
                 $(<span class='kw'>fn</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>Dr</span>, <span class='ident'>Vr</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>Dim</span><span class='op'>&lt;&lt;</span><span class='ident'>Dl</span> <span class='kw'>as</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op</span><span class='op'>&lt;</span><span class='ident'>Dr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>, <span class='op'>&lt;</span><span class='ident'>Vl</span> <span class='kw'>as</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Trait</span><span class='op'>&lt;</span><span class='ident'>Vr</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;</span> {
@@ -960,14 +1114,14 @@ many traits from `std` as generically as possible.
             }
         )
 }
-<span class='macro'>dim_binary</span><span class='macro'>!</span>(<span class='ident'>Add</span>, <span class='ident'>KeepDim</span>, <span class='ident'>add</span>);
-<span class='macro'>dim_binary</span><span class='macro'>!</span>(<span class='ident'>BitAnd</span>, <span class='ident'>KeepDim</span>, <span class='ident'>bitand</span>);
-<span class='macro'>dim_binary</span><span class='macro'>!</span>(<span class='ident'>BitOr</span>, <span class='ident'>KeepDim</span>, <span class='ident'>bitor</span>);
-<span class='macro'>dim_binary</span><span class='macro'>!</span>(<span class='ident'>BitXor</span>, <span class='ident'>KeepDim</span>, <span class='ident'>bitxor</span>);
-<span class='macro'>dim_binary</span><span class='macro'>!</span>(<span class='ident'>Rem</span>, <span class='ident'>KeepDim</span>, <span class='ident'>rem</span>);
-<span class='macro'>dim_binary</span><span class='macro'>!</span>(<span class='ident'>Shl</span>, <span class='ident'>KeepDim</span>, <span class='ident'>shl</span>);
-<span class='macro'>dim_binary</span><span class='macro'>!</span>(<span class='ident'>Shr</span>, <span class='ident'>KeepDim</span>, <span class='ident'>shr</span>);
-<span class='macro'>dim_binary</span><span class='macro'>!</span>(<span class='ident'>Sub</span>, <span class='ident'>KeepDim</span>, <span class='ident'>sub</span>);
+<span class='macro'>dim_binary</span><span class='macro'>!</span>(<span class='ident'>Add</span>, <span class='ident'>Same</span>, <span class='ident'>add</span>);
+<span class='macro'>dim_binary</span><span class='macro'>!</span>(<span class='ident'>BitAnd</span>, <span class='ident'>Same</span>, <span class='ident'>bitand</span>);
+<span class='macro'>dim_binary</span><span class='macro'>!</span>(<span class='ident'>BitOr</span>, <span class='ident'>Same</span>, <span class='ident'>bitor</span>);
+<span class='macro'>dim_binary</span><span class='macro'>!</span>(<span class='ident'>BitXor</span>, <span class='ident'>Same</span>, <span class='ident'>bitxor</span>);
+<span class='macro'>dim_binary</span><span class='macro'>!</span>(<span class='ident'>Rem</span>, <span class='ident'>Same</span>, <span class='ident'>rem</span>);
+<span class='macro'>dim_binary</span><span class='macro'>!</span>(<span class='ident'>Shl</span>, <span class='ident'>Same</span>, <span class='ident'>shl</span>);
+<span class='macro'>dim_binary</span><span class='macro'>!</span>(<span class='ident'>Shr</span>, <span class='ident'>Same</span>, <span class='ident'>shr</span>);
+<span class='macro'>dim_binary</span><span class='macro'>!</span>(<span class='ident'>Sub</span>, <span class='ident'>Same</span>, <span class='ident'>sub</span>);
 
 <span class='comment'>// fixme: figure this out</span>
 <span class='comment'>// impl&lt;D, V, Idx&gt; Index&lt;Idx&gt; for Dim&lt;D, V&gt; where D: Dimension, V: Index&lt;Idx&gt;, &lt;V as Index&lt;Idx&gt;&gt;::Output: Sized {</span>
@@ -1049,7 +1203,7 @@ many traits from `std` as generically as possible.
 <span class='comment'>//------------------------------------------------------------------------------</span>
 <span class='comment'>// DIMENSIONLESS THINGS HERE</span>
 <span class='comment'>//------------------------------------------------------------------------------</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> ::<span class='ident'>std</span>::<span class='ident'>num</span>::<span class='ident'>One</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>D</span>: <span class='ident'>Dimensionless</span> <span class='op'>+</span> <span class='ident'>MulDim</span><span class='op'>&lt;</span><span class='ident'>D</span><span class='op'>&gt;</span>, <span class='ident'>V</span>: ::<span class='ident'>std</span>::<span class='ident'>num</span>::<span class='ident'>One</span> <span class='op'>+</span> <span class='ident'>Mul</span> {
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> ::<span class='ident'>std</span>::<span class='ident'>num</span>::<span class='ident'>One</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='kw'>where</span> <span class='ident'>D</span>: <span class='ident'>Dimensionless</span> <span class='op'>+</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>D</span><span class='op'>&gt;</span>, <span class='ident'>V</span>: ::<span class='ident'>std</span>::<span class='ident'>num</span>::<span class='ident'>One</span> <span class='op'>+</span> <span class='ident'>Mul</span> {
     <span class='kw'>fn</span> <span class='ident'>one</span>() <span class='op'>-&gt;</span> <span class='kw'>Self</span> {
         <span class='ident'>Dim</span>::<span class='ident'>new</span>(<span class='ident'>V</span>::<span class='ident'>one</span>())
     }
@@ -1058,7 +1212,7 @@ many traits from `std` as generically as possible.
 <span class='comment'>//------------------------------------------------------------------------------</span>
 <span class='comment'>// Num</span>
 <span class='comment'>// impl&lt;D, V&gt; Num for Dim&lt;D, V&gt;</span>
-<span class='comment'>//     where D: Dimensionless + KeepDim&lt;D&gt;, V: Float, &lt;D as KeepDim&lt;D&gt;&gt;::Output: Dimensionless {</span>
+<span class='comment'>//     where D: Dimensionless + Same&lt;D&gt;, V: Float, &lt;D as Same&lt;D&gt;&gt;::Output: Dimensionless {</span>
 <span class='comment'>//         type FromStrRadixErr = Dim&lt;D, &lt;V as Num&gt;::FromStrRadixErr&gt;;</span>
 <span class='comment'>//         fn from_str_radix(str: &amp;str, radix: u32) -&gt; Result&lt;Self, Self::FromStrRadixErr&gt; {</span>
 <span class='comment'>//             Dim( &lt;V as Num&gt;::from_str_radix(str, radix));</span>
@@ -1073,7 +1227,7 @@ many traits from `std` as generically as possible.
 <span class='comment'>// }</span>
 
 <span class='comment'>// impl&lt;D, V&gt; Float for Dim&lt;D, V&gt;</span>
-<span class='comment'>//     where D: Dimensionless + KeepDim&lt;D&gt;, V: Float, &lt;D as KeepDim&lt;D&gt;&gt;::Output: Dimensionless {</span>
+<span class='comment'>//     where D: Dimensionless + Same&lt;D&gt;, V: Float, &lt;D as Same&lt;D&gt;&gt;::Output: Dimensionless {</span>
 <span class='comment'>//         // fn nan(self) -&gt; Dim&lt;D, V&gt; {Dim ( (self.0).nan() )}</span>
 <span class='comment'>//         dim_unary_float!(nan, Self);</span>
 <span class='comment'>//         dim_unary_float!(infinity, Self);</span>

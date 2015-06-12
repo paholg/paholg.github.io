@@ -382,48 +382,6 @@
 <span id="340">340</span>
 <span id="341">341</span>
 <span id="342">342</span>
-<span id="343">343</span>
-<span id="344">344</span>
-<span id="345">345</span>
-<span id="346">346</span>
-<span id="347">347</span>
-<span id="348">348</span>
-<span id="349">349</span>
-<span id="350">350</span>
-<span id="351">351</span>
-<span id="352">352</span>
-<span id="353">353</span>
-<span id="354">354</span>
-<span id="355">355</span>
-<span id="356">356</span>
-<span id="357">357</span>
-<span id="358">358</span>
-<span id="359">359</span>
-<span id="360">360</span>
-<span id="361">361</span>
-<span id="362">362</span>
-<span id="363">363</span>
-<span id="364">364</span>
-<span id="365">365</span>
-<span id="366">366</span>
-<span id="367">367</span>
-<span id="368">368</span>
-<span id="369">369</span>
-<span id="370">370</span>
-<span id="371">371</span>
-<span id="372">372</span>
-<span id="373">373</span>
-<span id="374">374</span>
-<span id="375">375</span>
-<span id="376">376</span>
-<span id="377">377</span>
-<span id="378">378</span>
-<span id="379">379</span>
-<span id="380">380</span>
-<span id="381">381</span>
-<span id="382">382</span>
-<span id="383">383</span>
-<span id="384">384</span>
 </pre><pre class='rust '>
 <span class='doccomment'>/*!
 Peano numbers allow us to do arithmetic at compile time using Rust&#39;s type system.
@@ -458,13 +416,13 @@ with the associated type acting as the result of the computation.
 
 # Example
 ```
-use dimensioned::peano::{Two, Three, Four, ToInt};
+use dimensioned::peano::{P2, P3, P4, ToInt};
 # use std::ops::{Add, Div};
 // 2 + 3 == 5
-assert_eq!( 5, &lt;&lt;Two as Add&lt;Three&gt;&gt;::Output as ToInt&gt;::to_int() );
+assert_eq!( 5, &lt;&lt;P2 as Add&lt;P3&gt;&gt;::Output as ToInt&gt;::to_int() );
 
 // 4 / 2 == 2
-assert_eq!( 2, &lt;&lt;Four as Div&lt;Two&gt;&gt;::Output as ToInt&gt;::to_int() );
+assert_eq!( 2, &lt;&lt;P4 as Div&lt;P2&gt;&gt;::Output as ToInt&gt;::to_int() );
 ```
 
 Note that the `ToInt` trait here is only used to get an integer output; it is the only
@@ -533,48 +491,6 @@ purposes. What is important and generally used is the associated type `Output`.
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>N9</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>N8</span><span class='op'>&gt;</span>;
 
 
-
-<span class='doccomment'>/// Deprecated; use P1</span>
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>One</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Zero</span><span class='op'>&gt;</span>;
-<span class='doccomment'>/// Deprecated; use P2</span>
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Two</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>One</span><span class='op'>&gt;</span>;
-<span class='doccomment'>/// Deprecated; use P3</span>
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Three</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Two</span><span class='op'>&gt;</span>;
-<span class='doccomment'>/// Deprecated; use P4</span>
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Four</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Three</span><span class='op'>&gt;</span>;
-<span class='doccomment'>/// Deprecated; use P5</span>
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Five</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Four</span><span class='op'>&gt;</span>;
-<span class='doccomment'>/// Deprecated; use P6</span>
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Six</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Five</span><span class='op'>&gt;</span>;
-<span class='doccomment'>/// Deprecated; use P7</span>
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Seven</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Six</span><span class='op'>&gt;</span>;
-<span class='doccomment'>/// Deprecated; use P8</span>
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Eight</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Seven</span><span class='op'>&gt;</span>;
-<span class='doccomment'>/// Deprecated; use P9</span>
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Nine</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Eight</span><span class='op'>&gt;</span>;
-<span class='doccomment'>/// Deprecated</span>
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>Ten</span> <span class='op'>=</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Nine</span><span class='op'>&gt;</span>;
-
-<span class='doccomment'>/// Deprecated; use N1</span>
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>NegOne</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Zero</span><span class='op'>&gt;</span>;
-<span class='doccomment'>/// Deprecated; use N2</span>
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>NegTwo</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>NegOne</span><span class='op'>&gt;</span>;
-<span class='doccomment'>/// Deprecated; use N3</span>
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>NegThree</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>NegTwo</span><span class='op'>&gt;</span>;
-<span class='doccomment'>/// Deprecated; use N4</span>
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>NegFour</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>NegThree</span><span class='op'>&gt;</span>;
-<span class='doccomment'>/// Deprecated; use N5</span>
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>NegFive</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>NegFour</span><span class='op'>&gt;</span>;
-<span class='doccomment'>/// Deprecated; use N6</span>
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>NegSix</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>NegFive</span><span class='op'>&gt;</span>;
-<span class='doccomment'>/// Deprecated; use N7</span>
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>NegSeven</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>NegSix</span><span class='op'>&gt;</span>;
-<span class='doccomment'>/// Deprecated; use N8</span>
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>NegEight</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>NegSeven</span><span class='op'>&gt;</span>;
-<span class='doccomment'>/// Deprecated; use N9</span>
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>NegNine</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>NegEight</span><span class='op'>&gt;</span>;
-<span class='doccomment'>/// Deprecated</span>
-<span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>NegTen</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>NegNine</span><span class='op'>&gt;</span>;
 
 <span class='doccomment'>/// All numbers defined in this module belong to the **Peano** trait which should not be implemented for anything else.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Peano</span> {}
@@ -758,21 +674,21 @@ purposes. What is important and generally used is the associated type `Output`.
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Lhs</span>, <span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='ident'>DivPrivate</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span>
     <span class='kw'>where</span> <span class='ident'>Lhs</span>: <span class='ident'>NonNeg</span>, <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span>: <span class='ident'>DivPrivate</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span> <span class='op'>+</span> <span class='ident'>Sub</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span>, <span class='ident'>Rhs</span>: <span class='ident'>NonNeg</span> {
         <span class='comment'>// Lhs / Rhs = 1 + (Lhs - Rhs) / Rhs</span>
-        <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>One</span> <span class='kw'>as</span> <span class='ident'>Add</span><span class='op'>&lt;&lt;</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span> <span class='kw'>as</span> <span class='ident'>Sub</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>DivPrivate</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
+        <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>P1</span> <span class='kw'>as</span> <span class='ident'>Add</span><span class='op'>&lt;&lt;</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span> <span class='kw'>as</span> <span class='ident'>Sub</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>DivPrivate</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
 }
 <span class='comment'>// Dividing a positive integer by a negative integer (e.g. 4 / -2)</span>
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Lhs</span>, <span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='ident'>DivPrivate</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span>
     <span class='kw'>where</span> <span class='ident'>Lhs</span>: <span class='ident'>NonNeg</span>, <span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span>: <span class='ident'>DivPrivate</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span> <span class='op'>+</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span>, <span class='ident'>Rhs</span>: <span class='ident'>NonPos</span> {
         <span class='comment'>// Lhs / Rhs = -1 + (Lhs + Rhs) / Rhs</span>
-        <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>NegOne</span> <span class='kw'>as</span> <span class='ident'>Add</span><span class='op'>&lt;&lt;</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span> <span class='kw'>as</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>DivPrivate</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
+        <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>N1</span> <span class='kw'>as</span> <span class='ident'>Add</span><span class='op'>&lt;&lt;</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span> <span class='kw'>as</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>DivPrivate</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
     }
 
 <span class='doccomment'>/// `Same` is used to ensure that two types are the same. Its `Output` should be that type.</span>
 <span class='doccomment'>/// # Example:</span>
 <span class='doccomment'>/// ```</span>
-<span class='doccomment'>/// use dimensioned::peano::{Succ, One, Two, Same, ToInt};</span>
+<span class='doccomment'>/// use dimensioned::peano::{Succ, P1, P2, Same, ToInt};</span>
 <span class='doccomment'>///</span>
-<span class='doccomment'>/// assert_eq!(2, &lt;&lt;Succ&lt;One&gt; as Same&lt;Two&gt;&gt;::Output as ToInt&gt;::to_int());</span>
+<span class='doccomment'>/// assert_eq!(2, &lt;&lt;Succ&lt;P1&gt; as Same&lt;P2&gt;&gt;::Output as ToInt&gt;::to_int());</span>
 <span class='doccomment'>/// ```</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Same</span><span class='op'>&lt;</span><span class='ident'>Rhs</span> <span class='op'>=</span> <span class='kw'>Self</span><span class='op'>&gt;</span> {
     <span class='doccomment'>/// `Output` should always be `Self`</span>
@@ -792,9 +708,9 @@ purposes. What is important and generally used is the associated type `Output`.
 <span class='doccomment'>/// Once Rust implements associated constants, an associated constant will replace the function `to_int()`.</span>
 <span class='doccomment'>/// # Example:</span>
 <span class='doccomment'>/// ```</span>
-<span class='doccomment'>/// use dimensioned::peano::{Two, ToInt};</span>
+<span class='doccomment'>/// use dimensioned::peano::{P2, ToInt};</span>
 <span class='doccomment'>///</span>
-<span class='doccomment'>/// assert_eq!(2, &lt;Two as ToInt&gt;::to_int());</span>
+<span class='doccomment'>/// assert_eq!(2, &lt;P2 as ToInt&gt;::to_int());</span>
 <span class='doccomment'>/// ```</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>ToInt</span>: <span class='ident'>Peano</span> {
     <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>

@@ -45,14 +45,16 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-1534' class='srclink' href='../../src/dimensioned/dimensioned.rs.html#1-467' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1454' class='srclink' href='../../src/dimensioned/dimensioned.rs.html#1-544' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>This module allows dimensioned to be very flexible. It creates the <code>Dim&lt;D, V&gt;</code> type,
-which is the type that will be used with all dimensionful objects. It then implements as
+which is the type that will be used for all dimensioned objects. It then implements as
 many traits from <code>std</code> as generically as possible.</p>
 
-<p><strong>dimensioned</strong> creates many traits, the majority of which are used for type level
-**arithmetic and should not be implemented for any objects outside this library.</p>
-</div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<p>Among the included traits in <strong>dimensioned</strong>, there are a few that are used solely to
+aid in generic programming and should not be implemented for anything outside this
+module. They are <code>Dimension</code>, <code>Dimensionless</code>, <code>NotDim</code>, and <code>DimToString</code>.</p>
+</div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
+<table><tr><td><code>pub use peano::{<a class='trait' href='../../dimensioned/peano/trait.Same.html' title='dimensioned::peano::Same'>Same</a>, <a class='struct' href='../../dimensioned/peano/struct.Zero.html' title='dimensioned::peano::Zero'>Zero</a>};</code></td></tr><tr><td><code>pub use peano::{<a class='type' href='../../dimensioned/peano/type.P1.html' title='dimensioned::peano::P1'>P1</a>, <a class='type' href='../../dimensioned/peano/type.P2.html' title='dimensioned::peano::P2'>P2</a>, <a class='type' href='../../dimensioned/peano/type.P3.html' title='dimensioned::peano::P3'>P3</a>, <a class='type' href='../../dimensioned/peano/type.P4.html' title='dimensioned::peano::P4'>P4</a>, <a class='type' href='../../dimensioned/peano/type.P5.html' title='dimensioned::peano::P5'>P5</a>, <a class='type' href='../../dimensioned/peano/type.P6.html' title='dimensioned::peano::P6'>P6</a>, <a class='type' href='../../dimensioned/peano/type.P7.html' title='dimensioned::peano::P7'>P7</a>, <a class='type' href='../../dimensioned/peano/type.P8.html' title='dimensioned::peano::P8'>P8</a>, <a class='type' href='../../dimensioned/peano/type.P9.html' title='dimensioned::peano::P9'>P9</a>};</code></td></tr><tr><td><code>pub use peano::{<a class='type' href='../../dimensioned/peano/type.N1.html' title='dimensioned::peano::N1'>N1</a>, <a class='type' href='../../dimensioned/peano/type.N2.html' title='dimensioned::peano::N2'>N2</a>, <a class='type' href='../../dimensioned/peano/type.N3.html' title='dimensioned::peano::N3'>N3</a>, <a class='type' href='../../dimensioned/peano/type.N4.html' title='dimensioned::peano::N4'>N4</a>, <a class='type' href='../../dimensioned/peano/type.N5.html' title='dimensioned::peano::N5'>N5</a>, <a class='type' href='../../dimensioned/peano/type.N6.html' title='dimensioned::peano::N6'>N6</a>, <a class='type' href='../../dimensioned/peano/type.N7.html' title='dimensioned::peano::N7'>N7</a>, <a class='type' href='../../dimensioned/peano/type.N8.html' title='dimensioned::peano::N8'>N8</a>, <a class='type' href='../../dimensioned/peano/type.N9.html' title='dimensioned::peano::N9'>N9</a>};</code></td></tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
                     <tr class=' module-item'>
                         <td><a class='struct' href='struct.Dim.html'
@@ -68,8 +70,7 @@ many traits from <code>std</code> as generically as possible.</p>
                         <td><a class='trait' href='trait.Cbrt.html'
                                title='dimensioned::dimensioned::Cbrt'>Cbrt</a></td>
                         <td class='docblock short'>
-                             <p>Because it would not make sense to implement <code>Float</code> for <code>Dim&lt;D, V&gt;</code>, we create a
-special <code>Cbrt</code> trait. We then implement it for <code>Dim&lt;D, V&gt;</code> where <code>V: Float</code></p>
+                             <p>Trait for implementing a cbrt() member for types that don&#39;t impl Float.</p>
 
                         </td>
                     </tr>
@@ -78,8 +79,7 @@ special <code>Cbrt</code> trait. We then implement it for <code>Dim&lt;D, V&gt;<
                         <td><a class='trait' href='trait.DimToString.html'
                                title='dimensioned::dimensioned::DimToString'>DimToString</a></td>
                         <td class='docblock short'>
-                             <p>This trait gives a human-friendly representation of a dimensioned object. It is
-useful for printing and debugging.</p>
+                             <p>This trait allows human-friendly printing of dimensioned objects.</p>
 
                         </td>
                     </tr>
@@ -88,7 +88,8 @@ useful for printing and debugging.</p>
                         <td><a class='trait' href='trait.Dimension.html'
                                title='dimensioned::dimensioned::Dimension'>Dimension</a></td>
                         <td class='docblock short'>
-                             <p>All types created for a unit system will implement this trait.</p>
+                             <p>All types created for a unit system will implement this trait. No other types should
+implement it.</p>
 
                         </td>
                     </tr>
@@ -105,49 +106,11 @@ dimension.</p>
                     </tr>
                 
                     <tr class=' module-item'>
-                        <td><a class='trait' href='trait.DivDim.html'
-                               title='dimensioned::dimensioned::DivDim'>DivDim</a></td>
-                        <td class='docblock short'>
-                             <p>This trait allows us to divide two dimensioned objects</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='trait' href='trait.InvertDim.html'
-                               title='dimensioned::dimensioned::InvertDim'>InvertDim</a></td>
-                        <td class='docblock short'>
-                             <p>This trait inverts the dimensions of an object. For example, it takes seconds to hertz.</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='trait' href='trait.KeepDim.html'
-                               title='dimensioned::dimensioned::KeepDim'>KeepDim</a></td>
-                        <td class='docblock short'>
-                             <p>This trait enforces that <code>Self</code> and <code>RHS</code> have the same dimensions. It is useful
-mostly for macros.</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='trait' href='trait.MulDim.html'
-                               title='dimensioned::dimensioned::MulDim'>MulDim</a></td>
-                        <td class='docblock short'>
-                             <p>This trait allows us to multiply two dimensioned objects</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
                         <td><a class='trait' href='trait.NotDim.html'
                                title='dimensioned::dimensioned::NotDim'>NotDim</a></td>
                         <td class='docblock short'>
-                             <p>This traits is implemented by default for everything that is not Dim<D, V>. It
-allows a greater level of generic operator overloading than would be possible
-otherwise.</p>
+                             <p>This trait is implemented by default for everything that is not Dim<D, V>. It allows a
+greater level of generic operator overloading than would be possible otherwise.</p>
 
                         </td>
                     </tr>
@@ -156,19 +119,17 @@ otherwise.</p>
                         <td><a class='trait' href='trait.Pow.html'
                                title='dimensioned::dimensioned::Pow'>Pow</a></td>
                         <td class='docblock short'>
-                             <p>Generic integer powers using peano numbers.
-No other types should implement it.
-Example:
-<code>let x = 2.0*m; assert_eq!(x*x, Two::pow(x));</code></p>
+                             <p>Trait for implementing general integer powers for types that don&#39;t impl Float. Uses
+Peano numbers to specify the exponent.</p>
 
                         </td>
                     </tr>
                 
                     <tr class=' module-item'>
-                        <td><a class='trait' href='trait.PowerDim.html'
-                               title='dimensioned::dimensioned::PowerDim'>PowerDim</a></td>
+                        <td><a class='trait' href='trait.Recip.html'
+                               title='dimensioned::dimensioned::Recip'>Recip</a></td>
                         <td class='docblock short'>
-                             <p>This trait allows us to take a dimensioned object to a power given by a peano number</p>
+                             <p>Trait for implementing a recip() member for types that don&#39;t impl Float.</p>
 
                         </td>
                     </tr>
@@ -177,24 +138,8 @@ Example:
                         <td><a class='trait' href='trait.Root.html'
                                title='dimensioned::dimensioned::Root'>Root</a></td>
                         <td class='docblock short'>
-                             <p>Generic roots using peano numbers.
-No other types should implement it.</p>
-
-<h1 id="example" class='section-header'><a
-                           href="#example">Example</a></h1><pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>dimensioned</span>::<span class='ident'>si</span>::<span class='ident'>m</span>;
-<span class='kw'>use</span> <span class='ident'>dimensioned</span>::<span class='ident'>Root</span>;
-<span class='kw'>use</span> <span class='ident'>dimensioned</span>::<span class='ident'>peano</span>::<span class='ident'>Two</span>;
-</pre>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='trait' href='trait.RootDim.html'
-                               title='dimensioned::dimensioned::RootDim'>RootDim</a></td>
-                        <td class='docblock short'>
-                             <p>This trait allows us to take a root, given by a peano number, of a dimensioned object</p>
+                             <p>Trait for implementing general integer roots for types that don&#39;t impl Float. Uses Peano
+numbers to specify the degree.</p>
 
                         </td>
                     </tr>
@@ -203,8 +148,7 @@ No other types should implement it.</p>
                         <td><a class='trait' href='trait.Sqrt.html'
                                title='dimensioned::dimensioned::Sqrt'>Sqrt</a></td>
                         <td class='docblock short'>
-                             <p>Because it would not make sense to implement <code>Float</code> for <code>Dim&lt;D, V&gt;</code>, we create a
-special <code>Sqrt</code> trait. We then implement it for <code>Dim&lt;D, V&gt;</code> where <code>V: Float</code></p>
+                             <p>Trait for implementing a sqrt() member for types that don&#39;t impl Float.</p>
 
                         </td>
                     </tr>

@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-6' class='srclink' href='../../src/dimensioned/peano.rs.html#1-384' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-6' class='srclink' href='../../src/dimensioned/peano.rs.html#1-342' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>Peano numbers allow us to do arithmetic at compile time using Rust&#39;s type system.</p>
 
 <p>This module should not require much (if any) direct interaction from users of <strong>dimensioned</strong>.</p>
@@ -78,12 +78,12 @@ with the associated type acting as the result of the computation.</p>
 
 <h1 id="example" class='section-header'><a
                            href="#example">Example</a></h1><pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>dimensioned</span>::<span class='ident'>peano</span>::{<span class='ident'>Two</span>, <span class='ident'>Three</span>, <span class='ident'>Four</span>, <span class='ident'>ToInt</span>};
+<span class='kw'>use</span> <span class='ident'>dimensioned</span>::<span class='ident'>peano</span>::{<span class='ident'>P2</span>, <span class='ident'>P3</span>, <span class='ident'>P4</span>, <span class='ident'>ToInt</span>};
 <span class='comment'>// 2 + 3 == 5</span>
-<span class='macro'>assert_eq</span><span class='macro'>!</span>( <span class='number'>5</span>, <span class='op'>&lt;&lt;</span><span class='ident'>Two</span> <span class='kw'>as</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>Three</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>ToInt</span><span class='op'>&gt;</span>::<span class='ident'>to_int</span>() );
+<span class='macro'>assert_eq</span><span class='macro'>!</span>( <span class='number'>5</span>, <span class='op'>&lt;&lt;</span><span class='ident'>P2</span> <span class='kw'>as</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>P3</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>ToInt</span><span class='op'>&gt;</span>::<span class='ident'>to_int</span>() );
 
 <span class='comment'>// 4 / 2 == 2</span>
-<span class='macro'>assert_eq</span><span class='macro'>!</span>( <span class='number'>2</span>, <span class='op'>&lt;&lt;</span><span class='ident'>Four</span> <span class='kw'>as</span> <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>Two</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>ToInt</span><span class='op'>&gt;</span>::<span class='ident'>to_int</span>() );
+<span class='macro'>assert_eq</span><span class='macro'>!</span>( <span class='number'>2</span>, <span class='op'>&lt;&lt;</span><span class='ident'>P4</span> <span class='kw'>as</span> <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>P2</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>ToInt</span><span class='op'>&gt;</span>::<span class='ident'>to_int</span>() );
 </pre>
 
 <p>Note that the <code>ToInt</code> trait here is only used to get an integer output; it is the only
@@ -163,7 +163,7 @@ purposes. What is important and generally used is the associated type <code>Outp
 
 <h1 id="example:" class='section-header'><a
                            href="#example:">Example:</a></h1><pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>dimensioned</span>::<span class='ident'>peano</span>::{<span class='ident'>Succ</span>, <span class='ident'>One</span>, <span class='ident'>Two</span>, <span class='ident'>Same</span>, <span class='ident'>ToInt</span>};
+<span class='kw'>use</span> <span class='ident'>dimensioned</span>::<span class='ident'>peano</span>::{<span class='ident'>Succ</span>, <span class='ident'>P1</span>, <span class='ident'>P2</span>, <span class='ident'>Same</span>, <span class='ident'>ToInt</span>};
 </pre>
 
                         </td>
@@ -179,33 +179,6 @@ purposes. What is important and generally used is the associated type <code>Outp
                     </tr>
                 </table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
 <table>
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.Eight.html'
-                               title='dimensioned::peano::Eight'>Eight</a></td>
-                        <td class='docblock short'>
-                             <p>Deprecated; use P8</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.Five.html'
-                               title='dimensioned::peano::Five'>Five</a></td>
-                        <td class='docblock short'>
-                             <p>Deprecated; use P5</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.Four.html'
-                               title='dimensioned::peano::Four'>Four</a></td>
-                        <td class='docblock short'>
-                             <p>Deprecated; use P4</p>
-
-                        </td>
-                    </tr>
-                
                     <tr class=' module-item'>
                         <td><a class='type' href='type.N1.html'
                                title='dimensioned::peano::N1'>N1</a></td>
@@ -288,114 +261,6 @@ purposes. What is important and generally used is the associated type <code>Outp
                     </tr>
                 
                     <tr class=' module-item'>
-                        <td><a class='type' href='type.NegEight.html'
-                               title='dimensioned::peano::NegEight'>NegEight</a></td>
-                        <td class='docblock short'>
-                             <p>Deprecated; use N8</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.NegFive.html'
-                               title='dimensioned::peano::NegFive'>NegFive</a></td>
-                        <td class='docblock short'>
-                             <p>Deprecated; use N5</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.NegFour.html'
-                               title='dimensioned::peano::NegFour'>NegFour</a></td>
-                        <td class='docblock short'>
-                             <p>Deprecated; use N4</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.NegNine.html'
-                               title='dimensioned::peano::NegNine'>NegNine</a></td>
-                        <td class='docblock short'>
-                             <p>Deprecated; use N9</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.NegOne.html'
-                               title='dimensioned::peano::NegOne'>NegOne</a></td>
-                        <td class='docblock short'>
-                             <p>Deprecated; use N1</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.NegSeven.html'
-                               title='dimensioned::peano::NegSeven'>NegSeven</a></td>
-                        <td class='docblock short'>
-                             <p>Deprecated; use N7</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.NegSix.html'
-                               title='dimensioned::peano::NegSix'>NegSix</a></td>
-                        <td class='docblock short'>
-                             <p>Deprecated; use N6</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.NegTen.html'
-                               title='dimensioned::peano::NegTen'>NegTen</a></td>
-                        <td class='docblock short'>
-                             <p>Deprecated</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.NegThree.html'
-                               title='dimensioned::peano::NegThree'>NegThree</a></td>
-                        <td class='docblock short'>
-                             <p>Deprecated; use N3</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.NegTwo.html'
-                               title='dimensioned::peano::NegTwo'>NegTwo</a></td>
-                        <td class='docblock short'>
-                             <p>Deprecated; use N2</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.Nine.html'
-                               title='dimensioned::peano::Nine'>Nine</a></td>
-                        <td class='docblock short'>
-                             <p>Deprecated; use P9</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.One.html'
-                               title='dimensioned::peano::One'>One</a></td>
-                        <td class='docblock short'>
-                             <p>Deprecated; use P1</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
                         <td><a class='type' href='type.P1.html'
                                title='dimensioned::peano::P1'>P1</a></td>
                         <td class='docblock short'>
@@ -472,51 +337,6 @@ purposes. What is important and generally used is the associated type <code>Outp
                                title='dimensioned::peano::P9'>P9</a></td>
                         <td class='docblock short'>
                              <p>The Peano number +9; <code>P9 = Succ&lt;P8&gt;;</code></p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.Seven.html'
-                               title='dimensioned::peano::Seven'>Seven</a></td>
-                        <td class='docblock short'>
-                             <p>Deprecated; use P7</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.Six.html'
-                               title='dimensioned::peano::Six'>Six</a></td>
-                        <td class='docblock short'>
-                             <p>Deprecated; use P6</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.Ten.html'
-                               title='dimensioned::peano::Ten'>Ten</a></td>
-                        <td class='docblock short'>
-                             <p>Deprecated</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.Three.html'
-                               title='dimensioned::peano::Three'>Three</a></td>
-                        <td class='docblock short'>
-                             <p>Deprecated; use P3</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='type' href='type.Two.html'
-                               title='dimensioned::peano::Two'>Two</a></td>
-                        <td class='docblock short'>
-                             <p>Deprecated; use P2</p>
 
                         </td>
                     </tr>

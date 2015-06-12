@@ -45,23 +45,32 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-1717' class='srclink' href='../../src/dimensioned/dimensioned.rs.html#89-94' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1648' class='srclink' href='../../src/dimensioned/dimensioned.rs.html#105-121' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait Sqrt {
     type Output;
     fn <a href='#tymethod.sqrt' class='fnname'>sqrt</a>(self) -&gt; Self::<a class='trait' href='../../dimensioned/dimensioned/trait.Sqrt.html' title='dimensioned::dimensioned::Sqrt'>Output</a>;
-}</pre><div class='docblock'><p>Because it would not make sense to implement <code>Float</code> for <code>Dim&lt;D, V&gt;</code>, we create a
-special <code>Sqrt</code> trait. We then implement it for <code>Dim&lt;D, V&gt;</code> where <code>V: Float</code></p>
+}</pre><div class='docblock'><p>Trait for implementing a sqrt() member for types that don&#39;t impl Float.</p>
 </div>
             <h2 id='associated-types'>Associated Types</h2>
             <div class='methods'>
         <h3 id='associatedtype.Output' class='method stab '><code>type Output</code></h3></div>
             <h2 id='required-methods'>Required Methods</h2>
             <div class='methods'>
-        <h3 id='tymethod.sqrt' class='method stab '><code>fn <a href='#tymethod.sqrt' class='fnname'>sqrt</a>(self) -&gt; Self::<a class='trait' href='../../dimensioned/dimensioned/trait.Sqrt.html' title='dimensioned::dimensioned::Sqrt'>Output</a></code></h3><div class='docblock'><p>Take the square root of a dimensioned object</p>
+        <h3 id='tymethod.sqrt' class='method stab '><code>fn <a href='#tymethod.sqrt' class='fnname'>sqrt</a>(self) -&gt; Self::<a class='trait' href='../../dimensioned/dimensioned/trait.Sqrt.html' title='dimensioned::dimensioned::Sqrt'>Output</a></code></h3><div class='docblock'><p>Take a square root.</p>
+
+<h1 id="example" class='section-header'><a
+                           href="#example">Example</a></h1><pre class='rust rust-example-rendered'>
+<span class='kw'>use</span> <span class='ident'>dimensioned</span>::<span class='ident'>si</span>::<span class='ident'>m</span>;
+<span class='kw'>use</span> <span class='ident'>dimensioned</span>::<span class='ident'>Sqrt</span>;
+
+<span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='number'>2.0</span><span class='op'>*</span><span class='ident'>m</span>;
+<span class='kw'>let</span> <span class='ident'>y</span> <span class='op'>=</span> <span class='number'>4.0</span><span class='op'>*</span><span class='ident'>m</span><span class='op'>*</span><span class='ident'>m</span>;
+<span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='ident'>x</span>, <span class='ident'>y</span>.<span class='ident'>sqrt</span>());
+</pre>
 </div></div>
         <h2 id='implementors'>Implementors</h2>
         <ul class='item-list' id='implementors-list'>
-    <li><code>impl&lt;D, V&gt; <a class='trait' href='../../dimensioned/dimensioned/trait.Sqrt.html' title='dimensioned::dimensioned::Sqrt'>Sqrt</a> for <a class='struct' href='../../dimensioned/dimensioned/struct.Dim.html' title='dimensioned::dimensioned::Dim'>Dim</a>&lt;D, V&gt; <span class='where'>where D: <a class='trait' href='../../dimensioned/dimensioned/trait.RootDim.html' title='dimensioned::dimensioned::RootDim'>RootDim</a>&lt;<a class='type' href='../../dimensioned/peano/type.Two.html' title='dimensioned::peano::Two'>Two</a>&gt;, V: <a class='trait' href='../../num/traits/trait.Float.html' title='num::traits::Float'>Float</a>, D::Output: <a class='trait' href='../../dimensioned/dimensioned/trait.Dimension.html' title='dimensioned::dimensioned::Dimension'>Dimension</a></span></code></li>
+    <li><code>impl&lt;D, V&gt; <a class='trait' href='../../dimensioned/dimensioned/trait.Sqrt.html' title='dimensioned::dimensioned::Sqrt'>Sqrt</a> for <a class='struct' href='../../dimensioned/dimensioned/struct.Dim.html' title='dimensioned::dimensioned::Dim'>Dim</a>&lt;D, V&gt; <span class='where'>where D: <a class='trait' href='../../dimensioned/dimensioned/trait.Dimension.html' title='dimensioned::dimensioned::Dimension'>Dimension</a> + <a class='trait' href='../../dimensioned/dimensioned/trait.Root.html' title='dimensioned::dimensioned::Root'>Root</a>&lt;<a class='type' href='../../dimensioned/peano/type.P2.html' title='dimensioned::peano::P2'>P2</a>&gt;, V: <a class='trait' href='../../num/traits/trait.Float.html' title='num::traits::Float'>Float</a>, D::Output: <a class='trait' href='../../dimensioned/dimensioned/trait.Dimension.html' title='dimensioned::dimensioned::Dimension'>Dimension</a></span></code></li>
 </ul><script type="text/javascript" async
                               src="../../implementors/dimensioned/dimensioned/trait.Sqrt.js">
                       </script></section>
