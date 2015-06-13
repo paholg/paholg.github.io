@@ -27,7 +27,11 @@ If you'd rather look at code than read all this, you can.
 First, we define a basic `Vector3` that only uses `f64`. It is defined as
 follows:
 
-```rust
+```prelude
+# #[macro_use]
+# extern crate dimensioned;
+# use dimensioned::{Dim};
+# use dimensioned::si::{Unitless};
 #[derive(Copy, Clone, PartialEq, PartialOrd)]
 struct Vector3 {
     x: f64,
@@ -64,8 +68,7 @@ division are defined. You can view the full implementation as well as a full exa
 Now, let us use it with dimensioned. First, let's import the constants that we care
 about.
 
-```rust
-extern crate dimensioned;
+```prelude
 use dimensioned::si::{one, m, kg, s};
 ```
 
@@ -74,7 +77,7 @@ We could also create our own unit system, but SI will serve our purposes fine.
 In order to use the unit system with `Vector3`, we will work with objects of type `Dim<D, Vector3>`, which we can
 most easily create with
 
-```rust
+```main
 let xhat = one * Vector3::new(1.0, 0.0, 0.0);
 ```
 
@@ -82,9 +85,10 @@ The variable `xhat` now has type `Dim<Unitless, Vector3>`. Note that this line r
 a couple things. First, `Vector3` must have implemented multiplication for scalars on the
 left hand side, as follows:
 
-```rust
+```prelude
 impl Mul<Vector3> for f64 {
-    ...
+    type Output = Vector3;
+    fn mul(self, rhs: Vector3) -> Vector3 { Vector3::new() }
 }
 ```
 
@@ -96,14 +100,14 @@ non-abusable way.
 
 Alternatively, we could define `xhat` with
 
-```rust
-let xhat: Dim<Unitless, Vector3> = Dim::new(Vector3::new(1.0, 0.0, 0.0));
+```main
+let yhat: Dim<Unitless, Vector3> = Dim::new(Vector3::new(0.0, 1.0, 0.0));
 ```
 
 Now that we have `xhat`, we can multiply, divide, add, and subtract with no extra
 work. Assuming we have similarly defined `yhat`, we can do all of
 
-```rust
+```ignore
 3.0*m*xhat + m*yhat;
 13.0*m*xhat;
 2.0*xhat/s;
@@ -112,7 +116,7 @@ work. Assuming we have similarly defined `yhat`, we can do all of
 and more. The only difficulty now is calling member functions of `Vector3`. We have a
 few options. One way is to use `map`:
 
-```rust
+```ignore
 let a = 3.0*m*xhat + 4.0*m*yhat;
 let b = x.map(Vector3::norm); // type Dim<Meter, f64> with value 5.0
 ```
@@ -123,13 +127,13 @@ We may end up calling `norm()` a bunch, and it would be nice to do so with
 There are a couple helper macros that can make
 member functions of type `T` usable by `Dim<D, T>`. For norm, we could add this line:
 
-```rust
+```ignore
 dim_impl_unary!(Norm, norm, KeepDim, Vector3 => f64);
 ```
 
 which expands to this:
 
-```rust
+```ignore
 pub trait Norm {
     type Output;
     fn norm(self) -> Self::Output;
@@ -163,7 +167,7 @@ operator on dimensions. Available "operator traits" are
 There is also a macro for member functions that take a single argument. We can implement
 dot and cross products like so
 
-```rust
+```ignore
 dim_impl_binary!(Dot, dot, MulDim, Vector3 => f64);
 dim_impl_binary!(Cross, cross, MulDim, Vector3 => Vector3);
 ```

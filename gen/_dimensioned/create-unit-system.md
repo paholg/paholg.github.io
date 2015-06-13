@@ -37,7 +37,7 @@ fn main() {
 ```
 There's a little bit going on here, so let's take a look. The first line,
 
-```rust
+```ignore
 Fruit, Unitless, one;
 ```
 
@@ -52,7 +52,7 @@ extern crate dimensioned;
 
 Then, the `base` block is used to define the base units of the system. The line
 
-```rust
+```ignore
 Apple, apple, a;
 ```
 
@@ -60,7 +60,7 @@ defines the type `Apple`, the corresponding constant `apple` (which also has a v
 `1.0`), and will use the token "a" for printing things of `Apple` type. The type
 signature of `apple` is
 
-```rust
+```ignore
 Dim<Apple, f64>
 ```
 
@@ -70,7 +70,21 @@ probably never want to use `Apple` by itself.
 
 Note that `Apple` is just a convenient name for the full type signature, which is given by
 
-```rust
+```ignore
+# extern crate dimensioned;
+# use dimensioned::{P1, Zero};
+# make_units!{
+#    Fruit, Unitless, one;
+#    base {
+#        Apple, apple, a;
+#        Banana, banana, b;
+#        Cucumber, cuke, c;
+#        Mango, mango, m;
+#        Watermelon, watermelon, w;
+#    }
+#    derived {
+#    }
+# }
 
 type Apple = Fruit<P1, Zero, Zero, Zero, Zero>;
 ```
@@ -81,7 +95,7 @@ messages, so it's good to be aware of it.
 The derived block is currently a placeholder, but will used for naming types and
 creating constants for derived units. Here is an example of the intended syntax for when it's implemented,
 
-```rust
+```ignore
 newton: Newton = Kilogram * Meter / Second / Second;
 ```
 
@@ -94,7 +108,8 @@ If you want a bit more flexibility when creating a unit system, there is a secon
 with a few more options. Here is its use in defining the
 [CGS](https://github.com/paholg/dimensioned/blob/master/src/cgs.rs) system:
 
-```rust
+```ignore
+# extern crate dimensioned;
 make_units_adv! {
     CGS, Unitless, one, f64, 1.0;
     base {
@@ -119,7 +134,7 @@ are well-defined, useful units, so a `P2` is used for each of them.
 The numbers used are from the `peano` module, and you may use anything from `P1` to
 `P9`. If for some reason you need something higher, you can define it as so:
 
-```rust
+```ignore
 extern crate dimensioned;
 use dimensioned::{P9, Succ};
 

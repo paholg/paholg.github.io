@@ -1,0 +1,10 @@
+[package]
+  name = "gen"
+  version = "0.1.0"
+  include = ["_*/examples/*.rs"]
+
+[lib]
+  name = "gen"
+
+[dependencies.dimensioned]
+  path = "/home/paho/projects/dimensioned/"
