@@ -20,7 +20,7 @@
 
     <nav class="sidebar-nav">
       {% for pg in collection[1].docs %}
-      {% unless pg.title == "Home" %}
+      {% unless pg.title == "Home" or pg.url contains "examples/" %}
       <a class="sidebar-nav-item" href="{{ pg.url }}"> {{ pg.title }} </a>
       {% if page == pg %}
       {% for item in pg.nav %}

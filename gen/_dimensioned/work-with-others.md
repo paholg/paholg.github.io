@@ -3,7 +3,6 @@ title: Work with other types
 layout: project
 project: dimensioned
 nav: [[Example A, ExampleA], [Example B, ExampleB], [Example C, ExampleC]]
-date: 2015-6-12
 ---
 
 One goal of dimensioned is to be usable anywhere one might wish as effortlessly as
@@ -17,6 +16,11 @@ computations.
 
 ### <a name="ExampleA"></a> Example A - Working with a type that expects primitives
 
+#---vector-ex-a.md
+title: Example A
+layout: project
+project: dimensioned
+---#
 
 If you'd rather look at code than read all this, you can.
 
@@ -30,10 +34,11 @@ follows:
 ```prelude
 # #[macro_use]
 # extern crate dimensioned;
+# use std::ops::{Mul};
 # use dimensioned::{Dim};
 # use dimensioned::si::{Unitless};
 #[derive(Copy, Clone, PartialEq, PartialOrd)]
-struct Vector3 {
+pub struct Vector3 {
     x: f64,
     y: f64,
     z: f64,
@@ -88,7 +93,7 @@ left hand side, as follows:
 ```prelude
 impl Mul<Vector3> for f64 {
     type Output = Vector3;
-    fn mul(self, rhs: Vector3) -> Vector3 { Vector3::new() }
+    fn mul(self, rhs: Vector3) -> Vector3 { Vector3::new(self*rhs.x, self*rhs.y, self*rhs.z) }
 }
 ```
 

@@ -3,8 +3,8 @@ title: Library stability
 layout: project
 project: dimensioned
 nav: [[Planned features, planned], [Rust unstable, rustunstable]]
-date: 2015-6-11
 ---
+
 
 There are two sides to this; dimensioned is still undergoing breaking changes and it
 relies on features of unstable Rust.

@@ -3,8 +3,13 @@ title: Create a unit system
 layout: project
 project: dimensioned
 nav: [[Basic macro, basic], [Advanced macro, advanced]]
-date: 2015-6-12
 ---
+
+#---create-units.md
+title: Creating a unit system
+layout: project
+project: dimensioned
+---#
 
 ### <a name = "basic"></a>Basic macro
 
@@ -12,29 +17,33 @@ In addition to supplying multiple unit systems for your use, dimensioned provide
 convenient macro for creating your own. Let us look at a brief
 [example](https://github.com/paholg/dimensioned/blob/master/examples/fruit.rs):
 
-```rust
+```prelude
 #[macro_use]
 extern crate dimensioned;
 
-make_units! {
-    Fruit, Unitless, one;
-    base {
-        Apple, apple, a;
-        Banana, banana, b;
-        Cucumber, cuke, c;
-        Mango, mango, m;
-        Watermelon, watermelon, w;
-    }
-    derived {
+mod fruit {
+    make_units! {
+        Fruit, Unitless, one;
+        base {
+            Apple, apple, a;
+            Banana, banana, b;
+            Cucumber, cuke, c;
+            Mango, mango, m;
+            Watermelon, watermelon, w;
+        }
+        derived {
+        }
     }
 }
-
-fn main() {
-    let fruit_salad = apple * banana * mango * mango * watermelon;
-    // prints "Mmmm, delicious: 1 a*b*m^2*w":
-    println!("Mmmm, delicious: {}", fruit_salad);
-}
+use fruit::{apple, banana, mango, watermelon};
 ```
+
+```main
+let fruit_salad = apple * banana * mango * mango * watermelon;
+// prints "Mmmm, delicious: 1 a*b*m^2*w":
+println!("Mmmm, delicious: {}", fruit_salad);
+```
+
 There's a little bit going on here, so let's take a look. The first line,
 
 ```ignore
@@ -44,10 +53,8 @@ Fruit, Unitless, one;
 names the unit system `Fruit` and creates the type `Unitless` representing a dimensioned
 type with no dimensions, and the corresponding constant `one`, defined as
 
-```rust
-extern crate dimensioned;
-// use dimensioned;
-// pub const one: Dim<Unitless, f64> = Dim::new(1.0);
+```ignore
+pub const one: Dim<Unitless, f64> = Dim::new(1.0);
 ```
 
 Then, the `base` block is used to define the base units of the system. The line
@@ -71,21 +78,6 @@ probably never want to use `Apple` by itself.
 Note that `Apple` is just a convenient name for the full type signature, which is given by
 
 ```ignore
-# extern crate dimensioned;
-# use dimensioned::{P1, Zero};
-# make_units!{
-#    Fruit, Unitless, one;
-#    base {
-#        Apple, apple, a;
-#        Banana, banana, b;
-#        Cucumber, cuke, c;
-#        Mango, mango, m;
-#        Watermelon, watermelon, w;
-#    }
-#    derived {
-#    }
-# }
-
 type Apple = Fruit<P1, Zero, Zero, Zero, Zero>;
 ```
 
@@ -96,10 +88,10 @@ The derived block is currently a placeholder, but will used for naming types and
 creating constants for derived units. Here is an example of the intended syntax for when it's implemented,
 
 ```ignore
-newton: Newton = Kilogram * Meter / Second / Second;
+mangana: Mangana = Mango * Banana;
 ```
 
-which creates the constant `newton` and type `Newton`.
+which creates the constant `managana` and type alias `Mangana`.
 
 ### <a name = "advanced"></a>Advanced macro
 
@@ -108,16 +100,17 @@ If you want a bit more flexibility when creating a unit system, there is a secon
 with a few more options. Here is its use in defining the
 [CGS](https://github.com/paholg/dimensioned/blob/master/src/cgs.rs) system:
 
-```ignore
-# extern crate dimensioned;
-make_units_adv! {
-    CGS, Unitless, one, f64, 1.0;
-    base {
-        P2, Centimeter, centimeter, cm;
-        P2, Gram, gram, g;
-        P1, Second, second, s;
-    }
-    derived {
+```prelude
+mod cgs {
+    make_units_adv! {
+        CGS, Unitless, one, f64, 1.0;
+        base {
+            P2, Centimeter, centimeter, cm;
+            P2, Gram, gram, g;
+            P1, Second, second, s;
+        }
+        derived {
+        }
     }
 }
 ```
@@ -134,8 +127,7 @@ are well-defined, useful units, so a `P2` is used for each of them.
 The numbers used are from the `peano` module, and you may use anything from `P1` to
 `P9`. If for some reason you need something higher, you can define it as so:
 
-```ignore
-extern crate dimensioned;
+```prelude
 use dimensioned::{P9, Succ};
 
 type P10 = Succ<P9>;

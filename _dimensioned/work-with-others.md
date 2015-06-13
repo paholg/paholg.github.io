@@ -3,7 +3,6 @@ title: Work with other types
 layout: project
 project: dimensioned
 nav: [[Example A, ExampleA], [Example B, ExampleB], [Example C, ExampleC]]
-date: 2015-6-12
 ---
 
 One goal of dimensioned is to be usable anywhere one might wish as effortlessly as
@@ -29,7 +28,7 @@ follows:
 
 ```rust
 #[derive(Copy, Clone, PartialEq, PartialOrd)]
-struct Vector3 {
+pub struct Vector3 {
     x: f64,
     y: f64,
     z: f64,
@@ -65,7 +64,6 @@ Now, let us use it with dimensioned. First, let's import the constants that we c
 about.
 
 ```rust
-extern crate dimensioned;
 use dimensioned::si::{one, m, kg, s};
 ```
 
@@ -84,7 +82,8 @@ left hand side, as follows:
 
 ```rust
 impl Mul<Vector3> for f64 {
-    ...
+    type Output = Vector3;
+    fn mul(self, rhs: Vector3) -> Vector3 { Vector3::new(self*rhs.x, self*rhs.y, self*rhs.z) }
 }
 ```
 
@@ -97,7 +96,7 @@ non-abusable way.
 Alternatively, we could define `xhat` with
 
 ```rust
-let xhat: Dim<Unitless, Vector3> = Dim::new(Vector3::new(1.0, 0.0, 0.0));
+let yhat: Dim<Unitless, Vector3> = Dim::new(Vector3::new(0.0, 1.0, 0.0));
 ```
 
 Now that we have `xhat`, we can multiply, divide, add, and subtract with no extra

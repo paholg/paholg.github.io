@@ -2,16 +2,23 @@
 title: Home
 layout: project
 project: dimensioned
-date: 2015-6-9
 ---
 
+#---home-ex.md
+title: Home examples
+layout: project
+project: dimensioned
+---#
 
-Note: This library is still unstable and undergoing breaking changes. It should mostly stabilize soon, but will likely depend on unstable Rust features for some time.
+Note: This library is still unstable and undergoing breaking changes. It should mostly
+stabilize soon, but will likely depend on unstable Rust features for some time.
 
 
 Dimensioned is a Rust library for compile-time type checking for arbitrary unit
-systems. It is on [crates.io](https://crates.io/crates/dimensioned) and can be imported
-with Cargo.
+systems.
 
-The page [Work with other types](work-with-others.html) illustrates its use; a more general
-example will be added here later.
+The best place to find out more about it is the documentation linked to on the sidebar.
+
+There are also some more in-depth tutorials, also on the sidebar. The code in the
+examples is tested against each version of dimensioned with `rustdoc --test` and so
+should remain up to date with the library.
