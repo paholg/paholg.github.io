@@ -663,6 +663,15 @@
 <span id="621">621</span>
 <span id="622">622</span>
 <span id="623">623</span>
+<span id="624">624</span>
+<span id="625">625</span>
+<span id="626">626</span>
+<span id="627">627</span>
+<span id="628">628</span>
+<span id="629">629</span>
+<span id="630">630</span>
+<span id="631">631</span>
+<span id="632">632</span>
 </pre><pre class='rust '>
 <span class='doccomment'>/*!
 This module allows dimensioned to be very flexible. It creates the `Dim&lt;D, V&gt;` type,
@@ -674,7 +683,7 @@ aid in generic programming and should not be implemented for anything outside th
 module. They are `Dimension`, `Dimensionless`, `NotDim`, and `DimToString`.
 */</span>
 
-<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>peano</span>::{<span class='ident'>Same</span>, <span class='ident'>Zero</span>};
+<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>peano</span>::{<span class='ident'>Same</span>, <span class='ident'>Zero</span>, <span class='ident'>Succ</span>, <span class='ident'>Pred</span>};
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>peano</span>::{<span class='ident'>P1</span>, <span class='ident'>P2</span>, <span class='ident'>P3</span>, <span class='ident'>P4</span>, <span class='ident'>P5</span>, <span class='ident'>P6</span>, <span class='ident'>P7</span>, <span class='ident'>P8</span>, <span class='ident'>P9</span>};
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>peano</span>::{<span class='ident'>N1</span>, <span class='ident'>N2</span>, <span class='ident'>N3</span>, <span class='ident'>N4</span>, <span class='ident'>N5</span>, <span class='ident'>N6</span>, <span class='ident'>N7</span>, <span class='ident'>N8</span>, <span class='ident'>N9</span>};
 
@@ -689,7 +698,8 @@ module. They are `Dimension`, `Dimensionless`, `NotDim`, and `DimToString`.
 <span class='doccomment'>/**
 All types created for a unit system will implement this trait. No other types should
 implement it.
-*/</span>
+ */</span>
+<span class='attribute'>#[<span class='ident'>doc</span>(<span class='ident'>hidden</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Dimension</span> {}
 
 <span class='doccomment'>/**
@@ -700,6 +710,7 @@ dimension.
 All types created for a unit system will implement this trait. No other types should
 implement it.
 */</span>
+<span class='attribute'>#[<span class='ident'>doc</span>(<span class='ident'>hidden</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Dimensionless</span>: <span class='ident'>Dimension</span> {}
 
 <span class='doccomment'>/**
@@ -708,6 +719,7 @@ This trait allows human-friendly printing of dimensioned objects.
 All types created for a unit system will implement this trait. No other types should
 implement it.
 */</span>
+<span class='attribute'>#[<span class='ident'>doc</span>(<span class='ident'>hidden</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>DimToString</span>: <span class='ident'>Dimension</span> {
     <span class='doccomment'>/// Gives a human friendly `String` representation of a `Dimension` type.</span>
     <span class='kw'>fn</span> <span class='ident'>to_string</span>() <span class='op'>-&gt;</span> <span class='ident'>String</span>;
@@ -763,11 +775,12 @@ implement it.
 This trait is implemented by default for everything that is not Dim&lt;D, V&gt;. It allows a
  greater level of generic operator overloading than would be possible otherwise.
 */</span>
+<span class='attribute'>#[<span class='ident'>doc</span>(<span class='ident'>hidden</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>NotDim</span> {}
 <span class='kw'>impl</span> <span class='ident'>NotDim</span> <span class='kw'>for</span> .. {}
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>D</span>: <span class='ident'>Dimension</span>, <span class='ident'>V</span><span class='op'>&gt;</span> <span class='op'>!</span><span class='ident'>NotDim</span> <span class='kw'>for</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> {}
 
-<span class='doccomment'>/// Trait for implementing a sqrt() member for types that don&#39;t impl Float.</span>
+<span class='doccomment'>/// **Sqrt** is used for implementing a `sqrt()` member for types that don&#39;t `impl Float`.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Sqrt</span> {
     <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
     <span class='kw'>type</span> <span class='ident'>Output</span>;
@@ -791,7 +804,8 @@ This trait is implemented by default for everything that is not Dim&lt;D, V&gt;.
     <span class='attribute'>#[<span class='ident'>inline</span>]</span>
     <span class='kw'>fn</span> <span class='ident'>sqrt</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='ident'>Dim</span>( (<span class='self'>self</span>.<span class='number'>0</span>).<span class='ident'>sqrt</span>(), <span class='ident'>PhantomData</span>) }
 }
-<span class='doccomment'>/// Trait for implementing a cbrt() member for types that don&#39;t impl Float.</span>
+
+<span class='doccomment'>/// **Cbrt** is used for implementing a `cbrt()` member for types that don&#39;t `impl Float`.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Cbrt</span> {
     <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
     <span class='kw'>type</span> <span class='ident'>Output</span>;
@@ -817,8 +831,10 @@ This trait is implemented by default for everything that is not Dim&lt;D, V&gt;.
 }
 
 <span class='doccomment'>/**
-Trait for implementing general integer roots for types that don&#39;t impl Float. Uses Peano
-numbers to specify the degree.
+**Root&lt;Radicand&gt;** is used for implementing general integer roots for types that don&#39;t
+`impl Float` and whose type signature changes when taking a root, such as `Dim&lt;D, V&gt;`.
+
+It uses Peano numbers to specify the degree.
 
 The syntax is a little bit weird and may be subject to change.
 */</span>
@@ -848,8 +864,10 @@ The syntax is a little bit weird and may be subject to change.
 }
 
 <span class='doccomment'>/**
-Trait for implementing general integer powers for types that don&#39;t impl Float. Uses
-Peano numbers to specify the exponent.
+**Pow&lt;Base&gt;** is used for implementing general integer powers for types that don&#39;t `impl
+Float` and whose type signature changes when multiplying, such as `Dim&lt;D, V&gt;`.
+
+It uses Peano numbers to specify the degree.
 
 The syntax is a little bit weird and may be subject to change.
 */</span>
@@ -876,7 +894,7 @@ The syntax is a little bit weird and may be subject to change.
     }
 }
 
-<span class='doccomment'>/// Trait for implementing a recip() member for types that don&#39;t impl Float.</span>
+<span class='doccomment'>/// **Recip** is used for implementing a `recip()` member for types that don&#39;t `impl Float`.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Recip</span> {
     <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
     <span class='kw'>type</span> <span class='ident'>Output</span>;

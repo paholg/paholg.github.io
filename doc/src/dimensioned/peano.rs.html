@@ -382,6 +382,11 @@
 <span id="340">340</span>
 <span id="341">341</span>
 <span id="342">342</span>
+<span id="343">343</span>
+<span id="344">344</span>
+<span id="345">345</span>
+<span id="346">346</span>
+<span id="347">347</span>
 </pre><pre class='rust '>
 <span class='doccomment'>/*!
 Peano numbers allow us to do arithmetic at compile time using Rust&#39;s type system.
@@ -491,8 +496,8 @@ purposes. What is important and generally used is the associated type `Output`.
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>N9</span> <span class='op'>=</span> <span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>N8</span><span class='op'>&gt;</span>;
 
 
-
-<span class='doccomment'>/// All numbers defined in this module belong to the **Peano** trait which should not be implemented for anything else.</span>
+<span class='doccomment'>/// All numbers defined in this module belong to the **Peano** trait. It should not be</span>
+<span class='doccomment'>/// implemented for anything else.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Peano</span> {}
 <span class='doccomment'>/// Implemented for all Peano numbers of the form `Succ&lt;M: NonNeg&gt;` or `Pred&lt;N: NonPos&gt;`.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>NonZero</span>: <span class='ident'>Peano</span> {}
@@ -683,13 +688,14 @@ purposes. What is important and generally used is the associated type `Output`.
         <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>N1</span> <span class='kw'>as</span> <span class='ident'>Add</span><span class='op'>&lt;&lt;</span><span class='op'>&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>Lhs</span><span class='op'>&gt;</span> <span class='kw'>as</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>DivPrivate</span><span class='op'>&lt;</span><span class='ident'>Pred</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>::<span class='ident'>Output</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
     }
 
-<span class='doccomment'>/// `Same` is used to ensure that two types are the same. Its `Output` should be that type.</span>
-<span class='doccomment'>/// # Example:</span>
-<span class='doccomment'>/// ```</span>
-<span class='doccomment'>/// use dimensioned::peano::{Succ, P1, P2, Same, ToInt};</span>
-<span class='doccomment'>///</span>
-<span class='doccomment'>/// assert_eq!(2, &lt;&lt;Succ&lt;P1&gt; as Same&lt;P2&gt;&gt;::Output as ToInt&gt;::to_int());</span>
-<span class='doccomment'>/// ```</span>
+<span class='doccomment'>/** `Same` is used to ensure that two types are the same. Its `Output` should be that type.
+# Example:
+```
+use dimensioned::peano::{Same, Succ, P1, P2, ToInt};
+
+assert_eq!(2, &lt;&lt;Succ&lt;P1&gt; as Same&lt;P2&gt;&gt;::Output as ToInt&gt;::to_int());
+```
+*/</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Same</span><span class='op'>&lt;</span><span class='ident'>Rhs</span> <span class='op'>=</span> <span class='kw'>Self</span><span class='op'>&gt;</span> {
     <span class='doccomment'>/// `Output` should always be `Self`</span>
     <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='kw'>Self</span>;
@@ -703,15 +709,19 @@ purposes. What is important and generally used is the associated type `Output`.
 <span class='comment'>// ToInt</span>
 <span class='comment'>// -------------------------------------------------------------------------------------</span>
 
-<span class='doccomment'>/// Convert a Peano number to the integer it represents.</span>
-<span class='doccomment'>///</span>
-<span class='doccomment'>/// Once Rust implements associated constants, an associated constant will replace the function `to_int()`.</span>
-<span class='doccomment'>/// # Example:</span>
-<span class='doccomment'>/// ```</span>
-<span class='doccomment'>/// use dimensioned::peano::{P2, ToInt};</span>
-<span class='doccomment'>///</span>
-<span class='doccomment'>/// assert_eq!(2, &lt;P2 as ToInt&gt;::to_int());</span>
-<span class='doccomment'>/// ```</span>
+<span class='doccomment'>/**
+Convert a Peano number to the integer it represents.
+
+Once Rust implements associated constants, an associated constant will replace the
+function `to_int()`.
+
+# Example:
+```
+use dimensioned::peano::{P2, ToInt};
+
+assert_eq!(2, &lt;P2 as ToInt&gt;::to_int());
+```
+*/</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>ToInt</span>: <span class='ident'>Peano</span> {
     <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>missing_docs</span>)]</span>
     <span class='kw'>fn</span> <span class='ident'>to_int</span>() <span class='op'>-&gt;</span> <span class='ident'>i32</span>;
