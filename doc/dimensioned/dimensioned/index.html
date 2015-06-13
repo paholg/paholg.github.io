@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-1454' class='srclink' href='../../src/dimensioned/dimensioned.rs.html#1-544' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1454' class='srclink' href='../../src/dimensioned/dimensioned.rs.html#1-553' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>This module allows dimensioned to be very flexible. It creates the <code>Dim&lt;D, V&gt;</code> type,
 which is the type that will be used for all dimensioned objects. It then implements as
 many traits from <code>std</code> as generically as possible.</p>
@@ -54,7 +54,7 @@ many traits from <code>std</code> as generically as possible.</p>
 aid in generic programming and should not be implemented for anything outside this
 module. They are <code>Dimension</code>, <code>Dimensionless</code>, <code>NotDim</code>, and <code>DimToString</code>.</p>
 </div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
-<table><tr><td><code>pub use peano::{<a class='trait' href='../../dimensioned/peano/trait.Same.html' title='dimensioned::peano::Same'>Same</a>, <a class='struct' href='../../dimensioned/peano/struct.Zero.html' title='dimensioned::peano::Zero'>Zero</a>};</code></td></tr><tr><td><code>pub use peano::{<a class='type' href='../../dimensioned/peano/type.P1.html' title='dimensioned::peano::P1'>P1</a>, <a class='type' href='../../dimensioned/peano/type.P2.html' title='dimensioned::peano::P2'>P2</a>, <a class='type' href='../../dimensioned/peano/type.P3.html' title='dimensioned::peano::P3'>P3</a>, <a class='type' href='../../dimensioned/peano/type.P4.html' title='dimensioned::peano::P4'>P4</a>, <a class='type' href='../../dimensioned/peano/type.P5.html' title='dimensioned::peano::P5'>P5</a>, <a class='type' href='../../dimensioned/peano/type.P6.html' title='dimensioned::peano::P6'>P6</a>, <a class='type' href='../../dimensioned/peano/type.P7.html' title='dimensioned::peano::P7'>P7</a>, <a class='type' href='../../dimensioned/peano/type.P8.html' title='dimensioned::peano::P8'>P8</a>, <a class='type' href='../../dimensioned/peano/type.P9.html' title='dimensioned::peano::P9'>P9</a>};</code></td></tr><tr><td><code>pub use peano::{<a class='type' href='../../dimensioned/peano/type.N1.html' title='dimensioned::peano::N1'>N1</a>, <a class='type' href='../../dimensioned/peano/type.N2.html' title='dimensioned::peano::N2'>N2</a>, <a class='type' href='../../dimensioned/peano/type.N3.html' title='dimensioned::peano::N3'>N3</a>, <a class='type' href='../../dimensioned/peano/type.N4.html' title='dimensioned::peano::N4'>N4</a>, <a class='type' href='../../dimensioned/peano/type.N5.html' title='dimensioned::peano::N5'>N5</a>, <a class='type' href='../../dimensioned/peano/type.N6.html' title='dimensioned::peano::N6'>N6</a>, <a class='type' href='../../dimensioned/peano/type.N7.html' title='dimensioned::peano::N7'>N7</a>, <a class='type' href='../../dimensioned/peano/type.N8.html' title='dimensioned::peano::N8'>N8</a>, <a class='type' href='../../dimensioned/peano/type.N9.html' title='dimensioned::peano::N9'>N9</a>};</code></td></tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table><tr><td><code>pub use peano::{<a class='trait' href='../../dimensioned/peano/trait.Same.html' title='dimensioned::peano::Same'>Same</a>, <a class='struct' href='../../dimensioned/peano/struct.Zero.html' title='dimensioned::peano::Zero'>Zero</a>, <a class='struct' href='../../dimensioned/peano/struct.Succ.html' title='dimensioned::peano::Succ'>Succ</a>, <a class='struct' href='../../dimensioned/peano/struct.Pred.html' title='dimensioned::peano::Pred'>Pred</a>};</code></td></tr><tr><td><code>pub use peano::{<a class='type' href='../../dimensioned/peano/type.P1.html' title='dimensioned::peano::P1'>P1</a>, <a class='type' href='../../dimensioned/peano/type.P2.html' title='dimensioned::peano::P2'>P2</a>, <a class='type' href='../../dimensioned/peano/type.P3.html' title='dimensioned::peano::P3'>P3</a>, <a class='type' href='../../dimensioned/peano/type.P4.html' title='dimensioned::peano::P4'>P4</a>, <a class='type' href='../../dimensioned/peano/type.P5.html' title='dimensioned::peano::P5'>P5</a>, <a class='type' href='../../dimensioned/peano/type.P6.html' title='dimensioned::peano::P6'>P6</a>, <a class='type' href='../../dimensioned/peano/type.P7.html' title='dimensioned::peano::P7'>P7</a>, <a class='type' href='../../dimensioned/peano/type.P8.html' title='dimensioned::peano::P8'>P8</a>, <a class='type' href='../../dimensioned/peano/type.P9.html' title='dimensioned::peano::P9'>P9</a>};</code></td></tr><tr><td><code>pub use peano::{<a class='type' href='../../dimensioned/peano/type.N1.html' title='dimensioned::peano::N1'>N1</a>, <a class='type' href='../../dimensioned/peano/type.N2.html' title='dimensioned::peano::N2'>N2</a>, <a class='type' href='../../dimensioned/peano/type.N3.html' title='dimensioned::peano::N3'>N3</a>, <a class='type' href='../../dimensioned/peano/type.N4.html' title='dimensioned::peano::N4'>N4</a>, <a class='type' href='../../dimensioned/peano/type.N5.html' title='dimensioned::peano::N5'>N5</a>, <a class='type' href='../../dimensioned/peano/type.N6.html' title='dimensioned::peano::N6'>N6</a>, <a class='type' href='../../dimensioned/peano/type.N7.html' title='dimensioned::peano::N7'>N7</a>, <a class='type' href='../../dimensioned/peano/type.N8.html' title='dimensioned::peano::N8'>N8</a>, <a class='type' href='../../dimensioned/peano/type.N9.html' title='dimensioned::peano::N9'>N9</a>};</code></td></tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
                     <tr class=' module-item'>
                         <td><a class='struct' href='struct.Dim.html'
@@ -70,47 +70,7 @@ module. They are <code>Dimension</code>, <code>Dimensionless</code>, <code>NotDi
                         <td><a class='trait' href='trait.Cbrt.html'
                                title='dimensioned::dimensioned::Cbrt'>Cbrt</a></td>
                         <td class='docblock short'>
-                             <p>Trait for implementing a cbrt() member for types that don&#39;t impl Float.</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='trait' href='trait.DimToString.html'
-                               title='dimensioned::dimensioned::DimToString'>DimToString</a></td>
-                        <td class='docblock short'>
-                             <p>This trait allows human-friendly printing of dimensioned objects.</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='trait' href='trait.Dimension.html'
-                               title='dimensioned::dimensioned::Dimension'>Dimension</a></td>
-                        <td class='docblock short'>
-                             <p>All types created for a unit system will implement this trait. No other types should
-implement it.</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='trait' href='trait.Dimensionless.html'
-                               title='dimensioned::dimensioned::Dimensionless'>Dimensionless</a></td>
-                        <td class='docblock short'>
-                             <p>The only types that implement this trait are the <code>Unitless</code> types that exist in each
-unit system. It allows more flexibility when handling specifically objects without
-dimension.</p>
-
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='trait' href='trait.NotDim.html'
-                               title='dimensioned::dimensioned::NotDim'>NotDim</a></td>
-                        <td class='docblock short'>
-                             <p>This trait is implemented by default for everything that is not Dim<D, V>. It allows a
-greater level of generic operator overloading than would be possible otherwise.</p>
+                             <p><strong>Cbrt</strong> is used for implementing a <code>cbrt()</code> member for types that don&#39;t <code>impl Float</code>.</p>
 
                         </td>
                     </tr>
@@ -119,8 +79,7 @@ greater level of generic operator overloading than would be possible otherwise.<
                         <td><a class='trait' href='trait.Pow.html'
                                title='dimensioned::dimensioned::Pow'>Pow</a></td>
                         <td class='docblock short'>
-                             <p>Trait for implementing general integer powers for types that don&#39;t impl Float. Uses
-Peano numbers to specify the exponent.</p>
+                             <p><strong>Pow<Base></strong> is used for implementing general integer powers for types that don&#39;t <code>impl Float</code> and whose type signature changes when multiplying, such as <code>Dim&lt;D, V&gt;</code>.</p>
 
                         </td>
                     </tr>
@@ -129,7 +88,7 @@ Peano numbers to specify the exponent.</p>
                         <td><a class='trait' href='trait.Recip.html'
                                title='dimensioned::dimensioned::Recip'>Recip</a></td>
                         <td class='docblock short'>
-                             <p>Trait for implementing a recip() member for types that don&#39;t impl Float.</p>
+                             <p><strong>Recip</strong> is used for implementing a <code>recip()</code> member for types that don&#39;t <code>impl Float</code>.</p>
 
                         </td>
                     </tr>
@@ -138,8 +97,8 @@ Peano numbers to specify the exponent.</p>
                         <td><a class='trait' href='trait.Root.html'
                                title='dimensioned::dimensioned::Root'>Root</a></td>
                         <td class='docblock short'>
-                             <p>Trait for implementing general integer roots for types that don&#39;t impl Float. Uses Peano
-numbers to specify the degree.</p>
+                             <p><strong>Root<Radicand></strong> is used for implementing general integer roots for types that don&#39;t
+<code>impl Float</code> and whose type signature changes when taking a root, such as <code>Dim&lt;D, V&gt;</code>.</p>
 
                         </td>
                     </tr>
@@ -148,7 +107,7 @@ numbers to specify the degree.</p>
                         <td><a class='trait' href='trait.Sqrt.html'
                                title='dimensioned::dimensioned::Sqrt'>Sqrt</a></td>
                         <td class='docblock short'>
-                             <p>Trait for implementing a sqrt() member for types that don&#39;t impl Float.</p>
+                             <p><strong>Sqrt</strong> is used for implementing a <code>sqrt()</code> member for types that don&#39;t <code>impl Float</code>.</p>
 
                         </td>
                     </tr>

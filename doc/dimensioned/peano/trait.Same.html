@@ -45,14 +45,14 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-1390' class='srclink' href='../../src/dimensioned/peano.rs.html#308-311' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1390' class='srclink' href='../../src/dimensioned/peano.rs.html#309-312' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait Same&lt;Rhs = Self&gt; {
     type Output = Self;
 }</pre><div class='docblock'><p><code>Same</code> is used to ensure that two types are the same. Its <code>Output</code> should be that type.</p>
 
 <h1 id="example:" class='section-header'><a
                            href="#example:">Example:</a></h1><pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>dimensioned</span>::<span class='ident'>peano</span>::{<span class='ident'>Succ</span>, <span class='ident'>P1</span>, <span class='ident'>P2</span>, <span class='ident'>Same</span>, <span class='ident'>ToInt</span>};
+<span class='kw'>use</span> <span class='ident'>dimensioned</span>::<span class='ident'>peano</span>::{<span class='ident'>Same</span>, <span class='ident'>Succ</span>, <span class='ident'>P1</span>, <span class='ident'>P2</span>, <span class='ident'>ToInt</span>};
 
 <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>2</span>, <span class='op'>&lt;&lt;</span><span class='ident'>Succ</span><span class='op'>&lt;</span><span class='ident'>P1</span><span class='op'>&gt;</span> <span class='kw'>as</span> <span class='ident'>Same</span><span class='op'>&lt;</span><span class='ident'>P2</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>ToInt</span><span class='op'>&gt;</span>::<span class='ident'>to_int</span>());
 </pre>

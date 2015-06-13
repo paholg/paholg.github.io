@@ -45,12 +45,14 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-1742' class='srclink' href='../../src/dimensioned/dimensioned.rs.html#159-175' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-1744' class='srclink' href='../../src/dimensioned/dimensioned.rs.html#166-182' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait Root&lt;Radicand&gt; {
     type Output;
     fn <a href='#tymethod.root' class='fnname'>root</a>(radicand: Radicand) -&gt; Self::<a class='trait' href='../../dimensioned/dimensioned/trait.Root.html' title='dimensioned::dimensioned::Root'>Output</a>;
-}</pre><div class='docblock'><p>Trait for implementing general integer roots for types that don&#39;t impl Float. Uses Peano
-numbers to specify the degree.</p>
+}</pre><div class='docblock'><p><strong>Root<Radicand></strong> is used for implementing general integer roots for types that don&#39;t
+<code>impl Float</code> and whose type signature changes when taking a root, such as <code>Dim&lt;D, V&gt;</code>.</p>
+
+<p>It uses Peano numbers to specify the degree.</p>
 
 <p>The syntax is a little bit weird and may be subject to change.</p>
 </div>
