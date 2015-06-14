@@ -7,7 +7,7 @@ permalink:        pretty
 relative_permalinks: true
 
 # Exclude
-exclude: [gen, rustdoc.py, drafts]
+exclude: [gen, build.py, drafts]
 
 # Setup
 title:            Paho Blog

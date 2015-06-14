@@ -100,8 +100,10 @@ def gen_test_chunks(source, target_dir):
                 in_code = True
                 snippets.append("\n" + l)
             elif "```prelude" in l:
+                prelude += "\n"
                 in_prelude = True
             elif "```main" in l:
+                main += "\n"
                 in_main = True
             elif "```\n" in l:
                 if in_code:
@@ -118,13 +120,9 @@ def gen_test_chunks(source, target_dir):
             elif in_code:
                 snippets[-1] += l
         f = target_dir + "examples/" + fname
-        print("HEADER:", header)
         save_test(f, header, fname, main, prelude, snippets)
 
 
-result = subprocess.call(["cargo", "update"], cwd="gen/")
-if result != 0:
-    exit(result)
 result = subprocess.call(["cargo", "build"], cwd="gen/")
 if result != 0:
     exit(result)
