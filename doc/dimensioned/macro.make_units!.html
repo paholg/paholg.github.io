@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-7309' class='srclink' href='../src/dimensioned/make_units.rs.html#3-15' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-7309' class='srclink' href='../src/dimensioned/make_units.rs.html#46-58' title='goto source code'>[src]</a></span></h1>
 <pre class='rust macro'>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>make_units</span> { (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>System</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Unitless</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>one</span>:<span class='ident'>ident</span>; <span class='ident'>base</span> { $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Type</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>constant</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>print_as</span>:<span class='ident'>ident</span>;)<span class='op'>+</span> } <span class='ident'>derived</span> {$(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>derived_constant</span>:<span class='ident'>ident</span>: <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Derived</span>:<span class='ident'>ident</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>:<span class='ident'>expr</span>;)<span class='op'>*</span>} ) <span class='op'>=&gt;</span> (
     <span class='macro'>make_units_adv</span><span class='macro'>!</span>{
@@ -61,7 +61,48 @@
     );
 }
 </pre>
-</section>
+<div class='docblock'><p>Create a unit system.</p>
+
+<p>As this macro performs various imports, it is strongly recommended that you call it
+inside of its own module.</p>
+
+<h1 id="example" class='section-header'><a
+                           href="#example">Example</a></h1><pre class='rust rust-example-rendered'>
+<span class='attribute'>#[<span class='ident'>macro_use</span>]</span>
+<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>dimensioned</span>;
+
+<span class='kw'>mod</span> <span class='ident'>fruit</span> {
+    <span class='macro'>make_units</span><span class='macro'>!</span> {
+        <span class='ident'>Fruit</span>, <span class='ident'>Unitless</span>, <span class='ident'>one</span>;
+        <span class='ident'>base</span> {
+            <span class='ident'>Apple</span>, <span class='ident'>apple</span>, <span class='ident'>a</span>;
+            <span class='ident'>Banana</span>, <span class='ident'>banana</span>, <span class='ident'>b</span>;
+            <span class='ident'>Cucumber</span>, <span class='ident'>cuke</span>, <span class='ident'>c</span>;
+            <span class='ident'>Mango</span>, <span class='ident'>mango</span>, <span class='ident'>m</span>;
+            <span class='ident'>Watermelon</span>, <span class='ident'>watermelon</span>, <span class='ident'>w</span>;
+        }
+        <span class='ident'>derived</span> {
+        }
+    }
+}
+<span class='kw'>use</span> <span class='ident'>fruit</span>::{<span class='ident'>apple</span>, <span class='ident'>banana</span>, <span class='ident'>cuke</span>, <span class='ident'>mango</span>, <span class='ident'>watermelon</span>};
+
+<span class='kw'>fn</span> <span class='ident'>main</span>() {
+    <span class='kw'>let</span> <span class='ident'>fruit_salad</span> <span class='op'>=</span> <span class='ident'>apple</span> <span class='op'>*</span> <span class='ident'>banana</span> <span class='op'>*</span> <span class='ident'>mango</span> <span class='op'>*</span> <span class='ident'>mango</span> <span class='op'>*</span> <span class='ident'>watermelon</span>;
+    <span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Mmmm, delicious: {}&quot;</span>, <span class='ident'>fruit_salad</span>);
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='macro'>format</span><span class='macro'>!</span>(<span class='string'>&quot;{}&quot;</span>, <span class='ident'>fruit_salad</span>), <span class='string'>&quot;1 a*b*m^2*w&quot;</span>);
+}
+</pre>
+
+<p>The line <code>Fruit, Unitless, one;</code> names the unit system <code>Fruit</code>, names its type for
+unitless data <code>Unitless</code> and creates the corresponding constant <code>one</code>.</p>
+
+<p>The <code>base</code> block is used to define the base units of this system. The line <code>Apple, apple, a;</code> creates the unit <code>Apple</code>, the corresponding constant <code>apple</code>, and will use
+the token &quot;a&quot; to print <code>Apple</code>s.</p>
+
+<p>The <code>derived</code> block is not yet implemented, but will be used to define derived units and
+constants.</p>
+</div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>

@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-7308' class='srclink' href='../src/dimensioned/dimensioned.rs.html#263-273' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-7308' class='srclink' href='../src/dimensioned/dimensioned.rs.html#368-378' title='goto source code'>[src]</a></span></h1>
 <pre class='rust macro'>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>dim_impl_binary</span> { (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Trait</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fun</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>In</span>:<span class='ident'>ty</span> <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Out</span>:<span class='ident'>ty</span>) <span class='op'>=&gt;</span> (
     <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Trait</span><span class='op'>&lt;</span><span class='ident'>RHS</span><span class='op'>&gt;</span> {
@@ -59,7 +59,57 @@
     );
 }
 </pre>
-</section>
+<div class='docblock'><p>Used for implementing binary members of <code>V</code> for <code>Dim&lt;D, V&gt;</code></p>
+
+<p>Assume you have some type <code>V</code> with a member function <code>fun</code> that takes one argument also
+of type <code>V</code> and has output type <code>Out</code>.</p>
+
+<p>Then, you can implement <code>fun</code> as a member for <code>Dim&lt;D, V&gt;</code> with the macro invocation:</p>
+<pre class='rust rust-example-rendered'>
+<span class='macro'>dim_impl_binary</span><span class='macro'>!</span>(<span class='ident'>Trait</span>, <span class='ident'>fun</span>, <span class='ident'>Op</span>, <span class='ident'>V</span> <span class='op'>=&gt;</span> <span class='ident'>Out</span>);
+</pre>
+
+<p>where <code>Trait</code> is the name of the trait that you want to put this member in; it can be
+any available name.</p>
+
+<p>Finally, <code>Op</code> determines how the dimensions should change when calling <code>fun()</code> and is
+one of:</p>
+
+<ul>
+<li><code>Same&lt;RHS&gt;</code>: Ensures that <code>Self</code> has the same dimensions as <code>RHS</code> but doesn&#39;t change them.</li>
+<li><code>Mul&lt;RHS&gt;</code>: Multiplies <code>Self</code> by <code>RHS</code>.</li>
+<li><code>Div&lt;RHS&gt;</code>: Divides <code>Self</code> by <code>RHS</code>.</li>
+</ul>
+
+<h1 id="example" class='section-header'><a
+                           href="#example">Example</a></h1><pre class='rust rust-example-rendered'>
+<span class='attribute'>#[<span class='ident'>macro_use</span>]</span>
+<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>dimensioned</span>;
+<span class='kw'>use</span> <span class='ident'>dimensioned</span>::{<span class='ident'>Dim</span>, <span class='ident'>Dimension</span>};
+<span class='kw'>use</span> <span class='ident'>dimensioned</span>::<span class='ident'>si</span>::{<span class='ident'>Meter</span>, <span class='ident'>m</span>};
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>ops</span>::<span class='ident'>Mul</span>;
+
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Vector2</span> {
+    <span class='ident'>x</span>: <span class='ident'>f64</span>,
+    <span class='ident'>y</span>: <span class='ident'>f64</span>
+}
+<span class='kw'>impl</span> <span class='ident'>Vector2</span> {
+    <span class='kw'>fn</span> <span class='ident'>dot</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Vector2</span>) <span class='op'>-&gt;</span> <span class='ident'>f64</span> { <span class='self'>self</span>.<span class='ident'>x</span><span class='op'>*</span><span class='ident'>rhs</span>.<span class='ident'>x</span> <span class='op'>+</span> <span class='self'>self</span>.<span class='ident'>y</span><span class='op'>*</span><span class='ident'>rhs</span>.<span class='ident'>y</span> }
+}
+<span class='kw'>impl</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Vector2</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>f64</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Vector2</span>;
+    <span class='kw'>fn</span> <span class='ident'>mul</span>(<span class='self'>self</span>, <span class='ident'>rhs</span>: <span class='ident'>Vector2</span>) <span class='op'>-&gt;</span> <span class='ident'>Vector2</span> { <span class='ident'>Vector2</span>{ <span class='ident'>x</span>: <span class='self'>self</span><span class='op'>*</span><span class='ident'>rhs</span>.<span class='ident'>x</span>, <span class='ident'>y</span>: <span class='self'>self</span><span class='op'>*</span><span class='ident'>rhs</span>.<span class='ident'>y</span> } }
+}
+
+<span class='macro'>dim_impl_binary</span><span class='macro'>!</span>(<span class='ident'>Dot</span>, <span class='ident'>dot</span>, <span class='ident'>Mul</span>, <span class='ident'>Vector2</span> <span class='op'>=&gt;</span> <span class='ident'>f64</span>);
+
+<span class='kw'>fn</span> <span class='ident'>main</span>() {
+    <span class='kw'>let</span> <span class='ident'>v1</span> <span class='op'>=</span> <span class='ident'>m</span> <span class='op'>*</span> <span class='ident'>Vector2</span>{ <span class='ident'>x</span>: <span class='number'>1.0</span>, <span class='ident'>y</span>: <span class='number'>2.0</span> };
+    <span class='kw'>let</span> <span class='ident'>v2</span> <span class='op'>=</span> <span class='ident'>m</span> <span class='op'>*</span> <span class='ident'>Vector2</span>{ <span class='ident'>x</span>: <span class='number'>3.0</span>, <span class='ident'>y</span>: <span class='number'>5.0</span> };
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>13.0</span><span class='op'>*</span><span class='ident'>m</span><span class='op'>*</span><span class='ident'>m</span>, <span class='ident'>v1</span>.<span class='ident'>dot</span>(<span class='ident'>v2</span>));
+}
+</pre>
+</div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>

@@ -45,13 +45,13 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-7310' class='srclink' href='../src/dimensioned/make_units.rs.html#18-113' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-7310' class='srclink' href='../src/dimensioned/make_units.rs.html#110-205' title='goto source code'>[src]</a></span></h1>
 <pre class='rust macro'>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>make_units_adv</span> { (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>System</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Unitless</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>one</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>OneType</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>val</span>:<span class='ident'>expr</span>; <span class='ident'>base</span> { $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Root</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Type</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>constant</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>print_as</span>:<span class='ident'>ident</span>;)<span class='op'>+</span> } <span class='ident'>derived</span> {$(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>derived_constant</span>:<span class='ident'>ident</span>: <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Derived</span>:<span class='ident'>ident</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>: <span class='ident'>expr</span>;    )<span class='op'>*</span>} ) <span class='op'>=&gt;</span> (
     <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_imports</span>)]</span>
-    <span class='kw'>use</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>dimensioned</span>::{<span class='ident'>Zero</span>, <span class='ident'>P1</span>, <span class='ident'>P2</span>, <span class='ident'>P3</span>, <span class='ident'>P4</span>, <span class='ident'>P5</span>, <span class='ident'>P6</span>, <span class='ident'>P7</span>, <span class='ident'>P8</span>, <span class='ident'>P9</span>, <span class='ident'>N1</span>, <span class='ident'>N2</span>, <span class='ident'>N3</span>, <span class='ident'>N4</span>, <span class='ident'>N5</span>, <span class='ident'>N6</span>, <span class='ident'>N7</span>, <span class='ident'>N8</span>, <span class='ident'>N9</span>};
+    <span class='kw'>use</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::{<span class='ident'>Zero</span>, <span class='ident'>P1</span>, <span class='ident'>P2</span>, <span class='ident'>P3</span>, <span class='ident'>P4</span>, <span class='ident'>P5</span>, <span class='ident'>P6</span>, <span class='ident'>P7</span>, <span class='ident'>P8</span>, <span class='ident'>P9</span>, <span class='ident'>N1</span>, <span class='ident'>N2</span>, <span class='ident'>N3</span>, <span class='ident'>N4</span>, <span class='ident'>N5</span>, <span class='ident'>N6</span>, <span class='ident'>N7</span>, <span class='ident'>N8</span>, <span class='ident'>N9</span>};
     <span class='kw'>use</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>peano</span>::{<span class='ident'>Peano</span>, <span class='ident'>Same</span>, <span class='ident'>ToInt</span>};
-    <span class='kw'>use</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>dimensioned</span>::{<span class='ident'>Dimension</span>, <span class='ident'>Dimensionless</span>, <span class='ident'>Dim</span>, <span class='ident'>Pow</span>, <span class='ident'>Root</span>, <span class='ident'>Recip</span>, <span class='ident'>DimToString</span>};
+    <span class='kw'>use</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::{<span class='ident'>Dimension</span>, <span class='ident'>Dimensionless</span>, <span class='ident'>Dim</span>, <span class='ident'>Pow</span>, <span class='ident'>Root</span>, <span class='ident'>Recip</span>, <span class='ident'>DimToString</span>};
     <span class='kw'>use</span> ::<span class='ident'>std</span>::<span class='ident'>ops</span>::{<span class='ident'>Add</span>, <span class='ident'>Neg</span>, <span class='ident'>Sub</span>, <span class='ident'>Mul</span>, <span class='ident'>Div</span>};
     <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>marker</span>::<span class='ident'>PhantomData</span>;
 
@@ -144,7 +144,49 @@
     );
 }
 </pre>
-</section>
+<div class='docblock'><p>Create a unit system with more flexibility than <code>make_units!()</code>.</p>
+
+<p>As this macro performs various imports, it is strongly recommended that you call it
+inside of its own module.</p>
+
+<h1 id="example" class='section-header'><a
+                           href="#example">Example</a></h1>
+<p>Here we define the <strong>CGS</strong> unit system.</p>
+<pre class='rust rust-example-rendered'>
+<span class='attribute'>#[<span class='ident'>macro_use</span>]</span>
+<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>dimensioned</span>;
+
+<span class='kw'>mod</span> <span class='ident'>cgs</span> {
+    <span class='macro'>make_units_adv</span><span class='macro'>!</span> {
+        <span class='ident'>CGS</span>, <span class='ident'>Unitless</span>, <span class='ident'>one</span>, <span class='ident'>f64</span>, <span class='number'>1.0</span>;
+        <span class='ident'>base</span> {
+            <span class='ident'>P2</span>, <span class='ident'>Centimeter</span>, <span class='ident'>cm</span>, <span class='ident'>cm</span>;
+            <span class='ident'>P2</span>, <span class='ident'>Gram</span>, <span class='ident'>g</span>, <span class='ident'>g</span>;
+            <span class='ident'>P1</span>, <span class='ident'>Second</span>, <span class='ident'>s</span>, <span class='ident'>s</span>;
+        }
+        <span class='ident'>derived</span> {
+        }
+    }
+}
+</pre>
+
+<p>The line <code>CGS, Unitless, one, f64, 1.0;</code> names the unit system <code>CGS</code>, names its type for
+unitless data <code>Unitless</code> and creates the corresponding constant <code>one</code>. It also states
+that all constants will be of type <code>Dim&lt;D, f64&gt;</code> and will be initialized to a value of
+<code>1.0</code>.</p>
+
+<p>Once associated constants hit, <code>std::num::One</code> will be used to determine the initalize value.</p>
+
+<p>The <code>base</code> block is used to define the base units of this system. The line <code>P2, Centimeter, cm, cm;</code> creates the unit <code>Centimeter</code>, the corresponding constant <code>cm</code>, and
+will use the token &quot;cm&quot; to print <code>Centimeter</code>s. It also states that square roots will be
+allowed for <code>Centimeter</code>s; the <code>P2</code> is the Peano number for 2 and dictates the highest
+root allowed. You will almost always want this to be <code>P1</code>. For <code>CGS</code>, though, some
+derived units are defined in terms of square roots of base units, so they are necessary
+to allow.</p>
+
+<p>The <code>derived</code> block is not yet implemented, but will be used to define derived units and
+constants.</p>
+</div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
