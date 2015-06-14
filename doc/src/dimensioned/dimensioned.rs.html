@@ -777,6 +777,10 @@
 <span id="735">735</span>
 <span id="736">736</span>
 <span id="737">737</span>
+<span id="738">738</span>
+<span id="739">739</span>
+<span id="740">740</span>
+<span id="741">741</span>
 </pre><pre class='rust '>
 <span class='doccomment'>/*!
 This module allows dimensioned to be very flexible. It creates the `Dim&lt;D, V&gt;` type,
@@ -1050,12 +1054,14 @@ one of:
 * `Sqrt`: Takes the square root of `Self`. The same as `Root&lt;P2&gt;`.
 * `Cbrt`: Takes the cube root of `Self`. The same as `Root&lt;P3&gt;`.
 
+Note: This macro requires that `Dim` and `Dimension` be imported.
+
 # Example
 ```rust
 #[macro_use]
 extern crate dimensioned;
 use dimensioned::{Dim, Dimension, Same};
-use dimensioned::si::{Meter, m};
+use dimensioned::si::m;
 use std::ops::Mul;
 
 pub struct Vector2 {
@@ -1094,7 +1100,7 @@ fn main() {
 }
 
 <span class='doccomment'>/**
-Used for implementing binary members of `V` for `Dim&lt;D, V&gt;`
+Used for implementing binary members of `V` for `Dim&lt;D, V&gt;`.
 
 Assume you have some type `V` with a member function `fun` that takes one argument also
 of type `V` and has output type `Out`.
@@ -1115,12 +1121,14 @@ one of:
 * `Mul&lt;RHS&gt;`: Multiplies `Self` by `RHS`.
 * `Div&lt;RHS&gt;`: Divides `Self` by `RHS`.
 
+Note: This macro requires that `Dim` and `Dimension` be imported.
+
 # Example
 ```rust
 #[macro_use]
 extern crate dimensioned;
 use dimensioned::{Dim, Dimension};
-use dimensioned::si::{Meter, m};
+use dimensioned::si::m;
 use std::ops::Mul;
 
 pub struct Vector2 {

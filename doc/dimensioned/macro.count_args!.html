@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-7311' class='srclink' href='../src/dimensioned/make_units.rs.html#209-216' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-7311' class='srclink' href='../src/dimensioned/make_units.rs.html#222-229' title='goto source code'>[src]</a></span></h1>
 <pre class='rust macro'>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>count_args</span> {
     (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>arg</span>:<span class='ident'>ident</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>ident</span>),<span class='op'>+</span>) <span class='op'>=&gt;</span> (
@@ -56,7 +56,18 @@
     );
 }
 </pre>
-<div class='docblock'><p>Counts the number of arguments its called with and gives you the total</p>
+<div class='docblock'><p>Counts the number of arguments its called with and gives you the total.</p>
+
+<h1 id="example" class='section-header'><a
+                           href="#example">Example</a></h1><pre class='rust rust-example-rendered'>
+<span class='attribute'>#[<span class='ident'>macro_use</span>]</span>
+<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>dimensioned</span>;
+
+<span class='kw'>fn</span> <span class='ident'>main</span>() {
+    <span class='kw'>let</span> <span class='ident'>x</span> <span class='op'>=</span> <span class='macro'>count_args</span><span class='macro'>!</span>(<span class='ident'>a</span>, <span class='ident'>b</span>, <span class='ident'>cat</span>, <span class='ident'>banana</span>);
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>4</span>, <span class='ident'>x</span>);
+}
+</pre>
 </div></section>
     <section id='search' class="content hidden"></section>
 

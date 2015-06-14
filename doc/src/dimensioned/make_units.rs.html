@@ -283,6 +283,19 @@
 <span id="241">241</span>
 <span id="242">242</span>
 <span id="243">243</span>
+<span id="244">244</span>
+<span id="245">245</span>
+<span id="246">246</span>
+<span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
+<span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
+<span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
 </pre><pre class='rust '>
 <span class='doccomment'>/**
 Create a unit system.
@@ -490,7 +503,20 @@ constants.
     );
 }
 
-<span class='doccomment'>/// Counts the number of arguments its called with and gives you the total</span>
+<span class='doccomment'>/** Counts the number of arguments its called with and gives you the total.
+
+#Example
+
+```rust
+#[macro_use]
+extern crate dimensioned;
+
+fn main() {
+    let x = count_args!(a, b, cat, banana);
+    assert_eq!(4, x);
+}
+```
+*/</span>
 <span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>count_args</span> {
     (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>arg</span>:<span class='ident'>ident</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>args</span>:<span class='ident'>ident</span>),<span class='op'>+</span>) <span class='op'>=&gt;</span> (
