@@ -45,10 +45,10 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-6' class='srclink' href='../../src/dimensioned/peano.rs.html#1-347' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-6' class='srclink' href='../../src/dimensioned/peano.rs.html#1-345' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>Peano numbers allow us to do arithmetic at compile time using Rust&#39;s type system.</p>
 
-<p>This module should not require much (if any) direct interaction from users of <strong>dimensioned</strong>.</p>
+<p>This module should not require much direct interaction from users of <strong>dimensioned</strong>.</p>
 
 <p>The basic idea of the peano numbers is that we first define the number <code>Zero</code>. Then, we
 inductively define the rest of the natural numbers. For any non-negative natural number
@@ -65,8 +65,9 @@ its predecessor, <code>Pred&lt;N&gt;</code>, a negative number.</p>
 
 <p>By the definitions of <code>Pred</code> and <code>Succ</code>, we disallow them to be used together.</p>
 
-<p>Conceptually, we now have access to all of the integers. In practice, we have access to
-the numbers from -63 to 63, as Rust only allows structs to be embedded 64 levels deep.</p>
+<p>Conceptually, we now have access to all integers. In practice, we have access to
+the numbers from -63 to 63 unless we use the <code>#![recursion_limit=&quot;N&quot;]</code> lint to increase
+the allowed number of embedded traits.</p>
 
 <p>These numbers are used to track powers of units in <strong>dimensioned</strong>.</p>
 
@@ -161,11 +162,6 @@ implemented for anything else.</p>
                                title='dimensioned::peano::Same'>Same</a></td>
                         <td class='docblock short'>
                              <p><code>Same</code> is used to ensure that two types are the same. Its <code>Output</code> should be that type.</p>
-
-<h1 id="example:" class='section-header'><a
-                           href="#example:">Example:</a></h1><pre class='rust rust-example-rendered'>
-<span class='kw'>use</span> <span class='ident'>dimensioned</span>::<span class='ident'>peano</span>::{<span class='ident'>Same</span>, <span class='ident'>Succ</span>, <span class='ident'>P1</span>, <span class='ident'>P2</span>, <span class='ident'>ToInt</span>};
-</pre>
 
                         </td>
                     </tr>
@@ -341,8 +337,7 @@ implemented for anything else.</p>
 
                         </td>
                     </tr>
-                </table><h2 id='impls' class='section-header'><a href="#impls">Implementations</a></h2>
-<table></table></section>
+                </table></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>

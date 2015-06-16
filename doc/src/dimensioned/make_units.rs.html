@@ -296,6 +296,20 @@
 <span id="254">254</span>
 <span id="255">255</span>
 <span id="256">256</span>
+<span id="257">257</span>
+<span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
 </pre><pre class='rust '>
 <span class='doccomment'>/**
 Create a unit system.
@@ -342,7 +356,14 @@ The `derived` block is not yet implemented, but will be used to define derived u
 constants.
 */</span>
 <span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>make_units</span> { (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>System</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Unitless</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>one</span>:<span class='ident'>ident</span>; <span class='ident'>base</span> { $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Type</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>constant</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>print_as</span>:<span class='ident'>ident</span>;)<span class='op'>+</span> } <span class='ident'>derived</span> {$(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>derived_constant</span>:<span class='ident'>ident</span>: <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Derived</span>:<span class='ident'>ident</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>:<span class='ident'>expr</span>;)<span class='op'>*</span>} ) <span class='op'>=&gt;</span> (
+<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>make_units</span> {
+    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>System</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Unitless</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>one</span>:<span class='ident'>ident</span>;
+     <span class='ident'>base</span> {
+         $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Type</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>constant</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>print_as</span>:<span class='ident'>ident</span>;)<span class='op'>+</span>
+     }
+     <span class='ident'>derived</span> {
+         $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>derived_constant</span>:<span class='ident'>ident</span>: <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Derived</span>:<span class='ident'>ident</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>:<span class='ident'>expr</span>;)<span class='op'>*</span>
+     } ) <span class='op'>=&gt;</span> (
     <span class='macro'>make_units_adv</span><span class='macro'>!</span>{
         <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>System</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Unitless</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>one</span>, <span class='ident'>f64</span>, <span class='number'>1.0</span>;
         <span class='ident'>base</span> {
@@ -406,13 +427,20 @@ constants.
 
 */</span>
 <span class='attribute'>#[<span class='ident'>macro_export</span>]</span>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>make_units_adv</span> { (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>System</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Unitless</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>one</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>OneType</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>val</span>:<span class='ident'>expr</span>; <span class='ident'>base</span> { $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Root</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Type</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>constant</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>print_as</span>:<span class='ident'>ident</span>;)<span class='op'>+</span> } <span class='ident'>derived</span> {$(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>derived_constant</span>:<span class='ident'>ident</span>: <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Derived</span>:<span class='ident'>ident</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>: <span class='ident'>expr</span>;    )<span class='op'>*</span>} ) <span class='op'>=&gt;</span> (
+<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>make_units_adv</span> {
+    (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>System</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Unitless</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>one</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>OneType</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>val</span>:<span class='ident'>expr</span>;
+     <span class='ident'>base</span> {
+         $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Root</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Type</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>constant</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>print_as</span>:<span class='ident'>ident</span>;)<span class='op'>+</span>
+     }
+     <span class='ident'>derived</span> {
+         $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>derived_constant</span>:<span class='ident'>ident</span>: <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Derived</span>:<span class='ident'>ident</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>e</span>: <span class='ident'>expr</span>;)<span class='op'>*</span>
+     } ) <span class='op'>=&gt;</span> (
     <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>unused_imports</span>)]</span>
     <span class='kw'>use</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::{<span class='ident'>Zero</span>, <span class='ident'>P1</span>, <span class='ident'>P2</span>, <span class='ident'>P3</span>, <span class='ident'>P4</span>, <span class='ident'>P5</span>, <span class='ident'>P6</span>, <span class='ident'>P7</span>, <span class='ident'>P8</span>, <span class='ident'>P9</span>, <span class='ident'>N1</span>, <span class='ident'>N2</span>, <span class='ident'>N3</span>, <span class='ident'>N4</span>, <span class='ident'>N5</span>, <span class='ident'>N6</span>, <span class='ident'>N7</span>, <span class='ident'>N8</span>, <span class='ident'>N9</span>};
     <span class='kw'>use</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::<span class='ident'>peano</span>::{<span class='ident'>Peano</span>, <span class='ident'>Same</span>, <span class='ident'>ToInt</span>};
     <span class='kw'>use</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>crate</span>::{<span class='ident'>Dimension</span>, <span class='ident'>Dimensionless</span>, <span class='ident'>Dim</span>, <span class='ident'>Pow</span>, <span class='ident'>Root</span>, <span class='ident'>Recip</span>, <span class='ident'>DimToString</span>};
     <span class='kw'>use</span> ::<span class='ident'>std</span>::<span class='ident'>ops</span>::{<span class='ident'>Add</span>, <span class='ident'>Neg</span>, <span class='ident'>Sub</span>, <span class='ident'>Mul</span>, <span class='ident'>Div</span>};
-    <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>marker</span>::<span class='ident'>PhantomData</span>;
+    <span class='kw'>use</span> ::<span class='ident'>std</span>::<span class='ident'>marker</span>::<span class='ident'>PhantomData</span>;
 
     <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Copy</span>, <span class='ident'>Clone</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>System</span><span class='op'>&lt;</span>$(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>Type</span>: <span class='ident'>Peano</span> <span class='op'>=</span> <span class='ident'>Zero</span>),<span class='op'>*</span><span class='op'>&gt;</span> {
@@ -470,7 +498,7 @@ constants.
             };
             <span class='ident'>__string</span> <span class='op'>=</span> <span class='macro'>format</span><span class='macro'>!</span>(<span class='string'>&quot;{}{}{}&quot;</span>, <span class='ident'>__string</span>, <span class='ident'>__temp</span>.<span class='number'>0</span>, <span class='ident'>__temp</span>.<span class='number'>1</span>);
         }
-        <span class='ident'>__string</span>.<span class='ident'>pop</span>(); <span class='comment'>// remove last &quot;*&quot;</span>
+        <span class='ident'>__string</span>.<span class='ident'>pop</span>(); <span class='comment'>// remove the last &quot;*&quot;</span>
         <span class='ident'>__string</span>
     }
 
