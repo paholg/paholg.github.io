@@ -778,9 +778,6 @@
 <span id="736">736</span>
 <span id="737">737</span>
 <span id="738">738</span>
-<span id="739">739</span>
-<span id="740">740</span>
-<span id="741">741</span>
 </pre><pre class='rust '>
 <span class='doccomment'>/*!
 This module allows dimensioned to be very flexible. It creates the `Dim&lt;D, V&gt;` type,
@@ -853,7 +850,7 @@ implement it.
     ```
 
      */</span>
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>v</span>: <span class='ident'>V</span>) <span class='op'>-&gt;</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> {
+    <span class='kw'>pub</span> <span class='kw'>const</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>v</span>: <span class='ident'>V</span>) <span class='op'>-&gt;</span> <span class='ident'>Dim</span><span class='op'>&lt;</span><span class='ident'>D</span>, <span class='ident'>V</span><span class='op'>&gt;</span> {
         <span class='ident'>Dim</span>(<span class='ident'>v</span>, <span class='ident'>PhantomData</span>)
     }
     <span class='doccomment'>/**
@@ -1024,9 +1021,6 @@ The syntax is a little bit weird and may be subject to change.
     }
 }
 
-<span class='comment'>//------------------------------------------------------------------------------</span>
-<span class='comment'>// Useful macros for export</span>
-<span class='comment'>//------------------------------------------------------------------------------</span>
 <span class='doccomment'>/**
 Used for implementing unary members of `V` for `Dim&lt;D, V&gt;`
 
