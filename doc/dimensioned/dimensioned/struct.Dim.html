@@ -24,10 +24,10 @@
 
     
 
-    <section class="sidebar">
+    <nav class="sidebar">
         <a href='../../dimensioned/index.html'><img src='http://paholg.com/dimensioned/imgs/favicon.png' alt='' width='100'></a>
         <p class='location'><a href='../index.html'>dimensioned</a>::<wbr><a href='index.html'>dimensioned</a></p><script>window.sidebarCurrent = {name: 'Dim', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
-    </section>
+    </nav>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -53,8 +53,7 @@
 <p>It is recommened to use this only where necessary, and to generally use the
 constants that ship with unit systems to create <code>Dim</code> objects.</p>
 
-<h1 id="example" class='section-header'><a
-                           href="#example">Example</a></h1><pre class='rust rust-example-rendered'>
+<h1 id='example' class='section-header'><a href='#example'>Example</a></h1><pre class='rust rust-example-rendered'>
 <span class='kw'>use</span> <span class='ident'>dimensioned</span>::<span class='ident'>Dim</span>;
 <span class='kw'>use</span> <span class='ident'>dimensioned</span>::<span class='ident'>si</span>::{<span class='ident'>m</span>, <span class='ident'>Meter</span>};
 
@@ -64,8 +63,7 @@ constants that ship with unit systems to create <code>Dim</code> objects.</p>
 </div><h4 id='method.map' class='method'><code>fn <a href='#method.map' class='fnname'>map</a>&lt;O, F: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.FnOnce.html' title='core::ops::FnOnce'>FnOnce</a>(V) -&gt; O&gt;(self, f: F) -&gt; <a class='struct' href='../../dimensioned/dimensioned/struct.Dim.html' title='dimensioned::dimensioned::Dim'>Dim</a>&lt;D, O&gt;</code></h4>
 <div class='docblock'><p>Map a <code>Dim&lt;D, V&gt;</code> to <code>Dim&lt;D, O&gt;</code> by applying function <code>f</code> to the contained value</p>
 
-<h1 id="example" class='section-header'><a
-                           href="#example">Example</a></h1><pre class='rust rust-example-rendered'>
+<h1 id='example' class='section-header'><a href='#example'>Example</a></h1><pre class='rust rust-example-rendered'>
 
 <span class='kw'>use</span> <span class='ident'>num</span>::<span class='ident'>traits</span>::<span class='ident'>Float</span>;
 <span class='kw'>use</span> <span class='ident'>dimensioned</span>::<span class='ident'>si</span>::<span class='ident'>m</span>;
@@ -161,10 +159,12 @@ constants that ship with unit systems to create <code>Dim</code> objects.</p>
 
     <section class="footer"></section>
 
-    <div id="help" class="hidden">
+    <aside id="help" class="hidden">
         <div>
+            <h1 class="hidden">Help</h1>
+
             <div class="shortcuts">
-                <h1>Keyboard Shortcuts</h1>
+                <h2>Keyboard Shortcuts</h2>
 
                 <dl>
                     <dt>?</dt>
@@ -181,7 +181,7 @@ constants that ship with unit systems to create <code>Dim</code> objects.</p>
             </div>
 
             <div class="infos">
-                <h1>Search Tricks</h1>
+                <h2>Search Tricks</h2>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -201,7 +201,7 @@ constants that ship with unit systems to create <code>Dim</code> objects.</p>
                 </p>
             </div>
         </div>
-    </div>
+    </aside>
 
     
 
