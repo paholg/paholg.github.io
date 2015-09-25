@@ -37,6 +37,16 @@ collections:
     crates:
       img: https://img.shields.io/crates/v/dimensioned.svg
       url: https://crates.io/crates/dimensioned
+  typenum:
+    output: true
+    title: Typenum
+    url: /typenum
+    links:
+      Documentation: /doc/typenum
+      Source: "https://github.com/paholg/typenum"
+    crates:
+      img: https://img.shields.io/crates/v/typenum.svg
+      url: https://crates.io/crates/typenum
 
   # recipes:
   #   output: true
