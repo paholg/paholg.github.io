@@ -54,8 +54,7 @@
     }
 
     function browserSupportsHistoryApi() {
-        return document.location.protocol != "file:" &&
-          window.history && typeof window.history.pushState === "function";
+        return window.history && typeof window.history.pushState === "function";
     }
 
     function highlightSourceLines(ev) {
@@ -774,8 +773,7 @@
         if (rootPath === '../') {
             var sidebar = $('.sidebar');
             var div = $('<div>').attr('class', 'block crate');
-            div.append($('<h3>').text('Crates'));
-            var ul = $('<ul>').appendTo(div);
+            div.append($('<h2>').text('Crates'));
 
             var crates = [];
             for (var crate in rawSearchIndex) {
@@ -790,10 +788,9 @@
                 }
                 if (rawSearchIndex[crates[i]].items[0]) {
                     var desc = rawSearchIndex[crates[i]].items[0][3];
-                    var link = $('<a>', {'href': '../' + crates[i] + '/index.html',
+                    div.append($('<a>', {'href': '../' + crates[i] + '/index.html',
                                          'title': plainSummaryLine(desc),
-                                         'class': klass}).text(crates[i]);
-                    ul.append($('<li>').append(link));
+                                         'class': klass}).text(crates[i]));
                 }
             }
             sidebar.append(div);
@@ -812,8 +809,7 @@
             if (!filtered) { return; }
 
             var div = $('<div>').attr('class', 'block ' + shortty);
-            div.append($('<h3>').text(longty));
-            var ul = $('<ul>').appendTo(div);
+            div.append($('<h2>').text(longty));
 
             for (var i = 0; i < filtered.length; ++i) {
                 var item = filtered[i];
@@ -830,10 +826,9 @@
                 } else {
                     path = shortty + '.' + name + '.html';
                 }
-                var link = $('<a>', {'href': current.relpath + path,
+                div.append($('<a>', {'href': current.relpath + path,
                                      'title': desc,
-                                     'class': klass}).text(name);
-                ul.append($('<li>').append(link));
+                                     'class': klass}).text(name));
             }
             sidebar.append(div);
         }
