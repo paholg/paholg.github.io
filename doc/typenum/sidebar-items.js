@@ -1,1 +1,1 @@
-initSidebarItems({"trait":[["Add",""],["And",""],["Div",""],["Mul",""],["Not",""],["Or",""],["Same",""],["Sub",""],["Xor",""]]});
+initSidebarItems({"mod":[["bit",""],["uint",""]],"trait":[["Add",""],["And",""],["Div",""],["Mul",""],["Not",""],["Or",""],["Same",""],["Sub",""],["Xor",""]]});
