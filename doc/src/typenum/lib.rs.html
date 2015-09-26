@@ -75,10 +75,12 @@
 <span id="33">33</span>
 <span id="34">34</span>
 <span id="35">35</span>
+<span id="36">36</span>
 </pre><pre class='rust '>
 
 <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>bit</span>;
 <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>uint</span>;
+<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>int</span>;
 
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Same</span><span class='op'>&lt;</span><span class='ident'>Rhs</span> <span class='op'>=</span> <span class='kw'>Self</span><span class='op'>&gt;</span> {
     <span class='doccomment'>/// `Output` should always be `Self`</span>
@@ -147,8 +149,8 @@
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>type</code>, <code>macro</code>,
-                    and <code>const</code>.
+                    <code>trait</code>, <code>typedef</code> (or
+                    <code>tdef</code>).
                 </p>
 
                 <p>

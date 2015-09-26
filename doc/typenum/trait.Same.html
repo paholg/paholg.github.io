@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-840' class='srclink' href='../src/typenum/lib.rs.html#5-8' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-934' class='srclink' href='../src/typenum/lib.rs.html#6-9' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait Same&lt;Rhs = Self&gt; {
     type Output;
 }</pre>
@@ -56,6 +56,7 @@
         <h2 id='implementors'>Implementors</h2>
         <ul class='item-list' id='implementors-list'>
     <li><code>impl&lt;U: <a class='trait' href='../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>, B: <a class='trait' href='../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>&gt; <a class='trait' href='../typenum/trait.Same.html' title='typenum::Same'>Same</a>&lt;<a class='struct' href='../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;U, B&gt;&gt; for <a class='struct' href='../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;U, B&gt;</code></li>
+<li><code>impl&lt;U: <a class='trait' href='../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>, S: <a class='trait' href='../typenum/int/trait.Sign.html' title='typenum::int::Sign'>Sign</a>&gt; <a class='trait' href='../typenum/trait.Same.html' title='typenum::Same'>Same</a>&lt;<a class='struct' href='../typenum/int/struct.Int.html' title='typenum::int::Int'>Int</a>&lt;U, S&gt;&gt; for <a class='struct' href='../typenum/int/struct.Int.html' title='typenum::int::Int'>Int</a>&lt;U, S&gt;</code></li>
 </ul><script type="text/javascript" async
                               src="../implementors/typenum/trait.Same.js">
                       </script></section>
@@ -93,8 +94,8 @@
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>type</code>, <code>macro</code>,
-                    and <code>const</code>.
+                    <code>trait</code>, <code>typedef</code> (or
+                    <code>tdef</code>).
                 </p>
 
                 <p>
