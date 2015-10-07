@@ -24,10 +24,10 @@
 
     
 
-    <section class="sidebar">
+    <nav class="sidebar">
         
         <p class='location'><a href='../index.html'>typenum</a>::<wbr><a href='index.html'>uint</a></p><script>window.sidebarCurrent = {name: 'UTerm', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
-    </section>
+    </nav>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -47,7 +47,7 @@
             </a>
         </span><a id='src-310' class='srclink' href='../../src/typenum/uint.rs.html#26' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct UTerm;</pre><div class='docblock'><p>The terminating type for <code>UInt</code>, it always comes after the most significant bit.</p>
-</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a> for <a class='struct' href='../../typenum/uint/struct.UTerm.html' title='typenum::uint::UTerm'>UTerm</a></code></h3><div class='impl-items'><h4 id='method.to_int' class='method'><code>fn <a href='../../typenum/uint/trait.Unsigned.html#method.to_int' class='fnname'>to_int</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></h4>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a> for <a class='struct' href='../../typenum/uint/struct.UTerm.html' title='typenum::uint::UTerm'>UTerm</a></code></h3><div class='impl-items'><h4 id='method.to_int' class='method'><code>fn <a href='../../typenum/uint/trait.Unsigned.html#method.to_int' class='fnname'>to_int</a>() -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></h4>
 </div><h3 class='impl'><code>impl <a class='trait' href='../../typenum/trait.Add.html' title='typenum::Add'>Add</a>&lt;<a class='struct' href='../../typenum/bit/struct.B1.html' title='typenum::bit::B1'>B1</a>&gt; for <a class='struct' href='../../typenum/uint/struct.UTerm.html' title='typenum::uint::UTerm'>UTerm</a></code></h3><div class='docblock'><p>Adding the 1 bit to a <code>UTerm</code>: <code>UTerm + B1 = UInt&lt;UTerm, B1&gt;</code></p>
 </div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = <a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;<a class='struct' href='../../typenum/uint/struct.UTerm.html' title='typenum::uint::UTerm'>UTerm</a>, <a class='struct' href='../../typenum/bit/struct.B1.html' title='typenum::bit::B1'>B1</a>&gt;</code></h4>
 </div><h3 class='impl'><code>impl <a class='trait' href='../../typenum/trait.Add.html' title='typenum::Add'>Add</a>&lt;<a class='struct' href='../../typenum/uint/struct.UTerm.html' title='typenum::uint::UTerm'>UTerm</a>&gt; for <a class='struct' href='../../typenum/uint/struct.UTerm.html' title='typenum::uint::UTerm'>UTerm</a></code></h3><div class='docblock'><p>Adding <code>UTerm</code> to <code>UTerm</code>: <code>UTerm + UTerm = UTerm</code></p>
@@ -75,10 +75,12 @@
 
     <section class="footer"></section>
 
-    <div id="help" class="hidden">
+    <aside id="help" class="hidden">
         <div>
+            <h1 class="hidden">Help</h1>
+
             <div class="shortcuts">
-                <h1>Keyboard Shortcuts</h1>
+                <h2>Keyboard Shortcuts</h2>
 
                 <dl>
                     <dt>?</dt>
@@ -95,7 +97,7 @@
             </div>
 
             <div class="infos">
-                <h1>Search Tricks</h1>
+                <h2>Search Tricks</h2>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -105,8 +107,8 @@
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>typedef</code> (or
-                    <code>tdef</code>).
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
                 </p>
 
                 <p>
@@ -115,7 +117,7 @@
                 </p>
             </div>
         </div>
-    </div>
+    </aside>
 
     
 
