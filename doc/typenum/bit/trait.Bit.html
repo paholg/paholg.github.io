@@ -24,10 +24,10 @@
 
     
 
-    <section class="sidebar">
+    <nav class="sidebar">
         
         <p class='location'><a href='../index.html'>typenum</a>::<wbr><a href='index.html'>bit</a></p><script>window.sidebarCurrent = {name: 'Bit', ty: 'trait', relpath: ''};</script><script defer src="sidebar-items.js"></script>
-    </section>
+    </nav>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -47,14 +47,14 @@
             </a>
         </span><a id='src-24' class='srclink' href='../../src/typenum/bit.rs.html#10-14' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait Bit {
-    fn <a href='#tymethod.to_int' class='fnname'>to_int</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>;
-    fn <a href='#tymethod.to_bool' class='fnname'>to_bool</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>;
+    fn <a href='#tymethod.to_int' class='fnname'>to_int</a>() -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>;
+    fn <a href='#tymethod.to_bool' class='fnname'>to_bool</a>() -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>;
 }</pre><div class='docblock'><p>The trait for compile time bits; nothing besides B0 and B1 should implement this.</p>
 </div>
             <h2 id='required-methods'>Required Methods</h2>
             <div class='methods'>
-        <h3 id='tymethod.to_int' class='method stab '><code>fn <a href='#tymethod.to_int' class='fnname'>to_int</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a></code></h3><div class='docblock'><p>Gives the integer value for this bit.</p>
-</div><h3 id='tymethod.to_bool' class='method stab '><code>fn <a href='#tymethod.to_bool' class='fnname'>to_bool</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h3></div>
+        <h3 id='tymethod.to_int' class='method stab '><code>fn <a href='#tymethod.to_int' class='fnname'>to_int</a>() -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a></code></h3><div class='docblock'><p>Gives the integer value for this bit.</p>
+</div><h3 id='tymethod.to_bool' class='method stab '><code>fn <a href='#tymethod.to_bool' class='fnname'>to_bool</a>() -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h3></div>
         <h2 id='implementors'>Implementors</h2>
         <ul class='item-list' id='implementors-list'>
     <li><code>impl <a class='trait' href='../../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a> for <a class='struct' href='../../typenum/bit/struct.B0.html' title='typenum::bit::B0'>B0</a></code></li>
@@ -66,10 +66,12 @@
 
     <section class="footer"></section>
 
-    <div id="help" class="hidden">
+    <aside id="help" class="hidden">
         <div>
+            <h1 class="hidden">Help</h1>
+
             <div class="shortcuts">
-                <h1>Keyboard Shortcuts</h1>
+                <h2>Keyboard Shortcuts</h2>
 
                 <dl>
                     <dt>?</dt>
@@ -86,7 +88,7 @@
             </div>
 
             <div class="infos">
-                <h1>Search Tricks</h1>
+                <h2>Search Tricks</h2>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -96,8 +98,8 @@
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>typedef</code> (or
-                    <code>tdef</code>).
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
                 </p>
 
                 <p>
@@ -106,7 +108,7 @@
                 </p>
             </div>
         </div>
-    </div>
+    </aside>
 
     
 

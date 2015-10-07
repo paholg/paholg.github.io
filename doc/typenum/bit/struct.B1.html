@@ -24,10 +24,10 @@
 
     
 
-    <section class="sidebar">
+    <nav class="sidebar">
         
         <p class='location'><a href='../index.html'>typenum</a>::<wbr><a href='index.html'>bit</a></p><script>window.sidebarCurrent = {name: 'B1', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
-    </section>
+    </nav>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -47,8 +47,8 @@
             </a>
         </span><a id='src-21' class='srclink' href='../../src/typenum/bit.rs.html#7' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct B1;</pre><div class='docblock'><p>The compile time bit 1</p>
-</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='../../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a> for <a class='struct' href='../../typenum/bit/struct.B1.html' title='typenum::bit::B1'>B1</a></code></h3><div class='impl-items'><h4 id='method.to_int' class='method'><code>fn <a href='../../typenum/bit/trait.Bit.html#method.to_int' class='fnname'>to_int</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a></code></h4>
-<h4 id='method.to_bool' class='method'><code>fn <a href='../../typenum/bit/trait.Bit.html#method.to_bool' class='fnname'>to_bool</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='../../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a> for <a class='struct' href='../../typenum/bit/struct.B1.html' title='typenum::bit::B1'>B1</a></code></h3><div class='impl-items'><h4 id='method.to_int' class='method'><code>fn <a href='../../typenum/bit/trait.Bit.html#method.to_int' class='fnname'>to_int</a>() -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a></code></h4>
+<h4 id='method.to_bool' class='method'><code>fn <a href='../../typenum/bit/trait.Bit.html#method.to_bool' class='fnname'>to_bool</a>() -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
 </div><h3 class='impl'><code>impl <a class='trait' href='../../typenum/trait.Same.html' title='typenum::Same'>Same</a>&lt;<a class='struct' href='../../typenum/bit/struct.B1.html' title='typenum::bit::B1'>B1</a>&gt; for <a class='struct' href='../../typenum/bit/struct.B1.html' title='typenum::bit::B1'>B1</a></code></h3><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = <a class='struct' href='../../typenum/bit/struct.B1.html' title='typenum::bit::B1'>B1</a></code></h4>
 </div><h3 class='impl'><code>impl <a class='trait' href='../../typenum/trait.Not.html' title='typenum::Not'>Not</a> for <a class='struct' href='../../typenum/bit/struct.B1.html' title='typenum::bit::B1'>B1</a></code></h3><div class='docblock'><p>Not of 1 (!1 = 0)</p>
 </div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = <a class='struct' href='../../typenum/bit/struct.B0.html' title='typenum::bit::B0'>B0</a></code></h4>
@@ -67,10 +67,12 @@
 
     <section class="footer"></section>
 
-    <div id="help" class="hidden">
+    <aside id="help" class="hidden">
         <div>
+            <h1 class="hidden">Help</h1>
+
             <div class="shortcuts">
-                <h1>Keyboard Shortcuts</h1>
+                <h2>Keyboard Shortcuts</h2>
 
                 <dl>
                     <dt>?</dt>
@@ -87,7 +89,7 @@
             </div>
 
             <div class="infos">
-                <h1>Search Tricks</h1>
+                <h2>Search Tricks</h2>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -97,8 +99,8 @@
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>typedef</code> (or
-                    <code>tdef</code>).
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
                 </p>
 
                 <p>
@@ -107,7 +109,7 @@
                 </p>
             </div>
         </div>
-    </div>
+    </aside>
 
     
 
