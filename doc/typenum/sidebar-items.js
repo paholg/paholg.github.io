@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["bit",""],["int",""],["uint",""]],"trait":[["Add",""],["And",""],["Div",""],["Mul",""],["Not",""],["Or",""],["Same",""],["Shl",""],["Shr",""],["Sub",""],["Xor",""]]});
+initSidebarItems({"mod":[["__private","This module is for things that are conceptually private but that must be made public for typenum to work correctly."],["bit",""],["const_uints",""],["int",""],["uint",""]],"trait":[["Add",""],["And",""],["Div",""],["Mul",""],["Neg",""],["Not",""],["Or",""],["Rem",""],["Same",""],["Shl",""],["Shr",""],["Sub",""],["Xor",""]]});

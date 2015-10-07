@@ -82,11 +82,27 @@
 <span id="40">40</span>
 <span id="41">41</span>
 <span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
 </pre><pre class='rust '>
 
 <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>bit</span>;
+
 <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>uint</span>;
+<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>const_uints</span>;
+
 <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>int</span>;
+
+<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>__private</span>;
 
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Same</span><span class='op'>&lt;</span><span class='ident'>Rhs</span> <span class='op'>=</span> <span class='kw'>Self</span><span class='op'>&gt;</span> {
     <span class='doccomment'>/// `Output` should always be `Self`</span>
@@ -94,6 +110,9 @@
 }
 
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Not</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span>;
+}
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Neg</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>And</span><span class='op'>&lt;</span><span class='ident'>Rhs</span> <span class='op'>=</span> <span class='kw'>Self</span><span class='op'>&gt;</span> {
@@ -123,6 +142,9 @@
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Div</span><span class='op'>&lt;</span><span class='ident'>Rhs</span> <span class='op'>=</span> <span class='kw'>Self</span><span class='op'>&gt;</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span>;
+}
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>Rem</span><span class='op'>&lt;</span><span class='ident'>Rhs</span> <span class='op'>=</span> <span class='kw'>Self</span><span class='op'>&gt;</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
 </pre>
