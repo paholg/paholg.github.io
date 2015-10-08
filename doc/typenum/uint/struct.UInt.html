@@ -24,10 +24,10 @@
 
     
 
-    <nav class="sidebar">
+    <section class="sidebar">
         
         <p class='location'><a href='../index.html'>typenum</a>::<wbr><a href='index.html'>uint</a></p><script>window.sidebarCurrent = {name: 'UInt', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
-    </nav>
+    </section>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -51,7 +51,7 @@
 }</pre><div class='docblock'><p>UInt is defined recursevly, where B is the least significant bit and U is the rest
 of the number. U can be another UInt or UTerm. In order to keep numbers unique, leading
 zeros are not allowed, so <code>UInt&lt;UTerm, B0&gt;</code> should never show up anywhere ever.</p>
-</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl&lt;U: <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>, B: <a class='trait' href='../../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>&gt; <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a> for <a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;U, B&gt;</code></h3><div class='impl-items'><h4 id='method.to_int' class='method'><code>fn <a href='../../typenum/uint/trait.Unsigned.html#method.to_int' class='fnname'>to_int</a>() -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></h4>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl&lt;U: <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>, B: <a class='trait' href='../../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>&gt; <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a> for <a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;U, B&gt;</code></h3><div class='impl-items'><h4 id='method.to_int' class='method'><code>fn <a href='../../typenum/uint/trait.Unsigned.html#method.to_int' class='fnname'>to_int</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></h4>
 </div><h3 class='impl'><code>impl&lt;U: <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>, B: <a class='trait' href='../../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>&gt; <a class='trait' href='../../typenum/trait.SizeOf.html' title='typenum::SizeOf'>SizeOf</a> for <a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;U, B&gt; <span class='where'>where <a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;U, B&gt;: <a class='trait' href='../../typenum/__private/trait.PrivateSizeOf.html' title='typenum::__private::PrivateSizeOf'>PrivateSizeOf</a></span></code></h3><div class='docblock'><p>Size of a <code>UInt</code></p>
 </div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = <a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;U, B&gt;::Output</code></h4>
 </div><h3 class='impl'><code>impl&lt;U: <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>, B: <a class='trait' href='../../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>&gt; <a class='trait' href='../../typenum/__private/trait.PrivateSizeOf.html' title='typenum::__private::PrivateSizeOf'>PrivateSizeOf</a> for <a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;U, B&gt; <span class='where'>where U: <a class='trait' href='../../typenum/__private/trait.PrivateSizeOf.html' title='typenum::__private::PrivateSizeOf'>PrivateSizeOf</a>, U::Output: <a class='trait' href='../../typenum/trait.Add.html' title='typenum::Add'>Add</a>&lt;<a class='struct' href='../../typenum/bit/struct.B1.html' title='typenum::bit::B1'>B1</a>&gt;</span></code></h3><div class='docblock'><p>Size of bit is 1</p>
@@ -158,12 +158,10 @@ zeros are not allowed, so <code>UInt&lt;UTerm, B0&gt;</code> should never show u
 
     <section class="footer"></section>
 
-    <aside id="help" class="hidden">
+    <div id="help" class="hidden">
         <div>
-            <h1 class="hidden">Help</h1>
-
             <div class="shortcuts">
-                <h2>Keyboard Shortcuts</h2>
+                <h1>Keyboard Shortcuts</h1>
 
                 <dl>
                     <dt>?</dt>
@@ -180,7 +178,7 @@ zeros are not allowed, so <code>UInt&lt;UTerm, B0&gt;</code> should never show u
             </div>
 
             <div class="infos">
-                <h2>Search Tricks</h2>
+                <h1>Search Tricks</h1>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -190,8 +188,8 @@ zeros are not allowed, so <code>UInt&lt;UTerm, B0&gt;</code> should never show u
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>type</code>, <code>macro</code>,
-                    and <code>const</code>.
+                    <code>trait</code>, <code>typedef</code> (or
+                    <code>tdef</code>).
                 </p>
 
                 <p>
@@ -200,7 +198,7 @@ zeros are not allowed, so <code>UInt&lt;UTerm, B0&gt;</code> should never show u
                 </p>
             </div>
         </div>
-    </aside>
+    </div>
 
     
 
