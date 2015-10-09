@@ -24,10 +24,10 @@
 
     
 
-    <section class="sidebar">
+    <nav class="sidebar">
         
         
-    </section>
+    </nav>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -826,6 +826,42 @@
 <span id="784">784</span>
 <span id="785">785</span>
 <span id="786">786</span>
+<span id="787">787</span>
+<span id="788">788</span>
+<span id="789">789</span>
+<span id="790">790</span>
+<span id="791">791</span>
+<span id="792">792</span>
+<span id="793">793</span>
+<span id="794">794</span>
+<span id="795">795</span>
+<span id="796">796</span>
+<span id="797">797</span>
+<span id="798">798</span>
+<span id="799">799</span>
+<span id="800">800</span>
+<span id="801">801</span>
+<span id="802">802</span>
+<span id="803">803</span>
+<span id="804">804</span>
+<span id="805">805</span>
+<span id="806">806</span>
+<span id="807">807</span>
+<span id="808">808</span>
+<span id="809">809</span>
+<span id="810">810</span>
+<span id="811">811</span>
+<span id="812">812</span>
+<span id="813">813</span>
+<span id="814">814</span>
+<span id="815">815</span>
+<span id="816">816</span>
+<span id="817">817</span>
+<span id="818">818</span>
+<span id="819">819</span>
+<span id="820">820</span>
+<span id="821">821</span>
+<span id="822">822</span>
 </pre><pre class='rust '>
 
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>marker</span>::<span class='ident'>PhantomData</span>;
@@ -834,15 +870,27 @@
 <span class='kw'>use</span> ::<span class='ident'>bit</span>::{<span class='ident'>Bit</span>, <span class='ident'>B0</span>, <span class='ident'>B1</span>};
 <span class='kw'>use</span> ::<span class='ident'>__private</span>::{<span class='ident'>Trim</span>, <span class='ident'>PrivateAnd</span>, <span class='ident'>PrivateXor</span>, <span class='ident'>PrivateSub</span>, <span class='ident'>PrivateCmp</span>, <span class='ident'>PrivateSizeOf</span>, <span class='ident'>PrivateDiv</span>};
 
-<span class='kw'>pub</span> <span class='kw'>use</span> ::<span class='ident'>const_uints</span>::{<span class='ident'>U0</span>, <span class='ident'>U1</span>, <span class='ident'>U2</span>, <span class='ident'>U3</span>, <span class='ident'>U4</span>, <span class='ident'>U5</span>, <span class='ident'>U6</span>, <span class='ident'>U7</span>, <span class='ident'>U8</span>, <span class='ident'>U9</span>, <span class='ident'>U10</span>, <span class='ident'>U11</span>, <span class='ident'>U12</span>, <span class='ident'>U13</span>, <span class='ident'>U14</span>,
-<span class='ident'>U15</span>, <span class='ident'>U16</span>, <span class='ident'>U17</span>, <span class='ident'>U18</span>, <span class='ident'>U19</span>, <span class='ident'>U20</span>, <span class='ident'>U21</span>, <span class='ident'>U22</span>, <span class='ident'>U23</span>, <span class='ident'>U24</span>, <span class='ident'>U25</span>, <span class='ident'>U26</span>, <span class='ident'>U27</span>, <span class='ident'>U28</span>, <span class='ident'>U29</span>, <span class='ident'>U30</span>, <span class='ident'>U31</span>,
-<span class='ident'>U32</span>, <span class='ident'>U33</span>, <span class='ident'>U34</span>, <span class='ident'>U35</span>, <span class='ident'>U36</span>, <span class='ident'>U37</span>, <span class='ident'>U38</span>, <span class='ident'>U39</span>, <span class='ident'>U40</span>, <span class='ident'>U41</span>, <span class='ident'>U42</span>, <span class='ident'>U43</span>, <span class='ident'>U44</span>, <span class='ident'>U45</span>, <span class='ident'>U46</span>, <span class='ident'>U47</span>, <span class='ident'>U48</span>,
-<span class='ident'>U49</span>, <span class='ident'>U50</span>, <span class='ident'>U51</span>, <span class='ident'>U52</span>, <span class='ident'>U53</span>, <span class='ident'>U54</span>, <span class='ident'>U55</span>, <span class='ident'>U56</span>, <span class='ident'>U57</span>, <span class='ident'>U58</span>, <span class='ident'>U59</span>, <span class='ident'>U60</span>, <span class='ident'>U61</span>, <span class='ident'>U62</span>, <span class='ident'>U63</span>, <span class='ident'>U64</span>, <span class='ident'>U65</span>,
-<span class='ident'>U66</span>, <span class='ident'>U67</span>, <span class='ident'>U68</span>, <span class='ident'>U69</span>, <span class='ident'>U70</span>, <span class='ident'>U71</span>, <span class='ident'>U72</span>, <span class='ident'>U73</span>, <span class='ident'>U74</span>, <span class='ident'>U75</span>, <span class='ident'>U76</span>, <span class='ident'>U77</span>, <span class='ident'>U78</span>, <span class='ident'>U79</span>, <span class='ident'>U80</span>, <span class='ident'>U81</span>, <span class='ident'>U82</span>,
-<span class='ident'>U83</span>, <span class='ident'>U84</span>, <span class='ident'>U85</span>, <span class='ident'>U86</span>, <span class='ident'>U87</span>, <span class='ident'>U88</span>, <span class='ident'>U89</span>, <span class='ident'>U90</span>, <span class='ident'>U91</span>, <span class='ident'>U92</span>, <span class='ident'>U93</span>, <span class='ident'>U94</span>, <span class='ident'>U95</span>, <span class='ident'>U96</span>, <span class='ident'>U97</span>, <span class='ident'>U98</span>, <span class='ident'>U99</span>,
-<span class='ident'>U100</span>, <span class='ident'>U101</span>, <span class='ident'>U102</span>, <span class='ident'>U103</span>, <span class='ident'>U104</span>, <span class='ident'>U105</span>, <span class='ident'>U106</span>, <span class='ident'>U107</span>, <span class='ident'>U108</span>, <span class='ident'>U109</span>, <span class='ident'>U110</span>, <span class='ident'>U111</span>, <span class='ident'>U112</span>, <span class='ident'>U113</span>,
-<span class='ident'>U114</span>, <span class='ident'>U115</span>, <span class='ident'>U116</span>, <span class='ident'>U117</span>, <span class='ident'>U118</span>, <span class='ident'>U119</span>, <span class='ident'>U120</span>, <span class='ident'>U121</span>, <span class='ident'>U122</span>, <span class='ident'>U123</span>, <span class='ident'>U124</span>, <span class='ident'>U125</span>, <span class='ident'>U126</span>, <span class='ident'>U127</span>,
-<span class='ident'>U128</span>, <span class='ident'>U256</span>, <span class='ident'>U512</span>, <span class='ident'>U1024</span>, <span class='ident'>U2048</span>, <span class='ident'>U4096</span>, <span class='ident'>U8192</span>, <span class='ident'>U16384</span>, <span class='ident'>U32768</span>, <span class='ident'>U65536</span>};
+<span class='kw'>pub</span> <span class='kw'>use</span> ::<span class='ident'>consts</span>::<span class='ident'>uints</span>::{
+    <span class='ident'>U0</span>, <span class='ident'>U1</span>, <span class='ident'>U2</span>, <span class='ident'>U3</span>, <span class='ident'>U4</span>, <span class='ident'>U5</span>, <span class='ident'>U6</span>, <span class='ident'>U7</span>, <span class='ident'>U8</span>, <span class='ident'>U9</span>, <span class='ident'>U10</span>, <span class='ident'>U11</span>, <span class='ident'>U12</span>, <span class='ident'>U13</span>, <span class='ident'>U14</span>,
+    <span class='ident'>U15</span>, <span class='ident'>U16</span>, <span class='ident'>U17</span>, <span class='ident'>U18</span>, <span class='ident'>U19</span>, <span class='ident'>U20</span>, <span class='ident'>U21</span>, <span class='ident'>U22</span>, <span class='ident'>U23</span>, <span class='ident'>U24</span>, <span class='ident'>U25</span>, <span class='ident'>U26</span>, <span class='ident'>U27</span>, <span class='ident'>U28</span>, <span class='ident'>U29</span>, <span class='ident'>U30</span>, <span class='ident'>U31</span>,
+    <span class='ident'>U32</span>, <span class='ident'>U33</span>, <span class='ident'>U34</span>, <span class='ident'>U35</span>, <span class='ident'>U36</span>, <span class='ident'>U37</span>, <span class='ident'>U38</span>, <span class='ident'>U39</span>, <span class='ident'>U40</span>, <span class='ident'>U41</span>, <span class='ident'>U42</span>, <span class='ident'>U43</span>, <span class='ident'>U44</span>, <span class='ident'>U45</span>, <span class='ident'>U46</span>, <span class='ident'>U47</span>, <span class='ident'>U48</span>,
+    <span class='ident'>U49</span>, <span class='ident'>U50</span>, <span class='ident'>U51</span>, <span class='ident'>U52</span>, <span class='ident'>U53</span>, <span class='ident'>U54</span>, <span class='ident'>U55</span>, <span class='ident'>U56</span>, <span class='ident'>U57</span>, <span class='ident'>U58</span>, <span class='ident'>U59</span>, <span class='ident'>U60</span>, <span class='ident'>U61</span>, <span class='ident'>U62</span>, <span class='ident'>U63</span>, <span class='ident'>U64</span>, <span class='ident'>U65</span>,
+    <span class='ident'>U66</span>, <span class='ident'>U67</span>, <span class='ident'>U68</span>, <span class='ident'>U69</span>, <span class='ident'>U70</span>, <span class='ident'>U71</span>, <span class='ident'>U72</span>, <span class='ident'>U73</span>, <span class='ident'>U74</span>, <span class='ident'>U75</span>, <span class='ident'>U76</span>, <span class='ident'>U77</span>, <span class='ident'>U78</span>, <span class='ident'>U79</span>, <span class='ident'>U80</span>, <span class='ident'>U81</span>, <span class='ident'>U82</span>,
+    <span class='ident'>U83</span>, <span class='ident'>U84</span>, <span class='ident'>U85</span>, <span class='ident'>U86</span>, <span class='ident'>U87</span>, <span class='ident'>U88</span>, <span class='ident'>U89</span>, <span class='ident'>U90</span>, <span class='ident'>U91</span>, <span class='ident'>U92</span>, <span class='ident'>U93</span>, <span class='ident'>U94</span>, <span class='ident'>U95</span>, <span class='ident'>U96</span>, <span class='ident'>U97</span>, <span class='ident'>U98</span>, <span class='ident'>U99</span>,
+    <span class='ident'>U100</span>, <span class='ident'>U101</span>, <span class='ident'>U102</span>, <span class='ident'>U103</span>, <span class='ident'>U104</span>, <span class='ident'>U105</span>, <span class='ident'>U106</span>, <span class='ident'>U107</span>, <span class='ident'>U108</span>, <span class='ident'>U109</span>, <span class='ident'>U110</span>, <span class='ident'>U111</span>, <span class='ident'>U112</span>, <span class='ident'>U113</span>,
+    <span class='ident'>U114</span>, <span class='ident'>U115</span>, <span class='ident'>U116</span>, <span class='ident'>U117</span>, <span class='ident'>U118</span>, <span class='ident'>U119</span>, <span class='ident'>U120</span>, <span class='ident'>U121</span>, <span class='ident'>U122</span>, <span class='ident'>U123</span>, <span class='ident'>U124</span>, <span class='ident'>U125</span>, <span class='ident'>U126</span>, <span class='ident'>U127</span>,
+    <span class='ident'>U128</span>, <span class='ident'>U256</span>, <span class='ident'>U512</span>, <span class='ident'>U1024</span>, <span class='ident'>U2048</span>, <span class='ident'>U4096</span>, <span class='ident'>U8192</span>, <span class='ident'>U10000</span>, <span class='ident'>U16384</span>, <span class='ident'>U32768</span>, <span class='ident'>U65536</span>,
+
+    <span class='ident'>U131072</span>, <span class='ident'>U262144</span>, <span class='ident'>U524288</span>, <span class='ident'>U1048576</span>, <span class='ident'>U2097152</span>, <span class='ident'>U4194304</span>, <span class='ident'>U8388608</span>, <span class='ident'>U16777216</span>, <span class='ident'>U33554432</span>,
+    <span class='ident'>U67108864</span>, <span class='ident'>U134217728</span>, <span class='ident'>U268435456</span>, <span class='ident'>U536870912</span>, <span class='ident'>U1073741824</span>, <span class='ident'>U2147483648</span>, <span class='ident'>U4294967296</span>,
+    <span class='ident'>U8589934592</span>, <span class='ident'>U17179869184</span>, <span class='ident'>U34359738368</span>, <span class='ident'>U68719476736</span>, <span class='ident'>U137438953472</span>, <span class='ident'>U274877906944</span>,
+    <span class='ident'>U549755813888</span>, <span class='ident'>U1099511627776</span>, <span class='ident'>U2199023255552</span>, <span class='ident'>U4398046511104</span>, <span class='ident'>U8796093022208</span>,
+    <span class='ident'>U17592186044416</span>, <span class='ident'>U35184372088832</span>, <span class='ident'>U70368744177664</span>, <span class='ident'>U140737488355328</span>, <span class='ident'>U281474976710656</span>,
+    <span class='ident'>U562949953421312</span>, <span class='ident'>U1125899906842624</span>, <span class='ident'>U2251799813685248</span>, <span class='ident'>U4503599627370496</span>,
+    <span class='ident'>U9007199254740992</span>, <span class='ident'>U18014398509481984</span>, <span class='ident'>U36028797018963968</span>, <span class='ident'>U72057594037927936</span>,
+    <span class='ident'>U144115188075855872</span>, <span class='ident'>U288230376151711744</span>, <span class='ident'>U576460752303423488</span>, <span class='ident'>U1152921504606846976</span>,
+    <span class='ident'>U2305843009213693952</span>, <span class='ident'>U4611686018427387904</span>, <span class='ident'>U9223372036854775808</span>
+};
 
 <span class='doccomment'>/// This trait is implemented for the all things that a `UInt` can take as a parameter,</span>
 <span class='doccomment'>/// which is just `UInt` and `UTerm` (used to terminate the `UInt`). It should not be</span>
@@ -893,6 +941,8 @@
     <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>13</span>, <span class='ident'>U13</span>::<span class='ident'>to_int</span>());
     <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>14</span>, <span class='ident'>U14</span>::<span class='ident'>to_int</span>());
     <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>15</span>, <span class='ident'>U15</span>::<span class='ident'>to_int</span>());
+
+    <span class='macro'>assert_eq</span><span class='macro'>!</span>(<span class='number'>10000</span>, <span class='ident'>U10000</span>::<span class='ident'>to_int</span>());
 }
 
 <span class='comment'>// macro for testing operation results. Uses `Same` to ensure the types are equal and</span>
@@ -1031,6 +1081,9 @@
     <span class='macro'>test_uint_op</span><span class='macro'>!</span>(<span class='ident'>U31</span> <span class='ident'>Add</span> <span class='ident'>U31</span> <span class='op'>=</span> <span class='ident'>U62</span>);
     <span class='macro'>test_uint_op</span><span class='macro'>!</span>(<span class='ident'>U32</span> <span class='ident'>Add</span> <span class='ident'>U31</span> <span class='op'>=</span> <span class='ident'>U63</span>);
     <span class='macro'>test_uint_op</span><span class='macro'>!</span>(<span class='ident'>U31</span> <span class='ident'>Add</span> <span class='ident'>U32</span> <span class='op'>=</span> <span class='ident'>U63</span>);
+
+    <span class='macro'>test_uint_op</span><span class='macro'>!</span>(<span class='ident'>U0</span> <span class='ident'>Add</span> <span class='ident'>U32</span> <span class='op'>=</span> <span class='ident'>U32</span>);
+    <span class='macro'>test_uint_op</span><span class='macro'>!</span>(<span class='ident'>U32</span> <span class='ident'>Add</span> <span class='ident'>U0</span> <span class='op'>=</span> <span class='ident'>U32</span>);
 
     <span class='macro'>test_uint_op</span><span class='macro'>!</span>(<span class='ident'>U32768</span> <span class='ident'>Add</span> <span class='ident'>U32768</span> <span class='op'>=</span> <span class='ident'>U65536</span>);
 }
@@ -1418,36 +1471,44 @@
 
 <span class='comment'>// Multiplying unsigned integers ---------------------------------------------------------</span>
 
-<span class='doccomment'>/// Multiplying any unsigned integer by the 0 bit: `U * B0 = UTerm`</span>
+<span class='doccomment'>/// `U * B0 = UTerm`</span>
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>U</span>: <span class='ident'>Unsigned</span><span class='op'>&gt;</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>B0</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>U</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>UTerm</span>;
 }
 
-<span class='doccomment'>/// Multiplying any unsigned integer by the 1 bit: `U * B1 = U`</span>
+<span class='doccomment'>/// `U * B1 = U`</span>
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>U</span>: <span class='ident'>Unsigned</span><span class='op'>&gt;</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>B1</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>U</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>U</span>;
 }
 
-<span class='doccomment'>/// Multiplying any unsigned integer by `UTerm`: `U * UTerm = UTerm`</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>U</span>: <span class='ident'>Unsigned</span><span class='op'>&gt;</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>UTerm</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>U</span> {
+<span class='doccomment'>/// `UInt&lt;U, B&gt; * UTerm = UTerm`</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>U</span>: <span class='ident'>Unsigned</span>, <span class='ident'>B</span>: <span class='ident'>Bit</span><span class='op'>&gt;</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>UTerm</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>UInt</span><span class='op'>&lt;</span><span class='ident'>U</span>, <span class='ident'>B</span><span class='op'>&gt;</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>UTerm</span>;
 }
 
-<span class='doccomment'>/// Multiplying unsigned integers where the Rhs has LSB 0: `Ul * UInt&lt;Ur, B0&gt; = (Ul * Ur) &lt;&lt; 1`</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Ul</span>: <span class='ident'>Unsigned</span>, <span class='ident'>Ur</span>: <span class='ident'>Unsigned</span><span class='op'>&gt;</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>UInt</span><span class='op'>&lt;</span><span class='ident'>Ur</span>, <span class='ident'>B0</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Ul</span>
-    <span class='kw'>where</span> <span class='ident'>Ul</span>: <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Ur</span><span class='op'>&gt;</span>,
-          <span class='op'>&lt;</span><span class='ident'>Ul</span> <span class='kw'>as</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Ur</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Shl</span><span class='op'>&lt;</span><span class='ident'>B1</span><span class='op'>&gt;</span>
-{
-    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;&lt;</span><span class='ident'>Ul</span> <span class='kw'>as</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Ur</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>Shl</span><span class='op'>&lt;</span><span class='ident'>B1</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
+<span class='doccomment'>/// `UTerm * UInt&lt;U, B&gt; = UTerm`</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>U</span>: <span class='ident'>Unsigned</span>, <span class='ident'>B</span>: <span class='ident'>Bit</span><span class='op'>&gt;</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>UInt</span><span class='op'>&lt;</span><span class='ident'>U</span>, <span class='ident'>B</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>UTerm</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>UTerm</span>;
 }
 
-<span class='doccomment'>/// Multiplying unsigned integers where the Rhs has LSB 1: `Ul * UInt&lt;Ur, B1&gt; = [(Ul * Ur) &lt;&lt; 1] + Ul`</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Ul</span>: <span class='ident'>Unsigned</span>, <span class='ident'>Ur</span>: <span class='ident'>Unsigned</span><span class='op'>&gt;</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>UInt</span><span class='op'>&lt;</span><span class='ident'>Ur</span>, <span class='ident'>B1</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>Ul</span>
-    <span class='kw'>where</span> <span class='ident'>Ul</span>: <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Ur</span><span class='op'>&gt;</span>,
-          <span class='op'>&lt;</span><span class='ident'>Ul</span> <span class='kw'>as</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Ur</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Shl</span><span class='op'>&lt;</span><span class='ident'>B1</span><span class='op'>&gt;</span>,
-          <span class='op'>&lt;&lt;</span><span class='ident'>Ul</span> <span class='kw'>as</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Ur</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>Shl</span><span class='op'>&lt;</span><span class='ident'>B1</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>: <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>Ul</span><span class='op'>&gt;</span>
+<span class='doccomment'>/// `UTerm * UTerm = UTerm`</span>
+<span class='kw'>impl</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>UTerm</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>UTerm</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>UTerm</span>;
+}
+
+<span class='doccomment'>/// `UInt&lt;Ul, B0&gt; * UInt&lt;Ur, B&gt; = UInt&lt;(Ul * UInt&lt;Ur, B&gt;), B0&gt;`</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Ul</span>: <span class='ident'>Unsigned</span>, <span class='ident'>B</span>: <span class='ident'>Bit</span>, <span class='ident'>Ur</span>: <span class='ident'>Unsigned</span><span class='op'>&gt;</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>UInt</span><span class='op'>&lt;</span><span class='ident'>Ur</span>, <span class='ident'>B</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>UInt</span><span class='op'>&lt;</span><span class='ident'>Ul</span>, <span class='ident'>B0</span><span class='op'>&gt;</span>
+   <span class='kw'>where</span> <span class='ident'>Ul</span>: <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>UInt</span><span class='op'>&lt;</span><span class='ident'>Ur</span>, <span class='ident'>B</span><span class='op'>&gt;&gt;</span>
 {
-    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;&lt;</span><span class='op'>&lt;</span><span class='ident'>Ul</span> <span class='kw'>as</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>Ur</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>Shl</span><span class='op'>&lt;</span><span class='ident'>B1</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span> <span class='kw'>as</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>Ul</span><span class='op'>&gt;&gt;</span>::<span class='ident'>Output</span>;
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>UInt</span><span class='op'>&lt;&lt;</span><span class='ident'>Ul</span> <span class='kw'>as</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>UInt</span><span class='op'>&lt;</span><span class='ident'>Ur</span>, <span class='ident'>B</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>::<span class='ident'>Output</span>, <span class='ident'>B0</span><span class='op'>&gt;</span>;
+}
+
+<span class='doccomment'>/// `UInt&lt;Ul, B1&gt; * UInt&lt;Ur, B&gt; = UInt&lt;(Ul * UInt&lt;Ur, B&gt;), B0&gt; + UInt&lt;Ur, B&gt;`</span>
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Ul</span>: <span class='ident'>Unsigned</span>, <span class='ident'>B</span>: <span class='ident'>Bit</span>, <span class='ident'>Ur</span>: <span class='ident'>Unsigned</span><span class='op'>&gt;</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>UInt</span><span class='op'>&lt;</span><span class='ident'>Ur</span>, <span class='ident'>B</span><span class='op'>&gt;&gt;</span> <span class='kw'>for</span> <span class='ident'>UInt</span><span class='op'>&lt;</span><span class='ident'>Ul</span>, <span class='ident'>B1</span><span class='op'>&gt;</span>
+    <span class='kw'>where</span> <span class='ident'>Ul</span>: <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>UInt</span><span class='op'>&lt;</span><span class='ident'>Ur</span>, <span class='ident'>B</span><span class='op'>&gt;&gt;</span>,
+<span class='ident'>UInt</span><span class='op'>&lt;&lt;</span><span class='ident'>Ul</span> <span class='kw'>as</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>UInt</span><span class='op'>&lt;</span><span class='ident'>Ur</span>, <span class='ident'>B</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>::<span class='ident'>Output</span>, <span class='ident'>B0</span><span class='op'>&gt;</span>: <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>UInt</span><span class='op'>&lt;</span><span class='ident'>Ur</span>, <span class='ident'>B</span><span class='op'>&gt;&gt;</span>
+{
+    <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='op'>&lt;</span><span class='ident'>UInt</span><span class='op'>&lt;&lt;</span><span class='ident'>Ul</span> <span class='kw'>as</span> <span class='ident'>Mul</span><span class='op'>&lt;</span><span class='ident'>UInt</span><span class='op'>&lt;</span><span class='ident'>Ur</span>, <span class='ident'>B</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>::<span class='ident'>Output</span>, <span class='ident'>B0</span><span class='op'>&gt;</span> <span class='kw'>as</span> <span class='ident'>Add</span><span class='op'>&lt;</span><span class='ident'>UInt</span><span class='op'>&lt;</span><span class='ident'>Ur</span>, <span class='ident'>B</span><span class='op'>&gt;&gt;</span><span class='op'>&gt;</span>::<span class='ident'>Output</span>;
 }
 
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
@@ -1456,13 +1517,24 @@
     <span class='macro'>test_uint_op</span><span class='macro'>!</span>(<span class='ident'>U1</span> <span class='ident'>Mul</span> <span class='ident'>U0</span> <span class='op'>=</span> <span class='ident'>U0</span>);
     <span class='macro'>test_uint_op</span><span class='macro'>!</span>(<span class='ident'>U0</span> <span class='ident'>Mul</span> <span class='ident'>U1</span> <span class='op'>=</span> <span class='ident'>U0</span>);
     <span class='macro'>test_uint_op</span><span class='macro'>!</span>(<span class='ident'>U1</span> <span class='ident'>Mul</span> <span class='ident'>U1</span> <span class='op'>=</span> <span class='ident'>U1</span>);
-    <span class='macro'>test_uint_op</span><span class='macro'>!</span>(<span class='ident'>U0</span> <span class='ident'>Shl</span> <span class='ident'>B1</span> <span class='op'>=</span> <span class='ident'>U0</span>);
+    <span class='macro'>test_uint_op</span><span class='macro'>!</span>(<span class='ident'>U0</span> <span class='ident'>Mul</span> <span class='ident'>B1</span> <span class='op'>=</span> <span class='ident'>U0</span>);
+    <span class='macro'>test_uint_op</span><span class='macro'>!</span>(<span class='ident'>U0</span> <span class='ident'>Mul</span> <span class='ident'>U2</span> <span class='op'>=</span> <span class='ident'>U0</span>);
+
+    <span class='macro'>test_uint_op</span><span class='macro'>!</span>(<span class='ident'>U1</span> <span class='ident'>Mul</span> <span class='ident'>U2</span> <span class='op'>=</span> <span class='ident'>U2</span>);
+    <span class='macro'>test_uint_op</span><span class='macro'>!</span>(<span class='ident'>U2</span> <span class='ident'>Mul</span> <span class='ident'>U1</span> <span class='op'>=</span> <span class='ident'>U2</span>);
+    <span class='macro'>test_uint_op</span><span class='macro'>!</span>(<span class='ident'>U2</span> <span class='ident'>Mul</span> <span class='ident'>U2</span> <span class='op'>=</span> <span class='ident'>U4</span>);
+
 
     <span class='macro'>test_uint_op</span><span class='macro'>!</span>(<span class='ident'>U12</span> <span class='ident'>Mul</span> <span class='ident'>U5</span> <span class='op'>=</span> <span class='ident'>U60</span>);
     <span class='macro'>test_uint_op</span><span class='macro'>!</span>(<span class='ident'>U5</span> <span class='ident'>Mul</span> <span class='ident'>U12</span> <span class='op'>=</span> <span class='ident'>U60</span>);
     <span class='macro'>test_uint_op</span><span class='macro'>!</span>(<span class='ident'>U15</span> <span class='ident'>Mul</span> <span class='ident'>U4</span> <span class='op'>=</span> <span class='ident'>U60</span>);
     <span class='macro'>test_uint_op</span><span class='macro'>!</span>(<span class='ident'>U4</span> <span class='ident'>Mul</span> <span class='ident'>U15</span> <span class='op'>=</span> <span class='ident'>U60</span>);
     <span class='macro'>test_uint_op</span><span class='macro'>!</span>(<span class='ident'>U32</span> <span class='ident'>Mul</span> <span class='ident'>U8</span> <span class='op'>=</span> <span class='ident'>U256</span>);
+
+    <span class='macro'>test_uint_op</span><span class='macro'>!</span>(<span class='ident'>U65536</span> <span class='ident'>Mul</span> <span class='ident'>U1</span> <span class='op'>=</span> <span class='ident'>U65536</span>);
+    <span class='macro'>test_uint_op</span><span class='macro'>!</span>(<span class='ident'>U1</span> <span class='ident'>Mul</span> <span class='ident'>U65536</span> <span class='op'>=</span> <span class='ident'>U65536</span>);
+
+    <span class='macro'>test_uint_op</span><span class='macro'>!</span>(<span class='ident'>U65536</span> <span class='ident'>Mul</span> <span class='ident'>U65536</span> <span class='op'>=</span> <span class='ident'>U4294967296</span>);
 }
 
 <span class='comment'>// Comparing unsigned integers -----------------------------------------------------------</span>
@@ -1619,10 +1691,12 @@
 
     <section class="footer"></section>
 
-    <div id="help" class="hidden">
+    <aside id="help" class="hidden">
         <div>
+            <h1 class="hidden">Help</h1>
+
             <div class="shortcuts">
-                <h1>Keyboard Shortcuts</h1>
+                <h2>Keyboard Shortcuts</h2>
 
                 <dl>
                     <dt>?</dt>
@@ -1639,7 +1713,7 @@
             </div>
 
             <div class="infos">
-                <h1>Search Tricks</h1>
+                <h2>Search Tricks</h2>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -1649,8 +1723,8 @@
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>typedef</code> (or
-                    <code>tdef</code>).
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
                 </p>
 
                 <p>
@@ -1659,7 +1733,7 @@
                 </p>
             </div>
         </div>
-    </div>
+    </aside>
 
     
 

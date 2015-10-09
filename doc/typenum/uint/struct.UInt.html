@@ -24,10 +24,10 @@
 
     
 
-    <section class="sidebar">
+    <nav class="sidebar">
         
         <p class='location'><a href='../index.html'>typenum</a>::<wbr><a href='index.html'>uint</a></p><script>window.sidebarCurrent = {name: 'UInt', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
-    </section>
+    </nav>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -45,13 +45,13 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-379' class='srclink' href='../../src/typenum/uint.rs.html#35-37' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-427' class='srclink' href='../../src/typenum/uint.rs.html#47-49' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct UInt&lt;U, B&gt; {
     // some fields omitted
 }</pre><div class='docblock'><p>UInt is defined recursevly, where B is the least significant bit and U is the rest
 of the number. U can be another UInt or UTerm. In order to keep numbers unique, leading
 zeros are not allowed, so <code>UInt&lt;UTerm, B0&gt;</code> should never show up anywhere ever.</p>
-</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl&lt;U: <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>, B: <a class='trait' href='../../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>&gt; <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a> for <a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;U, B&gt;</code></h3><div class='impl-items'><h4 id='method.to_int' class='method'><code>fn <a href='../../typenum/uint/trait.Unsigned.html#method.to_int' class='fnname'>to_int</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></h4>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl&lt;U: <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>, B: <a class='trait' href='../../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>&gt; <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a> for <a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;U, B&gt;</code></h3><div class='impl-items'><h4 id='method.to_int' class='method'><code>fn <a href='../../typenum/uint/trait.Unsigned.html#method.to_int' class='fnname'>to_int</a>() -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></h4>
 </div><h3 class='impl'><code>impl&lt;U: <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>, B: <a class='trait' href='../../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>&gt; <a class='trait' href='../../typenum/trait.SizeOf.html' title='typenum::SizeOf'>SizeOf</a> for <a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;U, B&gt; <span class='where'>where <a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;U, B&gt;: <a class='trait' href='../../typenum/__private/trait.PrivateSizeOf.html' title='typenum::__private::PrivateSizeOf'>PrivateSizeOf</a></span></code></h3><div class='docblock'><p>Size of a <code>UInt</code></p>
 </div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = <a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;U, B&gt;::Output</code></h4>
 </div><h3 class='impl'><code>impl&lt;U: <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>, B: <a class='trait' href='../../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>&gt; <a class='trait' href='../../typenum/__private/trait.PrivateSizeOf.html' title='typenum::__private::PrivateSizeOf'>PrivateSizeOf</a> for <a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;U, B&gt; <span class='where'>where U: <a class='trait' href='../../typenum/__private/trait.PrivateSizeOf.html' title='typenum::__private::PrivateSizeOf'>PrivateSizeOf</a>, U::Output: <a class='trait' href='../../typenum/trait.Add.html' title='typenum::Add'>Add</a>&lt;<a class='struct' href='../../typenum/bit/struct.B1.html' title='typenum::bit::B1'>B1</a>&gt;</span></code></h3><div class='docblock'><p>Size of bit is 1</p>
@@ -125,6 +125,12 @@ zeros are not allowed, so <code>UInt&lt;UTerm, B0&gt;</code> should never show u
 </div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = U</code></h4>
 </div><h3 class='impl'><code>impl&lt;U: <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>, B: <a class='trait' href='../../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>, Ur: <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>, Br: <a class='trait' href='../../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>&gt; <a class='trait' href='../../typenum/trait.Shr.html' title='typenum::Shr'>Shr</a>&lt;<a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ur, Br&gt;&gt; for <a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;U, B&gt; <span class='where'>where <a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ur, Br&gt;: <a class='trait' href='../../typenum/trait.Sub.html' title='typenum::Sub'>Sub</a>&lt;<a class='struct' href='../../typenum/bit/struct.B1.html' title='typenum::bit::B1'>B1</a>&gt;, U: <a class='trait' href='../../typenum/trait.Shr.html' title='typenum::Shr'>Shr</a>&lt;<a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ur, Br&gt;::Output&gt;</span></code></h3><div class='docblock'><p>Shifting right <code>UInt</code> by <code>UInt</code>: <code>UInt(U, B) &gt;&gt; Y</code> = <code>U &gt;&gt; (Y - 1)</code></p>
 </div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = U::Output</code></h4>
+</div><h3 class='impl'><code>impl&lt;U: <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>, B: <a class='trait' href='../../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>&gt; <a class='trait' href='../../typenum/trait.Mul.html' title='typenum::Mul'>Mul</a>&lt;<a class='struct' href='../../typenum/uint/struct.UTerm.html' title='typenum::uint::UTerm'>UTerm</a>&gt; for <a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;U, B&gt;</code></h3><div class='docblock'><p><code>UInt&lt;U, B&gt; * UTerm = UTerm</code></p>
+</div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = <a class='struct' href='../../typenum/uint/struct.UTerm.html' title='typenum::uint::UTerm'>UTerm</a></code></h4>
+</div><h3 class='impl'><code>impl&lt;Ul: <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>, B: <a class='trait' href='../../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>, Ur: <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>&gt; <a class='trait' href='../../typenum/trait.Mul.html' title='typenum::Mul'>Mul</a>&lt;<a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ur, B&gt;&gt; for <a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ul, <a class='struct' href='../../typenum/bit/struct.B0.html' title='typenum::bit::B0'>B0</a>&gt; <span class='where'>where Ul: <a class='trait' href='../../typenum/trait.Mul.html' title='typenum::Mul'>Mul</a>&lt;<a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ur, B&gt;&gt;</span></code></h3><div class='docblock'><p><code>UInt&lt;Ul, B0&gt; * UInt&lt;Ur, B&gt; = UInt&lt;(Ul * UInt&lt;Ur, B&gt;), B0&gt;</code></p>
+</div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = <a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ul::Output, <a class='struct' href='../../typenum/bit/struct.B0.html' title='typenum::bit::B0'>B0</a>&gt;</code></h4>
+</div><h3 class='impl'><code>impl&lt;Ul: <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>, B: <a class='trait' href='../../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>, Ur: <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>&gt; <a class='trait' href='../../typenum/trait.Mul.html' title='typenum::Mul'>Mul</a>&lt;<a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ur, B&gt;&gt; for <a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ul, <a class='struct' href='../../typenum/bit/struct.B1.html' title='typenum::bit::B1'>B1</a>&gt; <span class='where'>where Ul: <a class='trait' href='../../typenum/trait.Mul.html' title='typenum::Mul'>Mul</a>&lt;<a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ur, B&gt;&gt;, <a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ul::Output, <a class='struct' href='../../typenum/bit/struct.B0.html' title='typenum::bit::B0'>B0</a>&gt;: <a class='trait' href='../../typenum/trait.Add.html' title='typenum::Add'>Add</a>&lt;<a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ur, B&gt;&gt;</span></code></h3><div class='docblock'><p><code>UInt&lt;Ul, B1&gt; * UInt&lt;Ur, B&gt; = UInt&lt;(Ul * UInt&lt;Ur, B&gt;), B0&gt; + UInt&lt;Ur, B&gt;</code></p>
+</div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = <a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ul::Output, <a class='struct' href='../../typenum/bit/struct.B0.html' title='typenum::bit::B0'>B0</a>&gt;::Output</code></h4>
 </div><h3 class='impl'><code>impl&lt;U: <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>, B: <a class='trait' href='../../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>&gt; <a class='trait' href='../../typenum/trait.Cmp.html' title='typenum::Cmp'>Cmp</a>&lt;<a class='struct' href='../../typenum/uint/struct.UTerm.html' title='typenum::uint::UTerm'>UTerm</a>&gt; for <a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;U, B&gt;</code></h3><div class='docblock'><p>Nonzero &gt; Zero</p>
 </div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = <a class='struct' href='../../typenum/struct.Greater.html' title='typenum::Greater'>Greater</a></code></h4>
 </div><h3 class='impl'><code>impl&lt;Ul: <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>, Bl: <a class='trait' href='../../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>, Ur: <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>, Br: <a class='trait' href='../../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>&gt; <a class='trait' href='../../typenum/trait.Cmp.html' title='typenum::Cmp'>Cmp</a>&lt;<a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ur, Br&gt;&gt; for <a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ul, Bl&gt; <span class='where'>where <a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ul, Bl&gt;: <a class='trait' href='../../typenum/__private/trait.PrivateCmp.html' title='typenum::__private::PrivateCmp'>PrivateCmp</a>&lt;<a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ur, Br&gt;, <a class='struct' href='../../typenum/struct.Equal.html' title='typenum::Equal'>Equal</a>&gt;</span></code></h3><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = <a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ul, Bl&gt;::Output</code></h4>
@@ -158,10 +164,12 @@ zeros are not allowed, so <code>UInt&lt;UTerm, B0&gt;</code> should never show u
 
     <section class="footer"></section>
 
-    <div id="help" class="hidden">
+    <aside id="help" class="hidden">
         <div>
+            <h1 class="hidden">Help</h1>
+
             <div class="shortcuts">
-                <h1>Keyboard Shortcuts</h1>
+                <h2>Keyboard Shortcuts</h2>
 
                 <dl>
                     <dt>?</dt>
@@ -178,7 +186,7 @@ zeros are not allowed, so <code>UInt&lt;UTerm, B0&gt;</code> should never show u
             </div>
 
             <div class="infos">
-                <h1>Search Tricks</h1>
+                <h2>Search Tricks</h2>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -188,8 +196,8 @@ zeros are not allowed, so <code>UInt&lt;UTerm, B0&gt;</code> should never show u
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>typedef</code> (or
-                    <code>tdef</code>).
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
                 </p>
 
                 <p>
@@ -198,7 +206,7 @@ zeros are not allowed, so <code>UInt&lt;UTerm, B0&gt;</code> should never show u
                 </p>
             </div>
         </div>
-    </div>
+    </aside>
 
     
 

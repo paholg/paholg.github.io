@@ -24,10 +24,10 @@
 
     
 
-    <section class="sidebar">
+    <nav class="sidebar">
         
         <p class='location'><a href='index.html'>typenum</a></p><script>window.sidebarCurrent = {name: 'Mul', ty: 'trait', relpath: ''};</script><script defer src="sidebar-items.js"></script>
-    </section>
+    </nav>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-3011' class='srclink' href='../src/typenum/lib.rs.html#46-48' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-3366' class='srclink' href='../src/typenum/lib.rs.html#46-48' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait Mul&lt;Rhs = Self&gt; {
     type Output;
 }</pre>
@@ -54,17 +54,24 @@
         <h3 id='associatedtype.Output' class='method stab '><code>type Output</code></h3></div>
         <h2 id='implementors'>Implementors</h2>
         <ul class='item-list' id='implementors-list'>
-    </ul><script type="text/javascript" async
+    <li><code>impl&lt;U: <a class='trait' href='../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>, B: <a class='trait' href='../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>&gt; <a class='trait' href='../typenum/trait.Mul.html' title='typenum::Mul'>Mul</a>&lt;<a class='struct' href='../typenum/uint/struct.UTerm.html' title='typenum::uint::UTerm'>UTerm</a>&gt; for <a class='struct' href='../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;U, B&gt;</code></li>
+<li><code>impl&lt;U: <a class='trait' href='../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>, B: <a class='trait' href='../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>&gt; <a class='trait' href='../typenum/trait.Mul.html' title='typenum::Mul'>Mul</a>&lt;<a class='struct' href='../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;U, B&gt;&gt; for <a class='struct' href='../typenum/uint/struct.UTerm.html' title='typenum::uint::UTerm'>UTerm</a></code></li>
+<li><code>impl <a class='trait' href='../typenum/trait.Mul.html' title='typenum::Mul'>Mul</a>&lt;<a class='struct' href='../typenum/uint/struct.UTerm.html' title='typenum::uint::UTerm'>UTerm</a>&gt; for <a class='struct' href='../typenum/uint/struct.UTerm.html' title='typenum::uint::UTerm'>UTerm</a></code></li>
+<li><code>impl&lt;Ul: <a class='trait' href='../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>, B: <a class='trait' href='../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>, Ur: <a class='trait' href='../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>&gt; <a class='trait' href='../typenum/trait.Mul.html' title='typenum::Mul'>Mul</a>&lt;<a class='struct' href='../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ur, B&gt;&gt; for <a class='struct' href='../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ul, <a class='struct' href='../typenum/bit/struct.B0.html' title='typenum::bit::B0'>B0</a>&gt; <span class='where'>where Ul: <a class='trait' href='../typenum/trait.Mul.html' title='typenum::Mul'>Mul</a>&lt;<a class='struct' href='../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ur, B&gt;&gt;</span></code></li>
+<li><code>impl&lt;Ul: <a class='trait' href='../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>, B: <a class='trait' href='../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>, Ur: <a class='trait' href='../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>&gt; <a class='trait' href='../typenum/trait.Mul.html' title='typenum::Mul'>Mul</a>&lt;<a class='struct' href='../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ur, B&gt;&gt; for <a class='struct' href='../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ul, <a class='struct' href='../typenum/bit/struct.B1.html' title='typenum::bit::B1'>B1</a>&gt; <span class='where'>where Ul: <a class='trait' href='../typenum/trait.Mul.html' title='typenum::Mul'>Mul</a>&lt;<a class='struct' href='../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ur, B&gt;&gt;, <a class='struct' href='../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ul::Output, <a class='struct' href='../typenum/bit/struct.B0.html' title='typenum::bit::B0'>B0</a>&gt;: <a class='trait' href='../typenum/trait.Add.html' title='typenum::Add'>Add</a>&lt;<a class='struct' href='../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;Ur, B&gt;&gt;</span></code></li>
+</ul><script type="text/javascript" async
                               src="../implementors/typenum/trait.Mul.js">
                       </script></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
 
-    <div id="help" class="hidden">
+    <aside id="help" class="hidden">
         <div>
+            <h1 class="hidden">Help</h1>
+
             <div class="shortcuts">
-                <h1>Keyboard Shortcuts</h1>
+                <h2>Keyboard Shortcuts</h2>
 
                 <dl>
                     <dt>?</dt>
@@ -81,7 +88,7 @@
             </div>
 
             <div class="infos">
-                <h1>Search Tricks</h1>
+                <h2>Search Tricks</h2>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -91,8 +98,8 @@
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>typedef</code> (or
-                    <code>tdef</code>).
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
                 </p>
 
                 <p>
@@ -101,7 +108,7 @@
                 </p>
             </div>
         </div>
-    </div>
+    </aside>
 
     
 
