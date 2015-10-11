@@ -38,7 +38,7 @@ collections:
       img: https://img.shields.io/crates/v/dimensioned.svg
       url: https://crates.io/crates/dimensioned
 
-typenum:
+  typenum:
     output: true
     title: Typenum
     url: /typenum
