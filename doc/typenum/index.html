@@ -24,10 +24,10 @@
 
     
 
-    <nav class="sidebar">
+    <section class="sidebar">
         
         <p class='location'></p><script>window.sidebarCurrent = {name: 'typenum', ty: 'mod', relpath: '../'};</script>
-    </nav>
+    </section>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-0' class='srclink' href='../src/typenum/lib.rs.html#1-83' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-0' class='srclink' href='../src/typenum/lib.rs.html#1-42' title='goto source code'>[src]</a></span></h1>
 <h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
 <table>
                     <tr class=' module-item'>
@@ -117,22 +117,6 @@ typenum to work correctly.</p>
                 </table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
 <table>
                     <tr class=' module-item'>
-                        <td><a class='trait' href='trait.Add.html'
-                               title='typenum::Add'>Add</a></td>
-                        <td class='docblock short'>
-                             
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='trait' href='trait.And.html'
-                               title='typenum::And'>And</a></td>
-                        <td class='docblock short'>
-                             
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
                         <td><a class='trait' href='trait.Cmp.html'
                                title='typenum::Cmp'>Cmp</a></td>
                         <td class='docblock short'>
@@ -142,56 +126,8 @@ typenum to work correctly.</p>
                     </tr>
                 
                     <tr class=' module-item'>
-                        <td><a class='trait' href='trait.Div.html'
-                               title='typenum::Div'>Div</a></td>
-                        <td class='docblock short'>
-                             
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='trait' href='trait.Mul.html'
-                               title='typenum::Mul'>Mul</a></td>
-                        <td class='docblock short'>
-                             
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='trait' href='trait.Neg.html'
-                               title='typenum::Neg'>Neg</a></td>
-                        <td class='docblock short'>
-                             
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='trait' href='trait.Not.html'
-                               title='typenum::Not'>Not</a></td>
-                        <td class='docblock short'>
-                             
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='trait' href='trait.Or.html'
-                               title='typenum::Or'>Or</a></td>
-                        <td class='docblock short'>
-                             
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
                         <td><a class='trait' href='trait.Ord.html'
                                title='typenum::Ord'>Ord</a></td>
-                        <td class='docblock short'>
-                             
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='trait' href='trait.Rem.html'
-                               title='typenum::Rem'>Rem</a></td>
                         <td class='docblock short'>
                              
                         </td>
@@ -206,22 +142,6 @@ typenum to work correctly.</p>
                     </tr>
                 
                     <tr class=' module-item'>
-                        <td><a class='trait' href='trait.Shl.html'
-                               title='typenum::Shl'>Shl</a></td>
-                        <td class='docblock short'>
-                             
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='trait' href='trait.Shr.html'
-                               title='typenum::Shr'>Shr</a></td>
-                        <td class='docblock short'>
-                             
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
                         <td><a class='trait' href='trait.SizeOf.html'
                                title='typenum::SizeOf'>SizeOf</a></td>
                         <td class='docblock short'>
@@ -229,33 +149,15 @@ typenum to work correctly.</p>
 
                         </td>
                     </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='trait' href='trait.Sub.html'
-                               title='typenum::Sub'>Sub</a></td>
-                        <td class='docblock short'>
-                             
-                        </td>
-                    </tr>
-                
-                    <tr class=' module-item'>
-                        <td><a class='trait' href='trait.Xor.html'
-                               title='typenum::Xor'>Xor</a></td>
-                        <td class='docblock short'>
-                             
-                        </td>
-                    </tr>
                 </table></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
 
-    <aside id="help" class="hidden">
+    <div id="help" class="hidden">
         <div>
-            <h1 class="hidden">Help</h1>
-
             <div class="shortcuts">
-                <h2>Keyboard Shortcuts</h2>
+                <h1>Keyboard Shortcuts</h1>
 
                 <dl>
                     <dt>?</dt>
@@ -272,7 +174,7 @@ typenum to work correctly.</p>
             </div>
 
             <div class="infos">
-                <h2>Search Tricks</h2>
+                <h1>Search Tricks</h1>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -282,8 +184,8 @@ typenum to work correctly.</p>
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>type</code>, <code>macro</code>,
-                    and <code>const</code>.
+                    <code>trait</code>, <code>typedef</code> (or
+                    <code>tdef</code>).
                 </p>
 
                 <p>
@@ -292,7 +194,7 @@ typenum to work correctly.</p>
                 </p>
             </div>
         </div>
-    </aside>
+    </div>
 
     
 

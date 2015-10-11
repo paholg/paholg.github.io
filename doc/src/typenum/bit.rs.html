@@ -24,10 +24,10 @@
 
     
 
-    <nav class="sidebar">
+    <section class="sidebar">
         
         
-    </nav>
+    </section>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -176,8 +176,20 @@
 <span id="134">134</span>
 <span id="135">135</span>
 <span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
+<span id="139">139</span>
+<span id="140">140</span>
+<span id="141">141</span>
+<span id="142">142</span>
+<span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
 </pre><pre class='rust '>
-<span class='kw'>use</span> ::{<span class='ident'>Not</span>, <span class='ident'>And</span>, <span class='ident'>Or</span>, <span class='ident'>Xor</span>, <span class='ident'>Same</span>, <span class='ident'>Cmp</span>, <span class='ident'>Greater</span>, <span class='ident'>Less</span>, <span class='ident'>Equal</span>, <span class='ident'>SizeOf</span>};
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>ops</span>::{<span class='ident'>BitAnd</span>, <span class='ident'>BitOr</span>, <span class='ident'>BitXor</span>, <span class='ident'>Not</span>};
+<span class='kw'>use</span> ::{<span class='ident'>Same</span>, <span class='ident'>Cmp</span>, <span class='ident'>Greater</span>, <span class='ident'>Less</span>, <span class='ident'>Equal</span>, <span class='ident'>SizeOf</span>};
 <span class='kw'>use</span> ::<span class='ident'>uint</span>::<span class='ident'>U1</span>;
 
 <span class='doccomment'>/// The compile time bit 0</span>
@@ -236,45 +248,55 @@
 <span class='doccomment'>/// Not of 0 (!0 = 1)</span>
 <span class='kw'>impl</span> <span class='ident'>Not</span> <span class='kw'>for</span> <span class='ident'>B0</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>B1</span>;
+    <span class='kw'>fn</span> <span class='ident'>not</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
 }
 <span class='doccomment'>/// Not of 1 (!1 = 0)</span>
 <span class='kw'>impl</span> <span class='ident'>Not</span> <span class='kw'>for</span> <span class='ident'>B1</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>B0</span>;
+    <span class='kw'>fn</span> <span class='ident'>not</span>(<span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
 }
 
 <span class='doccomment'>/// And with 0 ( 0 &amp; B = 0)</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Rhs</span>: <span class='ident'>Bit</span><span class='op'>&gt;</span> <span class='ident'>And</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>B0</span> {
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Rhs</span>: <span class='ident'>Bit</span><span class='op'>&gt;</span> <span class='ident'>BitAnd</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>B0</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>B0</span>;
+    <span class='kw'>fn</span> <span class='ident'>bitand</span>(<span class='self'>self</span>, _: <span class='ident'>Rhs</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
 }
 <span class='doccomment'>/// And with 1 ( 1 &amp; B = B)</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Rhs</span>: <span class='ident'>Bit</span><span class='op'>&gt;</span> <span class='ident'>And</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>B1</span> {
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Rhs</span>: <span class='ident'>Bit</span><span class='op'>&gt;</span> <span class='ident'>BitAnd</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>B1</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Rhs</span>;
+    <span class='kw'>fn</span> <span class='ident'>bitand</span>(<span class='self'>self</span>, _: <span class='ident'>Rhs</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
 }
 
 <span class='doccomment'>/// Or with 0 ( 0 | B = B)</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Rhs</span>: <span class='ident'>Bit</span><span class='op'>&gt;</span> <span class='ident'>Or</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>B0</span> {
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Rhs</span>: <span class='ident'>Bit</span><span class='op'>&gt;</span> <span class='ident'>BitOr</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>B0</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>Rhs</span>;
+    <span class='kw'>fn</span> <span class='ident'>bitor</span>(<span class='self'>self</span>, _: <span class='ident'>Rhs</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
 }
 <span class='doccomment'>/// Or with 1 ( 1 | B = 1)</span>
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Rhs</span>: <span class='ident'>Bit</span><span class='op'>&gt;</span> <span class='ident'>Or</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>B1</span> {
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>Rhs</span>: <span class='ident'>Bit</span><span class='op'>&gt;</span> <span class='ident'>BitOr</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>B1</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>B1</span>;
+    <span class='kw'>fn</span> <span class='ident'>bitor</span>(<span class='self'>self</span>, _: <span class='ident'>Rhs</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
 }
 
 <span class='doccomment'>/// Xor between 0 and 0 ( 0 ^ 0 = 0)</span>
-<span class='kw'>impl</span> <span class='ident'>Xor</span><span class='op'>&lt;</span><span class='ident'>B0</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>B0</span> {
+<span class='kw'>impl</span> <span class='ident'>BitXor</span><span class='op'>&lt;</span><span class='ident'>B0</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>B0</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>B0</span>;
+    <span class='kw'>fn</span> <span class='ident'>bitxor</span>(<span class='self'>self</span>, _: <span class='ident'>B0</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
 }
 <span class='doccomment'>/// Xor between 1 and 0 ( 1 ^ 0 = 1)</span>
-<span class='kw'>impl</span> <span class='ident'>Xor</span><span class='op'>&lt;</span><span class='ident'>B0</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>B1</span> {
+<span class='kw'>impl</span> <span class='ident'>BitXor</span><span class='op'>&lt;</span><span class='ident'>B0</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>B1</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>B1</span>;
+    <span class='kw'>fn</span> <span class='ident'>bitxor</span>(<span class='self'>self</span>, _: <span class='ident'>B0</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
 }
 <span class='doccomment'>/// Xor between 0 and 1 ( 0 ^ 1 = 1)</span>
-<span class='kw'>impl</span> <span class='ident'>Xor</span><span class='op'>&lt;</span><span class='ident'>B1</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>B0</span> {
+<span class='kw'>impl</span> <span class='ident'>BitXor</span><span class='op'>&lt;</span><span class='ident'>B1</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>B0</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>B1</span>;
+    <span class='kw'>fn</span> <span class='ident'>bitxor</span>(<span class='self'>self</span>, _: <span class='ident'>B1</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
 }
 <span class='doccomment'>/// Xor between 1 and 1 ( 1 ^ 1 = 0)</span>
-<span class='kw'>impl</span> <span class='ident'>Xor</span><span class='op'>&lt;</span><span class='ident'>B1</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>B1</span> {
+<span class='kw'>impl</span> <span class='ident'>BitXor</span><span class='op'>&lt;</span><span class='ident'>B1</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>B1</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span> <span class='op'>=</span> <span class='ident'>B0</span>;
+    <span class='kw'>fn</span> <span class='ident'>bitxor</span>(<span class='self'>self</span>, _: <span class='ident'>B1</span>) <span class='op'>-&gt;</span> <span class='ident'>Self</span>::<span class='ident'>Output</span> { <span class='macro'>unreachable</span><span class='macro'>!</span>() }
 }
 
 <span class='attribute'>#[<span class='ident'>test</span>]</span>
@@ -282,20 +304,20 @@
     <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>Not</span> <span class='ident'>B0</span> <span class='op'>=</span> <span class='ident'>B1</span>);
     <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>Not</span> <span class='ident'>B1</span> <span class='op'>=</span> <span class='ident'>B0</span>);
 
-    <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>B0</span> <span class='ident'>And</span> <span class='ident'>B0</span> <span class='op'>=</span> <span class='ident'>B0</span>);
-    <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>B0</span> <span class='ident'>And</span> <span class='ident'>B1</span> <span class='op'>=</span> <span class='ident'>B0</span>);
-    <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>B1</span> <span class='ident'>And</span> <span class='ident'>B0</span> <span class='op'>=</span> <span class='ident'>B0</span>);
-    <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>B1</span> <span class='ident'>And</span> <span class='ident'>B1</span> <span class='op'>=</span> <span class='ident'>B1</span>);
+    <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>B0</span> <span class='ident'>BitAnd</span> <span class='ident'>B0</span> <span class='op'>=</span> <span class='ident'>B0</span>);
+    <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>B0</span> <span class='ident'>BitAnd</span> <span class='ident'>B1</span> <span class='op'>=</span> <span class='ident'>B0</span>);
+    <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>B1</span> <span class='ident'>BitAnd</span> <span class='ident'>B0</span> <span class='op'>=</span> <span class='ident'>B0</span>);
+    <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>B1</span> <span class='ident'>BitAnd</span> <span class='ident'>B1</span> <span class='op'>=</span> <span class='ident'>B1</span>);
 
-    <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>B0</span> <span class='ident'>Or</span> <span class='ident'>B0</span> <span class='op'>=</span> <span class='ident'>B0</span>);
-    <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>B0</span> <span class='ident'>Or</span> <span class='ident'>B1</span> <span class='op'>=</span> <span class='ident'>B1</span>);
-    <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>B1</span> <span class='ident'>Or</span> <span class='ident'>B0</span> <span class='op'>=</span> <span class='ident'>B1</span>);
-    <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>B1</span> <span class='ident'>Or</span> <span class='ident'>B1</span> <span class='op'>=</span> <span class='ident'>B1</span>);
+    <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>B0</span> <span class='ident'>BitOr</span> <span class='ident'>B0</span> <span class='op'>=</span> <span class='ident'>B0</span>);
+    <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>B0</span> <span class='ident'>BitOr</span> <span class='ident'>B1</span> <span class='op'>=</span> <span class='ident'>B1</span>);
+    <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>B1</span> <span class='ident'>BitOr</span> <span class='ident'>B0</span> <span class='op'>=</span> <span class='ident'>B1</span>);
+    <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>B1</span> <span class='ident'>BitOr</span> <span class='ident'>B1</span> <span class='op'>=</span> <span class='ident'>B1</span>);
 
-    <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>B0</span> <span class='ident'>Xor</span> <span class='ident'>B0</span> <span class='op'>=</span> <span class='ident'>B0</span>);
-    <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>B0</span> <span class='ident'>Xor</span> <span class='ident'>B1</span> <span class='op'>=</span> <span class='ident'>B1</span>);
-    <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>B1</span> <span class='ident'>Xor</span> <span class='ident'>B0</span> <span class='op'>=</span> <span class='ident'>B1</span>);
-    <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>B1</span> <span class='ident'>Xor</span> <span class='ident'>B1</span> <span class='op'>=</span> <span class='ident'>B0</span>);
+    <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>B0</span> <span class='ident'>BitXor</span> <span class='ident'>B0</span> <span class='op'>=</span> <span class='ident'>B0</span>);
+    <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>B0</span> <span class='ident'>BitXor</span> <span class='ident'>B1</span> <span class='op'>=</span> <span class='ident'>B1</span>);
+    <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>B1</span> <span class='ident'>BitXor</span> <span class='ident'>B0</span> <span class='op'>=</span> <span class='ident'>B1</span>);
+    <span class='macro'>test_bit_op</span><span class='macro'>!</span>(<span class='ident'>B1</span> <span class='ident'>BitXor</span> <span class='ident'>B1</span> <span class='op'>=</span> <span class='ident'>B0</span>);
 }
 
 <span class='kw'>impl</span> <span class='ident'>Cmp</span><span class='op'>&lt;</span><span class='ident'>B0</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>B0</span> {
@@ -319,12 +341,10 @@
 
     <section class="footer"></section>
 
-    <aside id="help" class="hidden">
+    <div id="help" class="hidden">
         <div>
-            <h1 class="hidden">Help</h1>
-
             <div class="shortcuts">
-                <h2>Keyboard Shortcuts</h2>
+                <h1>Keyboard Shortcuts</h1>
 
                 <dl>
                     <dt>?</dt>
@@ -341,7 +361,7 @@
             </div>
 
             <div class="infos">
-                <h2>Search Tricks</h2>
+                <h1>Search Tricks</h1>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -351,8 +371,8 @@
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>type</code>, <code>macro</code>,
-                    and <code>const</code>.
+                    <code>trait</code>, <code>typedef</code> (or
+                    <code>tdef</code>).
                 </p>
 
                 <p>
@@ -361,7 +381,7 @@
                 </p>
             </div>
         </div>
-    </aside>
+    </div>
 
     
 

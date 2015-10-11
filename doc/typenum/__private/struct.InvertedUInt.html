@@ -24,10 +24,10 @@
 
     
 
-    <nav class="sidebar">
+    <section class="sidebar">
         
         <p class='location'><a href='../index.html'>typenum</a>::<wbr><a href='index.html'>__private</a></p><script>window.sidebarCurrent = {name: 'InvertedUInt', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
-    </nav>
+    </section>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -45,11 +45,11 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-3077' class='srclink' href='../../src/typenum/__private.rs.html#53-55' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-5118' class='srclink' href='../../src/typenum/__private.rs.html#53-55' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct InvertedUInt&lt;IU: <a class='trait' href='../../typenum/__private/trait.InvertedUnsigned.html' title='typenum::__private::InvertedUnsigned'>InvertedUnsigned</a>, B: <a class='trait' href='../../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>&gt; {
     // some fields omitted
 }</pre><div class='docblock'><p>Inverted UInt (has most significant digit on the outside)</p>
-</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl&lt;IU: <a class='trait' href='../../typenum/__private/trait.InvertedUnsigned.html' title='typenum::__private::InvertedUnsigned'>InvertedUnsigned</a>, B: <a class='trait' href='../../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>&gt; <a class='trait' href='../../typenum/__private/trait.InvertedUnsigned.html' title='typenum::__private::InvertedUnsigned'>InvertedUnsigned</a> for <a class='struct' href='../../typenum/__private/struct.InvertedUInt.html' title='typenum::__private::InvertedUInt'>InvertedUInt</a>&lt;IU, B&gt;</code></h3><div class='impl-items'><h4 id='method.to_int' class='method'><code>fn <a href='../../typenum/__private/trait.InvertedUnsigned.html#method.to_int' class='fnname'>to_int</a>() -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></h4>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl&lt;IU: <a class='trait' href='../../typenum/__private/trait.InvertedUnsigned.html' title='typenum::__private::InvertedUnsigned'>InvertedUnsigned</a>, B: <a class='trait' href='../../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>&gt; <a class='trait' href='../../typenum/__private/trait.InvertedUnsigned.html' title='typenum::__private::InvertedUnsigned'>InvertedUnsigned</a> for <a class='struct' href='../../typenum/__private/struct.InvertedUInt.html' title='typenum::__private::InvertedUInt'>InvertedUInt</a>&lt;IU, B&gt;</code></h3><div class='impl-items'><h4 id='method.to_int' class='method'><code>fn <a href='../../typenum/__private/trait.InvertedUnsigned.html#method.to_int' class='fnname'>to_int</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></h4>
 </div><h3 class='impl'><code>impl&lt;IU: <a class='trait' href='../../typenum/__private/trait.InvertedUnsigned.html' title='typenum::__private::InvertedUnsigned'>InvertedUnsigned</a>, B: <a class='trait' href='../../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>&gt; <a class='trait' href='../../typenum/__private/trait.Invert.html' title='typenum::__private::Invert'>Invert</a> for <a class='struct' href='../../typenum/__private/struct.InvertedUInt.html' title='typenum::__private::InvertedUInt'>InvertedUInt</a>&lt;IU, B&gt; <span class='where'>where IU: <a class='trait' href='../../typenum/__private/trait.PrivateInvert.html' title='typenum::__private::PrivateInvert'>PrivateInvert</a>&lt;<a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;<a class='struct' href='../../typenum/uint/struct.UTerm.html' title='typenum::uint::UTerm'>UTerm</a>, B&gt;&gt;</span></code></h3><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = IU::Output</code></h4>
 </div><h3 class='impl'><code>impl&lt;U: <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>, IU: <a class='trait' href='../../typenum/__private/trait.InvertedUnsigned.html' title='typenum::__private::InvertedUnsigned'>InvertedUnsigned</a>, B: <a class='trait' href='../../typenum/bit/trait.Bit.html' title='typenum::bit::Bit'>Bit</a>&gt; <a class='trait' href='../../typenum/__private/trait.PrivateInvert.html' title='typenum::__private::PrivateInvert'>PrivateInvert</a>&lt;U&gt; for <a class='struct' href='../../typenum/__private/struct.InvertedUInt.html' title='typenum::__private::InvertedUInt'>InvertedUInt</a>&lt;IU, B&gt; <span class='where'>where IU: <a class='trait' href='../../typenum/__private/trait.PrivateInvert.html' title='typenum::__private::PrivateInvert'>PrivateInvert</a>&lt;<a class='struct' href='../../typenum/uint/struct.UInt.html' title='typenum::uint::UInt'>UInt</a>&lt;U, B&gt;&gt;</span></code></h3><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = IU::Output</code></h4>
 </div><h3 class='impl'><code>impl&lt;IU: <a class='trait' href='../../typenum/__private/trait.InvertedUnsigned.html' title='typenum::__private::InvertedUnsigned'>InvertedUnsigned</a>&gt; <a class='trait' href='../../typenum/__private/trait.TrimTrailingZeros.html' title='typenum::__private::TrimTrailingZeros'>TrimTrailingZeros</a> for <a class='struct' href='../../typenum/__private/struct.InvertedUInt.html' title='typenum::__private::InvertedUInt'>InvertedUInt</a>&lt;IU, <a class='struct' href='../../typenum/bit/struct.B1.html' title='typenum::bit::B1'>B1</a>&gt;</code></h3><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = Self</code></h4>
@@ -59,12 +59,10 @@
 
     <section class="footer"></section>
 
-    <aside id="help" class="hidden">
+    <div id="help" class="hidden">
         <div>
-            <h1 class="hidden">Help</h1>
-
             <div class="shortcuts">
-                <h2>Keyboard Shortcuts</h2>
+                <h1>Keyboard Shortcuts</h1>
 
                 <dl>
                     <dt>?</dt>
@@ -81,7 +79,7 @@
             </div>
 
             <div class="infos">
-                <h2>Search Tricks</h2>
+                <h1>Search Tricks</h1>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -91,8 +89,8 @@
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>type</code>, <code>macro</code>,
-                    and <code>const</code>.
+                    <code>trait</code>, <code>typedef</code> (or
+                    <code>tdef</code>).
                 </p>
 
                 <p>
@@ -101,7 +99,7 @@
                 </p>
             </div>
         </div>
-    </aside>
+    </div>
 
     
 

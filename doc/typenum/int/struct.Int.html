@@ -24,10 +24,10 @@
 
     
 
-    <nav class="sidebar">
+    <section class="sidebar">
         
         <p class='location'><a href='../index.html'>typenum</a>::<wbr><a href='index.html'>int</a></p><script>window.sidebarCurrent = {name: 'Int', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
-    </nav>
+    </section>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -45,24 +45,22 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-2985' class='srclink' href='../../src/typenum/int.rs.html#27-29' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-4059' class='srclink' href='../../src/typenum/int.rs.html#27-29' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Int&lt;U: <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>, S: <a class='trait' href='../../typenum/int/trait.Sign.html' title='typenum::int::Sign'>Sign</a>&gt; {
     // some fields omitted
 }</pre><div class='docblock'><p><code>Int</code> is defined as a <code>UInt</code> with a sign flag.</p>
-</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl&lt;U: <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>&gt; <a class='trait' href='../../typenum/int/trait.Signed.html' title='typenum::int::Signed'>Signed</a> for <a class='struct' href='../../typenum/int/struct.Int.html' title='typenum::int::Int'>Int</a>&lt;U, <a class='struct' href='../../typenum/int/struct.Positive.html' title='typenum::int::Positive'>Positive</a>&gt;</code></h3><div class='impl-items'><h4 id='method.to_int' class='method'><code>fn <a href='../../typenum/int/trait.Signed.html#method.to_int' class='fnname'>to_int</a>() -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a></code></h4>
-</div><h3 class='impl'><code>impl&lt;U: <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>&gt; <a class='trait' href='../../typenum/int/trait.Signed.html' title='typenum::int::Signed'>Signed</a> for <a class='struct' href='../../typenum/int/struct.Int.html' title='typenum::int::Int'>Int</a>&lt;U, <a class='struct' href='../../typenum/int/struct.Negative.html' title='typenum::int::Negative'>Negative</a>&gt;</code></h3><div class='impl-items'><h4 id='method.to_int' class='method'><code>fn <a href='../../typenum/int/trait.Signed.html#method.to_int' class='fnname'>to_int</a>() -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a></code></h4>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl&lt;U: <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>&gt; <a class='trait' href='../../typenum/int/trait.Signed.html' title='typenum::int::Signed'>Signed</a> for <a class='struct' href='../../typenum/int/struct.Int.html' title='typenum::int::Int'>Int</a>&lt;U, <a class='struct' href='../../typenum/int/struct.Positive.html' title='typenum::int::Positive'>Positive</a>&gt;</code></h3><div class='impl-items'><h4 id='method.to_int' class='method'><code>fn <a href='../../typenum/int/trait.Signed.html#method.to_int' class='fnname'>to_int</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a></code></h4>
+</div><h3 class='impl'><code>impl&lt;U: <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>&gt; <a class='trait' href='../../typenum/int/trait.Signed.html' title='typenum::int::Signed'>Signed</a> for <a class='struct' href='../../typenum/int/struct.Int.html' title='typenum::int::Int'>Int</a>&lt;U, <a class='struct' href='../../typenum/int/struct.Negative.html' title='typenum::int::Negative'>Negative</a>&gt;</code></h3><div class='impl-items'><h4 id='method.to_int' class='method'><code>fn <a href='../../typenum/int/trait.Signed.html#method.to_int' class='fnname'>to_int</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a></code></h4>
 </div><h3 class='impl'><code>impl&lt;U: <a class='trait' href='../../typenum/uint/trait.Unsigned.html' title='typenum::uint::Unsigned'>Unsigned</a>, S: <a class='trait' href='../../typenum/int/trait.Sign.html' title='typenum::int::Sign'>Sign</a>&gt; <a class='trait' href='../../typenum/trait.Same.html' title='typenum::Same'>Same</a>&lt;<a class='struct' href='../../typenum/int/struct.Int.html' title='typenum::int::Int'>Int</a>&lt;U, S&gt;&gt; for <a class='struct' href='../../typenum/int/struct.Int.html' title='typenum::int::Int'>Int</a>&lt;U, S&gt;</code></h3><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = <a class='struct' href='../../typenum/int/struct.Int.html' title='typenum::int::Int'>Int</a>&lt;U, S&gt;</code></h4>
 </div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
 
-    <aside id="help" class="hidden">
+    <div id="help" class="hidden">
         <div>
-            <h1 class="hidden">Help</h1>
-
             <div class="shortcuts">
-                <h2>Keyboard Shortcuts</h2>
+                <h1>Keyboard Shortcuts</h1>
 
                 <dl>
                     <dt>?</dt>
@@ -79,7 +77,7 @@
             </div>
 
             <div class="infos">
-                <h2>Search Tricks</h2>
+                <h1>Search Tricks</h1>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -89,8 +87,8 @@
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>type</code>, <code>macro</code>,
-                    and <code>const</code>.
+                    <code>trait</code>, <code>typedef</code> (or
+                    <code>tdef</code>).
                 </p>
 
                 <p>
@@ -99,7 +97,7 @@
                 </p>
             </div>
         </div>
-    </aside>
+    </div>
 
     
 
