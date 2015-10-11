@@ -37,7 +37,8 @@ collections:
     crates:
       img: https://img.shields.io/crates/v/dimensioned.svg
       url: https://crates.io/crates/dimensioned
-  typenum:
+
+typenum:
     output: true
     title: Typenum
     url: /typenum
@@ -47,6 +48,17 @@ collections:
     crates:
       img: https://img.shields.io/crates/v/typenum.svg
       url: https://crates.io/crates/typenum
+
+  peano:
+    output: true
+    title: Peano
+    url: /peano
+    links:
+      Documentation: /doc/peano
+      Source: "https://github.com/paholg/peano"
+    crates:
+      img: https://img.shields.io/crates/v/peano.svg
+      url: https://crates.io/crates/peano
 
   # recipes:
   #   output: true
