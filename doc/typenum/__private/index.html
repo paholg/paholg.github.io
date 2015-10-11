@@ -24,10 +24,10 @@
 
     
 
-    <nav class="sidebar">
+    <section class="sidebar">
         
         <p class='location'><a href='../index.html'>typenum</a></p><script>window.sidebarCurrent = {name: '__private', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
-    </nav>
+    </section>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -45,7 +45,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-5088' class='srclink' href='../../src/typenum/__private.rs.html#1-184' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-5733' class='srclink' href='../../src/typenum/__private.rs.html#1-203' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>This module is for things that are conceptually private but that must be made public for
 typenum to work correctly.</p>
 
@@ -77,6 +77,15 @@ typenum to work correctly.</p>
                     </tr>
                 </table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
 <table>
+                    <tr class=' module-item'>
+                        <td><a class='trait' href='trait.BitDiff.html'
+                               title='typenum::__private::BitDiff'>BitDiff</a></td>
+                        <td class='docblock short'>
+                             <p>Gives SizeOf(Lhs) - SizeOf(Rhs)</p>
+
+                        </td>
+                    </tr>
+                
                     <tr class=' module-item'>
                         <td><a class='trait' href='trait.Invert.html'
                                title='typenum::__private::Invert'>Invert</a></td>
@@ -122,12 +131,28 @@ digit on the outside.</p>
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='trait' href='trait.PrivateDivFirstStep.html'
+                               title='typenum::__private::PrivateDivFirstStep'>PrivateDivFirstStep</a></td>
+                        <td class='docblock short'>
+                             
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='trait' href='trait.PrivateInvert.html'
                                title='typenum::__private::PrivateInvert'>PrivateInvert</a></td>
                         <td class='docblock short'>
                              <p>Doubly private! Called by invert to make the magic happen once its done the first step.
 The Rhs is what we&#39;ve got so far.</p>
 
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='trait' href='trait.PrivatePow.html'
+                               title='typenum::__private::PrivatePow'>PrivatePow</a></td>
+                        <td class='docblock short'>
+                             
                         </td>
                     </tr>
                 
@@ -158,6 +183,16 @@ The Rhs is what we&#39;ve got so far.</p>
                     </tr>
                 
                     <tr class=' module-item'>
+                        <td><a class='trait' href='trait.ShiftDiff.html'
+                               title='typenum::__private::ShiftDiff'>ShiftDiff</a></td>
+                        <td class='docblock short'>
+                             <p>Performs Shl on Lhs so that SizeOf(Lhs) = SizeOf(Rhs)
+Fails if SizeOf(Lhs) &gt; SizeOf(Rhs)</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
                         <td><a class='trait' href='trait.Trim.html'
                                title='typenum::__private::Trim'>Trim</a></td>
                         <td class='docblock short'>
@@ -179,12 +214,10 @@ The Rhs is what we&#39;ve got so far.</p>
 
     <section class="footer"></section>
 
-    <aside id="help" class="hidden">
+    <div id="help" class="hidden">
         <div>
-            <h1 class="hidden">Help</h1>
-
             <div class="shortcuts">
-                <h2>Keyboard Shortcuts</h2>
+                <h1>Keyboard Shortcuts</h1>
 
                 <dl>
                     <dt>?</dt>
@@ -201,7 +234,7 @@ The Rhs is what we&#39;ve got so far.</p>
             </div>
 
             <div class="infos">
-                <h2>Search Tricks</h2>
+                <h1>Search Tricks</h1>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -211,8 +244,8 @@ The Rhs is what we&#39;ve got so far.</p>
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>type</code>, <code>macro</code>,
-                    and <code>const</code>.
+                    <code>trait</code>, <code>typedef</code> (or
+                    <code>tdef</code>).
                 </p>
 
                 <p>
@@ -221,7 +254,7 @@ The Rhs is what we&#39;ve got so far.</p>
                 </p>
             </div>
         </div>
-    </aside>
+    </div>
 
     
 
