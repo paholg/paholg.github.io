@@ -24,10 +24,10 @@
 
     
 
-    <nav class="sidebar">
+    <section class="sidebar">
         
         <p class='location'><a href='index.html'>peano</a></p><script>window.sidebarCurrent = {name: 'ToInt', ty: 'trait', relpath: ''};</script><script defer src="sidebar-items.js"></script>
-    </nav>
+    </section>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -47,7 +47,7 @@
             </a>
         </span><a id='src-1412' class='srclink' href='../src/peano/lib.rs.html#354-357' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait ToInt: <a class='trait' href='../peano/trait.Peano.html' title='peano::Peano'>Peano</a> {
-    fn <a href='#tymethod.to_int' class='fnname'>to_int</a>() -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>;
+    fn <a href='#tymethod.to_int' class='fnname'>to_int</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a>;
 }</pre><div class='docblock'><p>Convert a Peano number to the integer it represents.</p>
 
 <p>Once Rust implements associated constants, an associated constant will replace the
@@ -61,7 +61,7 @@ function <code>to_int()</code>.</p>
 </div>
             <h2 id='required-methods'>Required Methods</h2>
             <div class='methods'>
-        <h3 id='tymethod.to_int' class='method stab '><code>fn <a href='#tymethod.to_int' class='fnname'>to_int</a>() -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a></code></h3></div>
+        <h3 id='tymethod.to_int' class='method stab '><code>fn <a href='#tymethod.to_int' class='fnname'>to_int</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a></code></h3></div>
         <h2 id='implementors'>Implementors</h2>
         <ul class='item-list' id='implementors-list'>
     <li><code>impl <a class='trait' href='../peano/trait.ToInt.html' title='peano::ToInt'>ToInt</a> for <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a></code></li>
@@ -74,12 +74,10 @@ function <code>to_int()</code>.</p>
 
     <section class="footer"></section>
 
-    <aside id="help" class="hidden">
+    <div id="help" class="hidden">
         <div>
-            <h1 class="hidden">Help</h1>
-
             <div class="shortcuts">
-                <h2>Keyboard Shortcuts</h2>
+                <h1>Keyboard Shortcuts</h1>
 
                 <dl>
                     <dt>?</dt>
@@ -96,7 +94,7 @@ function <code>to_int()</code>.</p>
             </div>
 
             <div class="infos">
-                <h2>Search Tricks</h2>
+                <h1>Search Tricks</h1>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -106,8 +104,8 @@ function <code>to_int()</code>.</p>
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>type</code>, <code>macro</code>,
-                    and <code>const</code>.
+                    <code>trait</code>, <code>typedef</code> (or
+                    <code>tdef</code>).
                 </p>
 
                 <p>
@@ -116,7 +114,7 @@ function <code>to_int()</code>.</p>
                 </p>
             </div>
         </div>
-    </aside>
+    </div>
 
     
 

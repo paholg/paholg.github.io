@@ -24,10 +24,10 @@
 
     
 
-    <nav class="sidebar">
+    <section class="sidebar">
         
         <p class='location'><a href='index.html'>peano</a></p><script>window.sidebarCurrent = {name: 'Zero', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
-    </nav>
+    </section>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -47,35 +47,33 @@
             </a>
         </span><a id='src-11' class='srclink' href='../src/peano/lib.rs.html#59' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Zero;</pre><div class='docblock'><p>The type corresponding to the Peano number 0.</p>
-</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='../peano/trait.Peano.html' title='peano::Peano'>Peano</a> for <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a></code></h3><div class='impl-items'></div><h3 class='impl'><code>impl <a class='trait' href='../peano/trait.NonNeg.html' title='peano::NonNeg'>NonNeg</a> for <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a></code></h3><div class='impl-items'></div><h3 class='impl'><code>impl <a class='trait' href='../peano/trait.NonPos.html' title='peano::NonPos'>NonPos</a> for <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a></code></h3><div class='impl-items'></div><h3 class='impl'><code>impl&lt;Rhs&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Add.html' title='core::ops::Add'>Add</a>&lt;Rhs&gt; for <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a> <span class='where'>where Rhs: <a class='trait' href='../peano/trait.Peano.html' title='peano::Peano'>Peano</a></span></code></h3><div class='docblock'><p>Add to Zero (e.g. 0 + 3)</p>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl <a class='trait' href='../peano/trait.Peano.html' title='peano::Peano'>Peano</a> for <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a></code></h3><div class='impl-items'></div><h3 class='impl'><code>impl <a class='trait' href='../peano/trait.NonNeg.html' title='peano::NonNeg'>NonNeg</a> for <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a></code></h3><div class='impl-items'></div><h3 class='impl'><code>impl <a class='trait' href='../peano/trait.NonPos.html' title='peano::NonPos'>NonPos</a> for <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a></code></h3><div class='impl-items'></div><h3 class='impl'><code>impl&lt;Rhs&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Add.html' title='core::ops::Add'>Add</a>&lt;Rhs&gt; for <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a> <span class='where'>where Rhs: <a class='trait' href='../peano/trait.Peano.html' title='peano::Peano'>Peano</a></span></code></h3><div class='docblock'><p>Add to Zero (e.g. 0 + 3)</p>
 </div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = Rhs</code></h4>
-<h4 id='method.add' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Add.html#method.add' class='fnname'>add</a>(self, rhs: Rhs) -&gt; Self::Output</code></h4>
-</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Neg.html' title='core::ops::Neg'>Neg</a> for <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a></code></h3><div class='docblock'><p>The negation of Zero is itself.</p>
+<h4 id='method.add' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.Add.html#method.add' class='fnname'>add</a>(self, rhs: Rhs) -&gt; Self::Output</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Neg.html' title='core::ops::Neg'>Neg</a> for <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a></code></h3><div class='docblock'><p>The negation of Zero is itself.</p>
 </div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a></code></h4>
-<h4 id='method.neg' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Neg.html#method.neg' class='fnname'>neg</a>(self) -&gt; Self::Output</code></h4>
-</div><h3 class='impl'><code>impl&lt;Rhs&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Sub.html' title='core::ops::Sub'>Sub</a>&lt;Rhs&gt; for <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a> <span class='where'>where Rhs: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Neg.html' title='core::ops::Neg'>Neg</a></span></code></h3><div class='docblock'><p>Subtract from Zero (e.g. 0 - 4)</p>
+<h4 id='method.neg' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.Neg.html#method.neg' class='fnname'>neg</a>(self) -&gt; Self::Output</code></h4>
+</div><h3 class='impl'><code>impl&lt;Rhs&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Sub.html' title='core::ops::Sub'>Sub</a>&lt;Rhs&gt; for <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a> <span class='where'>where Rhs: <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Neg.html' title='core::ops::Neg'>Neg</a></span></code></h3><div class='docblock'><p>Subtract from Zero (e.g. 0 - 4)</p>
 </div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = Rhs::Output</code></h4>
-<h4 id='method.sub' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Sub.html#method.sub' class='fnname'>sub</a>(self, rhs: Rhs) -&gt; Self::Output</code></h4>
-</div><h3 class='impl'><code>impl&lt;Rhs&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Mul.html' title='core::ops::Mul'>Mul</a>&lt;Rhs&gt; for <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a> <span class='where'>where Rhs: <a class='trait' href='../peano/trait.Peano.html' title='peano::Peano'>Peano</a></span></code></h3><div class='docblock'><p>Multiply Zero by peano numbers (e.g. 0 * 7)</p>
+<h4 id='method.sub' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.Sub.html#method.sub' class='fnname'>sub</a>(self, rhs: Rhs) -&gt; Self::Output</code></h4>
+</div><h3 class='impl'><code>impl&lt;Rhs&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Mul.html' title='core::ops::Mul'>Mul</a>&lt;Rhs&gt; for <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a> <span class='where'>where Rhs: <a class='trait' href='../peano/trait.Peano.html' title='peano::Peano'>Peano</a></span></code></h3><div class='docblock'><p>Multiply Zero by peano numbers (e.g. 0 * 7)</p>
 </div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a></code></h4>
-<h4 id='method.mul' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Mul.html#method.mul' class='fnname'>mul</a>(self, rhs: Rhs) -&gt; Self::Output</code></h4>
-</div><h3 class='impl'><code>impl&lt;Rhs&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.Div.html' title='core::ops::Div'>Div</a>&lt;Rhs&gt; for <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a> <span class='where'>where Rhs: <a class='trait' href='../peano/trait.Peano.html' title='peano::Peano'>Peano</a></span></code></h3><div class='docblock'><p>Divide Zero by a number (e.g. 0 / 5)</p>
+<h4 id='method.mul' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.Mul.html#method.mul' class='fnname'>mul</a>(self, rhs: Rhs) -&gt; Self::Output</code></h4>
+</div><h3 class='impl'><code>impl&lt;Rhs&gt; <a class='trait' href='http://doc.rust-lang.org/nightly/core/ops/trait.Div.html' title='core::ops::Div'>Div</a>&lt;Rhs&gt; for <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a> <span class='where'>where Rhs: <a class='trait' href='../peano/trait.Peano.html' title='peano::Peano'>Peano</a></span></code></h3><div class='docblock'><p>Divide Zero by a number (e.g. 0 / 5)</p>
 </div><div class='impl-items'><h4 id='assoc_type.Output' class='type'><code>type Output = <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a></code></h4>
-<h4 id='method.div' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Div.html#method.div' class='fnname'>div</a>(self, rhs: Rhs) -&gt; Self::Output</code></h4>
-</div><h3 class='impl'><code>impl <a class='trait' href='../peano/trait.ToInt.html' title='peano::ToInt'>ToInt</a> for <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a></code></h3><div class='impl-items'><h4 id='method.to_int' class='method'><code>fn <a href='../peano/trait.ToInt.html#method.to_int' class='fnname'>to_int</a>() -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a></code></h4>
-</div><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a></code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a></code></h4>
-<h4 id='method.clone_from' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
-</div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> for <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a></code></h3><div class='impl-items'></div></section>
+<h4 id='method.div' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/ops/trait.Div.html#method.div' class='fnname'>div</a>(self, rhs: Rhs) -&gt; Self::Output</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='../peano/trait.ToInt.html' title='peano::ToInt'>ToInt</a> for <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a></code></h3><div class='impl-items'><h4 id='method.to_int' class='method'><code>fn <a href='../peano/trait.ToInt.html#method.to_int' class='fnname'>to_int</a>() -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.i32.html'>i32</a></code></h4>
+</div><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a></code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a></code></h4>
+<h4 id='method.clone_from' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> for <a class='struct' href='../peano/struct.Zero.html' title='peano::Zero'>Zero</a></code></h3><div class='impl-items'></div></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
 
-    <aside id="help" class="hidden">
+    <div id="help" class="hidden">
         <div>
-            <h1 class="hidden">Help</h1>
-
             <div class="shortcuts">
-                <h2>Keyboard Shortcuts</h2>
+                <h1>Keyboard Shortcuts</h1>
 
                 <dl>
                     <dt>?</dt>
@@ -92,7 +90,7 @@
             </div>
 
             <div class="infos">
-                <h2>Search Tricks</h2>
+                <h1>Search Tricks</h1>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -102,8 +100,8 @@
                 <p>
                     Accepted types are: <code>fn</code>, <code>mod</code>,
                     <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>type</code>, <code>macro</code>,
-                    and <code>const</code>.
+                    <code>trait</code>, <code>typedef</code> (or
+                    <code>tdef</code>).
                 </p>
 
                 <p>
@@ -112,7 +110,7 @@
                 </p>
             </div>
         </div>
-    </aside>
+    </div>
 
     
 
