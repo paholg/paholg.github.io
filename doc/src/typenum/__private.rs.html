@@ -224,6 +224,25 @@
 <span id="182">182</span>
 <span id="183">183</span>
 <span id="184">184</span>
+<span id="185">185</span>
+<span id="186">186</span>
+<span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
 </pre><pre class='rust '>
 <span class='doccomment'>/*!
 This module is for things that are conceptually private but that must be made public for
@@ -295,6 +314,30 @@ Loooooooooooooooooooooooooooooooooook awaaaaaaaaaaaayyyyyyyyyyyyyyyyyyyyyyyyyyyy
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>PrivateSub</span><span class='op'>&lt;</span><span class='ident'>Rhs</span> <span class='op'>=</span> <span class='kw'>Self</span><span class='op'>&gt;</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span>;
 }
+
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>PrivatePow</span><span class='op'>&lt;</span><span class='ident'>Y</span>, <span class='ident'>N</span><span class='op'>&gt;</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span>;
+}
+
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>PrivateDiv</span><span class='op'>&lt;</span><span class='ident'>C</span>, <span class='ident'>I</span>, <span class='ident'>Q</span>, <span class='ident'>Divisor</span><span class='op'>&gt;</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span>;
+}
+
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>PrivateDivFirstStep</span><span class='op'>&lt;</span><span class='ident'>C</span>, <span class='ident'>Divisor</span><span class='op'>&gt;</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span>;
+}
+
+<span class='doccomment'>/// Performs Shl on Lhs so that SizeOf(Lhs) = SizeOf(Rhs)</span>
+<span class='doccomment'>/// Fails if SizeOf(Lhs) &gt; SizeOf(Rhs)</span>
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>ShiftDiff</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span>;
+}
+
+<span class='doccomment'>/// Gives SizeOf(Lhs) - SizeOf(Rhs)</span>
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>BitDiff</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> {
+    <span class='kw'>type</span> <span class='ident'>Output</span>;
+}
+
 <span class='doccomment'>/// Inverted unsigned numbers</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>InvertedUnsigned</span> {
     <span class='kw'>fn</span> <span class='ident'>to_int</span>() <span class='op'>-&gt;</span> <span class='ident'>u64</span>;
@@ -403,11 +446,6 @@ Loooooooooooooooooooooooooooooooooook awaaaaaaaaaaaayyyyyyyyyyyyyyyyyyyyyyyyyyyy
 
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>PrivateCmp</span><span class='op'>&lt;</span><span class='ident'>Rhs</span>, <span class='ident'>SoFar</span><span class='op'>&gt;</span> {
     <span class='kw'>type</span> <span class='ident'>Output</span>;
-}
-
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>PrivateDiv</span><span class='op'>&lt;</span><span class='ident'>Rhs</span><span class='op'>&gt;</span> {
-    <span class='kw'>type</span> <span class='ident'>Quotient</span>;
-    <span class='kw'>type</span> <span class='ident'>Remainder</span>;
 }
 </pre>
 </section>
