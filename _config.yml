@@ -28,11 +28,12 @@ github:
 collections:
   dimensioned:
     output: true
+    permalink: /project/:collection/:path.html
     title: Dimensioned
-    url: /dimensioned
-    background: "/imgs/bg-dimensioned.jpg"
+    url: /project/dimensioned
+    background: ""
     links:
-      Documentation: /doc/dimensioned
+      Documentation: /dimensioned
       Source: "https://github.com/paholg/dimensioned"
     crates:
       img: https://img.shields.io/crates/v/dimensioned.svg
@@ -40,10 +41,11 @@ collections:
 
   typenum:
     output: true
+    permalink: /project/:collection/:path.html
     title: Typenum
-    url: /typenum
+    url: /project/typenum
     links:
-      Documentation: /doc/typenum
+      Documentation: /typenum
       Source: "https://github.com/paholg/typenum"
     crates:
       img: https://img.shields.io/crates/v/typenum.svg
@@ -51,10 +53,11 @@ collections:
 
   peano:
     output: true
+    permalink: /project/:collection/:path.html
     title: Peano
-    url: /peano
+    url: /project/peano
     links:
-      Documentation: /doc/peano
+      Documentation: /peano
       Source: "https://github.com/paholg/peano"
     crates:
       img: https://img.shields.io/crates/v/peano.svg
