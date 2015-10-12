@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["B0","The compile time bit 0"],["B1","The compile time bit 1"]],"trait":[["Bit","The trait for compile time bits; nothing besides B0 and B1 should implement this."]]});
