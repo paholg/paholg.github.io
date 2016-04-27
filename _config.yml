@@ -1,37 +1,35 @@
-# Dependencies
-markdown:         redcarpet
-highlighter:      pygments
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 
-# Permalinks
-permalink:        pretty
-relative_permalinks: true
+permalink: pretty
 
-# Exclude
 exclude: [gen, build.py, drafts]
 
-# Setup
-title:            Paho Blog
+title: Paho Blog
 
-description:      "A blog about some projects I've been working on."
-url:              http://paholg.com
-baseurl:          /
+description: "My blog. Very exciting stuff."
+url: http://paholg.com
+baseurl: /
 
 author:
-  name:           "Paho Lurie-Gregg"
-  email:          paho@paholg.com
+  name: "Paho Lurie-Gregg"
+  email: paho@paholg.com
 
-paginate:         5
+paginate: 5
+
+gems: [jekyll-paginate]
 
 github:
-  repo:           "https://github.com/paholg/"
+  repo: "https://github.com/paholg/"
 
 collections:
   dimensioned:
     output: true
-    permalink: /project/:collection/:path.html
+    permalink: /project/:collection/:path
     title: Dimensioned
-    url: /project/dimensioned
-    background: ""
+    url: /project/dimensioned/
     links:
       Documentation: /dimensioned
       Source: "https://github.com/paholg/dimensioned"
@@ -50,18 +48,6 @@ collections:
     crates:
       img: https://img.shields.io/crates/v/typenum.svg
       url: https://crates.io/crates/typenum
-
-  peano:
-    output: true
-    permalink: /project/:collection/:path.html
-    title: Peano
-    url: /project/peano
-    links:
-      Documentation: /peano
-      Source: "https://github.com/paholg/peano"
-    crates:
-      img: https://img.shields.io/crates/v/peano.svg
-      url: https://crates.io/crates/peano
 
   # recipes:
   #   output: true

@@ -7,4 +7,4 @@
   name = "gen"
 
 [dependencies.dimensioned]
-  path = "/home/paho/projects/dimensioned/"
+  path = "/home/paho/src/dimensioned/"

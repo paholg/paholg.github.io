@@ -1,25 +1,25 @@
-{% for collection in site.collections %}
-{% if page.collection == collection[0] %}
+{% assign collectionlist = site.collections | where: "label", page.collection %}
+{% assign collection = collectionlist[0] %}
 
 <div class="sidebar">
   <div class="container">
     <nav class="sidebar-nav">
       <h3>
-        <a class="sidebar-nav-item" href="{{ collection[1].url }}">
-          {{ collection[1].title }}
+        <a class="sidebar-nav-item" href="{{ collection.url }}">
+          {{ collection.title }}
         </a>
       </h3>
     </nav>
 
     <hr/>
 
-    {% if collection[1].crates %}
-    <a class="sidebar-nav-item" href= "{{ collection[1].crates.url }}">&nbsp;<img class="sidebar-nav-img" src="{{ collection[1].crates.img }}" align="right" alt="crates.io"></a>
+    {% if collection.crates %}
+    <a class="sidebar-nav-item" href= "{{ collection.crates.url }}">&nbsp;<img class="sidebar-nav-img" src="{{ collection.crates.img }}" align="right" alt="crates.io"></a>
     <hr/>
     {% endif %}
 
     <nav class="sidebar-nav">
-      {% for pg in collection[1].docs %}
+      {% for pg in collection.docs %}
       {% unless pg.title == "Home" or pg.url contains "examples/" %}
       <a class="sidebar-nav-item" href="{{ pg.url }}"> {{ pg.title }} </a>
       {% if page == pg %}
@@ -35,7 +35,7 @@
     <nav class="sidebar-nav">
       Links<br>
 
-      {% for link in collection[1].links %}
+      {% for link in collection.links %}
       <a class="sidebar-nav-item" href="{{ link[1] }}"> {{ link[0] }} </a>
       {% endfor %}
 
@@ -50,6 +50,3 @@
 
   </div>
 </div>
-
-{% endif %}
-{% endfor %}

@@ -1,23 +1,17 @@
-{% for collection in site.collections %}
-{% if page.collection == collection[0] %}
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 
-  <link rel="shortcut icon" href="imgs/favicon.png">
   {% include head.html %}
 
-
-  <body background="{{ collection[1].background }}">
+  <body>
 
     {% include sidebar-project.html %}
+
     <div class="content container">
       {% if page.title == "Home" %}
-        {% for collection in site.collections %}
-          {% if page.collection == collection[0] %}
-            <h1 class="page-title">{{ collection[1].title }}</h1>
-            {% endif %}
-        {% endfor %}
+      {% assign collectionlist = site.collections | where: "label", page.collection %}
+      {% assign collection = collectionlist[0] %}
+      <h1 class="page-title">{{ collection.title }}</h1>
       {% else %}
       <h1 class="page-title">{{ page.title }}</h1>
       {% endif %}
@@ -29,6 +23,3 @@
   {% include foot.html %}
 
 </html>
-
-{% endif %}
-{% endfor %}

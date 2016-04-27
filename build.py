@@ -123,6 +123,10 @@ def gen_test_chunks(source, target_dir):
         save_test(f, header, fname, main, prelude, snippets)
 
 
+result = subprocess.call(["cargo", "update"], cwd="gen/")
+if result != 0:
+    exit(result)
+
 result = subprocess.call(["cargo", "build"], cwd="gen/")
 if result != 0:
     exit(result)

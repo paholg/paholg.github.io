@@ -15,17 +15,17 @@
       <!-- Posts -->
       {% for post in site.posts limit:5 %}
       <a class="sidebar-nav-item" href="{{ post.url }}"> {{ post.title }}
-      <span class="sidebar-date">{{ post.date | date: "%-d %B %Y" }}</span></a>
+        <span class="sidebar-date">{{ post.date | date: "%-d %B %Y" }}</span></a>
       {% endfor %}
       <a class="sidebar-nav-item" href="/archive/"> Archive </a>
-      <a class="sidebar-nav-item" href="/feed.xml"> RSS </a>
+      <a class="sidebar-nav-item" href="/feed.xml"> RSS / Atom </a>
     </nav>
 
     <nav class="sidebar-nav">
       Projects
       {% for collection in site.collections %}
-      <a class="sidebar-nav-item" href="{{ collection[1].url }}">
-        {{ collection[1].title }} </a>
+      <a class="sidebar-nav-item" href="{{ collection.url }}">
+        {{ collection.title }} </a>
       {% endfor %}
     </nav>
 
@@ -41,5 +41,3 @@
 
   </div>
 </div>
-
-
