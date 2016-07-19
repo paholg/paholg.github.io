@@ -9,7 +9,7 @@ exclude: [gen, build.py, drafts]
 
 title: Paho Blog
 
-description: "My blog. Very exciting stuff."
+description: "A blog by Paho."
 url: http://paholg.com
 baseurl: /
 
@@ -17,9 +17,13 @@ author:
   name: "Paho Lurie-Gregg"
   email: paho@paholg.com
 
-paginate: 5
+# paginate: 1
 
-gems: [jekyll-paginate]
+# gems:
+#   - jekyll-paginate
+
+sass:
+  style: compressed
 
 github:
   repo: "https://github.com/paholg/"
@@ -39,7 +43,7 @@ collections:
 
   typenum:
     output: true
-    permalink: /project/:collection/:path.html
+    permalink: /project/:collection/:path
     title: Typenum
     url: /project/typenum
     links:

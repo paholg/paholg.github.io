@@ -3,7 +3,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
-
   <!-- Enable responsiveness on mobile devices-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
@@ -14,22 +13,6 @@
   <!-- JQuery + Sidebar -->
   <script type="text/javascript" src="/js/jquery.min.js"></script>
   <script type="text/javascript" src="/js/sidebar.js"></script>
-
-  <!-- MathJax -->
-  <script type="text/javascript"
-          src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-  </script>
-
-  <!-- Google Analytics -->
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-59804252-1', 'auto');
-    ga('send', 'pageview');
-  </script>
 
   <title>
     {% if page.layout == "project" %}
@@ -42,8 +25,8 @@
 
 </head>
 
-<button class="menu-button sidebar-button">
-  <span class="menu-top"></span>
-  <span class="menu-middle"></span>
-  <span class="menu-bottom"></span>
+<button class="hamburger sidebar-button" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
 </button>
