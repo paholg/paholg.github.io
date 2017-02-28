@@ -5,8 +5,6 @@ kramdown:
 
 permalink: pretty
 
-exclude: [gen, build.py, drafts]
-
 title: Paho Blog
 
 description: "A blog by Paho."
@@ -16,11 +14,6 @@ baseurl: /
 author:
   name: "Paho Lurie-Gregg"
   email: paho@paholg.com
-
-# paginate: 1
-
-# gems:
-#   - jekyll-paginate
 
 sass:
   style: compressed
