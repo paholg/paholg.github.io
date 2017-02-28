@@ -28,34 +28,6 @@ sass:
 github:
   repo: "https://github.com/paholg/"
 
-collections:
-  dimensioned:
-    output: true
-    permalink: /project/:collection/:path
-    title: Dimensioned
-    url: /project/dimensioned/
-    links:
-      Documentation: /dimensioned
-      Source: "https://github.com/paholg/dimensioned"
-    crates:
-      img: https://img.shields.io/crates/v/dimensioned.svg
-      url: https://crates.io/crates/dimensioned
-
-  typenum:
-    output: true
-    permalink: /project/:collection/:path
-    title: Typenum
-    url: /project/typenum
-    links:
-      Documentation: /typenum
-      Source: "https://github.com/paholg/typenum"
-    crates:
-      img: https://img.shields.io/crates/v/typenum.svg
-      url: https://crates.io/crates/typenum
-
-  # recipes:
-  #   output: true
-  #   title: Recipes
-  #   url: /recipes
-  #   links:
-  #     Source: "https://github.com/paholg/recipes"
+projects:
+  - { title: Dimensioned, url: "https://github.com/paholg/dimensioned/" }
+  - { title: Typenum, url: "https://github.com/paholg/typenum/" }

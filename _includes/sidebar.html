@@ -23,9 +23,10 @@
 
     <nav class="sidebar-nav">
       Projects
-      {% for collection in site.collections %}
-      <a class="sidebar-nav-item" href="{{ collection.url }}">
-        {{ collection.title }} </a>
+      {% for project in site.projects %}
+      <a class="sidebar-nav-item" href="{{ project.url }}">
+        {{ project.title }}
+      </a>
       {% endfor %}
     </nav>
 
