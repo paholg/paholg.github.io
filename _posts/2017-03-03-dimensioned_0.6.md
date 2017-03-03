@@ -37,4 +37,4 @@ If you have some time, check out the
 comprehensive as possible, but I am sure that I have failed in at least some ways.
 
 Please feel free to submit an [issue on GitHub](https://github.com/paholg/dimensioned/issues) or
-leave a comment on reddit (link to follow) or on the Rust user's forum (link to follow).
+leave a comment on [reddit](https://www.reddit.com/r/rust/comments/5x9jgq/dimensioned_06_compiletime_dimensional_analysis/) or on the [Rust user's forum](https://users.rust-lang.org/t/dimensioned-0-6-compile-time-dimensional-analysis-much-nicer-than-before/9759).
