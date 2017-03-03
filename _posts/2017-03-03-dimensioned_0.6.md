@@ -4,10 +4,10 @@ layout: post
 ---
 
 Dimensioned, the Rust library that I have written for compile-time dimensional analysis, has just
-reached 0.6.0! This version change indicates a rewrite of the library, and I think that it has made
-it much more usable.
+reached version 0.6.0! This version change indicates a full rewrite of the library, and I think
+that it has made it much more usable.
 
-I first started this library before Rust had hit 1.0, and I fairly quickly realized that what I
+I first started this crate before Rust had hit 1.0, and I fairly quickly realized that what I
 wanted was not possible. With the advent of associated types, it became possible, and two years ago
 I first announced its existence. It was really a proof of concept at that point; it was lacking in
 ergonomics and some pretty important features.
@@ -24,7 +24,7 @@ Here are some notable changes:
   verions, and now it is `Meter<V>`. The second benefit is in Rust's orphan rules; if you create a
   unit system, you now create the outermost struct, and so have full control over what you can
   implement for it.
-* We no longer depend on `std`! Use dimensioned on microcontrollers or wherever you desire now.
+* We no longer depend on `std`! Use dimensioned wherever you desire!
 * Thanks to type macros, derived units can now be defined without a build script or the *extremely*
   clunky syntax that was necessary before.
 * Unit systems! We have added unit systems and definitions for many derived units and
