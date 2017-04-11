@@ -5,7 +5,7 @@ layout: post
 
 I recently published a new version of [dimensioned](https://crates.io/crates/dimensioned/), a Rust
 library for compile-time dimensional analysis. In so doing, I found a neat little pattern coupling
-specialization with test generation.
+[specialization](https://github.com/rust-lang/rfcs/pull/1210/) with test generation.
 
 ## The Problem
 
@@ -15,10 +15,10 @@ example, from [this code](https://github.com/paholg/dimensioned/blob/master/src/
 [this documentation](http://paholg.com/dimensioned/dimensioned/unit_systems/si/index.html) is
 created.
 
-One test that we want to perform is to compare constants across unit systems. If the same constant
-is defined in two unit systems, then we should ensure that, when converted, they have the same
-value. This ensures both that the conversion does what it should and that we haven't made a typo
-when defining one of the constants.
+In addition to generating documentation, we would like to generate some tests. One such test is to
+compare constants across unit systems. If the same constant is defined in two unit systems, then we
+should ensure that, when converted, they have the same value. This ensures both that the conversion
+does what it should and that we haven't made a typo when defining one of the constants.
 
 Given unit systems `a` and `b`, it should be as easy as
 
@@ -36,9 +36,9 @@ Note: Due to the non-associativity of floating point math, we can't use
 Unfortunately, this fails. We can't always convert from `a` to `b`. Or, sometimes we can convert
 from `a` to `b`, but we can't go from `b` to `a`. For example, we can convert from SI to the
 centimeter-gram-second (CGS) system, but only from a subset of SI. We can't convert a candela to
-CGS, for example. In addition, it makes no sense to convert from CGS to SI, as CGS represents
-electricity and magnitism units in terms of centimeters, grams, and seconds, so such a conversion
-would be ambiguous.
+CGS; there's no unit to represent it. In addition, it makes no sense to convert from CGS to SI, as
+CGS represents electricity and magnitism units in terms of centimeters, grams, and seconds, so such
+a conversion would be ambiguous.
 
 What this means is `From` isn't implemented for all possible constants from all possible constants,
 so we'll get `unimplemented` errors for some of those `into()` calls.
