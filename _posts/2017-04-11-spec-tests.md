@@ -86,3 +86,6 @@ impl<A, B> CmpConsts<B> for A {
 Now, `CmpConsts` is implemented for *any* two types `A` and `B`. If we can convert from `B` to `A`,
 then we perform the test. If not, then we do nothing and move on. No more compiler errors, and we
 can generate all the comparison tests we want!
+
+Feel free to discuss this on
+[reddit](https://www.reddit.com/r/rust/comments/64u6kp/specializing_tests_a_pattern_for_generating_tests/).
