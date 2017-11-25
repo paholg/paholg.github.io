@@ -24,3 +24,6 @@ github:
 projects:
   - { title: Dimensioned, url: "https://github.com/paholg/dimensioned/" }
   - { title: Typenum, url: "https://github.com/paholg/typenum/" }
+
+recipes:
+  url: "/recipes"

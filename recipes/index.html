@@ -1,0 +1,9 @@
+---
+title: Recipes
+layout: page
+---
+
+{% assign recipes = site.pages | where:"layout", "recipe" %}
+{% for page in recipes %}
+<a class="sidebar-nav-item" href="{{ page.url }}"> {{ page.title }} </a>
+{% endfor %}

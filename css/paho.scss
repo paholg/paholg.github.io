@@ -12,6 +12,8 @@ $date: #9a9a9a;
 $page_bg: #121218;
 $bg: #121218;
 $side_bg: #121218;
+$table_even: #020208;
+$table_odd: #222228;
 $quote_bg: #222;
 
 /**************************************************************************************/
@@ -82,6 +84,25 @@ h3, h4, h5, h6 {
     padding: 1rem 1rem 3rem 1rem;
 }
 
+.recipe {
+    table, td, tr {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    tr, td {
+        padding: .5rem;
+    }
+
+    tbody tr:nth-child(odd) {
+        background-color: $table_odd;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: $table_even;
+    }
+}
+
 /**************************************************************************************/
 /* Code */
 
@@ -118,6 +139,16 @@ pre {
 
 	  a {
 		    color: $text;
+	      &:hover {
+		        background-color: $text;
+		        color: $bg;
+		        border-radius: 3px;
+	      }
+	      &:focus {
+		        background-color: $text;
+		        color: $bg;
+		        border-radius: 3px;
+	      }
 	  }
 
 	  hr {
