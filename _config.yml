@@ -8,8 +8,8 @@ permalink: pretty
 title: Paho Blog
 
 description: "A blog by Paho."
-url: http://paholg.com
-baseurl: /
+url: "http://paholg.com"
+baseurl: "/"
 
 author:
   name: "Paho Lurie-Gregg"
