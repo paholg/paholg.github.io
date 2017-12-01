@@ -1,5 +1,5 @@
 ---
-title: Cranberry Sauce
+title: Cream Biscuits
 layout: recipe
 source: Food Wishes
 source_url: http://foodwishes.blogspot.com/2013/11/cream-biscuits-best-biscuit-to-risk-it.html?m=1
