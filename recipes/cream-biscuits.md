@@ -5,6 +5,7 @@ source: Food Wishes
 source_url: http://foodwishes.blogspot.com/2013/11/cream-biscuits-best-biscuit-to-risk-it.html?m=1
 ---
 
+Preheat oven to 500° F. |
 Sift together to make self-rising flour. | &bull; 2 cups all-purpose flour <br> &bull; 1 Tbsp baking powder <br> &bull; 1 tsp salt
 Mix in the sugar. | &bull; 1 Tbsp sugar
 Mix in cream until almost all of the flour disappears.| &bull; 1 1/2 cups heavy cream
