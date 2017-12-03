@@ -1,5 +1,5 @@
 ---
-title: Green Chili Sauce
+title: Green Chile Sauce
 layout: recipe
 source: Genius Kitchen (modified)
 source_url: http://www.geniuskitchen.com/recipe/traditional-style-new-mexico-green-chile-sauce-28467#activity-feed
