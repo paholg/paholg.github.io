@@ -90,6 +90,14 @@ h3, h4, h5, h6 {
         width: 100%;
     }
 
+    td:nth-of-type(1) {
+        width: 70%;
+    }
+
+    td:nth-of-type(2) {
+        width: 30%;
+    }
+
     tr, td {
         padding: .5rem;
     }
